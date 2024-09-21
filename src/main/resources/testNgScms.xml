@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestS-Suite">
+
+	<listeners>
+		<listener class-name="SCMS.Cargo.Listeners.AllureReportListener" />
+		<listener class-name="SCMS.Cargo.Listeners.RetryListener" />
+	</listeners>
+
+	<test name="LillyMaas">
+		<classes>
+			<class name="SCMS.Cargo.TestCases.LoginTestCase" />
+		</classes>
+	</test>
+</suite>
