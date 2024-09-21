@@ -1,7 +1,9 @@
 **Table Of Contents**
-  Structure
-  Features
+  - Structure
+  - Features
+
 **Structure**
+
 _Main Frameworks_
   - Selenium
   - Java
@@ -12,6 +14,7 @@ _Main Frameworks_
 _Project Design_
   - Page Object Model (POM) Design Pattern with Page factory
   - Data Driven Framework
+
 **Features**
   - Login using Config file
   - Login Using Excel file
