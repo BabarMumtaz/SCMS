@@ -10,7 +10,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>Cargo</name>
-	<!-- FIXME change it to the project's website -->
+	<!-- Official project URL -->
 	<url>https://dev.lilymaas.appelit.com/</url>
 
 	<properties>
@@ -62,13 +62,13 @@
 			<version>5.1.2</version>
 		</dependency>
 
-		<!--
-		https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.9.2</version>
 		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
