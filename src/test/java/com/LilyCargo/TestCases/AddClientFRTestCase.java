@@ -3,6 +3,7 @@ package com.LilyCargo.TestCases;
 import java.io.IOException;
 import java.time.Duration;
 
+import com.LilyCargo.Pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,11 +16,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.BookedFreightTestPage;
-import com.LilyCargo.Pages.FreightDetailTestPage;
-import com.LilyCargo.Pages.FreightListingTestPage;
-import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
 import com.LilyCargo.Util.ExcelUtil;
 import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
@@ -37,8 +33,7 @@ public class AddClientFRTestCase extends TestBaseClass {
 	LoginTestPage loginPage;
 	MenuBarTestPage menuBar;
 	BookedFreightTestPage bookedFreights;
-	FreightListingTestPage freightListing;
-	FreightDetailTestPage freightDetail;
+	ClientTestPage clientPage;
 	JavascriptExecutor js;
 	Faker faker;
 	WebDriverWait wait;
@@ -50,13 +45,12 @@ public class AddClientFRTestCase extends TestBaseClass {
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
 		bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
-		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
+		clientPage = PageFactory.initElements(driver, ClientTestPage.class);
 
 		faker = new Faker();
 		js = (JavascriptExecutor) driver;
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		log = LogManager.getLogger(AddFreightTestCase.class);
+		log = LogManager.getLogger(AddClientFRTestCase.class);
 		log.info("Test setup completed.");
 
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
@@ -79,8 +73,13 @@ public class AddClientFRTestCase extends TestBaseClass {
 	@Feature("Feature:004")
 	@Story("As a user, I should be able to Add/Create Client successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Create Client")
-	public void addClientTest(String ticker, String carrierName, String carrierEmail, String telephoneNumber,
-			String address, String zipCode) {
+	public void addClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail, String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1,
+							  String RegionDropDown, String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+
+		clientPage.addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1, TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown);
+
+		clientPage.clickOnAlertPopupLP();
+		log.info("Clicked Cross icon of Alert");
 
 		Assert.assertTrue(loginPage.isLoginSuccessful());
 		loginPage.logout();

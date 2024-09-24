@@ -41,12 +41,11 @@ public class AddCarrierFRTestCase extends TestBaseClass {
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
 		carriersPage = PageFactory.initElements(driver, CarriersTestPage.class);
-		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 
 		// Initialize Faker with Dutch locale
 		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
 		js = (JavascriptExecutor) driver;
-		log = LogManager.getLogger(EditFreightFDPTestCase.class);
+		log = LogManager.getLogger(AddCarrierFRTestCase.class);
 		log.info("Test setup completed.");
 
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
