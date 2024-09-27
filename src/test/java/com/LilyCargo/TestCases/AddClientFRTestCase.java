@@ -30,67 +30,85 @@ import io.qameta.allure.Story;
 
 public class AddClientFRTestCase extends TestBaseClass {
 
-	LoginTestPage loginPage;
-	MenuBarTestPage menuBar;
-	BookedFreightTestPage bookedFreights;
-	ClientTestPage clientPage;
-	JavascriptExecutor js;
-	Faker faker;
-	WebDriverWait wait;
-	Logger log;
+    LoginTestPage loginPage;
+    MenuBarTestPage menuBar;
+    BookedFreightTestPage bookedFreights;
+    ClientTestPage clientPage;
+    JavascriptExecutor js;
+    Faker faker;
+    WebDriverWait wait;
+    Logger log;
 
-	@BeforeMethod
-	public void setup() {
-		initialization(); // Opens a new browser instance
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-		bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
-		clientPage = PageFactory.initElements(driver, ClientTestPage.class);
+    @BeforeMethod
+    public void setup() {
+        initialization(); // Opens a new browser instance
+        loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+        menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
+        bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
+        clientPage = PageFactory.initElements(driver, ClientTestPage.class);
 
-		faker = new Faker();
-		js = (JavascriptExecutor) driver;
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		log = LogManager.getLogger(AddClientFRTestCase.class);
-		log.info("Test setup completed.");
+        faker = new Faker();
+        js = (JavascriptExecutor) driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        log = LogManager.getLogger(AddClientFRTestCase.class);
+        log.info("Test setup completed.");
 
-		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered Valid Username and Password.");
-	}
+        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+        log.info("Entered Valid Username and Password.");
+    }
 
-	// DataProvider to fetch data from Excel file
-	@DataProvider
-	public Object[][] getClientTestData() {
-		// return LoginExcelUtil.getTestData("LoginCredentials"); // The sheet name is
-		// 'LoginCredentials'
-		return ExcelUtil.getTestData("ClientData",
-				(System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\ClientTestData.xlsx"));
-	}
+    // DataProvider to fetch data from Excel file
+    @DataProvider
+    public Object[][] getClientTestData() {
+        return ExcelUtil.getTestData("ClientData",
+                (System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\ClientTestData.xlsx"));
+    }
 
-	@Test(priority = 1, description = "Add Client", dataProvider = "getClientTestData")
-	@Severity(SeverityLevel.BLOCKER)
-	@Description("Verify that a user can Add/Create Client successfully by entering data in required fields")
-	@Epic("EP001")
-	@Feature("Feature:004")
-	@Story("As a user, I should be able to Add/Create Client successfully")
-	@Step("Hit Site Url -> Login with valid credentials -> Create Client")
-	public void addClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail, String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1,
-							  String RegionDropDown, String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+    @Test(priority = 1, description = "Add Client", dataProvider = "getClientTestData")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can Add/Create Client successfully by entering data in required fields")
+    @Epic("EP001")
+    @Feature("Feature:004")
+    @Story("As a user, I should be able to Add/Create Client successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Create Client")
+    public void addClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
+                              String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
+                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+        Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
+        log.info("Login successful.");
 
-		clientPage.addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1, TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown);
+        menuBar.clickFreightRelationsMenu();
+        log.info("Clicked Freight Relations Menu");
 
-		clientPage.clickOnAlertPopupLP();
-		log.info("Clicked Cross icon of Alert");
+        menuBar.clickClientFRSubMenu();
+        log.info("Clicked Client FR Sub Menu");
 
-		Assert.assertTrue(loginPage.isLoginSuccessful());
-		loginPage.logout();
-	}
+        Assert.assertTrue(clientPage.isHeadingDisplayed(), "Heading Not Displayed");
+        log.info("Heading: " + clientPage.getPageHeading());
 
-	@AfterMethod
-	public void tearDown() throws IOException {
-		TestUtilClass.takeScreenshotAtEndOfTest();
-		if (driver != null) {
-			driver.quit(); // Closes the browser instance after each test method
-			log.info("Browser closed successfully.");
-		}
-	}
+        clientPage.clickAddClientBtn();
+        log.info("Clicked Client Add button");
+
+        // Log the dropdown selections for clarity
+        log.info("Adding client data: Region - " + RegionDropDown + ", Country - " + CountryDropDown + ", LFR - "
+                + LfrDropDown);
+
+        clientPage.addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
+                TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown);
+
+        clientPage.clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
+
+        Assert.assertTrue(clientPage.isHeadingDisplayed(), "Heading Not Displayed");
+        loginPage.logout();
+    }
+
+    @AfterMethod
+    public void tearDown() throws IOException {
+        TestUtilClass.takeScreenshotAtEndOfTest();
+        if (driver != null) {
+            driver.quit(); // Closes the browser instance after each test method
+            log.info("Browser closed successfully.");
+        }
+    }
 }

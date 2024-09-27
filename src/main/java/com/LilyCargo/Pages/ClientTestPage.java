@@ -1,6 +1,8 @@
 package com.LilyCargo.Pages;
 
 import com.github.javafaker.Faker;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,9 +37,8 @@ public class ClientTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-
     @CacheLookup
-    @FindBy(xpath = "//h2[text()='Client']")
+    @FindBy(xpath = "//h2[text()='Clients']")
     WebElement clientPageHeading;
 
     @CacheLookup
@@ -89,7 +90,7 @@ public class ClientTestPage {
     WebElement countryDropDown;
 
     @CacheLookup
-    @FindBy(xpath = "//li[contains(.,'CANADA')]")
+    @FindBy(xpath = "//li[contains(.,'UNITED KINGDOM')]")
     WebElement countryDropDownValue;
 
     @CacheLookup
@@ -143,12 +144,22 @@ public class ClientTestPage {
         return wait.until(ExpectedConditions.visibilityOf(clientPageHeading)).isDisplayed();
     }
 
-    public void clickAddCarrierBtn() {
+    public void clickAddClientBtn() {
         addClientBtn.click();
     }
 
-    public void addClientData(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail, String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1,
-                              String RegionDropDown, String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+    // Method to select a dropdown value by visible text
+    public void selectDropdownByText(WebElement dropdownElement, String value) {
+        dropdownElement.click(); // open the dropdown
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + value + "')]"))));
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+        dropdownOption.click();
+    }
+
+    public void addClientData(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
+                              String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
+                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
         clientName.sendKeys(Name);
         contactPerson.sendKeys(ContactPerson);
         clientAddress1.sendKeys(Address1);
@@ -157,11 +168,15 @@ public class ClientTestPage {
         clientFiscalMattersEmail1.sendKeys(FiscalMattersEmail1);
         clientCeoEmail1.sendKeys(CeoEmail1);
         clientTelephoneNumber1.sendKeys(TelephoneNumber1);
-        regionDropDown.sendKeys(RegionDropDown);
-        countryDropDown.sendKeys(CountryDropDown);
+        selectDropdownByText(regionDropDown, RegionDropDown);
+        selectDropdownByText(countryDropDown, CountryDropDown);
         clientZipCity.sendKeys(ZipCity);
         clientVat.sendKeys(Vat);
-        clientLfrDropDown.sendKeys(LfrDropDown);
+        selectDropdownByText(clientLfrDropDown, LfrDropDown);
+        clickExtraEmailFieldCross();
+        clickExtraAddressFieldCross();
+        clickExtraPhoneFieldCross();
+
         clickSaveClientBack();
     }
 
