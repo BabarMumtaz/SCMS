@@ -64,7 +64,10 @@ public class AddClientFRTestCase extends TestBaseClass {
                 (System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\ClientTestData.xlsx"));
     }
 
-    @Test(priority = 1, description = "Add Client", dataProvider = "getClientTestData")
+    @Test(priority = 1,
+            description = "Add Client",
+            dataProvider = "getClientTestData",
+            groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Add/Create Client successfully by entering data in required fields")
     @Epic("EP001")

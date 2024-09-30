@@ -61,7 +61,7 @@ public class AddFreightTestCase extends TestBaseClass {
 		log.info("Entered Valid Username and Password.");
 	}
 
-	@Test(priority = 1, description = "Verify that a user can Add/Create freight successfully")
+	@Test(priority = 1, description = "Verify that a user can Add/Create freight successfully", groups = {"smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can Add/Create freight successfully by entering data in required fields")
 	@Epic("EP001")

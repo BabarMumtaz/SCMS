@@ -37,7 +37,7 @@ public class LoginTestCaseUsingExcelF extends TestBaseClass {
 				(System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\LoginTestData.xlsx"));
 	}
 
-	@Test(priority = 1, description = "Verify valid login", dataProvider = "getLoginTestData")
+	@Test(priority = 1, description = "Verify valid login", dataProvider = "getLoginTestData", groups = {"regression"})
 	public void validLoginTest(String username, String password) {
 		log.info("Attempting login with username: " + username);
 		loginPage.login(username, password);

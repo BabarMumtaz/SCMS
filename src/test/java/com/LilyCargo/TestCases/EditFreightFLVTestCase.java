@@ -57,7 +57,7 @@ public class EditFreightFLVTestCase extends TestBaseClass {
 		log.info("Entered Valid Username and Password.");
 	}
 
-	@Test(priority = 1, description = "Verify that a user can edit freight successfully")
+	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can edit freight successfully from the listing 1st page")
 	@Epic("EP001")

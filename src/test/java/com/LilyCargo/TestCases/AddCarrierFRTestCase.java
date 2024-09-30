@@ -52,7 +52,7 @@ public class AddCarrierFRTestCase extends TestBaseClass {
 		log.info("Entered Valid Username and Password.");
 	}
 
-	@Test(priority = 1, description = "Verify that a user can add carrier successfully")
+	@Test(priority = 1, description = "Verify that a user can add carrier successfully", groups = {"smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can add carrier successfully")
 	@Epic("EP001")

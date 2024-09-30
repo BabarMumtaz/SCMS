@@ -34,7 +34,7 @@ public class LoginTestCaseUsingConfigF extends TestBaseClass {
 		log.info("Test setup completed.");
 	}
 
-	@Test(priority = 1, description = "Verify valid login", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1, description = "Verify valid login", retryAnalyzer = RetryAnalyzer.class, groups = {"smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a valid user can login")
 	@Epic("EP001")
@@ -51,7 +51,7 @@ public class LoginTestCaseUsingConfigF extends TestBaseClass {
 		loginPage.logout();
 	}
 
-	@Test(priority = 2, description = "Verify invalid login", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, description = "Verify invalid login", retryAnalyzer = RetryAnalyzer.class, groups = {"regression"})
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify that an invalid user cannot login")
 	@Epic("EP001")
