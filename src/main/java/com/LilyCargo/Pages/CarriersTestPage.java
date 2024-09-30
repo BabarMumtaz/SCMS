@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.Locale;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -54,15 +55,27 @@ public class CarriersTestPage {
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='email1']")
-	WebElement carrierEmail;
+	WebElement carrierEmail1;
+
+	@CacheLookup
+	@FindBy(xpath = "//input[@name='email2']")
+	WebElement carrierEmail2;
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='tel1']")
 	WebElement telephoneNumber1;
 
 	@CacheLookup
+	@FindBy(xpath = "//input[@name='tel2']")
+	WebElement telephoneNumber2;
+
+	@CacheLookup
 	@FindBy(xpath = "//input[@name='address1']")
 	WebElement address1;
+
+	@CacheLookup
+	@FindBy(xpath = "//input[@name='address2']")
+	WebElement address2;
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='zipCity']")
@@ -99,7 +112,7 @@ public class CarriersTestPage {
 	@CacheLookup
 	@FindBy(xpath = "//button[text()='Save & New']")
 	WebElement saveCarrierNew;
-	
+
 	@CacheLookup
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement alertPopupDP;
@@ -128,33 +141,58 @@ public class CarriersTestPage {
 	}
 
 	public void enterCarrierEmail(String text) {
-		carrierEmail.sendKeys(text);
+		carrierEmail1.sendKeys(text);
+	}
+
+	public void enterCarrierEmail2(String text) {
+		actions.click(carrierEmail2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
+		carrierEmail2.sendKeys(text);
 	}
 
 	public void enterTelephoneNumber1(String text) {
 		telephoneNumber1.sendKeys(text);
 	}
-	
+
+	/*
+	 * public void enterTelephoneNumber2(String text) {
+	 * actions.click(telephoneNumber2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(
+	 * Keys.CONTROL).sendKeys(Keys.DELETE) .perform();
+	 * telephoneNumber2.sendKeys(text); }
+	 */
+
 	// Method to generate a Dutch phone number without dashes
-    public String getDutchPhoneNumber() {
-        String dutchPhoneNumber = faker.phoneNumber().phoneNumber();
+	public String getDutchPhoneNumber() {
+		String dutchPhoneNumber = faker.phoneNumber().phoneNumber();
 
-        // Replace unwanted characters and ensure it starts with +31
-        dutchPhoneNumber = dutchPhoneNumber.replaceAll("[^\\d+]", ""); // Keep only digits and the plus sign
-        if (!dutchPhoneNumber.startsWith("+31")) {
-            dutchPhoneNumber = "+31" + dutchPhoneNumber.substring(1); // Ensure it starts with +31
-        }
+		// Replace unwanted characters and ensure it starts with +31
+		dutchPhoneNumber = dutchPhoneNumber.replaceAll("[^\\d+]", ""); // Keep only digits and the plus sign
+		if (!dutchPhoneNumber.startsWith("+31")) {
+			dutchPhoneNumber = "+31" + dutchPhoneNumber.substring(1); // Ensure it starts with +31
+		}
 
-        return dutchPhoneNumber;
-    }
+		return dutchPhoneNumber;
+	}
 
-    public void enterDutchPhoneNumber() {
-        String dutchPhoneNumber = getDutchPhoneNumber();
-        telephoneNumber1.sendKeys(dutchPhoneNumber);
-    }
+	public void enterDutchPhoneNumber() {
+		String dutchPhoneNumber = getDutchPhoneNumber();
+		telephoneNumber1.sendKeys(dutchPhoneNumber);
+	}
+
+	public void enterDutchPhoneNumber2() {
+		actions.click(telephoneNumber2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
+		String dutchPhoneNumber = getDutchPhoneNumber();
+		telephoneNumber2.sendKeys(dutchPhoneNumber);
+	}
 
 	public void enterAddress1(String text) {
 		address1.sendKeys(text);
+	}
+
+	public void enterAddress2(String text) {
+		actions.click(address2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+		address2.sendKeys(text);
 	}
 
 	public void enterZipCity(String text) {
@@ -194,7 +232,7 @@ public class CarriersTestPage {
 	public void clickSaveCarrierNew() {
 		saveCarrierNew.click();
 	}
-	
+
 	public void clickOnAlertPopupDP() {
 		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
 	}
