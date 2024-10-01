@@ -62,7 +62,7 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
     @Description("Verify that a user can edit Carrier successfully from the Carrier view page")
     @Epic("EP001")
     @Feature("Feature:002")
-    @Story("As a user, I should be able to edit freight successfully")
+    @Story("As a user, I should be able to edit carrier successfully")
     @Step("Hit Site Url > Login with valid credentials > Detail Page of Carrier > Edit carrier")
     public void EditCarrierTest() throws InterruptedException {
 
