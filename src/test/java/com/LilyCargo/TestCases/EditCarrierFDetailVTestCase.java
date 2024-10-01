@@ -15,7 +15,6 @@ import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Pages.BookedFreightTestPage;
 import com.LilyCargo.Pages.CarrierListingTestPage;
 import com.LilyCargo.Pages.CarriersTestPage;
-import com.LilyCargo.Pages.FreightListingTestPage;
 import com.LilyCargo.Pages.LoginTestPage;
 import com.LilyCargo.Pages.MenuBarTestPage;
 import com.LilyCargo.Util.TestUtilClass;
@@ -34,7 +33,6 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
     BookedFreightTestPage bookedFreights;
-    FreightListingTestPage freightListing;
     CarrierListingTestPage carrierListing;
     CarriersTestPage carriersPage;
     JavascriptExecutor js;
@@ -47,7 +45,6 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
         loginPage = PageFactory.initElements(driver, LoginTestPage.class);
         menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
         bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
-        freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
         carrierListing = PageFactory.initElements(driver, CarrierListingTestPage.class);
         carriersPage = PageFactory.initElements(driver, CarriersTestPage.class);
 
@@ -62,7 +59,7 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
 
     @Test(priority = 1, description = "Verify that a user can edit carrier successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can edit freight successfully from the Freight Detail page")
+    @Description("Verify that a user can edit Carrier successfully from the Carrier view page")
     @Epic("EP001")
     @Feature("Feature:002")
     @Story("As a user, I should be able to edit freight successfully")
@@ -94,13 +91,13 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
         log.info("Clicked on Edit button on view page");
 
         carriersPage.enterCarrierEmail2(faker.internet().emailAddress());
-        log.info("Entered Carrier's Email");
+        log.info("Entered Carrier's Email 2");
 
         carriersPage.enterDutchPhoneNumber2(); // New method for Dutch phone number
-        log.info("Entered Carrier's Tel Number");
+        log.info("Entered Carrier's Tel 2 Number");
 
         carriersPage.enterAddress2(faker.address().streetAddress());
-        log.info("Entered Address");
+        log.info("Entered Address 2");
 
         carriersPage.clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
