@@ -1,9 +1,10 @@
 @echo off
-REM Change directory to the location of the project
-cd /d %~dp0
 
-REM Generate the Allure report
-allure generate --clean allure-results
+REM Serve the Allure report
+allure serve allure-results -h localhost
 
-REM Serve the Allure report on a local server
-allure serve allure-results
+REM Pause to keep the command window open
+pause
+
+exit
+
