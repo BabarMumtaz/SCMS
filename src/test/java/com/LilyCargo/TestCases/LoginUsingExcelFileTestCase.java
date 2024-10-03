@@ -16,7 +16,7 @@ import com.LilyCargo.Pages.LoginTestPage;
 import com.LilyCargo.Util.ExcelUtil;
 import com.LilyCargo.Util.TestUtilClass;
 
-public class LoginTestCaseUsingExcelF extends TestBaseClass {
+public class LoginUsingExcelFileTestCase extends TestBaseClass {
 
 	LoginTestPage loginPage;
 	WebDriverWait wait;
