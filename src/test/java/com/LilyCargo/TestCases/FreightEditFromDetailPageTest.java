@@ -28,7 +28,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class EditFreightFLVTestCase extends TestBaseClass {
+public class FreightEditFromDetailPageTest extends TestBaseClass {
 
 	LoginTestPage loginPage;
 	MenuBarTestPage menuBar;
@@ -50,7 +50,7 @@ public class EditFreightFLVTestCase extends TestBaseClass {
 
 		faker = new Faker();
 		js = (JavascriptExecutor) driver;
-		log = LogManager.getLogger(EditFreightFLVTestCase.class);
+		log = LogManager.getLogger(FreightEditFromDetailPageTest.class);
 		log.info("Test setup completed.");
 
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
@@ -59,7 +59,7 @@ public class EditFreightFLVTestCase extends TestBaseClass {
 
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
 	@Severity(SeverityLevel.BLOCKER)
-	@Description("Verify that a user can edit freight successfully from the listing 1st page")
+	@Description("Verify that a user can edit freight successfully from the Freight Detail page")
 	@Epic("EP001")
 	@Feature("Feature:002")
 	@Story("As a user, I should be able to edit freight successfully")
@@ -73,42 +73,25 @@ public class EditFreightFLVTestCase extends TestBaseClass {
 		freightListing.hoverOn1stRowClient();
 		log.info("Hover over 1st Row");
 
-		freightListing.ClickOnEditFreightIcon();
-		log.info("Hover over Edit Icon and click");
+		freightListing.clickOnViewFreightIcon();
+		log.info("Hover over View Icon and click");
 
 		// Switch to the new tab
 		freightListing.switchToNewTab();
 		log.info("Switched to the new tab");
 
 		// Check if the edit wrapper is displayed
-		Assert.assertTrue(bookedFreights.isEditPageDisplayed(), "Edit Page is not Displayed");
+		Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
-		bookedFreights.enterHouseBLNO(faker.number().digits(5));
-		log.info("Entered House BL No");
+		// Clicked on Booked Freight Edit Icon On Detail Page
+		freightDetail.clickOnEditFreightIconDP();
+		log.info("Clicked on Booked Freight Edit Icon");
 
 		bookedFreights.clickSaveNextFreightBtn();
 		log.info("Clicked Save & Next Freight Button");
 
-		bookedFreights.enterBondedLocation("Industrieweg 193, 2511 79 Rotterdam, Netherlands");
+		bookedFreights.enterBondedLocation("Kerkstraat 132, 1311 13 Amsterdam, Netherlands");
 		log.info("Entered Bonded Location");
-
-		bookedFreights.clickCustomDocStatusBtn();
-		log.info("Clicked Custom Doc Status Button");
-
-		bookedFreights.selectCustomDocStatus();
-		log.info("Select Custom Doc Status Drop");
-
-		bookedFreights.clickPurchaseStepBtn();
-		log.info("Clicked Purchase Step Button");
-
-		bookedFreights.enterAdminFee("800.25");
-		log.info("Entered Admin Fee");
-
-		bookedFreights.clickSaleStepBtn();
-		log.info("Clicked Sale Step Button");
-
-		bookedFreights.enterDuty("400,66");
-		log.info("Entered Duty");
 
 		bookedFreights.clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");

@@ -25,7 +25,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import java.util.Locale;
 
-public class AddCarrierFRTestCase extends TestBaseClass {
+public class CarrierAddTest extends TestBaseClass {
 
 	LoginTestPage loginPage;
 	MenuBarTestPage menuBar;
@@ -45,7 +45,7 @@ public class AddCarrierFRTestCase extends TestBaseClass {
 		// Initialize Faker with Dutch locale
 		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
 		js = (JavascriptExecutor) driver;
-		log = LogManager.getLogger(AddCarrierFRTestCase.class);
+		log = LogManager.getLogger(CarrierAddTest.class);
 		log.info("Test setup completed.");
 
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));

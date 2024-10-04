@@ -28,7 +28,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class EditCarrierFDetailVTestCase extends TestBaseClass {
+public class CarrierEditFromDetailViewTest extends TestBaseClass {
 
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
@@ -50,7 +50,7 @@ public class EditCarrierFDetailVTestCase extends TestBaseClass {
 
         faker = new Faker();
         js = (JavascriptExecutor) driver;
-        log = LogManager.getLogger(EditCarrierFDetailVTestCase.class);
+        log = LogManager.getLogger(CarrierEditFromDetailViewTest.class);
         log.info("Test setup completed.");
 
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));

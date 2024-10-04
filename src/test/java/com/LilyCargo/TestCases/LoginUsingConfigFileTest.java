@@ -19,11 +19,11 @@ import com.LilyCargo.Util.TestUtilClass;
 
 import io.qameta.allure.*;
 
-public class LoginUsingConfigFileTestCase extends TestBaseClass {
+public class LoginUsingConfigFileTest extends TestBaseClass {
 
 	LoginTestPage loginPage;
 	WebDriverWait wait;
-	Logger log = LogManager.getLogger(LoginUsingConfigFileTestCase.class);
+	Logger log = LogManager.getLogger(LoginUsingConfigFileTest.class);
 
 	@BeforeMethod
 	public void setup() {

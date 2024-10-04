@@ -14,7 +14,7 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTestCase"/>
+			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest"/>
 		</classes>
 	</test>
 

@@ -28,7 +28,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class AddClientFRTestCase extends TestBaseClass {
+public class ClientAddTest extends TestBaseClass {
 
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
@@ -50,7 +50,7 @@ public class AddClientFRTestCase extends TestBaseClass {
         faker = new Faker();
         js = (JavascriptExecutor) driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        log = LogManager.getLogger(AddClientFRTestCase.class);
+        log = LogManager.getLogger(ClientAddTest.class);
         log.info("Test setup completed.");
 
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
