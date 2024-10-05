@@ -1,7 +1,7 @@
 @echo off
 
 REM Serve the Allure report
-allure serve allure-results -h localhost
+allure generate allure-results --clean -o allure-report
 
 REM Pause to keep the command window open
 pause
