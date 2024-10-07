@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Feature Test Suite">
+<suite name="TestS-Suite">
 
 	<listeners>
-		<listener class-name="com.LilyCargo.Listeners.AllureReportListener"/>
+		<listener class-name="com.LilyCargo.Listeners.AllureReportListener" />
 	</listeners>
 
-	<test name="Smoke Tests">
-
+	<test name="LillyMaas">
 		<classes>
-			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest"/>
-			<class name="com.LilyCargo.TestCases.FreightAddTest"/>
-			<class name="com.LilyCargo.TestCases.FreightEditFromDetailPageTest"/>
-			<class name="com.LilyCargo.TestCases.FreightEditFromListingViewTest"/>
-			<class name="com.LilyCargo.TestCases.CarrierAddTest"/>
-			<class name="com.LilyCargo.TestCases.CarrierEditFromDetailViewTest"/>
+			<class name="com.LilyCargo.TestCases.CarrierAddTest" />
+			<class name="com.LilyCargo.TestCases.CarrierEditFromDetailViewTest" />
+			<class name="com.LilyCargo.TestCases.ClientAddTest" />
+			<class name="com.LilyCargo.TestCases.FreightAddTest" />
+			<class name="com.LilyCargo.TestCases.FreightEditFromDetailPageTest" />
+			<class name="com.LilyCargo.TestCases.FreightEditFromListingViewTest" />
+			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest" />
+			<class name="com.LilyCargo.TestCases.LoginUsingExcelFileTest" />
 		</classes>
 	</test>
-
 </suite>
