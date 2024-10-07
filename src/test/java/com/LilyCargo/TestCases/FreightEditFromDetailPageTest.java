@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import java.io.IOException;
 
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -64,7 +65,7 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 	@Feature("Feature:002")
 	@Story("As a user, I should be able to edit freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Edit freight")
-	public void EditFreightTest() throws InterruptedException {
+	public void EditFreightTestFromDetailPage() throws InterruptedException {
 
 		// Check if login is successful
 		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -106,7 +107,7 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 
 	@AfterMethod
 	public void tearDown() throws IOException {
-		TestUtilClass.takeScreenshotAtEndOfTest();
+		ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "EditFreightTestFromDetailPage");
 		if (driver != null) {
 			driver.quit(); // Closes the browser instance after each test method
 			log.info("Browser closed successfully.");

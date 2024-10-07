@@ -15,14 +15,24 @@ public class AllureReportListener extends TestBaseClass implements ITestListener
 
 	@Attachment(value = "Page screenshot", type = "image/png")
 	public byte[] saveScreenshotPNG(WebDriver driver) {
-		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		try {
+			return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		} catch (Exception e) {
+			System.out.println("Failed to capture screenshot: " + e.getMessage());
+			return new byte[0]; // Return empty array if screenshot capture fails
+		}
 	}
 
 	@Override
 	public void onStart(ITestContext iTestContext) {
 		System.out.println("Starting Test Suite '" + iTestContext.getName() + "'.......");
-		// Set WebDriver instance to context for later retrieval
-		iTestContext.setAttribute("WebDriver", driver);
+
+		// Ensure WebDriver is available before setting it in the context
+		if (driver != null) {
+			iTestContext.setAttribute("WebDriver", driver);
+		} else {
+			System.out.println("WebDriver instance is null in onStart.");
+		}
 	}
 
 	@Override
@@ -37,27 +47,30 @@ public class AllureReportListener extends TestBaseClass implements ITestListener
 
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
+		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' passed.");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Failed");
+		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' failed.");
+
+		// Ensure WebDriver is available before attempting to capture a screenshot
 		if (driver != null) {
-			System.out.println("Screenshot captured for the Test Method '" + getTestMethodName(iTestResult) + "'");
+			System.out.println("Attempting to capture screenshot for test method '" + getTestMethodName(iTestResult) + "'");
 			saveScreenshotPNG(driver);
+		} else {
+			System.out.println("WebDriver instance is null, unable to capture screenshot for test method '" + getTestMethodName(iTestResult) + "'");
 		}
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Skipped");
+		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' skipped.");
 	}
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-		// Optional method to implement if you have logic for tests that fail but are
-		// within a success percentage
+		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' failed but within success percentage.");
 	}
 
 	private static String getTestMethodName(ITestResult iTestResult) {

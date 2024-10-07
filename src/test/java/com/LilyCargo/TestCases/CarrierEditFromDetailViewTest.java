@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import java.io.IOException;
 
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -112,7 +113,7 @@ public class CarrierEditFromDetailViewTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() throws IOException {
-        TestUtilClass.takeScreenshotAtEndOfTest();
+        ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "EditCarrierTest");
         if (driver != null) {
             driver.quit(); // Closes the browser instance after each test method
             log.info("Browser closed successfully.");

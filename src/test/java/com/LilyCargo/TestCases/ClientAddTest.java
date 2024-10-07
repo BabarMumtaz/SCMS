@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 import com.LilyCargo.Pages.*;
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -74,7 +75,7 @@ public class ClientAddTest extends TestBaseClass {
     @Feature("Feature:004")
     @Story("As a user, I should be able to Add/Create Client successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Create Client")
-    public void addClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
+    public void AddClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
                               String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
                               String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -108,7 +109,7 @@ public class ClientAddTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() throws IOException {
-        TestUtilClass.takeScreenshotAtEndOfTest();
+        ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "AddClientTest");
         if (driver != null) {
             driver.quit(); // Closes the browser instance after each test method
             log.info("Browser closed successfully.");

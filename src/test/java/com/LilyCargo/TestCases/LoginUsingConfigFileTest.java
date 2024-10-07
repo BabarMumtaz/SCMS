@@ -3,11 +3,13 @@ package com.LilyCargo.TestCases;
 import java.io.IOException;
 import java.time.Duration;
 
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -51,7 +53,7 @@ public class LoginUsingConfigFileTest extends TestBaseClass {
 		loginPage.logout();
 	}
 
-	@Test(priority = 2, description = "Verify invalid login", retryAnalyzer = RetryAnalyzer.class, groups = {"regression"})
+	@Test(priority = 2, description = "Verify invalid login", groups = {"regression"})
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify that an invalid user cannot login")
 	@Epic("EP001")
@@ -67,11 +69,20 @@ public class LoginUsingConfigFileTest extends TestBaseClass {
 	}
 
 	@AfterMethod
-	public void tearDown() throws IOException {
-		TestUtilClass.takeScreenshotAtEndOfTest();
-		if (driver != null) {
-			driver.quit();
-			log.info("Browser closed.");
+	public void tearDown(ITestResult result) {
+		// Get the name of the test method
+		String testName = result.getMethod().getMethodName();
+
+		try {
+			// Take a screenshot using the test method name
+			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+		} catch (IOException e) {
+			log.error("Failed to take screenshot for test: " + testName, e); // Use logging instead of printStackTrace
+		} finally {
+			if (driver != null) {
+				driver.quit();
+				log.info("Browser closed.");
+			}
 		}
 	}
 }

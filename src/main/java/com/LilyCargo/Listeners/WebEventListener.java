@@ -13,6 +13,7 @@ as an when the action done (click, findBy etc).
 
 import java.io.IOException;
 
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -67,7 +68,7 @@ public class WebEventListener extends TestBaseClass implements WebDriverListener
 	public void onException(Throwable error, WebDriver driver) {
 		System.out.println("Exception occured: " + error);
 		try {
-			TestUtilClass.takeScreenshotAtEndOfTest();
+			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "Exception_" + System.currentTimeMillis());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

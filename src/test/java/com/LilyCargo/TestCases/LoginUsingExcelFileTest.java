@@ -3,6 +3,7 @@ package com.LilyCargo.TestCases;
 import java.io.IOException;
 import java.time.Duration;
 
+import com.LilyCargo.Util.ScreenShotUtil;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -38,7 +39,7 @@ public class LoginUsingExcelFileTest extends TestBaseClass {
 	}
 
 	@Test(priority = 1, description = "Verify valid login", dataProvider = "getLoginTestData", groups = {"regression"})
-	public void validLoginTest(String username, String password) {
+	public void validLoginTestUsingDataDriven(String username, String password) {
 		log.info("Attempting login with username: " + username);
 		loginPage.login(username, password);
 
@@ -49,7 +50,7 @@ public class LoginUsingExcelFileTest extends TestBaseClass {
 
 	@AfterMethod
 	public void tearDown() throws IOException {
-		TestUtilClass.takeScreenshotAtEndOfTest();
+		ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "validLoginTestUsingDataDriven");
 		if (driver != null) {
 			driver.quit(); // Closes the browser instance after each test method
 			log.info("Browser closed successfully.");
