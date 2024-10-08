@@ -100,6 +100,12 @@ public class CarrierEditFromDetailViewTest extends TestBaseClass {
         carriersPage.enterAddress2(faker.address().streetAddress());
         log.info("Entered Address 2");
 
+        carriersPage.clickExtraAddressFieldCross();
+        log.info("Click Extra Address Field Cross");
+
+        carriersPage.clickExtraPhoneFieldCross();
+        log.info("Click Extra Phone Field Cross");
+
         carriersPage.clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
 
