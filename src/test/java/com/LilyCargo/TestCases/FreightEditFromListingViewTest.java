@@ -13,12 +13,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.BookedFreightTestPage;
+import com.LilyCargo.Pages.FreightTestPage;
 import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Pages.FreightListingTestPage;
 import com.LilyCargo.Pages.LoginTestPage;
 import com.LilyCargo.Pages.MenuBarTestPage;
-import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
 import io.qameta.allure.Description;
@@ -33,7 +32,7 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 
 	LoginTestPage loginPage;
 	MenuBarTestPage menuBar;
-	BookedFreightTestPage bookedFreights;
+	FreightTestPage bookedFreights;
 	FreightListingTestPage freightListing;
 	FreightDetailTestPage freightDetail;
 	JavascriptExecutor js;
@@ -45,7 +44,7 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 		initialization(); // Opens a new browser instance
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-		bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
+		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
 		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
 		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 

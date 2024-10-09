@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BookedFreightTestPage {
+public class FreightTestPage {
 
 	WebDriver driver;
 	JavascriptExecutor executor;
@@ -22,7 +22,7 @@ public class BookedFreightTestPage {
 
 	// Constructor that will be automatically called as soon as the object of the
 	// class is created
-	public BookedFreightTestPage(WebDriver driver) {
+	public FreightTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

@@ -18,7 +18,6 @@ import org.testng.annotations.Test;
 
 import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Util.ExcelUtil;
-import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
 import io.qameta.allure.Description;
@@ -33,7 +32,7 @@ public class ClientAddTest extends TestBaseClass {
 
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
-    BookedFreightTestPage bookedFreights;
+    FreightTestPage bookedFreights;
     ClientTestPage clientPage;
     JavascriptExecutor js;
     Faker faker;
@@ -45,7 +44,7 @@ public class ClientAddTest extends TestBaseClass {
         initialization(); // Opens a new browser instance
         loginPage = PageFactory.initElements(driver, LoginTestPage.class);
         menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        bookedFreights = PageFactory.initElements(driver, BookedFreightTestPage.class);
+        bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
         clientPage = PageFactory.initElements(driver, ClientTestPage.class);
 
         faker = new Faker();
