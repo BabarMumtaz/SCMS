@@ -100,7 +100,7 @@ public class CarrierEditFromDetailViewTest extends TestBaseClass {
         log.info("Entered Address 2");
 
         carriersPage.clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
+        log.info("Click Extra Address Field Cross icon");
 
         carriersPage.clickExtraPhoneFieldCross();
         log.info("Click Extra Phone Field Cross");
