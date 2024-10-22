@@ -16,7 +16,6 @@ import com.LilyCargo.Pages.CarriersTestPage;
 import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Pages.LoginTestPage;
 import com.LilyCargo.Pages.MenuBarTestPage;
-import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
