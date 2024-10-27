@@ -1,10 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.CarriersTestPage;
-import com.LilyCargo.Pages.FreightDetailTestPage;
-import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
+import com.LilyCargo.Pages.*;
 import com.LilyCargo.Util.ScreenShotUtil;
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
@@ -24,7 +21,7 @@ public class ShipperAddTest extends TestBaseClass {
 
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
-    CarriersTestPage carriersPage;
+    ShipperTestPage shipperPage;
     FreightDetailTestPage freightDetail;
     JavascriptExecutor js;
     Faker faker;
@@ -35,7 +32,7 @@ public class ShipperAddTest extends TestBaseClass {
         initialization(); // Opens a new browser instance
         loginPage = PageFactory.initElements(driver, LoginTestPage.class);
         menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        carriersPage = PageFactory.initElements(driver, CarriersTestPage.class);
+        shipperPage = PageFactory.initElements(driver, ShipperTestPage.class);
 
         // Initialize Faker with Dutch locale
         faker = new Faker(new Locale.Builder().setLanguage("nl").build());
@@ -64,13 +61,13 @@ public class ShipperAddTest extends TestBaseClass {
         log.info("Clicked Freight Relations Menu");
 
         menuBar.clickCarriersFRSubMenu();
-        log.info("Clicked Carriers FR Sub Menu");
+        log.info("Clicked Shipper FR Sub Menu");
 
-        Assert.assertTrue(carriersPage.isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + carriersPage.getPageHeading());
+        Assert.assertTrue(shipperPage.isHeadingDisplayed(), "Heading Not Displayed");
+        log.info("Heading: " + shipperPage.getPageHeading());
 
-        carriersPage.clickAddCarrierBtn();
-        log.info("Clicked Carriers Add button");
+        shipperPage.clickAddShipperBtn();
+        log.info("Clicked Shipper Add button");
 
     }
 

@@ -54,7 +54,7 @@ public class ShipperTestPage {
         return wait.until(ExpectedConditions.visibilityOf(shipperPageHeading)).isDisplayed();
     }
 
-    public void clickAddCarrierBtn() {
+    public void clickAddShipperBtn() {
         addShipperBtn.click();
     }
 
