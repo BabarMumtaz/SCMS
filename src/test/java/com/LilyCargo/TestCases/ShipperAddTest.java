@@ -21,7 +21,7 @@ public class ShipperAddTest extends TestBaseClass {
 
     LoginTestPage loginPage;
     MenuBarTestPage menuBar;
-    ShipperTestPage shipperPage;
+    ShipperTestPage shippersPage;
     FreightDetailTestPage freightDetail;
     JavascriptExecutor js;
     Faker faker;
@@ -32,7 +32,7 @@ public class ShipperAddTest extends TestBaseClass {
         initialization(); // Opens a new browser instance
         loginPage = PageFactory.initElements(driver, LoginTestPage.class);
         menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        shipperPage = PageFactory.initElements(driver, ShipperTestPage.class);
+        shippersPage = PageFactory.initElements(driver, ShipperTestPage.class);
 
         // Initialize Faker with Dutch locale
         faker = new Faker(new Locale.Builder().setLanguage("nl").build());
@@ -60,15 +60,66 @@ public class ShipperAddTest extends TestBaseClass {
         menuBar.clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
 
-        menuBar.clickCarriersFRSubMenu();
+        menuBar.clickShippersFRSubMenu();
         log.info("Clicked Shipper FR Sub Menu");
 
-        Assert.assertTrue(shipperPage.isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + shipperPage.getPageHeading());
+        Assert.assertTrue(shippersPage.isHeadingDisplayed(), "Heading Not Displayed");
+        log.info("Heading: " + shippersPage.getPageHeading());
 
-        shipperPage.clickAddShipperBtn();
+        shippersPage.clickAddShipperBtn();
         log.info("Clicked Shipper Add button");
 
+        Assert.assertTrue(shippersPage.isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
+        log.info("Heading: " + shippersPage.getAddPageHeading());
+
+        shippersPage.enterShipperStore(faker.company().name());
+        log.info("Entered Shipper Store Name");
+
+        shippersPage.selectExportCompany();
+        log.info("Selected Export Company");
+
+        shippersPage.enterShipperName(faker.company().name());
+        log.info("Entered Shippers Name");
+
+        shippersPage.enterShipperAddress1(faker.address().streetAddress());
+        log.info("Entered Address");
+
+        shippersPage.enterShipperZipCity(faker.address().zipCode());
+        log.info("Entered Zip City");
+
+        shippersPage.selectCountry();
+        log.info("Selected Country");
+
+        shippersPage.enterShipperEmail1(faker.internet().emailAddress());
+        log.info("Entered Shipper's Email");
+
+        shippersPage.enterShipperDutchPhoneNumber(); // New method for Dutch phone number
+        log.info("Entered Shipper's Tel Number");
+
+        shippersPage.enterExtraEmailLabel("Extra Email");
+        log.info("Entered Extra Email");
+
+        shippersPage.enterExtraEmailValue(faker.internet().emailAddress());
+        log.info("Entered Extra Email Value");
+
+        shippersPage.clickExtraAddressFieldCross();
+        log.info("Click Extra Address Field Cross");
+
+        shippersPage.clickExtraPhoneFieldCross();
+        log.info("Click Extra Phone Field Cross");
+
+        shippersPage.enterShipperSCMEmail(faker.internet().emailAddress());
+        log.info("Entered Shipper's SCM Email");
+
+        shippersPage.clickSaveShipperBack();
+        log.info("Click Save Shipper Button");
+
+        shippersPage.clickOnAlertPopupDP();
+        log.info("Clicked Cross icon of Alert");
+
+        // Log out after the test
+        loginPage.logout();
+        log.info("Logged out successfully.");
     }
 
     @AfterMethod

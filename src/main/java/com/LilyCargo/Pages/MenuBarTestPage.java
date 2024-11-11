@@ -55,6 +55,10 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='Clients']")
 	WebElement ClientFRSubMenu;
 
+	@CacheLookup
+	@FindBy(xpath = "//li[@title='Shippers']")
+	WebElement ShippersFRSubMenu;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to click on Logout button
@@ -93,6 +97,10 @@ public class MenuBarTestPage {
 
 	public void clickClientFRSubMenu() {
 		ClientFRSubMenu.click();
+	}
+
+	public void clickShippersFRSubMenu() {
+		ShippersFRSubMenu.click();
 	}
 
 }

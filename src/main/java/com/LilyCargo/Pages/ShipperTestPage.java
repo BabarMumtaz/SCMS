@@ -163,16 +163,16 @@ public class ShipperTestPage {
         addShipperBtn.click();
     }
 
-    public void enterShipperStore(String text) {
-        storeFront.sendKeys(text);
-    }
-
     public String getAddPageHeading() {
         return shipperAddPageHeading.getText();
     }
 
     public boolean isAddPageHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(shipperAddPageHeading)).isDisplayed();
+    }
+
+    public void enterShipperStore(String text) {
+        storeFront.sendKeys(text);
     }
 
     public void enterShipperName(String text) {
