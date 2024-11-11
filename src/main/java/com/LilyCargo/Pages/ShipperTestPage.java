@@ -45,6 +45,10 @@ public class ShipperTestPage {
     WebElement addShipperBtn;
 
     @CacheLookup
+    @FindBy(xpath = "//h5[text()='Shipper']")
+    WebElement shipperAddPageHeading;
+
+    @CacheLookup
     @FindBy(xpath = "//input[@name='storeFront']")
     WebElement storeFront;
 
@@ -126,15 +130,19 @@ public class ShipperTestPage {
 
     @CacheLookup
     @FindBy(xpath = "//input[@name='scmEmails']")
-    WebElement shipperSCMEmail1;
+    WebElement shipperSCMEmail;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElement saveShipperCancel;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Save & Back']")
-    WebElement saveCarrierBack;
+    WebElement saveShipperBack;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Save & New']")
-    WebElement saveCarrierNew;
+    WebElement saveShipperNew;
 
     @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
@@ -155,27 +163,24 @@ public class ShipperTestPage {
         addShipperBtn.click();
     }
 
-
-    public void enterTicker(String text) {
-        ticker.sendKeys(text);
+    public void enterShipperStore(String text) {
+        storeFront.sendKeys(text);
     }
 
-    public void enterCarrierName(String text) {
-        carrierName.sendKeys(text);
+    public String getAddPageHeading() {
+        return shipperAddPageHeading.getText();
     }
 
-    public void enterCarrierEmail(String text) {
-        carrierEmail1.sendKeys(text);
+    public boolean isAddPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(shipperAddPageHeading)).isDisplayed();
     }
 
-    public void enterCarrierEmail2(String text) {
-        actions.click(carrierEmail2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
-                .perform();
-        carrierEmail2.sendKeys(text);
+    public void enterShipperName(String text) {
+        shipperName.sendKeys(text);
     }
 
-    public void enterTelephoneNumber1(String text) {
-        telephoneNumber1.sendKeys(text);
+    public void enterShipperTelephoneNumber1(String text) {
+        shipperTelephoneNumber1.sendKeys(text);
     }
 
     // Method to generate a Dutch phone number without dashes
@@ -191,28 +196,28 @@ public class ShipperTestPage {
         return dutchPhoneNumber;
     }
 
-    public void enterDutchPhoneNumber() {
+    public void enterShipperDutchPhoneNumber() {
         String dutchPhoneNumber = getDutchPhoneNumber();
-        telephoneNumber1.sendKeys(dutchPhoneNumber);
+        shipperTelephoneNumber1.sendKeys(dutchPhoneNumber);
     }
 
-    public void enterDutchPhoneNumber2() {
-        actions.click(telephoneNumber2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+    public void enterShipperDutchPhoneNumber2() {
+        actions.click(shipperTelephoneNumber2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
                 .perform();
         String dutchPhoneNumber = getDutchPhoneNumber();
-        telephoneNumber2.sendKeys(dutchPhoneNumber);
+        shipperTelephoneNumber2.sendKeys(dutchPhoneNumber);
     }
 
-    public void enterAddress1(String text) {
-        address1.sendKeys(text);
+    public void enterShipperAddress1(String text) {
+        shipperAddress1.sendKeys(text);
     }
 
     public void enterAddress2(String text) {
-        actions.click(address2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
-        address2.sendKeys(text);
+        actions.click(shipperAddress2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+        shipperAddress2.sendKeys(text);
     }
 
-    public void enterZipCity(String text) {
+    public void enterShipperZipCity(String text) {
         zipCity.sendKeys(text);
     }
 
@@ -224,6 +229,20 @@ public class ShipperTestPage {
 
     public void selectCountry() {
         selectDropdownValue(countryDropDown, countryDropDownValue);
+    }
+
+    public void selectExportCompany() {
+        selectDropdownValue(exportCompanyDropdown, exportCompanyDropDownValue);
+    }
+
+    public void enterShipperEmail1(String text) {
+        shipperEmail1.sendKeys(text);
+    }
+
+    public void enterShipperEmail2(String text) {
+        actions.click(shipperEmail2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        shipperEmail2.sendKeys(text);
     }
 
     public void enterExtraEmailLabel(String text) {
@@ -242,12 +261,16 @@ public class ShipperTestPage {
         wait.until(ExpectedConditions.visibilityOf(extraPhoneFieldCross)).click();
     }
 
-    public void clickSaveCarrierBack() {
-        saveCarrierBack.click();
+    public void enterShipperSCMEmail(String text) {
+        shipperSCMEmail.sendKeys(text);
     }
 
-    public void clickSaveCarrierNew() {
-        saveCarrierNew.click();
+    public void clickSaveShipperBack() {
+        saveShipperBack.click();
+    }
+
+    public void clickSaveShipperNew() {
+        saveShipperNew.click();
     }
 
     public void clickOnAlertPopupDP() {
