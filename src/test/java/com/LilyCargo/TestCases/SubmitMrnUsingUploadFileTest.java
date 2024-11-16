@@ -61,8 +61,8 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         freightListing.hoverOn1stRowClient();
         log.info("Hover over 1st Row");
 
-        freightListing.clickOnViewFreightIcon();
-        log.info("Hover over View Icon and click");
+        freightListing.clickOnFreightID();
+        log.info("Clicked on 1st Row FreightID");
 
         // Switch to the new tab
         freightListing.switchToNewTab();

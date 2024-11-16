@@ -50,11 +50,11 @@ public class FreightTestPage {
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='Loaded']")
-	WebElement eTDdatePicker;
+	WebElement etdDatePicker;
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='Arrival']")
-	WebElement eTAdatePicker;
+	WebElement etaDatePicker;
 
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='BLNo']")
@@ -226,11 +226,11 @@ public class FreightTestPage {
     }
     
     public void selectETDDate(String day, String month, String year) {
-        selectDate(eTDdatePicker, day, month, year);
+        selectDate(etdDatePicker, day, month, year);
     }
 
     public void selectETADate(String day, String month, String year) {
-        selectDate(eTAdatePicker, day, month, year);
+        selectDate(etaDatePicker, day, month, year);
     }
 
 	public void enterBLNO(String text) {

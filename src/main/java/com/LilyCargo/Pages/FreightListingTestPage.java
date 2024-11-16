@@ -44,6 +44,10 @@ public class FreightListingTestPage {
 	WebElement clientCellLV;
 
 	@CacheLookup
+	@FindBy(xpath = "//div[@title='Open Freight'][1]")
+	WebElement viewFreight;
+
+	@CacheLookup
 	@FindBy(xpath = "//img[@alt='View']")
 	WebElement viewFreightIcon;
 
@@ -85,6 +89,10 @@ public class FreightListingTestPage {
 	public WebElement getViewEditIcon() {
 		waitUntilVisible(viewFreightIcon);
 		return viewFreightIcon;
+	}
+
+	public void clickOnFreightID() {
+		waitUntilElementClickable(viewFreight).click();
 	}
 
 	// Click on view freight icon
