@@ -137,5 +137,4 @@ To use this framework, ensure you have the following prerequisites installed:
 
 1. Clone the repository:  
    ```bash  
-   git clone https://github.com/your-username/lilycargo-automation.git  
-   cd lilycargo-automation  
+   git clone https://github.com/your-username/lilycargo-automation.git 
