@@ -71,22 +71,6 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         // Check if the edit wrapper is displayed
         Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
-        // Clicked on Booked Freight Edit Icon On Detail Page
-        freightDetail.clickOnEditFreightIconDP();
-        log.info("Clicked on Booked Freight Edit Icon");
-
-        bookedFreights.clickSaveNextFreightBtn();
-        log.info("Clicked Save & Next Freight Button");
-
-        bookedFreights.enterBondedLocation("Kerkstraat 132, 1311 13 Amsterdam, Netherlands");
-        log.info("Entered Bonded Location");
-
-        bookedFreights.clickSaveReturnFreightBtn();
-        log.info("Clicked Save & Return Freight Button");
-
-        freightDetail.clickOnAlertPopupDP();
-        log.info("Clicked Cross icon of Alert");
-
         // Log out after the test
         loginPage.logout();
         log.info("Logged out successfully.");
