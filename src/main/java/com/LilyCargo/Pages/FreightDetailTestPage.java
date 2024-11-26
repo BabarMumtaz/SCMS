@@ -39,6 +39,10 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement alertPopupDP;
 
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Submit Mrn #']")
+	WebElement submitMRN;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	public boolean isEditFreightIconDisplayed() {
@@ -51,6 +55,15 @@ public class FreightDetailTestPage {
 
 	public void clickOnAlertPopupDP() {
 		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
+	}
+
+	public void scrollToBottom() {
+		executor.executeScript("arguments[0].scrollIntoView(true);", submitMRN);
+	//	executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+
+	public void clickSubmitMrnNo() {
+		wait.until(ExpectedConditions.visibilityOf(submitMRN)).click();
 	}
 
 }

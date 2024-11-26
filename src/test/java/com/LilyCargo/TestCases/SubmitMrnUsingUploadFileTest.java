@@ -71,6 +71,12 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         // Check if the edit wrapper is displayed
         Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
+        freightDetail.scrollToBottom();
+        Thread.sleep(2000);
+
+        freightDetail.clickSubmitMrnNo();
+        log.info("Clicked Submit MRN");
+
         // Log out after the test
         loginPage.logout();
         log.info("Logged out successfully.");
