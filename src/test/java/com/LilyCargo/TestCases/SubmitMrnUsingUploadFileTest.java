@@ -15,7 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
@@ -43,41 +42,36 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         log.info("Test setup completed.");
 
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered Valid Username and Password.");
+        log.info("Entered valid username and password.");
     }
+
     @Test(priority = 1, description = "Verify that a user can Submit MRN by uploading Doc MRN file successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Submit MRN by uploading Doc MRN file successfully from the Freight Detail page")
     @Epic("EP001")
     @Feature("Feature:002")
     @Story("As a user, I should be able to Submit MRN by uploading Doc MRN file successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Freight Detail Page > Submit MRN")
+    @Step("Hit Site URL -> Login with valid credentials -> Booked Freight > Freight Detail Page > Submit MRN")
     public void SubmitMrnUsingUploadFile() throws InterruptedException {
-
-        // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
         log.info("Login successful.");
 
         freightListing.hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
+        log.info("Hovered over the 1st row.");
 
         freightListing.clickOnFreightID();
-        log.info("Clicked on 1st Row FreightID");
+        log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         freightListing.switchToNewTab();
-        log.info("Switched to the new tab");
+        log.info("Switched to the new tab.");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
-
         freightDetail.scrollToBottom();
-        Thread.sleep(2000);
+        Thread.sleep(2000); // For visual confirmation, can be replaced with a wait
 
         freightDetail.clickSubmitMrnNo();
-        log.info("Clicked Submit MRN");
+        log.info("Submit MRN clicked.");
 
-        // Log out after the test
         loginPage.logout();
         log.info("Logged out successfully.");
     }
@@ -86,7 +80,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
     public void tearDown() throws IOException {
         ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "SubmitMrnUsingUploadFile");
         if (driver != null) {
-            driver.quit(); // Closes the browser instance after each test method
+            driver.quit();
             log.info("Browser closed successfully.");
         }
     }
