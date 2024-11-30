@@ -39,8 +39,20 @@ public class FreightDetailTestPage {
 	WebElement alertPopupDP;
 
 	@CacheLookup
-	@FindBy(xpath = "//button[text()='Submit Mrn #']")
-	WebElement submitMRN;
+	@FindBy(xpath = "//button[text()='Submit MRN #']")
+	WebElement submitMRNTask;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Upload']")
+	WebElement uploadMrnButton;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Submit']")
+	WebElement submitMrnButton;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Cancel']")
+	WebElement cancelMrnButton;
 
 	public boolean isEditFreightIconDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
@@ -55,15 +67,24 @@ public class FreightDetailTestPage {
 	}
 
 	public void scrollToBottom() {
-		log.info("Scrolling to the Submit MRN button...");
-		wait.until(ExpectedConditions.visibilityOf(submitMRN)); // Ensure visibility
-		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRN);
-		wait.until(ExpectedConditions.elementToBeClickable(submitMRN));
-		log.info("Scrolled to Submit MRN button.");
+		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility
+		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
+		wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask));
 	}
 
-	public void clickSubmitMrnNo() {
-		wait.until(ExpectedConditions.elementToBeClickable(submitMRN)).click();
-		log.info("Clicked on Submit MRN button.");
+	public void clickSubmitMrnTask() {
+		wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask)).click();
+	}
+
+	public void clickUploadMrnButton() {
+		wait.until(ExpectedConditions.elementToBeClickable(uploadMrnButton)).click();
+	}
+
+	public void clickSubmitMrnButton() {
+		wait.until(ExpectedConditions.elementToBeClickable(submitMrnButton)).click();
+	}
+
+	public void clickCancelMrnButton() {
+		wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
 	}
 }
