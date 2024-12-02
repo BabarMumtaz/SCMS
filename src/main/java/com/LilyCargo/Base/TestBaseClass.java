@@ -8,13 +8,21 @@ import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import com.LilyCargo.Listeners.WebEventListener;
+import com.LilyCargo.Pages.LoginTestPage;
+import com.LilyCargo.Pages.MenuBarTestPage;
+import com.LilyCargo.Pages.FreightTestPage;
+import com.LilyCargo.Pages.FreightListingTestPage;
+import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Util.TestUtilClass;
+import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -24,6 +32,15 @@ public class TestBaseClass {
 	public static Properties prop;
 	public static WebEventListener eventListener;
 	public static Logger log;
+	public static JavascriptExecutor js;
+	public static Faker faker;
+
+	// Page Object references
+	public static LoginTestPage loginPage;
+	public static MenuBarTestPage menuBar;
+	public static FreightTestPage bookedFreights;
+	public static FreightListingTestPage freightListing;
+	public static FreightDetailTestPage freightDetail;
 
 	public TestBaseClass() {
 		try {
@@ -71,6 +88,16 @@ public class TestBaseClass {
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
-	}
 
+		// Initialize common utilities
+		js = (JavascriptExecutor) driver;
+		faker = new Faker();
+
+		// Initialize Page Objects
+		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
+		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
+		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
+		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
+	}
 }

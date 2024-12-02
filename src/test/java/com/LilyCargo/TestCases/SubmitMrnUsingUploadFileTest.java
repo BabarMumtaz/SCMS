@@ -18,26 +18,13 @@ import java.io.IOException;
 
 public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
-    LoginTestPage loginPage;
-    MenuBarTestPage menuBar;
-    FreightTestPage bookedFreights;
-    FreightListingTestPage freightListing;
-    FreightDetailTestPage freightDetail;
-    JavascriptExecutor js;
     Faker faker;
     Logger log;
 
     @BeforeMethod
     public void setup() {
         initialization(); // Opens a new browser instance
-        loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-        menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
-        freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-        freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 
-        faker = new Faker();
-        js = (JavascriptExecutor) driver;
         log = LogManager.getLogger(SubmitMrnUsingUploadFileTest.class);
         log.info("Test setup completed.");
 
@@ -86,7 +73,11 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() throws IOException {
-        ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "SubmitMrnUsingUploadFile");
+        try {
+            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "SubmitMrnUsingUploadFile");
+        } catch (IOException e) {
+            log.error("Error capturing screenshot.", e);
+        }
         if (driver != null) {
             driver.quit();
             log.info("Browser closed successfully.");
