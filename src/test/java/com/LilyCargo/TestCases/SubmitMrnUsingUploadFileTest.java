@@ -1,14 +1,11 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.*;
 import com.LilyCargo.Util.ScreenShotUtil;
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
