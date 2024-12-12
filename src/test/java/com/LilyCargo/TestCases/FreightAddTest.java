@@ -32,28 +32,12 @@ import io.qameta.allure.Story;
 
 public class FreightAddTest extends TestBaseClass {
 
-	LoginTestPage loginPage;
-	MenuBarTestPage menuBar;
-	FreightTestPage bookedFreights;
-	FreightListingTestPage freightListing;
-	FreightDetailTestPage freightDetail;
-	JavascriptExecutor js;
-	Faker faker;
-	WebDriverWait wait;
 	Logger log;
 
 	@BeforeMethod
 	public void setup() {
 		initialization(); // Opens a new browser instance
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
-		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 
-		faker = new Faker();
-		js = (JavascriptExecutor) driver;
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		log = LogManager.getLogger(FreightAddTest.class);
 		log.info("Test setup completed.");
 

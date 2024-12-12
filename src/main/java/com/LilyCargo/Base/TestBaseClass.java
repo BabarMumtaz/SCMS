@@ -25,6 +25,7 @@ import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestBaseClass {
 
@@ -34,6 +35,7 @@ public class TestBaseClass {
 	public static Logger log;
 	public static JavascriptExecutor js;
 	public static Faker faker;
+	WebDriverWait wait;
 
 	// Page Object references
 	public static LoginTestPage loginPage;
@@ -99,5 +101,7 @@ public class TestBaseClass {
 		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
 		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
 		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
+
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 }
