@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.LilyCargo.Listeners.WebEventListener;
 import com.LilyCargo.Pages.LoginTestPage;
@@ -25,7 +26,6 @@ import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestBaseClass {
 
@@ -35,7 +35,7 @@ public class TestBaseClass {
 	public static Logger log;
 	public static JavascriptExecutor js;
 	public static Faker faker;
-	WebDriverWait wait;
+	private static WebDriverWait wait;
 
 	// Page Object references
 	public static LoginTestPage loginPage;
@@ -45,63 +45,81 @@ public class TestBaseClass {
 	public static FreightDetailTestPage freightDetail;
 
 	public TestBaseClass() {
-		try {
+		loadProperties();
+	}
+
+	private void loadProperties() {
+		try (FileInputStream ip = new FileInputStream(
+				System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\Config\\configFile.properties")) {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\Config\\configFile.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("Configuration file not found.", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("Error loading configuration file.", e);
 		}
 	}
 
 	public static void initialization() {
+		setupLogger();
+		setupBrowser();
+		configureDriver();
+		initializeUtilitiesAndPages();
+	}
 
+	private static void setupLogger() {
 		log = LogManager.getLogger(TestBaseClass.class);
+	}
 
-		String browserName = prop.getProperty("browser");
+	private static void setupBrowser() {
+		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
 
-		if ("chrome".equalsIgnoreCase(browserName)) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-			log.info("Initiated Chrome Driver");
-		} else if ("firefox".equalsIgnoreCase(browserName) || "FF".equalsIgnoreCase(browserName)) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-			log.info("Initiated Firefox Driver");
-		} else {
-			log.error("Browser not supported: " + browserName);
-			throw new IllegalArgumentException("Unsupported browser: " + browserName);
+		switch (browserName) {
+			case "chrome":
+				WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver();
+				log.info("Chrome Driver initiated.");
+				break;
+			case "firefox":
+			case "ff":
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+				log.info("Firefox Driver initiated.");
+				break;
+			default:
+				log.error("Unsupported browser: " + browserName);
+				throw new IllegalArgumentException("Unsupported browser: " + browserName);
 		}
 
 		driver.get(prop.getProperty("url"));
-		log.info("Opened URL in the browser");
+		log.info("Navigated to URL: " + prop.getProperty("url"));
+	}
 
-		// Create the event listener
-		eventListener = new WebEventListener();
-
-		// Decorate the WebDriver with the event listener using EventFiringDecorator
-		// with generics
-		driver = new EventFiringDecorator<WebDriver>(eventListener).decorate(driver);
-
+	private static void configureDriver() {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
 
-		// Initialize common utilities
+		eventListener = new WebEventListener();
+		driver = new EventFiringDecorator<>(eventListener).decorate(driver);
+	}
+
+	private static void initializeUtilitiesAndPages() {
 		js = (JavascriptExecutor) driver;
 		faker = new Faker();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-		// Initialize Page Objects
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
 		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
 		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
 		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		log.info("Utilities and Page Objects initialized.");
+	}
+
+	public static WebDriverWait getWait() {
+		return wait;
 	}
 }

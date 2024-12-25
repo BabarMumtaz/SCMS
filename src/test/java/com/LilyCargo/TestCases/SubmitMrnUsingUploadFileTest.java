@@ -2,7 +2,6 @@ package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Util.ScreenShotUtil;
-import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,8 +14,7 @@ import java.io.IOException;
 
 public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
-    Faker faker;
-    Logger log;
+    private Logger log;
 
     @BeforeMethod
     public void setup() {
@@ -25,8 +23,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         log = LogManager.getLogger(SubmitMrnUsingUploadFileTest.class);
         log.info("Test setup completed.");
 
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
+        performLogin();
     }
 
     @Test(priority = 1, description = "Verify that a user can Submit MRN by uploading Doc MRN file successfully", groups = {"regression"})
@@ -40,6 +37,19 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
         log.info("Login successful.");
 
+        performFreightListingActions();
+        performFreightDetailActions();
+
+        loginPage.logout();
+        log.info("Logged out successfully.");
+    }
+
+    private void performLogin() {
+        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+        log.info("Entered valid username and password.");
+    }
+
+    private void performFreightListingActions() {
         freightListing.hoverOn1stRowClient();
         log.info("Hovered over the 1st row.");
 
@@ -48,12 +58,15 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
         freightListing.switchToNewTab();
         log.info("Switched to the new tab.");
+    }
 
+    private void performFreightDetailActions() throws InterruptedException {
         Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
+        log.info("Edit wrapper is displayed.");
 
         freightDetail.scrollToBottom();
-        Thread.sleep(2000); // For visual confirmation, can be replaced with a wait
-        log.info("Scroll to Submit MRN");
+        Thread.sleep(2000); // Replace with explicit wait if needed
+        log.info("Scrolled to Submit MRN section.");
 
         freightDetail.clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");
@@ -63,18 +76,24 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
         freightDetail.clickCancelMrnButton();
         log.info("Clicked on Cancel MRN button.");
-
-        loginPage.logout();
-        log.info("Logged out successfully.");
     }
 
     @AfterMethod
-    public void tearDown() throws IOException {
+    public void tearDown() {
+        captureScreenshot("SubmitMrnUsingUploadFile");
+        closeBrowser();
+    }
+
+    private void captureScreenshot(String testName) {
         try {
-            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "SubmitMrnUsingUploadFile");
+            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+            log.info("Screenshot captured for test: " + testName);
         } catch (IOException e) {
             log.error("Error capturing screenshot.", e);
         }
+    }
+
+    private void closeBrowser() {
         if (driver != null) {
             driver.quit();
             log.info("Browser closed successfully.");
