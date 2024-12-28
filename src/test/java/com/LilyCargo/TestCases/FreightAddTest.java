@@ -130,9 +130,9 @@ public class FreightAddTest extends TestBaseClass {
 		freightListing.hoverOverLastRecord();
 		log.info("Hovered over the last record");
 
-		// Click on the view freight icon
-		freightListing.clickOnViewFreightIcon();
-		log.info("Clicked on View Icon");
+		// Click on the freight ID
+		freightListing.clickOnFreightID();
+		log.info("Clicked on the 1st row FreightID.");
 
 		// Switch to the new tab
 		freightListing.switchToNewTab();
@@ -148,10 +148,23 @@ public class FreightAddTest extends TestBaseClass {
 	}
 
 	@AfterMethod
-	public void tearDown() throws IOException {
-		ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "AddFreightTest");
+	public void tearDown() {
+		captureScreenshot("AddFreightTest");
+		closeBrowser();
+	}
+
+	private void captureScreenshot(String testName) {
+		try {
+			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+			log.info("Screenshot captured for test: " + testName);
+		} catch (IOException e) {
+			log.error("Error capturing screenshot.", e);
+		}
+	}
+
+	private void closeBrowser() {
 		if (driver != null) {
-			driver.quit(); // Closes the browser instance after each test method
+			driver.quit();
 			log.info("Browser closed successfully.");
 		}
 	}
