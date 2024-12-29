@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Locale;
 import java.util.Properties;
 
 import com.LilyCargo.Pages.*;
@@ -107,7 +108,7 @@ public class TestBaseClass {
 
 	private static void initializeUtilitiesAndPages() {
 		js = (JavascriptExecutor) driver;
-		faker = new Faker();
+		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);

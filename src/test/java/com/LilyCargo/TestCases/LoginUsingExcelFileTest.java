@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.Duration;
 
 import com.LilyCargo.Util.ScreenShotUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,14 +21,13 @@ import com.LilyCargo.Util.TestUtilClass;
 
 public class LoginUsingExcelFileTest extends TestBaseClass {
 
-	LoginTestPage loginPage;
-	WebDriverWait wait;
+	Logger log;
 
 	@BeforeMethod
 	public void setup() {
 		initialization(); // Initializes the browser
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+
+		log = LogManager.getLogger(LoginUsingExcelFileTest.class);
 		log.info("Test setup completed.");
 	}
 
@@ -49,10 +50,23 @@ public class LoginUsingExcelFileTest extends TestBaseClass {
 	}
 
 	@AfterMethod
-	public void tearDown() throws IOException {
-		ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "validLoginTestUsingDataDriven");
+	public void tearDown() {
+		captureScreenshot("validLoginTestUsingDataDriven");
+		closeBrowser();
+	}
+
+	private void captureScreenshot(String testName) {
+		try {
+			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+			log.info("Screenshot captured for test: " + testName);
+		} catch (IOException e) {
+			log.error("Error capturing screenshot.", e);
+		}
+	}
+
+	private void closeBrowser() {
 		if (driver != null) {
-			driver.quit(); // Closes the browser instance after each test method
+			driver.quit();
 			log.info("Browser closed successfully.");
 		}
 	}

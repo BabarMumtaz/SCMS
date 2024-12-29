@@ -30,31 +30,21 @@ import io.qameta.allure.Story;
 
 public class ClientAddTest extends TestBaseClass {
 
-    LoginTestPage loginPage;
-    MenuBarTestPage menuBar;
-    FreightTestPage bookedFreights;
-    ClientTestPage clientPage;
-    JavascriptExecutor js;
-    Faker faker;
-    WebDriverWait wait;
     Logger log;
 
     @BeforeMethod
     public void setup() {
         initialization(); // Opens a new browser instance
-        loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-        menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
-        clientPage = PageFactory.initElements(driver, ClientTestPage.class);
 
-        faker = new Faker();
-        js = (JavascriptExecutor) driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         log = LogManager.getLogger(ClientAddTest.class);
         log.info("Test setup completed.");
 
+        performLogin();
+    }
+
+    private void performLogin() {
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered Valid Username and Password.");
+        log.info("Entered valid username and password.");
     }
 
     // DataProvider to fetch data from Excel file
@@ -107,10 +97,23 @@ public class ClientAddTest extends TestBaseClass {
     }
 
     @AfterMethod
-    public void tearDown() throws IOException {
-        ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "AddClientTest");
+    public void tearDown() {
+        captureScreenshot("AddClientTest");
+        closeBrowser();
+    }
+
+    private void captureScreenshot(String testName) {
+        try {
+            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+            log.info("Screenshot captured for test: " + testName);
+        } catch (IOException e) {
+            log.error("Error capturing screenshot.", e);
+        }
+    }
+
+    private void closeBrowser() {
         if (driver != null) {
-            driver.quit(); // Closes the browser instance after each test method
+            driver.quit();
             log.info("Browser closed successfully.");
         }
     }

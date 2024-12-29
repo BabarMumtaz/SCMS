@@ -19,29 +19,21 @@ import java.util.Locale;
 
 public class ShipperAddTest extends TestBaseClass {
 
-    LoginTestPage loginPage;
-    MenuBarTestPage menuBar;
-    ShipperTestPage shippersPage;
-    FreightDetailTestPage freightDetail;
-    JavascriptExecutor js;
-    Faker faker;
     Logger log;
 
     @BeforeMethod
     public void setup() {
         initialization(); // Opens a new browser instance
-        loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-        menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-        shippersPage = PageFactory.initElements(driver, ShipperTestPage.class);
 
-        // Initialize Faker with Dutch locale
-        faker = new Faker(new Locale.Builder().setLanguage("nl").build());
-        js = (JavascriptExecutor) driver;
         log = LogManager.getLogger(ShipperAddTest.class);
         log.info("Test setup completed.");
 
+        performLogin();
+    }
+
+    private void performLogin() {
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered Valid Username and Password.");
+        log.info("Entered valid username and password.");
     }
 
     @Test(priority = 1, description = "Verify that a user can add SHIPPER successfully", groups = {"smoke", "regression"})
@@ -123,10 +115,23 @@ public class ShipperAddTest extends TestBaseClass {
     }
 
     @AfterMethod
-    public void tearDown() throws IOException {
-        ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "AddShipperTest");
+    public void tearDown() {
+        captureScreenshot("AddShipperTest");
+        closeBrowser();
+    }
+
+    private void captureScreenshot(String testName) {
+        try {
+            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+            log.info("Screenshot captured for test: " + testName);
+        } catch (IOException e) {
+            log.error("Error capturing screenshot.", e);
+        }
+    }
+
+    private void closeBrowser() {
         if (driver != null) {
-            driver.quit(); // Closes the browser instance after each test method
+            driver.quit();
             log.info("Browser closed successfully.");
         }
     }

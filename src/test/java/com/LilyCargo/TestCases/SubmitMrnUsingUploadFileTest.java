@@ -26,6 +26,11 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
         performLogin();
     }
 
+    private void performLogin() {
+        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+        log.info("Entered valid username and password.");
+    }
+
     @Test(priority = 1, description = "Verify that a user can Submit MRN by uploading Doc MRN file successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Submit MRN by uploading Doc MRN file successfully from the Freight Detail page")
@@ -42,11 +47,6 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
         loginPage.logout();
         log.info("Logged out successfully.");
-    }
-
-    private void performLogin() {
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
     }
 
     private void performFreightListingActions() {

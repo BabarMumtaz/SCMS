@@ -30,31 +30,21 @@ import io.qameta.allure.Story;
 
 public class FreightEditFromListingViewTest extends TestBaseClass {
 
-	LoginTestPage loginPage;
-	MenuBarTestPage menuBar;
-	FreightTestPage bookedFreights;
-	FreightListingTestPage freightListing;
-	FreightDetailTestPage freightDetail;
-	JavascriptExecutor js;
-	Faker faker;
 	Logger log;
 
 	@BeforeMethod
 	public void setup() {
 		initialization(); // Opens a new browser instance
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
-		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
 
-		faker = new Faker();
-		js = (JavascriptExecutor) driver;
 		log = LogManager.getLogger(FreightEditFromListingViewTest.class);
 		log.info("Test setup completed.");
 
+		performLogin();
+	}
+
+	private void performLogin() {
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered Valid Username and Password.");
+		log.info("Entered valid username and password.");
 	}
 
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
@@ -122,10 +112,23 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 	}
 
 	@AfterMethod
-	public void tearDown() throws IOException {
-		ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "EditFreightTestFromListingView");
+	public void tearDown() {
+		captureScreenshot("EditFreightTestFromListingView");
+		closeBrowser();
+	}
+
+	private void captureScreenshot(String testName) {
+		try {
+			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+			log.info("Screenshot captured for test: " + testName);
+		} catch (IOException e) {
+			log.error("Error capturing screenshot.", e);
+		}
+	}
+
+	private void closeBrowser() {
 		if (driver != null) {
-			driver.quit(); // Closes the browser instance after each test method
+			driver.quit();
 			log.info("Browser closed successfully.");
 		}
 	}

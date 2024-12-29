@@ -23,16 +23,12 @@ import io.qameta.allure.*;
 
 public class LoginUsingConfigFileTest extends TestBaseClass {
 
-	LoginTestPage loginPage;
-	WebDriverWait wait;
-	Logger log = LogManager.getLogger(LoginUsingConfigFileTest.class);
+	Logger log;
 
 	@BeforeMethod
 	public void setup() {
 		initialization(); // Opens browser
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		// loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+		log = LogManager.getLogger(LoginUsingConfigFileTest.class);
 		log.info("Test setup completed.");
 	}
 
