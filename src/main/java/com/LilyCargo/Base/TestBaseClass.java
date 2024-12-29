@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import com.LilyCargo.Pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,11 +18,6 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.LilyCargo.Listeners.WebEventListener;
-import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
-import com.LilyCargo.Pages.FreightTestPage;
-import com.LilyCargo.Pages.FreightListingTestPage;
-import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
@@ -43,6 +39,10 @@ public class TestBaseClass {
 	public static FreightTestPage bookedFreights;
 	public static FreightListingTestPage freightListing;
 	public static FreightDetailTestPage freightDetail;
+	public static CarriersTestPage carriersPage;
+	public static CarrierListingTestPage carrierListing;
+	public static ClientTestPage clientPage;
+	public static ShipperTestPage shippersPage;
 
 	public TestBaseClass() {
 		loadProperties();
@@ -115,6 +115,10 @@ public class TestBaseClass {
 		bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
 		freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
 		freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
+		carriersPage = PageFactory.initElements(driver, CarriersTestPage.class);
+		carrierListing = PageFactory.initElements(driver, CarrierListingTestPage.class);
+		clientPage = PageFactory.initElements(driver, ClientTestPage.class);
+		shippersPage = PageFactory.initElements(driver, ShipperTestPage.class);
 
 		log.info("Utilities and Page Objects initialized.");
 	}

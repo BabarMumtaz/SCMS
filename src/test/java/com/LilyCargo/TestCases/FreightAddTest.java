@@ -41,8 +41,12 @@ public class FreightAddTest extends TestBaseClass {
 		log = LogManager.getLogger(FreightAddTest.class);
 		log.info("Test setup completed.");
 
+		performLogin();
+	}
+
+	private void performLogin() {
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered Valid Username and Password.");
+		log.info("Entered valid username and password.");
 	}
 
 	@Test(priority = 1, description = "Verify that a user can Add/Create freight successfully", groups = {"smoke", "regression"})
