@@ -47,6 +47,10 @@ public class RemarksTestPage {
     WebElement salesRemarksTab;
 
     @CacheLookup
+    @FindBy(xpath = "//div[text()='import']")
+    WebElement importRemarksPopupHeading;
+
+    @CacheLookup
     @FindBy(xpath = "//textarea[@name='remarks']")
     WebElement importRemarksPopupTextField;
 
@@ -59,25 +63,42 @@ public class RemarksTestPage {
     WebElement cancelRemarksButton;
 
     @CacheLookup
-    @FindBy(xpath = "//button[text()='Remarks']")
-    WebElement remarksTab;
+    @FindBy(xpath = "//div[text()='customs']")
+    WebElement customsRemarksPopupHeading;
 
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='cRemarksDate']")
+    WebElement customsRemarksDateField;
 
+    @CacheLookup
+    @FindBy(id = "select-Set Time")
+    WebElement customsRemarksTimeField;
 
+    @CacheLookup
+    @FindBy(xpath = "//li[text()='two days']")
+    WebElement customsRemarksTimeOptions;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Submit & Email']")
+    WebElement submitEmailRemarksButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[text()='sales']")
+    WebElement salesRemarksPopupHeading;
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    public boolean isEditFreightIconDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
+    public boolean isImportRemarksTabDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(importRemarksTab)).isDisplayed();
     }
 
-    public void clickOnEditFreightIconDP() {
-        wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).click();
+    public void clickOnRemarksAddIcon() {
+        wait.until(ExpectedConditions.visibilityOf(remarksAddIcon)).click();
     }
 
-    public void clickOnAlertPopupDP() {
-        wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
+    public void clickOnCustomsRemarksTab() {
+        wait.until(ExpectedConditions.visibilityOf(customsRemarksTab)).click();
     }
 
     public void scrollToBottom() {
@@ -86,8 +107,17 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask));
     }
 
-    public void clickSubmitMrnTask() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask)).click();
+    public void clickSalesRemarksTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(salesRemarksTab)).click();
+    }
+
+    public boolean isImportRemarksPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(importRemarksPopupHeading)).isDisplayed();
+    }
+
+
+    public void enterImportRemarksText(String text) {
+        importRemarksPopupTextField.sendKeys(text);
     }
 
     public void clickUploadMrnButton() {
@@ -98,7 +128,20 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(submitMrnButton)).click();
     }
 
+    public void selectETDDate(String day, String month, String year) {
+        selectDate(etdDatePicker, day, month, year);
+    }
+
+
     public void clickCancelMrnButton() {
         wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
+    }
+
+    public boolean isCustomsRemarksPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(customsRemarksPopupHeading)).isDisplayed();
+    }
+
+    public boolean isSalesRemarksPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(salesRemarksPopupHeading)).isDisplayed();
     }
 }
