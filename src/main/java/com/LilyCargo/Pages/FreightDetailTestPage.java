@@ -54,6 +54,14 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Cancel']")
 	WebElement cancelMrnButton;
 
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Remarks']")
+	WebElement remarksTab;
+
+
+	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 	public boolean isEditFreightIconDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
 	}
@@ -86,5 +94,9 @@ public class FreightDetailTestPage {
 
 	public void clickCancelMrnButton() {
 		wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
+	}
+
+	public void clickRemarksTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(remarksTab)).click();
 	}
 }
