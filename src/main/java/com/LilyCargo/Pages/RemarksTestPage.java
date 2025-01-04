@@ -35,28 +35,28 @@ public class RemarksTestPage {
     WebElement remarksAddIcon;
 
     @CacheLookup
-    @FindBy(xpath = "(//div[@class='ft-edit-wrapper'])[1]")
-    WebElement editFreightIconDP;
+    @FindBy(xpath = "//button[text()='Import Remarks']")
+    WebElement importRemarksTab;
 
     @CacheLookup
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement alertPopupDP;
+    @FindBy(xpath = "//button[text()='Customs Remarks']")
+    WebElement customsRemarksTab;
 
     @CacheLookup
-    @FindBy(xpath = "//button[text()='Submit MRN #']")
-    WebElement submitMRNTask;
+    @FindBy(xpath = "//button[text()='Sales Remarks']")
+    WebElement salesRemarksTab;
 
     @CacheLookup
-    @FindBy(xpath = "//button[text()='Upload']")
-    WebElement uploadMrnButton;
+    @FindBy(xpath = "//textarea[@name='remarks']")
+    WebElement importRemarksPopupTextField;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitMrnButton;
+    WebElement submitRemarksButton;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement cancelMrnButton;
+    WebElement cancelRemarksButton;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Remarks']")
