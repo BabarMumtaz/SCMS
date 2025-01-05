@@ -9,9 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 
-public class ShipperAddTest extends TestBaseClass {
+public class RemarksAddTest extends TestBaseClass {
 
     Logger log;
 
@@ -19,7 +20,7 @@ public class ShipperAddTest extends TestBaseClass {
     public void setup() {
         initialization(); // Opens a new browser instance
 
-        log = LogManager.getLogger(ShipperAddTest.class);
+        log = LogManager.getLogger(RemarksAddTest.class);
         log.info("Test setup completed.");
 
         performLogin();
@@ -37,17 +38,25 @@ public class ShipperAddTest extends TestBaseClass {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add SHIPPER successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add SHIPPER")
-    public void AddShipperTest() throws InterruptedException {
+    public void AddRemarksTest() throws InterruptedException {
 
         // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
         log.info("Login successful.");
 
-        menuBar.clickFreightRelationsMenu();
-        log.info("Clicked Freight Relations Menu");
+        freightListing.hoverOn1stRowClient();
+        log.info("Hover over 1st Row");
 
-        menuBar.clickShippersFRSubMenu();
-        log.info("Clicked Shipper FR Sub Menu");
+        // Click on the freight ID
+        freightListing.clickOnFreightID();
+        log.info("Clicked on the 1st row FreightID.");
+
+        // Switch to the new tab
+        freightListing.switchToNewTab();
+        log.info("Switched to the new tab");
+
+        // Check if the edit wrapper is displayed
+        Assert.assertTrue(bookedFreights.isEditPageDisplayed(), "Edit Page is not Displayed");
 
         Assert.assertTrue(shippersPage.isHeadingDisplayed(), "Heading Not Displayed");
         log.info("Heading: " + shippersPage.getPageHeading());

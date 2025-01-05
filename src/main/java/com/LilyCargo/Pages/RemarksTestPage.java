@@ -2,6 +2,7 @@ package com.LilyCargo.Pages;
 
 import java.time.Duration;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -51,6 +52,10 @@ public class RemarksTestPage {
     WebElement importRemarksPopupHeading;
 
     @CacheLookup
+    @FindBy(className = "btn-close")
+    WebElement remarksPopupCloseIcon;
+
+    @CacheLookup
     @FindBy(xpath = "//textarea[@name='remarks']")
     WebElement importRemarksPopupTextField;
 
@@ -93,8 +98,8 @@ public class RemarksTestPage {
         return wait.until(ExpectedConditions.visibilityOf(importRemarksTab)).isDisplayed();
     }
 
-    public void clickOnRemarksAddIcon() {
-        wait.until(ExpectedConditions.visibilityOf(remarksAddIcon)).click();
+    public void clickOnRemarksPopupCloseIcon() {
+        wait.until(ExpectedConditions.visibilityOf(remarksPopupCloseIcon)).click();
     }
 
     public void clickOnCustomsRemarksTab() {
@@ -102,9 +107,9 @@ public class RemarksTestPage {
     }
 
     public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
-        wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask));
+        wait.until(ExpectedConditions.visibilityOf(submitRemarksButton)); // Ensure visibility
+        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitRemarksButton);
+        wait.until(ExpectedConditions.elementToBeClickable(submitRemarksButton));
     }
 
     public void clickSalesRemarksTab() {
@@ -115,27 +120,45 @@ public class RemarksTestPage {
         return wait.until(ExpectedConditions.visibilityOf(importRemarksPopupHeading)).isDisplayed();
     }
 
+    public void clickOnRemarksAddIcon() {
+        wait.until(ExpectedConditions.visibilityOf(remarksAddIcon)).click();
+    }
 
     public void enterImportRemarksText(String text) {
         importRemarksPopupTextField.sendKeys(text);
     }
 
-    public void clickUploadMrnButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(uploadMrnButton)).click();
+    public void clickSubmitRemarksButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitRemarksButton)).click();
     }
 
-    public void clickSubmitMrnButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitMrnButton)).click();
+    public void clickCancelRemarksButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(cancelRemarksButton)).click();
+    }
+
+    private void selectDate(WebElement element, String day, String month, String year) {
+        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
     }
 
     public void selectETDDate(String day, String month, String year) {
-        selectDate(etdDatePicker, day, month, year);
+        selectDate(customsRemarksDateField, day, month, year);
     }
 
 
-    public void clickCancelMrnButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
+    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+        dropdown.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+        dropdownValue.click();
     }
+
+    public void selectCTime() {
+        selectDropdownValue(customsRemarksTimeField, customsRemarksTimeOptions);
+    }
+
+    public void clickSubmitEmailRemarksButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitEmailRemarksButton)).click();
+    }
+
 
     public boolean isCustomsRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(customsRemarksPopupHeading)).isDisplayed();
