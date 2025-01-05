@@ -101,7 +101,6 @@ public class RemarksTestPage {
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-
     public boolean isImportRemarksTabDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(importRemarksTab)).isDisplayed();
     }
@@ -170,7 +169,6 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(submitEmailRemarksButton)).click();
     }
 
-
     public boolean isCustomsRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(customsRemarksPopupHeading)).isDisplayed();
     }
@@ -187,7 +185,7 @@ public class RemarksTestPage {
         return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
     }
 
-    public void clickOnAlertPopupDP() {
+    public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 }

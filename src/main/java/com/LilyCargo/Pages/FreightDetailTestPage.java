@@ -58,6 +58,10 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
 
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Incidents Registration']")
+	WebElement incidentsRegistrationTab;
+
 
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -101,5 +105,12 @@ public class FreightDetailTestPage {
 	}
 	public void clickRemarksTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(remarksTab)).click();
+	}
+
+	public boolean isIncidentsRegistrationTabDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(incidentsRegistrationTab)).isDisplayed();
+	}
+	public void clickIncidentsRegistrationTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(incidentsRegistrationTab)).click();
 	}
 }

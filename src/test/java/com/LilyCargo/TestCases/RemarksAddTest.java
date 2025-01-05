@@ -62,6 +62,7 @@ public class RemarksAddTest extends TestBaseClass {
         freightDetail.clickRemarksTab();
         log.info("Clicked Remarks Tab");
 
+        //----------------------------------IMPORT REMARKS----------------------------------
         remarksPage.clickOnRemarksAddIcon();
         log.info("Clicked On Remarks Add Icon");
 
@@ -81,8 +82,12 @@ public class RemarksAddTest extends TestBaseClass {
         Assert.assertTrue(remarksPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + remarksPage.getSuccessAlertMessage());
 
+        //----------------------------------CUSTOMS REMARKS----------------------------------
         remarksPage.clickOnCustomsRemarksTab();
         log.info("Click On Customs Remarks Tab");
+
+        Assert.assertTrue(remarksPage.isCustomsRemarksPopupHeadingDisplayed(), "Import Remarks Popup Heading Not Displayed");
+        log.info("Heading: " + remarksPage.getPopupHeading());
 
         remarksPage.clickOnRemarksAddIcon();
         log.info("Clicked On Remarks Add Icon");
@@ -95,51 +100,42 @@ public class RemarksAddTest extends TestBaseClass {
         log.info("Scrolled to Submit Button.");
 
         remarksPage.selectCustomsRemarksDateDate("02", "24", "2025");
-        log.info("Entered Customs Remarks DATE");
+        log.info("Selected Customs Remarks DATE");
 
-        remarksPage.enterShipperAddress1(faker.address().streetAddress());
-        log.info("Entered Address");
+  /*      remarksPage.selectCustomsRemarksTime();
+        log.info("Selected Customs Remarks Time");*/
 
         remarksPage.clickSubmitRemarksButton();
         log.info("Clicked Submit Remarks Button");
 
+        Assert.assertTrue(remarksPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + remarksPage.getSuccessAlertMessage());
 
+        //----------------------------------SALES REMARKS----------------------------------
+        remarksPage.clickSalesRemarksTab();
+        log.info("Click On Sales Remarks Tab");
 
+        Assert.assertTrue(remarksPage.isSalesRemarksPopupHeadingDisplayed(), "Import Remarks Popup Heading Not Displayed");
+        log.info("Heading: " + remarksPage.getPopupHeading());
 
+        remarksPage.clickOnRemarksAddIcon();
+        log.info("Clicked On Remarks Add Icon");
 
+        remarksPage.enterRemarksText(importCustomsSalesRemarks);
+        log.info("Entered Remarks Text");
 
-        remarksPage.enterShipperZipCity(faker.address().zipCode());
-        log.info("Entered Zip City");
+        remarksPage.scrollToBottom();
+        Thread.sleep(2000); // Replace with explicit wait if needed
+        log.info("Scrolled to Submit Button.");
 
-        remarksPage.selectCountry();
-        log.info("Selected Country");
+        remarksPage.clickSubmitRemarksButton();
+        log.info("Clicked Submit Remarks Button");
 
-        remarksPage.enterShipperEmail1(faker.internet().emailAddress());
-        log.info("Entered Shipper's Email");
+        Assert.assertTrue(remarksPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + remarksPage.getSuccessAlertMessage());
 
-        remarksPage.enterShipperDutchPhoneNumber(); // New method for Dutch phone number
-        log.info("Entered Shipper's Tel Number");
-
-        remarksPage.enterExtraEmailLabel("Extra Email");
-        log.info("Entered Extra Email");
-
-        remarksPage.enterExtraEmailValue(faker.internet().emailAddress());
-        log.info("Entered Extra Email Value");
-
-        remarksPage.clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        remarksPage.clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
-
-        remarksPage.enterShipperSCMEmail(faker.internet().emailAddress());
-        log.info("Entered Shipper's SCM Email");
-
-        remarksPage.clickSaveShipperBack();
-        log.info("Click Save Shipper Button");
-
-        remarksPage.clickOnAlertPopupDP();
-        log.info("Clicked Cross icon of Alert");
+        remarksPage.clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup ");
 
         // Log out after the test
         loginPage.logout();
@@ -148,7 +144,7 @@ public class RemarksAddTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() {
-        captureScreenshot("AddShipperTest");
+        captureScreenshot("AddRemarksTest");
         closeBrowser();
     }
 
