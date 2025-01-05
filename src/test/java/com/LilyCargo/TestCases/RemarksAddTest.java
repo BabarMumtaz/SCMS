@@ -32,13 +32,13 @@ public class RemarksAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add SHIPPER successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add Remarks successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add SHIPPER successfully")
+    @Description("Verify that a user can add Remarks successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add SHIPPER successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add SHIPPER")
+    @Story("As a user, I should be able to add Remarks successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Remarks Tab > Remarks")
     public void AddRemarksTest() throws InterruptedException {
 
         // Check if login is successful
