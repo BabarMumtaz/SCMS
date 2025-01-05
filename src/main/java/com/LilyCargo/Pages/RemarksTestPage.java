@@ -57,7 +57,7 @@ public class RemarksTestPage {
 
     @CacheLookup
     @FindBy(xpath = "//textarea[@name='remarks']")
-    WebElement importRemarksPopupTextField;
+    WebElement RemarksPopupTextField;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
@@ -91,6 +91,14 @@ public class RemarksTestPage {
     @FindBy(xpath = "//div[text()='sales']")
     WebElement salesRemarksPopupHeading;
 
+    @CacheLookup
+    @FindBy(id = "jfkgabhog")
+    WebElement successAlertMessage;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+    WebElement successAlertCrossIcon;
+
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -116,6 +124,10 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(salesRemarksTab)).click();
     }
 
+    public String getPopupHeading() {
+        return importRemarksPopupHeading.getText();
+    }
+
     public boolean isImportRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(importRemarksPopupHeading)).isDisplayed();
     }
@@ -124,8 +136,8 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.visibilityOf(remarksAddIcon)).click();
     }
 
-    public void enterImportRemarksText(String text) {
-        importRemarksPopupTextField.sendKeys(text);
+    public void enterRemarksText(String text) {
+        RemarksPopupTextField.sendKeys(text);
     }
 
     public void clickSubmitRemarksButton() {
@@ -136,14 +148,13 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(cancelRemarksButton)).click();
     }
 
-    private void selectDate(WebElement element, String day, String month, String year) {
-        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
+    private void selectDate(WebElement element, String month,String day, String year) {
+        actions.click(element).sendKeys(month).sendKeys(day).sendKeys(year).perform();
     }
 
-    public void selectETDDate(String day, String month, String year) {
-        selectDate(customsRemarksDateField, day, month, year);
+    public void selectCustomsRemarksDateDate(String month,String day, String year) {
+        selectDate(customsRemarksDateField, month, day, year);
     }
-
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
@@ -151,7 +162,7 @@ public class RemarksTestPage {
         dropdownValue.click();
     }
 
-    public void selectCTime() {
+    public void selectCustomsRemarksTime() {
         selectDropdownValue(customsRemarksTimeField, customsRemarksTimeOptions);
     }
 
@@ -166,5 +177,17 @@ public class RemarksTestPage {
 
     public boolean isSalesRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(salesRemarksPopupHeading)).isDisplayed();
+    }
+
+    public String getSuccessAlertMessage() {
+        return successAlertMessage.getText();
+    }
+
+    public boolean isSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    }
+
+    public void clickOnAlertPopupDP() {
+        wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 }

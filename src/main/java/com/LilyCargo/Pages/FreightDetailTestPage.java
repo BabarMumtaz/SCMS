@@ -96,6 +96,9 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
 	}
 
+	public boolean isRemarksTabDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(remarksTab)).isDisplayed();
+	}
 	public void clickRemarksTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(remarksTab)).click();
 	}

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class RemarksAddTest extends TestBaseClass {
 
     Logger log;
+    String importCustomsSalesRemarks = faker.lorem().characters(500);
 
     @BeforeMethod
     public void setup() {
@@ -56,60 +57,88 @@ public class RemarksAddTest extends TestBaseClass {
         log.info("Switched to the new tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(bookedFreights.isEditPageDisplayed(), "Edit Page is not Displayed");
+        Assert.assertTrue(freightDetail.isRemarksTabDisplayed(), "Remarks tab is not Displayed");
 
-        Assert.assertTrue(shippersPage.isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + shippersPage.getPageHeading());
+        freightDetail.clickRemarksTab();
+        log.info("Clicked Remarks Tab");
 
-        shippersPage.clickAddShipperBtn();
-        log.info("Clicked Shipper Add button");
+        remarksPage.clickOnRemarksAddIcon();
+        log.info("Clicked On Remarks Add Icon");
 
-        Assert.assertTrue(shippersPage.isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Heading: " + shippersPage.getAddPageHeading());
+        Assert.assertTrue(remarksPage.isImportRemarksPopupHeadingDisplayed(), "Import Remarks Popup Heading Not Displayed");
+        log.info("Heading: " + remarksPage.getPopupHeading());
 
-        shippersPage.enterShipperStore(faker.company().name());
-        log.info("Entered Shipper Store Name");
+        remarksPage.enterRemarksText(importCustomsSalesRemarks);
+        log.info("Entered Remarks Text");
 
-        shippersPage.selectExportCompany();
-        log.info("Selected Export Company");
+        remarksPage.scrollToBottom();
+        Thread.sleep(2000); // Replace with explicit wait if needed
+        log.info("Scrolled to Submit Button.");
 
-        shippersPage.enterShipperName(faker.company().name());
-        log.info("Entered Shippers Name");
+        remarksPage.clickSubmitRemarksButton();
+        log.info("Clicked Submit Remarks Button");
 
-        shippersPage.enterShipperAddress1(faker.address().streetAddress());
+        Assert.assertTrue(remarksPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + remarksPage.getSuccessAlertMessage());
+
+        remarksPage.clickOnCustomsRemarksTab();
+        log.info("Click On Customs Remarks Tab");
+
+        remarksPage.clickOnRemarksAddIcon();
+        log.info("Clicked On Remarks Add Icon");
+
+        remarksPage.enterRemarksText(importCustomsSalesRemarks);
+        log.info("Entered Remarks Text");
+
+        remarksPage.scrollToBottom();
+        Thread.sleep(2000); // Replace with explicit wait if needed
+        log.info("Scrolled to Submit Button.");
+
+        remarksPage.selectCustomsRemarksDateDate("02", "24", "2025");
+        log.info("Entered Customs Remarks DATE");
+
+        remarksPage.enterShipperAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        shippersPage.enterShipperZipCity(faker.address().zipCode());
+        remarksPage.clickSubmitRemarksButton();
+        log.info("Clicked Submit Remarks Button");
+
+
+
+
+
+
+        remarksPage.enterShipperZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        shippersPage.selectCountry();
+        remarksPage.selectCountry();
         log.info("Selected Country");
 
-        shippersPage.enterShipperEmail1(faker.internet().emailAddress());
+        remarksPage.enterShipperEmail1(faker.internet().emailAddress());
         log.info("Entered Shipper's Email");
 
-        shippersPage.enterShipperDutchPhoneNumber(); // New method for Dutch phone number
+        remarksPage.enterShipperDutchPhoneNumber(); // New method for Dutch phone number
         log.info("Entered Shipper's Tel Number");
 
-        shippersPage.enterExtraEmailLabel("Extra Email");
+        remarksPage.enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
-        shippersPage.enterExtraEmailValue(faker.internet().emailAddress());
+        remarksPage.enterExtraEmailValue(faker.internet().emailAddress());
         log.info("Entered Extra Email Value");
 
-        shippersPage.clickExtraAddressFieldCross();
+        remarksPage.clickExtraAddressFieldCross();
         log.info("Click Extra Address Field Cross");
 
-        shippersPage.clickExtraPhoneFieldCross();
+        remarksPage.clickExtraPhoneFieldCross();
         log.info("Click Extra Phone Field Cross");
 
-        shippersPage.enterShipperSCMEmail(faker.internet().emailAddress());
+        remarksPage.enterShipperSCMEmail(faker.internet().emailAddress());
         log.info("Entered Shipper's SCM Email");
 
-        shippersPage.clickSaveShipperBack();
+        remarksPage.clickSaveShipperBack();
         log.info("Click Save Shipper Button");
 
-        shippersPage.clickOnAlertPopupDP();
+        remarksPage.clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
         // Log out after the test
