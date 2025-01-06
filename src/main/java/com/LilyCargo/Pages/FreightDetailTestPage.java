@@ -66,6 +66,10 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Fyco Data']")
 	WebElement fycoDataTab;
 
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Billing Center']")
+	WebElement billingCenterTab;
+
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -125,4 +129,13 @@ public class FreightDetailTestPage {
 	public void clickFycoDataTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(fycoDataTab)).click();
 	}
+
+	public boolean isBillingCenterTabDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(billingCenterTab)).isDisplayed();
+	}
+
+	public void clickBillingCenterTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(billingCenterTab)).click();
+	}
+
 }

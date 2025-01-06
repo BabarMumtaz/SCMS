@@ -57,48 +57,48 @@ public class FycoDataAddTest extends TestBaseClass {
         log.info("Switched to the new tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(freightDetail.isFycoDataTabDisplayed(), "Incidents Registration tab is not Displayed");
+        Assert.assertTrue(freightDetail.isFycoDataTabDisplayed(), "FYCO DATA tab is not Displayed");
 
         freightDetail.clickFycoDataTab();
-        log.info("Clicked Incidents Registration Tab");
+        log.info("Clicked FYCO DATA Tab");
 
-        //----------------------------------Incidents Registration----------------------------------
+        //----------------------------------FYCO DATA----------------------------------
         fycoDataPage.clickOnFycoDataAddIcon();
-        log.info("Clicked On Incidents Registration Add Icon");
+        log.info("Clicked On FYCO DATA Add Icon");
 
-        Assert.assertTrue(fycoDataPage.isFycoDataPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
+        Assert.assertTrue(fycoDataPage.isFycoDataPopupHeadingDisplayed(), "FYCO DATA Popup Heading Not Displayed");
         log.info("Heading: " + fycoDataPage.getPopupHeading());
 
         fycoDataPage.enterPlatoNumberField(faker.number().digits(8));
-        log.info("Entered Incidents Registration Problem Text");
+        log.info("Entered FYCO DATA Problem Text");
 
         fycoDataPage.enterArticleNumberField(faker.number().digits(3));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterHsTaricNumberField(faker.number().digits(10));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterProductDescriptionField(fycoDataAddTestDescription);
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterCtnsNumberField(faker.number().digits(4));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterPcsField(faker.number().digits(4));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterGrossKGField(faker.number().digits(4));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.enterCvEuroField(faker.number().digits(6));
-        log.info("Entered Incidents Registration Solution Text");
+        log.info("Entered FYCO DATA Solution Text");
 
         fycoDataPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
         fycoDataPage.clickSubmitFycoDataButton();
-        log.info("Clicked Submit Incidents Registration Button");
+        log.info("Clicked Submit FYCO DATA Button");
 
         Assert.assertTrue(fycoDataPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + fycoDataPage.getSuccessAlertMessage());

@@ -91,6 +91,18 @@ public class FycoDataTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
+    @CacheLookup
+    @FindBy(xpath = "//img[@alt='Edit']")
+    WebElement fycoDataEditIcon;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[text()='Update']")
+    WebElement fycoDataEditPopupHeading;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Update']")
+    WebElement updateFycoDataButton;
+
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void clickOnFycoDataAddIcon() {
@@ -166,4 +178,21 @@ public class FycoDataTestPage {
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
+
+    public boolean isFycoDataEditIconDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(fycoDataEditIcon)).isDisplayed();
+    }
+
+    public void clickOnFycoDataEditIcon() {
+        wait.until(ExpectedConditions.visibilityOf(fycoDataEditIcon)).click();
+    }
+
+    public boolean isFycoDataEditPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(fycoDataEditPopupHeading)).isDisplayed();
+    }
+
+    public void clickUpdateFycoDataButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(updateFycoDataButton)).click();
+    }
+
 }
