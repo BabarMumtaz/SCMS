@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class FycoDataTestPage {
+
     WebDriver driver;
     JavascriptExecutor executor;
     Actions actions;
@@ -51,15 +52,39 @@ public class FycoDataTestPage {
     WebElement articleNumberField;
 
     @CacheLookup
+    @FindBy(xpath = "//input[@name='hsTaricNumber']")
+    WebElement hsTaricNumberField;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='productDescription']")
+    WebElement productDescriptionField;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='ctns']")
+    WebElement ctnsNumberField;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='pcs']")
+    WebElement pcsField;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='grossKG']")
+    WebElement grossKGField;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='cvEuro']")
+    WebElement cvEuroField;
+
+    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitfycoDataButton;
+    WebElement submitFycoDataButton;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement cancelfycoDataButton;
+    WebElement cancelFycoDataButton;
 
     @CacheLookup
-    @FindBy(id = "79vn6timw")
+    @FindBy(id = "sv88jm5lo")
     WebElement successAlertMessage;
 
     @CacheLookup
@@ -68,8 +93,7 @@ public class FycoDataTestPage {
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    public void clickOnfycoDataAddIcon() {
+    public void clickOnFycoDataAddIcon() {
         wait.until(ExpectedConditions.visibilityOf(fycoDataAddIcon)).click();
     }
 
@@ -77,33 +101,57 @@ public class FycoDataTestPage {
         return fycoDataPopupHeading.getText();
     }
 
-    public boolean isfycoDataPopupHeadingDisplayed() {
+    public boolean isFycoDataPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(fycoDataPopupHeading)).isDisplayed();
     }
 
-    public void enterfycoDataPopupProblemField(String text) {
-        fycoDataPopupProblemField.sendKeys(text);
+    public void enterPlatoNumberField(String text) {
+        platoNumberField.sendKeys(text);
     }
 
-    public void enterfycoDataPopupSolutionField(String text) {
-        fycoDataPopupSolutionField.sendKeys(text);
+    public void enterArticleNumberField(String text) {
+        articleNumberField.sendKeys(text);
+    }
+
+    public void enterHsTaricNumberField(String text) {
+        hsTaricNumberField.sendKeys(text);
+    }
+
+    public void enterProductDescriptionField(String text) {
+        productDescriptionField.sendKeys(text);
+    }
+
+    public void enterCtnsNumberField(String text) {
+        ctnsNumberField.sendKeys(text);
+    }
+
+    public void enterPcsField(String text) {
+        pcsField.sendKeys(text);
+    }
+
+    public void enterGrossKGField(String text) {
+        grossKGField.sendKeys(text);
+    }
+
+    public void enterCvEuroField(String text) {
+        cvEuroField.sendKeys(text);
     }
 
     public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitfycoDataButton)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitfycoDataButton);
-        wait.until(ExpectedConditions.elementToBeClickable(submitfycoDataButton));
+        wait.until(ExpectedConditions.visibilityOf(submitFycoDataButton)); // Ensure visibility
+        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitFycoDataButton);
+        wait.until(ExpectedConditions.elementToBeClickable(submitFycoDataButton));
     }
 
-    public void clickSubmitfycoDataButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitfycoDataButton)).click();
+    public void clickSubmitFycoDataButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitFycoDataButton)).click();
     }
 
-    public void clickCancelfycoDataButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(cancelfycoDataButton)).click();
+    public void clickCancelFycoDataButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(cancelFycoDataButton)).click();
     }
 
-    public void clickOnfycoDataPopupCloseIcon() {
+    public void clickOnFycoDataPopupCloseIcon() {
         wait.until(ExpectedConditions.visibilityOf(fycoDataPopupCloseIcon)).click();
     }
 

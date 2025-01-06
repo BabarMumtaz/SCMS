@@ -118,11 +118,11 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.elementToBeClickable(incidentsRegistrationTab)).click();
 	}
 
-	public boolean isFycoDataTabTabDisplayed() {
+	public boolean isFycoDataTabDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(fycoDataTab)).isDisplayed();
 	}
 
-	public void clickFycoDataTabTab() {
+	public void clickFycoDataTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(fycoDataTab)).click();
 	}
 }

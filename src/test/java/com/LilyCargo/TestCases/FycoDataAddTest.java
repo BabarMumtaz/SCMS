@@ -12,16 +12,16 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class IncidentsRegistrationAddTest extends TestBaseClass {
+public class FycoDataAddTest extends TestBaseClass {
 
     Logger log;
-    String IncidentsRegistrationText = faker.lorem().characters(500);
+    String fycoDataAddTestDescription = faker.lorem().characters(100);
 
     @BeforeMethod
     public void setup() {
         initialization(); // Opens a new browser instance
 
-        log = LogManager.getLogger(IncidentsRegistrationAddTest.class);
+        log = LogManager.getLogger(FycoDataAddTest.class);
         log.info("Test setup completed.");
 
         performLogin();
@@ -32,14 +32,14 @@ public class IncidentsRegistrationAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add Incidents Registration successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add Fyco Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Incidents Registration successfully")
+    @Description("Verify that a user can add Fyco Data successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add Incidents Registration successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Incidents Registration Tab > Add Incidents Registration")
-    public void AddIncidentsRegistrationTest() throws InterruptedException {
+    @Story("As a user, I should be able to add Fyco Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Fyco Data Tab > Add Fyco Data")
+    public void AddFycoDataTest() throws InterruptedException {
 
         // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -57,35 +57,53 @@ public class IncidentsRegistrationAddTest extends TestBaseClass {
         log.info("Switched to the new tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(freightDetail.isIncidentsRegistrationTabDisplayed(), "Incidents Registration tab is not Displayed");
+        Assert.assertTrue(freightDetail.isFycoDataTabDisplayed(), "Incidents Registration tab is not Displayed");
 
-        freightDetail.clickIncidentsRegistrationTab();
+        freightDetail.clickFycoDataTab();
         log.info("Clicked Incidents Registration Tab");
 
         //----------------------------------Incidents Registration----------------------------------
-        incidentsRegistrationPage.clickOnIncidentsRegAddIcon();
+        fycoDataPage.clickOnFycoDataAddIcon();
         log.info("Clicked On Incidents Registration Add Icon");
 
-        Assert.assertTrue(incidentsRegistrationPage.isIncidentsRegPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
-        log.info("Heading: " + incidentsRegistrationPage.getPopupHeading());
+        Assert.assertTrue(fycoDataPage.isFycoDataPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
+        log.info("Heading: " + fycoDataPage.getPopupHeading());
 
-        incidentsRegistrationPage.enterIncidentsRegPopupProblemField(IncidentsRegistrationText);
+        fycoDataPage.enterPlatoNumberField(faker.number().digits(8));
         log.info("Entered Incidents Registration Problem Text");
 
-        incidentsRegistrationPage.enterIncidentsRegPopupSolutionField(IncidentsRegistrationText);
+        fycoDataPage.enterArticleNumberField(faker.number().digits(3));
         log.info("Entered Incidents Registration Solution Text");
 
-        incidentsRegistrationPage.scrollToBottom();
+        fycoDataPage.enterHsTaricNumberField(faker.number().digits(10));
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.enterProductDescriptionField(fycoDataAddTestDescription);
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.enterCtnsNumberField(faker.number().digits(4));
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.enterPcsField(faker.number().digits(4));
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.enterGrossKGField(faker.number().digits(4));
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.enterCvEuroField(faker.number().digits(6));
+        log.info("Entered Incidents Registration Solution Text");
+
+        fycoDataPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
-        incidentsRegistrationPage.clickSubmitIncidentsRegButton();
+        fycoDataPage.clickSubmitFycoDataButton();
         log.info("Clicked Submit Incidents Registration Button");
 
-        Assert.assertTrue(incidentsRegistrationPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + incidentsRegistrationPage.getSuccessAlertMessage());
+        Assert.assertTrue(fycoDataPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + fycoDataPage.getSuccessAlertMessage());
 
-        incidentsRegistrationPage.clickOnAlertPopupCrossIcon();
+        fycoDataPage.clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
         // Log out after the test
@@ -95,7 +113,7 @@ public class IncidentsRegistrationAddTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() {
-        captureScreenshot("AddIncidentsRegistrationTest");
+        captureScreenshot("AddFycoDataTest");
         closeBrowser();
     }
 
@@ -115,3 +133,4 @@ public class IncidentsRegistrationAddTest extends TestBaseClass {
         }
     }
 }
+
