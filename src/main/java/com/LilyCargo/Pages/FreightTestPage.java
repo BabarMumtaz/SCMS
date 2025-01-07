@@ -69,7 +69,7 @@ public class FreightTestPage {
 	WebElement clientDrop;
 
 	@CacheLookup
-	@FindBy(xpath = "//li[contains(.,'WTD Logistics HK Limited')]")
+	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")
 	WebElement clientDropValue;
 
 	@CacheLookup
