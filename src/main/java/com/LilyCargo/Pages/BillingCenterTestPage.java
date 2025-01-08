@@ -211,6 +211,58 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Push All Invoices Amazon']")
     WebElement pushAllInvoicesAmazonButton;
 
+    //EXTRA INVOICE
+
+    @CacheLookup
+    @FindBy(id = "select-Client")
+    WebElement clientDropdownEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//li[text()='A.I. Trading GmbH']")
+    WebElement clientDropdownValueEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='invoice_date']")
+    WebElement invoiceDateEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@id='inv']")
+    WebElement invoiceNumberEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='remarks[0]']")
+    WebElement remarksFieldEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Add More']")
+    WebElement addMoreButtonEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[contains(@class,'input-grouped')]//*[name()='svg']")
+    WebElement remarksCrossIconEI;
+
+    @CacheLookup
+    @FindBy(id = "select-Ledger Type")
+    WebElement selectLedgerTypeDropdown;
+
+    // International, and European
+    @CacheLookup
+    @FindBy(xpath = "//li[text()='International']")
+    WebElement selectLedgerTypeDropdownValue;
+
+    // PROFORMA INVOICE, and SALE INVOICE
+    @CacheLookup
+    @FindBy(xpath = "//li[text()='PROFORMA INVOICE']")
+    WebElement invoiceTypeDropdownValueEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElement cancelButtonEI;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Submit']")
+    WebElement submitButtonEI;
+
     @CacheLookup
     @FindBy(id = "sv88jm5lo")
     WebElement successAlertMessage;
@@ -220,8 +272,20 @@ public class BillingCenterTestPage {
     WebElement successAlertCrossIcon;
 
     @CacheLookup
-    @FindBy(xpath = "//img[@alt='Edit']")
-    WebElement fycoDataEditIcon;
+    @FindBy(xpath = "(//img[contains(@alt,'Edit')])[1]")
+    WebElement invoiceEditIcon;
+
+    @CacheLookup
+    @FindBy(xpath = "(//span[@title='download-invoice'])[1]")
+    WebElement downloadInvoiceIcon;
+
+    @CacheLookup
+    @FindBy(xpath = "(//span[@title='push-invoice'])[1]")
+    WebElement pushToExactIcon;
+
+    @CacheLookup
+    @FindBy(xpath = "(//span[@title='Push to Amazon'])[1]")
+    WebElement pushToAmazonIcon;
 
     @CacheLookup
     @FindBy(xpath = "//div[text()='Update']")
