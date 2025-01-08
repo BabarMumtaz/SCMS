@@ -76,6 +76,7 @@ public class BillingCenterTestPage {
     WebElement remarksField;
 
     @CacheLookup
+    //(//div[@id='select-PID'])[1]
     @FindBy(xpath = "//input[@id='selectable-Connected Client']")
     WebElement clientDropdown;
 
@@ -120,7 +121,8 @@ public class BillingCenterTestPage {
     WebElement emailClientButton;
 
     @CacheLookup
-    @FindBy(id = "select-PID")
+    //@FindBy(id = "select-PID")
+    @FindBy(xpath = "//input[@name='products[3].product_id']")
     WebElement pidDropdown;
 
     @CacheLookup
@@ -128,12 +130,86 @@ public class BillingCenterTestPage {
     WebElement pidDropdownValue;
 
     @CacheLookup
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitFycoDataButton;
+    @FindBy(xpath = "//button[text()='+ Add Row']")
+    WebElement addRowButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Save Works']")
+    WebElement saveWorksButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Finish INV']")
+    WebElement finishINVButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Total Entries by Ledger']")
+    WebElement totalEntriesByLedgerTabPE;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='supplier")
+    WebElement shipperDropdown;
+
+    @CacheLookup
+    @FindBy(xpath = "//li[text()='BTT Multimodal Container Solutions B.V.']")
+    WebElement shipperDropdownValue;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='InvoiceNumber']")
+    WebElement invoiceNumberPE;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='invoiceDate']")
+    WebElement invoiceDatePE;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@name='totalAmount']")
+    WebElement totalAmount;
+
+    @CacheLookup
+    @FindBy(id = "invoice_pdf")
+    WebElement attachPdfPE;
+
+    @CacheLookup
+    //@FindBy(id = "select-PID")
+    @FindBy(xpath = "(//div[@id='select-Select'])[1]")
+    WebElement selectProductDropdown;
+
+    @CacheLookup
+    //(//li[contains(text(),'23025 - Duty')])[1]
+    @FindBy(xpath = "//li[text()='23025 - Duty  payable (Credit)")
+    WebElement selectProductDropdownValue;
+
+    @CacheLookup
+    @FindBy(xpath = "(//input[@placeholder='Manual'])[1]")
+    WebElement amountEur;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Delete']")
+    WebElement deleteButton;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement cancelFycoDataButton;
+    WebElement cancelButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Push & New']")
+    WebElement pushNewINVButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Push & Back']")
+    WebElement pushBackINVButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Charges']")
+    WebElement chargesTab;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Push All Invoices Exact']")
+    WebElement pushAllInvoicesExactButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='Push All Invoices Amazon']")
+    WebElement pushAllInvoicesAmazonButton;
 
     @CacheLookup
     @FindBy(id = "sv88jm5lo")
