@@ -288,12 +288,31 @@ public class BillingCenterTestPage {
     WebElement pushToAmazonIcon;
 
     @CacheLookup
-    @FindBy(xpath = "//div[text()='Update']")
-    WebElement fycoDataEditPopupHeading;
+    @FindBy(xpath = "//h4[text()='Recently Billed Invoices']")
+    WebElement billedInvoiceTabRecentlyBilledInvoicesHeading;
+
+    @CacheLookup
+    @FindBy(xpath = "(//select[@class='w-25 me-1 form-select'])[1]")
+    WebElement allInvoiceTypesDropdown;
+
+    // All, Exact, and Amazon
+    @CacheLookup
+    @FindBy(xpath = "//option[@value='exact']")
+    WebElement allInvoiceTypesDropdownValue;
+
+    @CacheLookup
+    @FindBy(xpath = "(//select[@class='w-25 me-1 form-select'])[2]")
+    WebElement allInvoicePushedDropdown;
+
+    // All, Exact, and Amazon
+    @CacheLookup
+    @FindBy(xpath = "//option[@value='unpushed']")
+    WebElement allInvoicePushedDropdownValue;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Update']")
     WebElement updateFycoDataButton;
+
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -308,8 +327,34 @@ public class BillingCenterTestPage {
     public void clickOnPurchaseEntryTab() {
         wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
     }
-    public void clickOnIntlInvTab() {
-        wait.until(ExpectedConditions.visibilityOf(intlInvTab)).click();
+    public void clickOnBilledInvoicesTab() {
+        wait.until(ExpectedConditions.visibilityOf(billedInvoicesTab)).click();
+    }
+
+    public void clickOnExtraInvTab() {
+        wait.until(ExpectedConditions.visibilityOf(extraInvTab)).click();
+    }
+
+    public void clickOnInvoiceDetailsTab() {
+        wait.until(ExpectedConditions.visibilityOf(invoiceDetailsTab)).click();
+    }
+
+    public void clickOnProductServicesTab() {
+        wait.until(ExpectedConditions.visibilityOf(productServicesTab)).click();
+    }
+
+    public void clickOnNilledChargesTab() {
+        wait.until(ExpectedConditions.visibilityOf(billedChargesTab)).click();
+    }
+
+    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+        dropdown.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+        dropdownValue.click();
+    }
+
+    public void selectClient() {
+        selectDropdownValue(clientDropdown, clientDropdownValue);
     }
 
     public String getPopupHeading() {
