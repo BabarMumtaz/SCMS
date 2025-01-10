@@ -297,8 +297,19 @@ public class BillingCenterTestPage {
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void clickOnFycoDataAddIcon() {
-        wait.until(ExpectedConditions.visibilityOf(fycoDataAddIcon)).click();
+    public void clickOnIntlInvTab() {
+        wait.until(ExpectedConditions.visibilityOf(intlInvTab)).click();
+    }
+
+    public void clickOnEulInvTab() {
+        wait.until(ExpectedConditions.visibilityOf(eulInvTab)).click();
+    }
+
+    public void clickOnPurchaseEntryTab() {
+        wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
+    }
+    public void clickOnIntlInvTab() {
+        wait.until(ExpectedConditions.visibilityOf(intlInvTab)).click();
     }
 
     public String getPopupHeading() {
