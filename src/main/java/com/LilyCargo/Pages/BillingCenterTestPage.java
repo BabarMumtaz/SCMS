@@ -302,7 +302,7 @@ public class BillingCenterTestPage {
     }
 
     public void clickOnEulInvTab() {
-        wait.until(ExpectedConditions.visibilityOf(eulInvTab)).click();
+        wait.until(ExpectedConditions.visibilityOf(euInvTab)).click();
     }
 
     public void clickOnPurchaseEntryTab() {
