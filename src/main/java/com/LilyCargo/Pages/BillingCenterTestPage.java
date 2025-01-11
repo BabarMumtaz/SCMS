@@ -310,9 +310,12 @@ public class BillingCenterTestPage {
     WebElement allInvoicePushedDropdownValue;
 
     @CacheLookup
-    @FindBy(xpath = "//button[text()='Update']")
-    WebElement updateFycoDataButton;
+    @FindBy(className = "input-group input-group")
+    WebElement invoiceSearch;
 
+    @CacheLookup
+    @FindBy(xpath = "//button[@id='button-addon2']//img")
+    WebElement invoiceSearchIcon;
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -357,6 +360,10 @@ public class BillingCenterTestPage {
         selectDropdownValue(clientDropdown, clientDropdownValue);
     }
 
+    public void selectInvoiceType() {
+        selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValue);
+    }
+
     public String getPopupHeading() {
         return fycoDataPopupHeading.getText();
     }
@@ -365,8 +372,16 @@ public class BillingCenterTestPage {
         return wait.until(ExpectedConditions.visibilityOf(fycoDataPopupHeading)).isDisplayed();
     }
 
-    public void enterPlatoNumberField(String text) {
-        platoNumberField.sendKeys(text);
+    public void enterRemarks(String text) {
+        remarksField.sendKeys(text);
+    }
+
+    private void selectDate(WebElement element, String month,String day, String year) {
+        actions.click(element).sendKeys(month).sendKeys(day).sendKeys(year).perform();
+    }
+
+    public void selectIntlEuInvDate(String month,String day, String year) {
+        selectDate(invDate, month, day, year);
     }
 
     public void enterArticleNumberField(String text) {
