@@ -269,7 +269,7 @@ public class BillingCenterTestPage {
     WebElement submitButtonEI;
 
     @CacheLookup
-    @FindBy(id = "sv88jm5lo")
+    @FindBy(id = "ytr46dned")
     WebElement successAlertMessage;
 
     @CacheLookup
@@ -322,6 +322,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[@id='button-addon2']//img")
     WebElement invoiceSearchIcon;
 
+
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void clickOnIntlInvTab() {
@@ -373,14 +374,6 @@ public class BillingCenterTestPage {
         selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValue);
     }
 
-    public String getPopupHeading() {
-        return fycoDataPopupHeading.getText();
-    }
-
-    public boolean isFycoDataPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(fycoDataPopupHeading)).isDisplayed();
-    }
-
     public void enterRemarks(String text) {
         remarksField.sendKeys(text);
     }
@@ -422,8 +415,24 @@ public class BillingCenterTestPage {
         selectDropdownValue(pidDropdown, pidDropdownValue);
     }
 
+    public void clickSaveWorksButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveWorksButton)).click();
+    }
+
     public void clickFinishINVButton() {
         wait.until(ExpectedConditions.elementToBeClickable(finishINVButton)).click();
+    }
+
+    public String getSuccessAlertMessage() {
+        return successAlertMessage.getText();
+    }
+
+    public boolean isSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    }
+
+    public void clickOnAlertPopupCrossIcon() {
+        wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
 
