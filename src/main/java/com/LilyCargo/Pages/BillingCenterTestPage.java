@@ -1,8 +1,10 @@
 package com.LilyCargo.Pages;
 
+import com.github.javafaker.Faker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Locale;
 
 public class BillingCenterTestPage {
     WebDriver driver;
@@ -20,14 +23,16 @@ public class BillingCenterTestPage {
     Actions actions;
     WebDriverWait wait;
     Logger log = LogManager.getLogger(BillingCenterTestPage.class);
+    public static Faker faker;
 
     // Constructor
     public BillingCenterTestPage(WebDriver driver) {
         this.driver = driver;
-        this.executor = (JavascriptExecutor) this.driver;
+        this.executor = (JavascriptExecutor) driver;
+        this.actions = new Actions(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-        this.actions = new Actions(driver);
+        faker = new Faker();
     }
 
     @CacheLookup
@@ -172,12 +177,12 @@ public class BillingCenterTestPage {
     @CacheLookup
     //@FindBy(id = "select-PID")
     @FindBy(xpath = "(//div[@id='select-Select'])[1]")
-    WebElement selectProductDropdown;
+    WebElement productDropdownPE;
 
     @CacheLookup
     //(//li[contains(text(),'23025 - Duty')])[1]
     @FindBy(xpath = "//li[text()='23025 - Duty  payable (Credit)")
-    WebElement selectProductDropdownValue;
+    WebElement productDropdownValuePE;
 
     @CacheLookup
     @FindBy(xpath = "(//input[@placeholder='Manual'])[1]")
@@ -350,6 +355,10 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(billedChargesTab)).click();
     }
 
+    public boolean isClientDropdownDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(clientDropdown)).isDisplayed();
+    }
+
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
@@ -384,78 +393,38 @@ public class BillingCenterTestPage {
         selectDate(invDate, month, day, year);
     }
 
-    public void enterArticleNumberField(String text) {
-        articleNumberField.sendKeys(text);
+ //   private  String generateInvoiceNumber;
+
+    // Method to generate invoice number
+    public String generateInvoiceNumber() {
+        // Generate a random number for the invoice part (e.g., 010155)
+        String invoicePart = faker.number().digits(6);
+
+        // Generate a random uppercase letter for the prefix (e.g., 25X)
+        String prefix = faker.letterify("25?", true);
+
+        // Combine prefix and invoice part
+        return prefix + "-" + invoicePart;
     }
 
-    public void enterHsTaricNumberField(String text) {
-        hsTaricNumberField.sendKeys(text);
+    // Method to enter invoice number into the invoiceNumber field
+    public void enterInvoiceNumber(String invoice) {
+        invoiceNumber.sendKeys(invoice);
     }
 
-    public void enterProductDescriptionField(String text) {
-        productDescriptionField.sendKeys(text);
+    public void enterAdminFee(String text) {
+        actions.click(graceDays).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        graceDays.sendKeys(text);
     }
 
-    public void enterCtnsNumberField(String text) {
-        ctnsNumberField.sendKeys(text);
+    public void selectPidDropdown() {
+        selectDropdownValue(pidDropdown, pidDropdownValue);
     }
 
-    public void enterPcsField(String text) {
-        pcsField.sendKeys(text);
+    public void clickFinishINVButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(finishINVButton)).click();
     }
 
-    public void enterGrossKGField(String text) {
-        grossKGField.sendKeys(text);
-    }
-
-    public void enterCvEuroField(String text) {
-        cvEuroField.sendKeys(text);
-    }
-
-    public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitFycoDataButton)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitFycoDataButton);
-        wait.until(ExpectedConditions.elementToBeClickable(submitFycoDataButton));
-    }
-
-    public void clickSubmitFycoDataButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitFycoDataButton)).click();
-    }
-
-    public void clickCancelFycoDataButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(cancelFycoDataButton)).click();
-    }
-
-    public void clickOnFycoDataPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(fycoDataPopupCloseIcon)).click();
-    }
-
-    public String getSuccessAlertMessage() {
-        return successAlertMessage.getText();
-    }
-
-    public boolean isSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
-    }
-
-    public void clickOnAlertPopupCrossIcon() {
-        wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
-    }
-
-    public boolean isFycoDataEditIconDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(fycoDataEditIcon)).isDisplayed();
-    }
-
-    public void clickOnFycoDataEditIcon() {
-        wait.until(ExpectedConditions.visibilityOf(fycoDataEditIcon)).click();
-    }
-
-    public boolean isFycoDataEditPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(fycoDataEditPopupHeading)).isDisplayed();
-    }
-
-    public void clickUpdateFycoDataButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(updateFycoDataButton)).click();
-    }
 
 }
