@@ -32,13 +32,13 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add Incidents Registration successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add INTL Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Incidents Registration successfully")
+    @Description("Verify that a user can add INTL Invoice successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add Incidents Registration successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Incidents Registration Tab > Add Incidents Registration")
+    @Story("As a user, I should be able to add INTL Invoice successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add INTL Invoice")
     public void AddIntlInvoiceTest() throws InterruptedException {
 
         // Check if login is successful
@@ -63,11 +63,11 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Clicked Incidents Registration Tab");
 
         //----------------------------------Incidents Registration----------------------------------
-        billingCenterTestPage.clickOnIncidentsRegAddIcon();
-        log.info("Clicked On Incidents Registration Add Icon");
+        freightDetail.clickBillingCenterTab();
+        log.info("Clicked On Billing Center Add Icon");
 
-        Assert.assertTrue(billingCenterTestPage.isIncidentsRegPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getPopupHeading());
+        Assert.assertTrue(freightDetail.isBillingCenterTabDisplayed(), "Incidents Registration Popup Heading Not Displayed");
+        log.info("Heading: " + freightDetail.getPopupHeading());
 
         billingCenterTestPage.enterIncidentsRegPopupProblemField(IncidentsRegistrationText);
         log.info("Entered Incidents Registration Problem Text");
