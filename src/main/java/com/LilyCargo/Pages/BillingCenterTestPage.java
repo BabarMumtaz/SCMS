@@ -73,12 +73,16 @@ public class BillingCenterTestPage {
 
     // STANDARD, AMAZON BROKERAGE INV, AMAZON DUTY INV, and CREDIT INV
     @CacheLookup
-    @FindBy(xpath = "//li[text()='STANDARD']")
+    @FindBy(xpath = "//li[text()='CREDIT INV']")
     WebElement invoiceTypeDropdownValue;
 
     @CacheLookup
     @FindBy(xpath = "//input[@name='remarks']")
     WebElement remarksField;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[@title='Clear']//*[name()='svg']")
+    WebElement clientDropdownCrossIcon;
 
     @CacheLookup
     //(//div[@id='select-PID'])[1]
@@ -124,6 +128,10 @@ public class BillingCenterTestPage {
     @CacheLookup
     @FindBy(xpath = "//button[text()='Email Client']")
     WebElement emailClientButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//th[text()='Product']")
+    WebElement productSectionHeading;
 
     @CacheLookup
     //@FindBy(id = "select-PID")
@@ -352,12 +360,36 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(productServicesTab)).click();
     }
 
-    public void clickOnNilledChargesTab() {
+    public void clickOnBilledChargesTab() {
         wait.until(ExpectedConditions.visibilityOf(billedChargesTab)).click();
     }
 
     public boolean isClientDropdownDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(clientDropdown)).isDisplayed();
+    }
+
+    public void hoverOnClientDropdown() {
+        actions.moveToElement(clientDropdown).perform();
+    }
+
+    // Utility method to wait until element is clickable
+    private WebElement waitUntilElementClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    // Utility method to wait until element is visible
+    private void waitUntilVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    // Method to get the view freight icon
+    public WebElement getClientDropdownCrossIcon() {
+        waitUntilVisible(clientDropdownCrossIcon);
+        return clientDropdownCrossIcon;
+    }
+
+    public void clickOnClientDropdownCrossIcon() {
+        waitUntilElementClickable(clientDropdownCrossIcon).click();
     }
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -411,6 +443,14 @@ public class BillingCenterTestPage {
         graceDays.sendKeys(text);
     }
 
+    public String getProductSectionColHeading() {
+        return productSectionHeading.getText();
+    }
+
+    public boolean isProductSectionColHeading() {
+        return wait.until(ExpectedConditions.visibilityOf(productSectionHeading)).isDisplayed();
+    }
+
     public void selectPidDropdown() {
         selectDropdownValue(pidDropdown, pidDropdownValue);
     }
@@ -434,6 +474,5 @@ public class BillingCenterTestPage {
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
-
 
 }

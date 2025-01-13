@@ -15,7 +15,7 @@ import java.io.IOException;
 public class IntlInvoiceAddTest extends TestBaseClass {
 
     Logger log;
-    String IncidentsRegistrationText = faker.lorem().characters(500);
+    String InvoiceRemarksText = faker.lorem().characters(100);
 
     @BeforeMethod
     public void setup() {
@@ -57,23 +57,33 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Switched to the new tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(freightDetail.isIncidentsRegistrationTabDisplayed(), "Incidents Registration tab is not Displayed");
+        Assert.assertTrue(freightDetail.isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
 
-        freightDetail.clickIncidentsRegistrationTab();
-        log.info("Clicked Incidents Registration Tab");
-
-        //----------------------------------Incidents Registration----------------------------------
         freightDetail.clickBillingCenterTab();
-        log.info("Clicked On Billing Center Add Icon");
+        log.info("Clicked Billing Center Tab");
 
-        Assert.assertTrue(freightDetail.isBillingCenterTabDisplayed(), "Incidents Registration Popup Heading Not Displayed");
-        log.info("Heading: " + freightDetail.getPopupHeading());
+        //----------------------------------INTL Invoice----------------------------------
 
-        billingCenterTestPage.enterIncidentsRegPopupProblemField(IncidentsRegistrationText);
-        log.info("Entered Incidents Registration Problem Text");
+        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeading(), "Client Dropdown Not Displayed");
+        log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
 
-        billingCenterTestPage.enterIncidentsRegPopupSolutionField(IncidentsRegistrationText);
-        log.info("Entered Incidents Registration Solution Text");
+        billingCenterTestPage.clickOnClientDropdownCrossIcon();
+        log.info("Clicked On Client Dropdown Cross Icon");
+
+        billingCenterTestPage.selectClient();
+        log.info("Selected Amazon EU SARL, Dutch Branch Client");
+
+/*        billingCenterTestPage.selectInvoiceType();
+        log.info("Selected Invoice Type");*/
+
+        billingCenterTestPage.enterRemarks(InvoiceRemarksText);
+        log.info("Entered Invoice Remarks Text")
+
+        billingCenterTestPage.selectIntlEuInvDate("02", "24", "2025");
+        log.info("Selected Intl Invoice DATE");
+
+        billingCenterTestPage.enterInvoiceNumber();
+        log.info("Selected Intl Invoice DATE");
 
         billingCenterTestPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed

@@ -86,24 +86,24 @@ public class FreightListingTestPage {
 	}
 
 	// Method to get the view freight icon
-	public WebElement getViewEditIcon() {
+/*	public WebElement getViewEditIcon() {
 		waitUntilVisible(viewFreightIcon);
 		return viewFreightIcon;
-	}
+	}*/
 
 	public void clickOnFreightID() {
 		waitUntilElementClickable(viewFreight).click();
 	}
 
 	// Click on view freight icon
-	public void clickOnViewFreightIcon() {
+/*	public void clickOnViewFreightIcon() {
 		waitUntilElementClickable(viewFreightIcon).click();
 	}
 	
 	public void ClickOnEditFreightIcon() {
 		waitUntilElementClickable(editFreightIcon).click();
 		
-	}
+	}*/
 
 	// Switch to a new tab
 	public void switchToNewTab() {
