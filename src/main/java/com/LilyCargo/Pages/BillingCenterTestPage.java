@@ -437,7 +437,7 @@ public class BillingCenterTestPage {
         invoiceNumber.sendKeys(invoice);
     }
 
-    public void enterAdminFee(String text) {
+    public void enterGraceDays(String text) {
         actions.click(graceDays).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
                 .perform();
         graceDays.sendKeys(text);

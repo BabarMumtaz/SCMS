@@ -64,7 +64,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
 
         //----------------------------------INTL Invoice----------------------------------
 
-        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeading(), "Client Dropdown Not Displayed");
+        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeading(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
 
         billingCenterTestPage.clickOnClientDropdownCrossIcon();
@@ -77,20 +77,26 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Selected Invoice Type");*/
 
         billingCenterTestPage.enterRemarks(InvoiceRemarksText);
-        log.info("Entered Invoice Remarks Text")
+        log.info("Entered Invoice Remarks Text");
 
         billingCenterTestPage.selectIntlEuInvDate("02", "24", "2025");
         log.info("Selected Intl Invoice DATE");
 
         billingCenterTestPage.enterInvoiceNumber();
-        log.info("Selected Intl Invoice DATE");
+        log.info("Entered Invoice Number");
+
+        billingCenterTestPage.enterGraceDays("14");
+        log.info("Entered Grace Days");
 
         billingCenterTestPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
-        billingCenterTestPage.clickSubmitIncidentsRegButton();
-        log.info("Clicked Submit Incidents Registration Button");
+        billingCenterTestPage.selectPidDropdown();
+        log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        billingCenterTestPage.clickFinishINVButton();
+        log.info("Clicked Finish INV Button");
 
         Assert.assertTrue(billingCenterTestPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + billingCenterTestPage.getSuccessAlertMessage());
