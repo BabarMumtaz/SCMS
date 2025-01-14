@@ -82,7 +82,12 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         billingCenterTestPage.selectIntlEuInvDate("02", "24", "2025");
         log.info("Selected Intl Invoice DATE");
 
-        billingCenterTestPage.enterInvoiceNumber();
+        // Generate the invoice number
+        String generatedInvoice = billingCenterTestPage.generateInvoiceNumber();
+        System.out.println("Generated Invoice Number: " + generatedInvoice);
+
+        // Enter the invoice number
+        billingCenterTestPage.enterInvoiceNumber(generatedInvoice);
         log.info("Entered Invoice Number");
 
         billingCenterTestPage.enterGraceDays("14");
@@ -90,10 +95,14 @@ public class IntlInvoiceAddTest extends TestBaseClass {
 
         billingCenterTestPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Submit Button.");
+        log.info("Scrolled to Bottom");
 
         billingCenterTestPage.selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        billingCenterTestPage.scrollToFinishButton();
+        Thread.sleep(2000); // Replace with explicit wait if needed
+        log.info("Scrolled to Finish Button.");
 
         billingCenterTestPage.clickFinishINVButton();
         log.info("Clicked Finish INV Button");
@@ -102,7 +111,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Heading: " + billingCenterTestPage.getSuccessAlertMessage());
 
         billingCenterTestPage.clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup ");
+        log.info("Clicked Alert Popup Cross Icon");
 
         // Log out after the test
         loginPage.logout();

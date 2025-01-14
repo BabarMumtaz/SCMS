@@ -418,8 +418,6 @@ public class BillingCenterTestPage {
         selectDate(invDate, month, day, year);
     }
 
- //   private  String generateInvoiceNumber;
-
     // Method to generate invoice number
     public String generateInvoiceNumber() {
         // Generate a random number for the invoice part (e.g., 010155)
@@ -451,12 +449,22 @@ public class BillingCenterTestPage {
         return wait.until(ExpectedConditions.visibilityOf(productSectionHeading)).isDisplayed();
     }
 
+    public void scrollToBottom() {
+        wait.until(ExpectedConditions.visibilityOf(pidDropdown)); // Ensure visibility
+        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", pidDropdown);
+        wait.until(ExpectedConditions.elementToBeClickable(pidDropdown));
+    }
+
     public void selectPidDropdown() {
         selectDropdownValue(pidDropdown, pidDropdownValue);
     }
 
     public void clickSaveWorksButton() {
         wait.until(ExpectedConditions.elementToBeClickable(saveWorksButton)).click();
+    }
+
+    public void scrollToFinishButton() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", finishINVButton);
     }
 
     public void clickFinishINVButton() {
