@@ -256,12 +256,12 @@ public class BillingCenterTestPage {
 
     @CacheLookup
     @FindBy(id = "select-Ledger Type")
-    WebElement selectLedgerTypeDropdown;
+    WebElement ledgerTypeDropdown;
 
     // International, and European
     @CacheLookup
     @FindBy(xpath = "//li[text()='International']")
-    WebElement selectLedgerTypeDropdownValue;
+    WebElement ledgerTypeDropdownValue;
 
     // PROFORMA INVOICE, and SALE INVOICE
     @CacheLookup
@@ -483,8 +483,38 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
+    //EXTRA INV
+
     public void selectExtraInvClient() {
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
     }
 
+    public void selectExtraInvDate(String month,String day, String year) {
+        selectDate(invoiceDateEI, month, day, year);
+    }
+
+    // Method to enter invoice number into the invoiceNumber field
+    public void enterExtraInvoiceNumber(String invoice) {
+        invoiceNumberEI.sendKeys(invoice);
+    }
+
+    public void enterExtraInvRemarks(String text) {
+        remarksFieldEI.sendKeys(text);
+    }
+
+    public void selectLedgerTypeDropdown() {
+        selectDropdownValue(ledgerTypeDropdown, ledgerTypeDropdownValue);
+    }
+
+    public void selectExtraInvType() {
+        selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValueEI);
+    }
+
+    public void scrollToSubmitButton() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", submitButtonEI);
+    }
+
+    public void clickSubmitINVButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButtonEI)).click();
+    }
 }

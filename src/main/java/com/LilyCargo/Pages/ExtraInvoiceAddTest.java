@@ -70,25 +70,28 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
         billingCenterTestPage.selectExtraInvClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-/*        billingCenterTestPage.selectInvoiceType();
-        log.info("Selected Invoice Type");*/
-
-        billingCenterTestPage.enterRemarks(InvoiceRemarksText);
-        log.info("Entered Invoice Remarks Text");
-
-        billingCenterTestPage.selectIntlEuInvDate("02", "24", "2025");
-        log.info("Selected Intl Invoice DATE");
+        billingCenterTestPage.selectExtraInvDate("02", "24", "2025");
+        log.info("Selected Extra Invoice DATE");
 
         // Generate the invoice number
         String generatedInvoice = billingCenterTestPage.generateInvoiceNumber();
         System.out.println("Generated Invoice Number: " + generatedInvoice);
 
         // Enter the invoice number
-        billingCenterTestPage.enterInvoiceNumber(generatedInvoice);
+        billingCenterTestPage.enterExtraInvoiceNumber(generatedInvoice);
         log.info("Entered Invoice Number");
 
         billingCenterTestPage.enterGraceDays("14");
         log.info("Entered Grace Days");
+
+        billingCenterTestPage.enterExtraInvRemarks(InvoiceRemarksText);
+        log.info("Entered Invoice Remarks Text");
+
+        billingCenterTestPage.selectLedgerTypeDropdown();
+        log.info("Selected Ledger Type");
+
+        billingCenterTestPage.selectExtraInvType();
+        log.info("Selected Extra Invoice Type");
 
         billingCenterTestPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
@@ -97,12 +100,12 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
         billingCenterTestPage.selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
 
-        billingCenterTestPage.scrollToFinishButton();
+        billingCenterTestPage.scrollToSubmitButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Finish Button.");
+        log.info("Scrolled to Submit Button.");
 
-        billingCenterTestPage.clickFinishINVButton();
-        log.info("Clicked Finish INV Button");
+        billingCenterTestPage.clickSubmitINVButton();
+        log.info("Clicked Submit INV Button");
 
         Assert.assertTrue(billingCenterTestPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + billingCenterTestPage.getSuccessAlertMessage());
