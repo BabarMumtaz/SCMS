@@ -483,4 +483,8 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
+    public void selectExtraInvClient() {
+        selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
+    }
+
 }
