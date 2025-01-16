@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class IntlInvoiceAddTest extends TestBaseClass {
+public class EuInvoiceAddTest extends TestBaseClass {
 
     Logger log;
     String InvoiceRemarksText = faker.lorem().characters(100);
@@ -21,7 +21,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
     public void setup() {
         initialization(); // Opens a new browser instance
 
-        log = LogManager.getLogger(IntlInvoiceAddTest.class);
+        log = LogManager.getLogger(EuInvoiceAddTest.class);
         log.info("Test setup completed.");
 
         performLogin();
@@ -32,14 +32,14 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add INTL Invoice successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add INTL Invoice successfully")
+    @Description("Verify that a user can add EU Invoice successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add INTL Invoice successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add INTL Invoice")
-    public void AddIntlInvoiceTest() throws InterruptedException {
+    @Story("As a user, I should be able to add EU Invoice successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
+    public void AddEulInvoiceTest() throws InterruptedException {
 
         // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -62,7 +62,13 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         freightDetail.clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
 
-        //----------------------------------INTL Invoice----------------------------------
+        //----------------------------------EU Invoice----------------------------------
+
+        Assert.assertTrue(billingCenterTestPage.isEuInvTabDisplayed(), "EU Tab Not Displayed");
+        log.info("Heading: " + billingCenterTestPage.getEuInvTabName());
+
+        billingCenterTestPage.clickOnEulInvTab();
+        log.info("Clicked EU INV Tab");
 
         Assert.assertTrue(billingCenterTestPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
@@ -73,8 +79,8 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         billingCenterTestPage.selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-/*        billingCenterTestPage.selectInvoiceType();
-        log.info("Selected Invoice Type");*/
+        billingCenterTestPage.selectInvoiceType();
+        log.info("Selected Invoice Type");
 
         billingCenterTestPage.enterRemarks(InvoiceRemarksText);
         log.info("Entered Invoice Remarks Text");
@@ -93,7 +99,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         billingCenterTestPage.enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        billingCenterTestPage.scrollToBottom();
+/*        billingCenterTestPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Bottom");
 
@@ -102,7 +108,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
 
         billingCenterTestPage.scrollToFinishButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Finish Button.");
+        log.info("Scrolled to Finish Button.");*/
 
         billingCenterTestPage.clickFinishINVButton();
         log.info("Clicked Finish INV Button");
@@ -120,7 +126,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() {
-        captureScreenshot("AddIntlInvoiceTest");
+        captureScreenshot("AddEulInvoiceTest");
         closeBrowser();
     }
 

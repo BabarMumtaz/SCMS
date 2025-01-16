@@ -64,7 +64,13 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
 
         //----------------------------------Extra Invoice----------------------------------
 
-        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeading(), "Product Section Column Heading Not Displayed");
+        Assert.assertTrue(billingCenterTestPage.isExtraInvTabDisplayed(), "Extra Tab Not Displayed");
+        log.info("Heading: " + billingCenterTestPage.getExtraInvTabName());
+
+        billingCenterTestPage.clickOnExtraInvTab();
+        log.info("Clicked Extra INV Tab");
+
+        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
 
         billingCenterTestPage.selectExtraInvClient();

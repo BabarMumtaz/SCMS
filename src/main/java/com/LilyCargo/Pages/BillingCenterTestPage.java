@@ -73,7 +73,7 @@ public class BillingCenterTestPage {
 
     // STANDARD, AMAZON BROKERAGE INV, AMAZON DUTY INV, and CREDIT INV
     @CacheLookup
-    @FindBy(xpath = "//li[text()='CREDIT INV']")
+    @FindBy(xpath = "//li[text()='AMAZON BROKERAGE INV']")
     WebElement invoiceTypeDropdownValue;
 
     @CacheLookup
@@ -337,6 +337,14 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(intlInvTab)).click();
     }
 
+    public String getEuInvTabName() {
+        return euInvTab.getText();
+    }
+
+    public boolean isEuInvTabDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(euInvTab)).isDisplayed();
+    }
+
     public void clickOnEulInvTab() {
         wait.until(ExpectedConditions.visibilityOf(euInvTab)).click();
     }
@@ -344,8 +352,17 @@ public class BillingCenterTestPage {
     public void clickOnPurchaseEntryTab() {
         wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
     }
+
     public void clickOnBilledInvoicesTab() {
         wait.until(ExpectedConditions.visibilityOf(billedInvoicesTab)).click();
+    }
+
+    public String getExtraInvTabName() {
+        return extraInvTab.getText();
+    }
+
+    public boolean isExtraInvTabDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(extraInvTab)).isDisplayed();
     }
 
     public void clickOnExtraInvTab() {
@@ -445,7 +462,7 @@ public class BillingCenterTestPage {
         return productSectionHeading.getText();
     }
 
-    public boolean isProductSectionColHeading() {
+    public boolean isProductSectionColHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(productSectionHeading)).isDisplayed();
     }
 
