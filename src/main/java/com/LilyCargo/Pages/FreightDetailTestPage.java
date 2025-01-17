@@ -70,6 +70,11 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Billing Center']")
 	WebElement billingCenterTab;
 
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Cargo Data']")
+	WebElement cargoDataTab;
+
+
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -136,6 +141,14 @@ public class FreightDetailTestPage {
 
 	public void clickBillingCenterTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(billingCenterTab)).click();
+	}
+
+	public boolean isCargoDataTabDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(cargoDataTab)).isDisplayed();
+	}
+
+	public void clickCargoDataTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab)).click();
 	}
 
 }
