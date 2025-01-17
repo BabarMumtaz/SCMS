@@ -74,6 +74,10 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Cargo Data']")
 	WebElement cargoDataTab;
 
+	@CacheLookup
+	@FindBy(className = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
+	WebElement freightTabHorizontalScroll;
+
 
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -151,4 +155,10 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab)).click();
 	}
 
+	public void scrollToRight() {
+		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll)); // Ensure visibility
+		//executor.executeScript("arguments[0].scrollLeft = arguments[0].offsetWidth", scrollArea);
+		executor.executeScript("argument[0].scrollIntoView()", cargoDataTab);
+		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
+	}
 }

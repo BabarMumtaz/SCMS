@@ -31,8 +31,8 @@ public class CargoDataTestPage {
     }
 
     @CacheLookup
-    @FindBy(xpath = "//img[@alt='Add']")
-    WebElement incidentsRegAddIcon;
+    @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
+    WebElement exportCargoDataIcon;
 
     @CacheLookup
     @FindBy(xpath = "//div[text()='Add Incidents Register']")
