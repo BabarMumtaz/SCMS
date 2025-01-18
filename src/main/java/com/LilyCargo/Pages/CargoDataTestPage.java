@@ -74,21 +74,24 @@ public class CargoDataTestPage {
 
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    public void clickOnIncidentsRegAddIcon() {
-        wait.until(ExpectedConditions.visibilityOf(incidentsRegAddIcon)).click();
+    public String getCargoDataListingAreaMessage() {
+        return cargoDataListingArea.getText();
     }
 
-    public String getPopupHeading() {
-        return incidentsRegPopupHeading.getText();
-    }
-
-    public boolean isIncidentsRegPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(incidentsRegPopupHeading)).isDisplayed();
+    public boolean isCargoDataListingAreaDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingArea)).isDisplayed();
     }
 
     public void enterIncidentsRegPopupProblemField(String text) {
         incidentsRegPopupProblemField.sendKeys(text);
+    }
+
+    public void clickOnExportCargoDataIcon() {
+        wait.until(ExpectedConditions.visibilityOf(exportCargoDataIcon)).click();
+    }
+
+    public void clickOnUploadCargoDataIcon() {
+        wait.until(ExpectedConditions.visibilityOf(uploadCargoDataIcon)).click();
     }
 
     public void enterIncidentsRegPopupSolutionField(String text) {
