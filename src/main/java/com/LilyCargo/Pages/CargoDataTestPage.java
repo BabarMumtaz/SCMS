@@ -41,6 +41,15 @@ public class CargoDataTestPage {
     WebElement cargoDataListingEmptyArea;
 
     @CacheLookup
+    //button[@id='tc-no']
+    @FindBy(id = "tc-no")
+    WebElement noTcDropdown;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[text()='TC1']")
+    WebElement noTcDropdownValue;
+
+    @CacheLookup
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
     WebElement exportCargoDataIcon;
 
@@ -67,8 +76,6 @@ public class CargoDataTestPage {
     @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement uploadCargoDataPopupCancelButton;
-
-
 
     @CacheLookup
     @FindBy(id = "79vn6timw")
@@ -116,8 +123,8 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
-    public void clickOnIncidentsRegPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(incidentsRegPopupCloseIcon)).click();
+    public void clickOnUploadCargoDataPopupCloseIcon() {
+        wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
     }
 
     public String getSuccessAlertMessage() {
