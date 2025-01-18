@@ -30,9 +30,15 @@ public class CargoDataTestPage {
         this.actions = new Actions(driver);
     }
 
+//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+    @CacheLookup
+    @FindBy(xpath = "//tbody/tr[1]/td[4]")
+    WebElement cargoDataListingHs1stCell;
+
     @CacheLookup
     @FindBy(xpath = "//p[text()='No data found']")
-    WebElement cargoDataListingArea;
+    WebElement cargoDataListingEmptyArea;
 
     @CacheLookup
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
@@ -44,7 +50,7 @@ public class CargoDataTestPage {
 
     @CacheLookup
     @FindBy(className = "//div[@class='lc-header-title modal-title h4']")
-    WebElement uploadCargoDataPopup;
+    WebElement uploadCargoDataPopupHeading;
 
     @CacheLookup
     @FindBy(className = "btn-close")
@@ -72,14 +78,22 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
-    //	 ------------------------------------------------------------------------------------------------------------------------------------------------
+//	 -----------------------------------------------------------------------------------------------------------------------------------------------
+
+    public String getCargoDataListingHs1stCellText() {
+        return cargoDataListingHs1stCell.getText();
+    }
+
+    public boolean isCargoDataListingHs1stCellDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingHs1stCell)).isDisplayed();
+    }
 
     public String getCargoDataListingAreaMessage() {
-        return cargoDataListingArea.getText();
+        return cargoDataListingEmptyArea.getText();
     }
 
     public boolean isCargoDataListingAreaDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingArea)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
     }
 
     public void enterIncidentsRegPopupProblemField(String text) {
@@ -94,22 +108,12 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataIcon)).click();
     }
 
-    public void enterIncidentsRegPopupSolutionField(String text) {
-        incidentsRegPopupSolutionField.sendKeys(text);
-    }
-
-    public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitIncidentsRegButton)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitIncidentsRegButton);
-        wait.until(ExpectedConditions.elementToBeClickable(submitIncidentsRegButton));
-    }
-
     public void clickSubmitIncidentsRegButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitIncidentsRegButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButton)).click();
     }
 
     public void clickCancelIncidentsRegButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(cancelIncidentsRegButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
     public void clickOnIncidentsRegPopupCloseIcon() {
