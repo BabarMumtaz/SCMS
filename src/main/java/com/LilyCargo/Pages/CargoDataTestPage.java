@@ -31,32 +31,38 @@ public class CargoDataTestPage {
     }
 
     @CacheLookup
+    @FindBy(xpath = "//p[text()='No data found']")
+    WebElement cargoDataListingArea;
+
+    @CacheLookup
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
     WebElement exportCargoDataIcon;
 
     @CacheLookup
-    @FindBy(xpath = "//div[text()='Add Incidents Register']")
-    WebElement incidentsRegPopupHeading;
+    @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[4]")
+    WebElement uploadCargoDataIcon;
+
+    @CacheLookup
+    @FindBy(className = "//div[@class='lc-header-title modal-title h4']")
+    WebElement uploadCargoDataPopup;
 
     @CacheLookup
     @FindBy(className = "btn-close")
-    WebElement incidentsRegPopupCloseIcon;
+    WebElement uploadCargoDataPopupCloseIcon;
 
     @CacheLookup
-    @FindBy(id = "problem")
-    WebElement incidentsRegPopupProblemField;
-
-    @CacheLookup
-    @FindBy(id = "solution")
-    WebElement incidentsRegPopupSolutionField;
+    @FindBy(className = "//input[@name='file']")
+    WebElement uploadCargoDataPopupChooseFile;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitIncidentsRegButton;
+    WebElement uploadCargoDataPopupSubmitButton;
 
     @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement cancelIncidentsRegButton;
+    WebElement uploadCargoDataPopupCancelButton;
+
+
 
     @CacheLookup
     @FindBy(id = "79vn6timw")
