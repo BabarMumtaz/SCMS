@@ -31,12 +31,12 @@ public class UploadCargoDataTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add carrier successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can Upload Cargo Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add carrier successfully")
+    @Description("Verify that a user can Upload Cargo Data successfully")
     @Epic("EP001")
     @Feature("Feature:003")
-    @Story("As a user, I should be able to add carrier successfully")
+    @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
     public void CargoDataTest() throws InterruptedException {
 
@@ -44,56 +44,33 @@ public class UploadCargoDataTest extends TestBaseClass {
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
         log.info("Login successful.");
 
-        menuBar.clickFreightRelationsMenu();
-        log.info("Clicked Freight Relations Menu");
+        freightListing.hoverOn1stRowClient();
+        log.info("Hover over 1st Row");
 
-        menuBar.clickCarriersFRSubMenu();
-        log.info("Clicked Carriers FR Sub Menu");
+        // Click on the freight ID
+        freightListing.clickOnFreightID();
+        log.info("Clicked on the 1st row FreightID.");
 
-        Assert.assertTrue(carriersPage.isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + carriersPage.getPageHeading());
+        // Switch to the new tab
+        freightListing.switchToNewTab();
+        log.info("Switched to the new tab");
 
-        carriersPage.clickAddCarrierBtn();
-        log.info("Clicked Carriers Add button");
 
-        carriersPage.enterTicker(faker.number().digits(7));
-        log.info("Entered Ticker Number");
+        freightDetail.scrollToRight();
+        log.info("Clicked Incidents Registration Tab");
 
-        carriersPage.enterCarrierName(faker.company().name());
-        log.info("Entered Carrier's Name");
+        // Check if the edit wrapper is displayed
+        Assert.assertTrue(freightDetail.isCargoDataTabDisplayed(), "Cargo Data Tab tab is not Displayed");
 
-        carriersPage.enterCarrierEmail(faker.internet().emailAddress());
-        log.info("Entered Carrier's Email");
+        freightDetail.clickCargoDataTab();
+        log.info("Clicked Cargo Data Tab");
 
-        carriersPage.enterDutchPhoneNumber(); // New method for Dutch phone number
-        log.info("Entered Carrier's Tel Number");
 
-        carriersPage.enterAddress1(faker.address().streetAddress());
-        log.info("Entered Address");
+    //----------------------------------Incidents Registration----------------------------------
 
-        carriersPage.enterZipCity(faker.address().zipCode());
-        log.info("Entered Zip City");
 
-        carriersPage.selectCountry();
-        log.info("Selected Country");
-
-        carriersPage.enterExtraEmailLabel("Extra Email");
-        log.info("Entered Extra Email");
-
-        carriersPage.enterExtraEmailValue(faker.internet().emailAddress());
-        log.info("Entered Extra Email Value");
-
-        carriersPage.clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        carriersPage.clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
-
-        carriersPage.clickSaveCarrierBack();
-        log.info("Click Save Carrier Button");
-
-        carriersPage.clickOnAlertPopupDP();
-        log.info("Clicked Cross icon of Alert");
+        incidentsRegistrationPage.clickOnIncidentsRegAddIcon();
+        log.info("Clicked On Incidents Registration Add Icon");
 
         // Log out after the test
         loginPage.logout();

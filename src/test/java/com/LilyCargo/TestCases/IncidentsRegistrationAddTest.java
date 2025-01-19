@@ -62,7 +62,8 @@ public class IncidentsRegistrationAddTest extends TestBaseClass {
         freightDetail.clickIncidentsRegistrationTab();
         log.info("Clicked Incidents Registration Tab");
 
-        //----------------------------------Incidents Registration----------------------------------
+    //----------------------------------Incidents Registration----------------------------------
+
         incidentsRegistrationPage.clickOnIncidentsRegAddIcon();
         log.info("Clicked On Incidents Registration Add Icon");
 
