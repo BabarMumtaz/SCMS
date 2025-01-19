@@ -78,7 +78,7 @@ public class CargoDataTestPage {
     WebElement uploadCargoDataPopupCancelButton;
 
     @CacheLookup
-    @FindBy(id = "79vn6timw")
+    @FindBy(id = "zpwjtrupj")
     WebElement successAlertMessage;
 
     @CacheLookup
@@ -103,8 +103,14 @@ public class CargoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
     }
 
-    public void enterIncidentsRegPopupProblemField(String text) {
-        incidentsRegPopupProblemField.sendKeys(text);
+    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+        dropdown.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+        dropdownValue.click();
+    }
+
+    public void selectNoTc() {
+        selectDropdownValue(noTcDropdown, noTcDropdownValue);
     }
 
     public void clickOnExportCargoDataIcon() {
@@ -115,16 +121,24 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataIcon)).click();
     }
 
+    public String getUploadCargoDataPopupHeading() {
+        return uploadCargoDataPopupHeading.getText();
+    }
+
+    public void clickOnUploadCargoDataPopupCloseIcon() {
+        wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
+    }
+
+    public void uploadCargoDataInChooseFile(String text) {
+        uploadCargoDataPopupChooseFile.sendKeys(text);
+    }
+
     public void clickSubmitIncidentsRegButton() {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButton)).click();
     }
 
     public void clickCancelIncidentsRegButton() {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
-    }
-
-    public void clickOnUploadCargoDataPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
     }
 
     public String getSuccessAlertMessage() {
