@@ -66,11 +66,7 @@ public class UploadCargoDataTest extends TestBaseClass {
         log.info("Clicked Cargo Data Tab");
 
 
-    //----------------------------------Incidents Registration----------------------------------
-
-
-        incidentsRegistrationPage.clickOnIncidentsRegAddIcon();
-        log.info("Clicked On Incidents Registration Add Icon");
+    //----------------------------------Cargo Data Tab----------------------------------
 
         // Log out after the test
         loginPage.logout();

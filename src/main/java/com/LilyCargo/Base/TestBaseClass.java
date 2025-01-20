@@ -48,6 +48,7 @@ public class TestBaseClass {
 	public static IncidentsRegistrationTestPage incidentsRegistrationPage;
 	public static FycoDataTestPage fycoDataPage;
     public static BillingCenterTestPage billingCenterTestPage;
+	public static CargoDataTestPage cargoDataTestPage;
 
 	public TestBaseClass() {
 		loadProperties();
@@ -128,6 +129,7 @@ public class TestBaseClass {
 		incidentsRegistrationPage = PageFactory.initElements(driver, IncidentsRegistrationTestPage.class);
 		fycoDataPage = PageFactory.initElements(driver, FycoDataTestPage.class);
         billingCenterTestPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
+		cargoDataTestPage = PageFactory.initElements(driver, CargoDataTestPage.class);
 
 		log.info("Utilities and Page Objects initialized.");
 	}
