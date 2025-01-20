@@ -155,10 +155,22 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab)).click();
 	}
 
-	public void scrollToRight() {
+/*	public void scrollToRight() {
 		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll)); // Ensure visibility
 		//executor.executeScript("arguments[0].scrollLeft = arguments[0].offsetWidth", scrollArea);
 		executor.executeScript("argument[0].scrollIntoView()", cargoDataTab);
 		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
+	}*/
+
+	public void scrollToRight() {
+		// Ensure the freightTabHorizontalScroll element is visible before attempting to scroll
+		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll));
+
+		// Scroll the cargoDataTab into view
+		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", cargoDataTab);
+
+		// Wait until the cargoDataTab is clickable
+		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
 	}
+
 }

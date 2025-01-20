@@ -38,7 +38,7 @@ public class UploadCargoDataTest extends TestBaseClass {
     @Feature("Feature:003")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
-    public void CargoDataTest() throws InterruptedException {
+    public void CargoDataUploadTest() throws InterruptedException {
 
         // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -75,7 +75,7 @@ public class UploadCargoDataTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() {
-        captureScreenshot("AddCarrierTest");
+        captureScreenshot("CargoDataUploadTest");
         closeBrowser();
     }
 

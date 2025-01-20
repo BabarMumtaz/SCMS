@@ -63,8 +63,9 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 		freightListing.hoverOn1stRowClient();
 		log.info("Hover over 1st Row");
 
-		freightListing.clickOnViewFreightIcon();
-		log.info("Hover over View Icon and click");
+		// Click on the freight ID
+		freightListing.clickOnFreightID();
+		log.info("Clicked on the 1st row FreightID.");
 
 		// Switch to the new tab
 		freightListing.switchToNewTab();

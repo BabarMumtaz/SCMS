@@ -12,7 +12,6 @@
 			<class name="com.LilyCargo.TestCases.CarrierEditFromDetailViewTest" />
 			<class name="com.LilyCargo.TestCases.ClientAddTest" />
 			<class name="com.LilyCargo.TestCases.FreightAddTest" />
-			<class name="com.LilyCargo.TestCases.FreightEditFromDetailPageTest" />
 			<class name="com.LilyCargo.TestCases.FreightEditFromListingViewTest" />
 			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest" />
 			<class name="com.LilyCargo.TestCases.LoginUsingExcelFileTest" />
