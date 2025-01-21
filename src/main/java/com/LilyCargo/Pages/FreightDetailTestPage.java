@@ -173,4 +173,6 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
 	}
 
+
+
 }

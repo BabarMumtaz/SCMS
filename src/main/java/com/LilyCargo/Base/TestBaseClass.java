@@ -128,8 +128,8 @@ public class TestBaseClass {
         remarksPage = PageFactory.initElements(driver, RemarksTestPage.class);
 		incidentsRegistrationPage = PageFactory.initElements(driver, IncidentsRegistrationTestPage.class);
 		fycoDataPage = PageFactory.initElements(driver, FycoDataTestPage.class);
-        billingCenterTestPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
-		cargoDataTestPage = PageFactory.initElements(driver, CargoDataTestPage.class);
+        billingCenterPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
+		cargoDataPage = PageFactory.initElements(driver, CargoDataTestPage.class);
 
 		log.info("Utilities and Page Objects initialized.");
 	}

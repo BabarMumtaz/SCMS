@@ -125,19 +125,23 @@ public class CargoDataTestPage {
         return uploadCargoDataPopupHeading.getText();
     }
 
+    public boolean isUploadCargoDataPopupDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupHeading)).isDisplayed();
+    }
+
     public void clickOnUploadCargoDataPopupCloseIcon() {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
     }
 
-    public void uploadCargoDataInChooseFile(String text) {
-        uploadCargoDataPopupChooseFile.sendKeys(text);
+    public void uploadCargoDataInChooseFile() {
+        uploadCargoDataPopupChooseFile.sendKeys();
     }
 
-    public void clickSubmitIncidentsRegButton() {
+    public void clickCargoDataPopupSubmitButton() {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButton)).click();
     }
 
-    public void clickCancelIncidentsRegButton() {
+    public void clickCargoDataPopupCancelButton() {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
