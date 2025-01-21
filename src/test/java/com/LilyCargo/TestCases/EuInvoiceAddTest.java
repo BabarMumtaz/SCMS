@@ -64,59 +64,59 @@ public class EuInvoiceAddTest extends TestBaseClass {
 
         //----------------------------------EU Invoice----------------------------------
 
-        Assert.assertTrue(billingCenterTestPage.isEuInvTabDisplayed(), "EU Tab Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getEuInvTabName());
+        Assert.assertTrue(billingCenterPage.isEuInvTabDisplayed(), "EU Tab Not Displayed");
+        log.info("Heading: " + billingCenterPage.getEuInvTabName());
 
-        billingCenterTestPage.clickOnEulInvTab();
+        billingCenterPage.clickOnEulInvTab();
         log.info("Clicked EU INV Tab");
 
-        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
+        Assert.assertTrue(billingCenterPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
+        log.info("Heading: " + billingCenterPage.getProductSectionColHeading());
 
-        billingCenterTestPage.clickOnClientDropdownCrossIcon();
+        billingCenterPage.clickOnClientDropdownCrossIcon();
         log.info("Clicked On Client Dropdown Cross Icon");
 
-        billingCenterTestPage.selectClient();
+        billingCenterPage.selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-        billingCenterTestPage.selectInvoiceType();
+        billingCenterPage.selectInvoiceType();
         log.info("Selected Invoice Type");
 
-        billingCenterTestPage.enterRemarks(InvoiceRemarksText);
+        billingCenterPage.enterRemarks(InvoiceRemarksText);
         log.info("Entered Invoice Remarks Text");
 
-        billingCenterTestPage.selectIntlEuInvDate("02", "24", "2025");
+        billingCenterPage.selectIntlEuInvDate("02", "24", "2025");
         log.info("Selected Intl Invoice DATE");
 
         // Generate the invoice number
-        String generatedInvoice = billingCenterTestPage.generateInvoiceNumber();
+        String generatedInvoice = billingCenterPage.generateInvoiceNumber();
         System.out.println("Generated Invoice Number: " + generatedInvoice);
 
         // Enter the invoice number
-        billingCenterTestPage.enterInvoiceNumber(generatedInvoice);
+        billingCenterPage.enterInvoiceNumber(generatedInvoice);
         log.info("Entered Invoice Number");
 
-        billingCenterTestPage.enterGraceDays("14");
+        billingCenterPage.enterGraceDays("14");
         log.info("Entered Grace Days");
 
-/*        billingCenterTestPage.scrollToBottom();
+/*        billingCenterPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Bottom");
 
-        billingCenterTestPage.selectPidDropdown();
+        billingCenterPage.selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
 
-        billingCenterTestPage.scrollToFinishButton();
+        billingCenterPage.scrollToFinishButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Finish Button.");*/
 
-        billingCenterTestPage.clickFinishINVButton();
+        billingCenterPage.clickFinishINVButton();
         log.info("Clicked Finish INV Button");
 
-        Assert.assertTrue(billingCenterTestPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getSuccessAlertMessage());
+        Assert.assertTrue(billingCenterPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + billingCenterPage.getSuccessAlertMessage());
 
-        billingCenterTestPage.clickOnAlertPopupCrossIcon();
+        billingCenterPage.clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
         // Log out after the test

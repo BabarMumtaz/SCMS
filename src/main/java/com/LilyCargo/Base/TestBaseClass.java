@@ -47,8 +47,8 @@ public class TestBaseClass {
     public static RemarksTestPage remarksPage;
 	public static IncidentsRegistrationTestPage incidentsRegistrationPage;
 	public static FycoDataTestPage fycoDataPage;
-    public static BillingCenterTestPage billingCenterTestPage;
-	public static CargoDataTestPage cargoDataTestPage;
+    public static BillingCenterTestPage billingCenterPage;
+	public static CargoDataTestPage cargoDataPage;
 
 	public TestBaseClass() {
 		loadProperties();

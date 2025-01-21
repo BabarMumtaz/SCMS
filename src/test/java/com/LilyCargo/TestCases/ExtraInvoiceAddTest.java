@@ -64,59 +64,59 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
 
         //----------------------------------Extra Invoice----------------------------------
 
-        Assert.assertTrue(billingCenterTestPage.isExtraInvTabDisplayed(), "Extra Tab Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getExtraInvTabName());
+        Assert.assertTrue(billingCenterPage.isExtraInvTabDisplayed(), "Extra Tab Not Displayed");
+        log.info("Heading: " + billingCenterPage.getExtraInvTabName());
 
-        billingCenterTestPage.clickOnExtraInvTab();
+        billingCenterPage.clickOnExtraInvTab();
         log.info("Clicked Extra INV Tab");
 
-        Assert.assertTrue(billingCenterTestPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getProductSectionColHeading());
+        Assert.assertTrue(billingCenterPage.isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
+        log.info("Heading: " + billingCenterPage.getProductSectionColHeading());
 
-        billingCenterTestPage.selectExtraInvClient();
+        billingCenterPage.selectExtraInvClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-        billingCenterTestPage.selectExtraInvDate("02", "24", "2025");
+        billingCenterPage.selectExtraInvDate("02", "24", "2025");
         log.info("Selected Extra Invoice DATE");
 
         // Generate the invoice number
-        String generatedInvoice = billingCenterTestPage.generateInvoiceNumber();
+        String generatedInvoice = billingCenterPage.generateInvoiceNumber();
         System.out.println("Generated Invoice Number: " + generatedInvoice);
 
         // Enter the invoice number
-        billingCenterTestPage.enterExtraInvoiceNumber(generatedInvoice);
+        billingCenterPage.enterExtraInvoiceNumber(generatedInvoice);
         log.info("Entered Invoice Number");
 
-        billingCenterTestPage.enterGraceDays("14");
+        billingCenterPage.enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        billingCenterTestPage.enterExtraInvRemarks(InvoiceRemarksText);
+        billingCenterPage.enterExtraInvRemarks(InvoiceRemarksText);
         log.info("Entered Invoice Remarks Text");
 
-        billingCenterTestPage.selectLedgerTypeDropdown();
+        billingCenterPage.selectLedgerTypeDropdown();
         log.info("Selected Ledger Type");
 
-        billingCenterTestPage.selectExtraInvType();
+        billingCenterPage.selectExtraInvType();
         log.info("Selected Extra Invoice Type");
 
-        billingCenterTestPage.scrollToBottom();
+        billingCenterPage.scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Bottom");
 
-        billingCenterTestPage.selectPidDropdown();
+        billingCenterPage.selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
 
-        billingCenterTestPage.scrollToSubmitButton();
+        billingCenterPage.scrollToSubmitButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
-        billingCenterTestPage.clickSubmitINVButton();
+        billingCenterPage.clickSubmitINVButton();
         log.info("Clicked Submit INV Button");
 
-        Assert.assertTrue(billingCenterTestPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + billingCenterTestPage.getSuccessAlertMessage());
+        Assert.assertTrue(billingCenterPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + billingCenterPage.getSuccessAlertMessage());
 
-        billingCenterTestPage.clickOnAlertPopupCrossIcon();
+        billingCenterPage.clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
         // Log out after the test

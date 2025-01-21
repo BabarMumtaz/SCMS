@@ -55,7 +55,6 @@ public class UploadCargoDataTest extends TestBaseClass {
         freightListing.switchToNewTab();
         log.info("Switched to the new tab");
 
-
         freightDetail.scrollToRight();
         log.info("Clicked Incidents Registration Tab");
 
@@ -67,6 +66,15 @@ public class UploadCargoDataTest extends TestBaseClass {
 
 
     //----------------------------------Cargo Data Tab----------------------------------
+
+        Assert.assertTrue(cargoDataPage.isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
+        log.info("Heading: " + cargoDataPage.getCargoDataListingHs1stCellText());
+
+        cargoDataPage.selectNoTc();
+        log.info("Clicked Cargo Data Tab");
+
+        freightDetail.clickCargoDataTab();
+        log.info("Clicked Cargo Data Tab");
 
         // Log out after the test
         loginPage.logout();
