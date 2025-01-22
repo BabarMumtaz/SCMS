@@ -164,4 +164,16 @@ public class CargoDataTestPage {
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
+
+    public String getExportSuccessAlertMessage() {
+        return exportSuccessAlertMessage.getText();
+    }
+
+    public boolean isExportSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(exportSuccessAlertMessage)).isDisplayed();
+    }
+
+    public void clickOnExportAlertPopupCrossIcon() {
+        wait.until(ExpectedConditions.visibilityOf(exportSuccessAlertCrossIcon)).click();
+    }
 }

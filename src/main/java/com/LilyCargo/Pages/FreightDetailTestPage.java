@@ -39,6 +39,32 @@ public class FreightDetailTestPage {
 	WebElement alertPopupDP;
 
 	@CacheLookup
+	@FindBy(className = "fid-add-btn btn btn-primary")
+	WebElement subFidAddIcon;
+
+	@CacheLookup
+	@FindBy(xpath = "//div[text()='Create Sub Freight']")
+	WebElement createSubFidPopupHeading;
+
+	@CacheLookup
+	@FindBy(xpath = "//input[contains(@id,'selectable-')]")
+	WebElement subFidShipperDrop;
+
+	@CacheLookup
+	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
+	WebElement subFidShipperDropValue;
+
+	@CacheLookup
+	@FindBy(xpath = "//div[contains(@id,'select-NoTC ')]")
+	WebElement subFidNoTcDrop;
+
+	@CacheLookup
+	@FindBy(xpath = "//li[text()='TC1']")
+	WebElement subFidNoTcDropValue;
+
+
+
+	@CacheLookup
 	@FindBy(xpath = "//button[text()='Submit MRN #']")
 	WebElement submitMRNTask;
 
@@ -93,6 +119,25 @@ public class FreightDetailTestPage {
 	public void clickOnAlertPopupDP() {
 		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
 	}
+
+	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+		dropdown.click();
+		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+		dropdownValue.click();
+	}
+
+	public void selectSubFidShipper() {
+		selectDropdownValue(subFidShipperDrop, subFidShipperDropValue);
+	}
+
+	public void selectSubFidNoTc() {
+		selectDropdownValue(subFidNoTcDrop, subFidNoTcDropValue);
+	}
+
+
+
+
+
 
 	public void scrollToBottom() {
 		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility

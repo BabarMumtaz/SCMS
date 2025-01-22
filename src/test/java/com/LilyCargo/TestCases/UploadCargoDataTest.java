@@ -97,6 +97,12 @@ public class UploadCargoDataTest extends TestBaseClass {
         cargoDataPage.clickOnExportCargoDataIcon();
         log.info("Clicked Export Cargo Data Icon");
 
+        Assert.assertTrue(cargoDataPage.isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
+        log.info("Heading: " + cargoDataPage.getExportSuccessAlertMessage());
+
+        cargoDataPage.clickOnExportAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup ");
+
         // Log out after the test
         loginPage.logout();
         log.info("Logged out successfully.");
