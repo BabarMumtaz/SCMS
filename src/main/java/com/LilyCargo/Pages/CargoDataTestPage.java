@@ -85,6 +85,14 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
+    @CacheLookup
+    @FindBy(id = "72e9s8its")
+    WebElement exportSuccessAlertMessage;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+    WebElement exportSuccessAlertCrossIcon;
+
 //	 -----------------------------------------------------------------------------------------------------------------------------------------------
 
     public String getCargoDataListingHs1stCellText() {

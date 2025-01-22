@@ -82,18 +82,20 @@ public class UploadCargoDataTest extends TestBaseClass {
         Assert.assertTrue(cargoDataPage.isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
         log.info("Heading: " + cargoDataPage.getUploadCargoDataPopupHeading());
 
-
         cargoDataPage.uploadCargoDataInChooseFile();
         log.info("Selected NoTC");
 
         cargoDataPage.clickCargoDataPopupSubmitButton();
-        log.info("Clicked Submit Incidents Registration Button");
+        log.info("Clicked Submit Button");
 
         Assert.assertTrue(cargoDataPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + cargoDataPage.getSuccessAlertMessage());
 
         cargoDataPage.clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
+
+        cargoDataPage.clickOnExportCargoDataIcon();
+        log.info("Clicked Export Cargo Data Icon");
 
         // Log out after the test
         loginPage.logout();
