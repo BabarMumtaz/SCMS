@@ -64,7 +64,6 @@ public class UploadCargoDataTest extends TestBaseClass {
         freightDetail.clickCargoDataTab();
         log.info("Clicked Cargo Data Tab");
 
-
     //----------------------------------Cargo Data Tab----------------------------------
 
         Assert.assertTrue(cargoDataPage.isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
