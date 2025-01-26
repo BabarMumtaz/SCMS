@@ -38,6 +38,8 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement alertPopupDP;
 
+	//-------------------------------------CREATE SUBFID ----------------------------------------------------------
+
 	@CacheLookup
 	@FindBy(className = "fid-add-btn btn btn-primary")
 	WebElement subFidAddIcon;
@@ -62,7 +64,27 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//li[text()='TC1']")
 	WebElement subFidNoTcDropValue;
 
+	@CacheLookup
+	@FindBy(xpath = "//input[@name='hbl_no']")
+	WebElement subFidHblNo;
 
+	@CacheLookup
+	@FindBy(xpath = "//input[@name='client_ref']")
+	WebElement subFidClientRef;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Yes']")
+	WebElement submitSubFidButton;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[text()='Cancel']")
+	WebElement cancelSubFidButton;
+
+	@CacheLookup
+	@FindBy(className = "btn-close")
+	WebElement SubFidPopupCloseIcon;
+
+	//-----------------------------------------------------------------------------------------------
 
 	@CacheLookup
 	@FindBy(xpath = "//button[text()='Submit MRN #']")
@@ -104,9 +126,7 @@ public class FreightDetailTestPage {
 	@FindBy(className = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
-
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 	public boolean isEditFreightIconDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
@@ -126,6 +146,18 @@ public class FreightDetailTestPage {
 		dropdownValue.click();
 	}
 
+	public void clickSubFidAddIcon() {
+		wait.until(ExpectedConditions.elementToBeClickable(subFidAddIcon)).click();
+	}
+
+	public String getCreateSubFidPopupHeading() {
+		return createSubFidPopupHeading.getText();
+	}
+
+	public boolean isCreateSubFidPopupHeadingDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(createSubFidPopupHeading)).isDisplayed();
+	}
+
 	public void selectSubFidShipper() {
 		selectDropdownValue(subFidShipperDrop, subFidShipperDropValue);
 	}
@@ -134,10 +166,17 @@ public class FreightDetailTestPage {
 		selectDropdownValue(subFidNoTcDrop, subFidNoTcDropValue);
 	}
 
+	public void enterSubFidHblNo(String text) {
+		subFidHblNo.sendKeys(text);
+	}
 
+	public void enterSubFidClientRef(String text) {
+		subFidClientRef.sendKeys(text);
+	}
 
-
-
+	public void clickSubmitSubFidButton() {
+		wait.until(ExpectedConditions.elementToBeClickable(submitSubFidButton)).click();
+	}
 
 	public void scrollToBottom() {
 		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility
@@ -217,7 +256,4 @@ public class FreightDetailTestPage {
 		// Wait until the cargoDataTab is clickable
 		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
 	}
-
-
-
 }
