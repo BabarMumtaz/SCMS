@@ -31,13 +31,13 @@ public class SubFreightAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can Upload Cargo Data successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can Create SubFreight successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can Upload Cargo Data successfully")
+    @Description("Verify that a user can Create SubFreight successfully")
     @Epic("EP001")
     @Feature("Feature:003")
-    @Story("As a user, I should be able to Upload Cargo Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
+    @Story("As a user, I should be able to Create SubFreight successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
     public void CreateSubFreightTest() throws InterruptedException {
 
         // Check if login is successful
