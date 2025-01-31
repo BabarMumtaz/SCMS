@@ -43,8 +43,9 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 	}
 
 	private void performLogin() {
+		log.info("Attempting to log in with username: " + prop.getProperty("username"));
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered valid username and password.");
+		log.info("Login attempt completed.");
 	}
 
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
@@ -98,7 +99,10 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 	@AfterMethod
 	public void tearDown() {
 		captureScreenshot("EditFreightTestFromDetailPage");
-		closeBrowser();
+		if (driver != null) {
+			driver.quit();
+			log.info("Browser closed successfully.");
+		}
 	}
 
 	private void captureScreenshot(String testName) {
@@ -107,13 +111,6 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 			log.info("Screenshot captured for test: " + testName);
 		} catch (IOException e) {
 			log.error("Error capturing screenshot.", e);
-		}
-	}
-
-	private void closeBrowser() {
-		if (driver != null) {
-			driver.quit();
-			log.info("Browser closed successfully.");
 		}
 	}
 }
