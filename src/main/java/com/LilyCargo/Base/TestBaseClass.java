@@ -44,10 +44,10 @@ public class TestBaseClass {
 	public static CarrierListingTestPage carrierListing;
 	public static ClientTestPage clientPage;
 	public static ShipperTestPage shippersPage;
-    public static RemarksTestPage remarksPage;
+	public static RemarksTestPage remarksPage;
 	public static IncidentsRegistrationTestPage incidentsRegistrationPage;
 	public static FycoDataTestPage fycoDataPage;
-    public static BillingCenterTestPage billingCenterPage;
+	public static BillingCenterTestPage billingCenterPage;
 	public static CargoDataTestPage cargoDataPage;
 
 	public TestBaseClass() {
@@ -56,9 +56,10 @@ public class TestBaseClass {
 
 	private void loadProperties() {
 		try (FileInputStream ip = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\Config\\configFile.properties")) {
+				System.getProperty("user.dir") + "/src/main/java/com/LilyCargo/Config/configFile.properties")) {
 			prop = new Properties();
 			prop.load(ip);
+			log.info("Configuration properties loaded successfully.");
 		} catch (FileNotFoundException e) {
 			log.error("Configuration file not found.", e);
 		} catch (IOException e) {
@@ -67,6 +68,11 @@ public class TestBaseClass {
 	}
 
 	public static void initialization() {
+		if (driver != null) {
+			log.warn("Driver already initialized. Skipping reinitialization.");
+			return;
+		}
+
 		setupLogger();
 		setupBrowser();
 		configureDriver();
@@ -125,10 +131,10 @@ public class TestBaseClass {
 		carrierListing = PageFactory.initElements(driver, CarrierListingTestPage.class);
 		clientPage = PageFactory.initElements(driver, ClientTestPage.class);
 		shippersPage = PageFactory.initElements(driver, ShipperTestPage.class);
-        remarksPage = PageFactory.initElements(driver, RemarksTestPage.class);
+		remarksPage = PageFactory.initElements(driver, RemarksTestPage.class);
 		incidentsRegistrationPage = PageFactory.initElements(driver, IncidentsRegistrationTestPage.class);
 		fycoDataPage = PageFactory.initElements(driver, FycoDataTestPage.class);
-        billingCenterPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
+		billingCenterPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
 		cargoDataPage = PageFactory.initElements(driver, CargoDataTestPage.class);
 
 		log.info("Utilities and Page Objects initialized.");

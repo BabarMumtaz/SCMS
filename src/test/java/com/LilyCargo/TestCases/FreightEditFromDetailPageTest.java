@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,34 +17,28 @@ import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Pages.FreightListingTestPage;
 import com.LilyCargo.Pages.LoginTestPage;
 import com.LilyCargo.Pages.MenuBarTestPage;
-import com.github.javafaker.Faker;
-
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Step;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 
 public class FreightEditFromDetailPageTest extends TestBaseClass {
 
-	Logger log;
+	private Logger log;
 
 	@BeforeMethod
 	public void setup() {
-		initialization(); // Opens a new browser instance
-
+		initialization();
 		log = LogManager.getLogger(FreightEditFromDetailPageTest.class);
 		log.info("Test setup completed.");
-
 		performLogin();
 	}
 
 	private void performLogin() {
+		if (loginPage == null) {
+			loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+		}
 		log.info("Attempting to log in with username: " + prop.getProperty("username"));
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Login attempt completed.");
+		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
+		log.info("Login successful.");
 	}
 
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
@@ -57,25 +50,22 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 	@Step("Hit Site Url -> Login with valid credentials -> Edit freight")
 	public void EditFreightTestFromDetailPage() throws InterruptedException {
 
-		// Check if login is successful
 		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
 		log.info("Login successful.");
 
+		if (freightListing == null) {
+			freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
+		}
 		freightListing.hoverOn1stRowClient();
 		log.info("Hover over 1st Row");
 
-		// Click on the freight ID
 		freightListing.clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
 
-		// Switch to the new tab
 		freightListing.switchToNewTab();
 		log.info("Switched to the new tab");
 
-		// Check if the edit wrapper is displayed
 		Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
-
-		// Clicked on Booked Freight Edit Icon On Detail Page
 		freightDetail.clickOnEditFreightIconDP();
 		log.info("Clicked on Booked Freight Edit Icon");
 
@@ -91,7 +81,6 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 		freightDetail.clickOnAlertPopupDP();
 		log.info("Clicked Cross icon of Alert");
 
-		// Log out after the test
 		loginPage.logout();
 		log.info("Logged out successfully.");
 	}
