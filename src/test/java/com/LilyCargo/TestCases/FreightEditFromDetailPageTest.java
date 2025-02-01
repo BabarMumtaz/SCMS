@@ -32,9 +32,7 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 	}
 
 	private void performLogin() {
-		if (loginPage == null) {
-			loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-		}
+
 		log.info("Attempting to log in with username: " + prop.getProperty("username"));
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -53,9 +51,6 @@ public class FreightEditFromDetailPageTest extends TestBaseClass {
 		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
 		log.info("Login successful.");
 
-		if (freightListing == null) {
-			freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-		}
 		freightListing.hoverOn1stRowClient();
 		log.info("Hover over 1st Row");
 
