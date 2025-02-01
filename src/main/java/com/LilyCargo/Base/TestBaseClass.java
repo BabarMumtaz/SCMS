@@ -51,14 +51,17 @@ public class TestBaseClass {
 	public static CargoDataTestPage cargoDataPage;
 
 	public TestBaseClass() {
-		loadProperties();
+		if (prop == null) {
+			loadProperties();  // Ensure properties are loaded
+		}
 	}
 
 	private void loadProperties() {
 		try (FileInputStream ip = new FileInputStream(
-				System.getProperty("user.dir") + "/src/main/java/com/LilyCargo/Config/configFile.properties")) {
+				System.getProperty("user.dir") + "src/main/java/com/LilyCargo/Config/configFile.properties")) {
 			prop = new Properties();
 			prop.load(ip);
+			System.out.println("Properties Loaded Successfully.");
 			log.info("Configuration properties loaded successfully.");
 		} catch (FileNotFoundException e) {
 			log.error("Configuration file not found.", e);
