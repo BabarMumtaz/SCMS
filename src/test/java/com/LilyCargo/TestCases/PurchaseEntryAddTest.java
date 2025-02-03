@@ -21,7 +21,7 @@ public class PurchaseEntryAddTest extends TestBaseClass {
     public void setup() {
         initialization(); // Opens a new browser instance
 
-        log = LogManager.getLogger(ExtraInvoiceAddTest.class);
+        log = LogManager.getLogger(PurchaseEntryAddTest.class);
         log.info("Test setup completed.");
 
         performLogin();
@@ -32,14 +32,14 @@ public class PurchaseEntryAddTest extends TestBaseClass {
         log.info("Entered valid username and password.");
     }
 
-    @Test(priority = 1, description = "Verify that a user can add Extra Invoice successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add Purchase Entry successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Extra Invoice successfully")
+    @Description("Verify that a user can add Purchase Entry successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add Extra Invoice successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Extra Invoice")
-    public void AddExtraInvoiceTest() throws InterruptedException {
+    @Story("As a user, I should be able to add Purchase Entry successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Purchase Entry")
+    public void AddPurchaseEntryTest() throws InterruptedException {
 
         // Check if login is successful
         Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
@@ -126,7 +126,7 @@ public class PurchaseEntryAddTest extends TestBaseClass {
 
     @AfterMethod
     public void tearDown() {
-        captureScreenshot("AddExtraInvoiceTest");
+        captureScreenshot("AddPurchaseEntryTest");
         closeBrowser();
     }
 
