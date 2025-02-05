@@ -158,6 +158,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Total Entries by Ledger']")
     WebElement totalEntriesByLedgerTabPE;
 
+    //PURCHASE ENTRY
     @CacheLookup
     @FindBy(xpath = "//input[@name='supplier")
     WebElement shipperDropdown;
@@ -507,6 +508,41 @@ public class BillingCenterTestPage {
     }
 
     public void selectExtraInvDate(String month,String day, String year) {
+        selectDate(invoiceDateEI, month, day, year);
+    }
+
+    // Method to enter invoice number into the invoiceNumber field
+    public void enterExtraInvoiceNumber(String invoice) {
+        invoiceNumberEI.sendKeys(invoice);
+    }
+
+    public void enterExtraInvRemarks(String text) {
+        remarksFieldEI.sendKeys(text);
+    }
+
+    public void selectLedgerTypeDropdown() {
+        selectDropdownValue(ledgerTypeDropdown, ledgerTypeDropdownValue);
+    }
+
+    public void selectExtraInvType() {
+        selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValueEI);
+    }
+
+    public void scrollToSubmitButton() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", submitButtonEI);
+    }
+
+    public void clickSubmitINVButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButtonEI)).click();
+    }
+
+    //PURCHASE ENTRY METHODS
+
+    public void selectPurchaseEntryShipper() {
+        selectDropdownValue(shipperDropdown, shipperDropdownValue);
+    }
+
+    public void selectPurchaseEntryDate(String month,String day, String year) {
         selectDate(invoiceDateEI, month, day, year);
     }
 
