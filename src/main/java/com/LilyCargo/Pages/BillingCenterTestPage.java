@@ -186,12 +186,12 @@ public class BillingCenterTestPage {
     @CacheLookup
     //@FindBy(id = "select-PID")
     @FindBy(xpath = "(//div[@id='select-Select'])[1]")
-    WebElement productDropdownPE;
+    WebElement glAccountDropdownPE;
 
     @CacheLookup
     //(//li[contains(text(),'23025 - Duty')])[1]
     @FindBy(xpath = "//li[text()='23025 - Duty  payable (Credit)")
-    WebElement productDropdownValuePE;
+    WebElement glAccountDropdownValuePE;
 
     @CacheLookup
     @FindBy(xpath = "(//input[@placeholder='Manual'])[1]")
@@ -543,31 +543,31 @@ public class BillingCenterTestPage {
     }
 
     public void selectPurchaseEntryDate(String month,String day, String year) {
-        selectDate(invoiceDateEI, month, day, year);
+        selectDate(invoiceDatePE, month, day, year);
     }
 
     // Method to enter invoice number into the invoiceNumber field
-    public void enterExtraInvoiceNumber(String invoice) {
-        invoiceNumberEI.sendKeys(invoice);
+    public void enterPurchaseEntryNumber(String invoice) {
+        invoiceNumberPE.sendKeys(invoice);
     }
 
-    public void enterExtraInvRemarks(String text) {
-        remarksFieldEI.sendKeys(text);
+    public void enterPurchaseEntryTotalAmount(String text) {
+        totalAmount.sendKeys(text);
     }
 
-    public void selectLedgerTypeDropdown() {
-        selectDropdownValue(ledgerTypeDropdown, ledgerTypeDropdownValue);
+    public void selectGLAccountDropdown() {
+        selectDropdownValue(glAccountDropdownPE, glAccountDropdownValuePE);
     }
 
-    public void selectExtraInvType() {
-        selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValueEI);
+    public void enterGlAccountAmount(String text) {
+        amountEur.sendKeys(text);
     }
 
-    public void scrollToSubmitButton() {
-        executor.executeScript("arguments[0].scrollIntoView(true);", submitButtonEI);
+    public void scrollToPushPurchaseEntryButton() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", pushNewINVButton);
     }
 
-    public void clickSubmitINVButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitButtonEI)).click();
+    public void clickPushPurchaseEntryButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(pushNewINVButton)).click();
     }
 }
