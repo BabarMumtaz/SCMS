@@ -350,10 +350,6 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(euInvTab)).click();
     }
 
-    public void clickOnPurchaseEntryTab() {
-        wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
-    }
-
     public void clickOnBilledInvoicesTab() {
         wait.until(ExpectedConditions.visibilityOf(billedInvoicesTab)).click();
     }
@@ -537,6 +533,18 @@ public class BillingCenterTestPage {
     }
 
     //PURCHASE ENTRY METHODS
+
+    public void clickOnPurchaseEntryTab() {
+        wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
+    }
+
+    public String getPurchaseEntryTabName() {
+        return purchaseEntryTab.getText();
+    }
+
+    public boolean isPurchaseEntryTabDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).isDisplayed();
+    }
 
     public void selectPurchaseEntryShipper() {
         selectDropdownValue(shipperDropdown, shipperDropdownValue);
