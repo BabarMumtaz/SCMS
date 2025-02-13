@@ -1,11 +1,12 @@
 package com.LilyCargo.Base;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.List;
+import java.util.Arrays;
 
 import com.LilyCargo.Pages.*;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +30,7 @@ public class TestBaseClass {
 	public static WebDriver driver;
 	public static Properties prop;
 	public static WebEventListener eventListener;
-	public static Logger log;
+	public static Logger log = LogManager.getLogger(TestBaseClass.class);
 	public static JavascriptExecutor js;
 	public static Faker faker;
 	private static WebDriverWait wait;
@@ -52,21 +53,19 @@ public class TestBaseClass {
 
 	public TestBaseClass() {
 		if (prop == null) {
-			loadProperties();  // Ensure properties are loaded
+			loadProperties();
 		}
 	}
 
 	private void loadProperties() {
-		try (FileInputStream ip = new FileInputStream(
-				System.getProperty("user.dir") + "src/main/java/com/LilyCargo/Config/configFile.properties")) {
+		String configPath = System.getProperty("user.dir") + "/src/main/java/com/LilyCargo/Config/configFile.properties";
+		try (FileInputStream ip = new FileInputStream(configPath)) {
 			prop = new Properties();
 			prop.load(ip);
-			System.out.println("Properties Loaded Successfully.");
 			log.info("Configuration properties loaded successfully.");
-		} catch (FileNotFoundException e) {
-			log.error("Configuration file not found.", e);
 		} catch (IOException e) {
-			log.error("Error loading configuration file.", e);
+			log.error("Error loading configuration file: " + configPath, e);
+			throw new RuntimeException("Failed to load configuration properties.");
 		}
 	}
 
@@ -76,17 +75,7 @@ public class TestBaseClass {
 			return;
 		}
 
-		setupLogger();
-		setupBrowser();
-		configureDriver();
-		initializeUtilitiesAndPages();
-	}
-
-	private static void setupLogger() {
 		log = LogManager.getLogger(TestBaseClass.class);
-	}
-
-	private static void setupBrowser() {
 		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
 
 		switch (browserName) {
@@ -108,22 +97,22 @@ public class TestBaseClass {
 
 		driver.get(prop.getProperty("url"));
 		log.info("Navigated to URL: " + prop.getProperty("url"));
-	}
 
-	private static void configureDriver() {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
 
+		log.info("Browser initialized.");
+
 		eventListener = new WebEventListener();
 		driver = new EventFiringDecorator<>(eventListener).decorate(driver);
-	}
 
-	private static void initializeUtilitiesAndPages() {
 		js = (JavascriptExecutor) driver;
 		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		// Initialize Page Objects
 
 		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
@@ -143,7 +132,9 @@ public class TestBaseClass {
 		log.info("Utilities and Page Objects initialized.");
 	}
 
+
 	public static WebDriverWait getWait() {
 		return wait;
 	}
 }
+
