@@ -65,7 +65,7 @@ public class PurchaseEntryAddTest extends TestBaseClass {
         //----------------------------------Extra Invoice----------------------------------
 
         Assert.assertTrue(billingCenterPage.isPurchaseEntryTabDisplayed(), "Purchase Entry Tab Displayed Not Displayed");
-        log.info("Heading: " + billingCenterPage.getExtraInvTabName());
+        log.info("Heading: " + billingCenterPage.getPurchaseEntryTabName());
 
         billingCenterPage.clickOnExtraInvTab();
         log.info("Clicked Extra INV Tab");
