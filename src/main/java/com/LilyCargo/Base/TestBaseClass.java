@@ -70,90 +70,57 @@ public class TestBaseClass {
 	}
 
 	public static void initialization() {
-		if (driver != null) {
-			log.warn("Driver already initialized. Skipping reinitialization.");
-			return;
-		}
+		setupBrowser();
+		configureDriver();
+		initializeUtilitiesAndPages();
+	}
 
-		log = LogManager.getLogger(TestBaseClass.class);
+
+	private static void setupBrowser() {
 		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
 
-		try {
-			switch (browserName) {
-				case "chrome":
-					WebDriverManager.chromedriver().setup();
-					driver = new ChromeDriver();
-					log.info("Chrome Driver initiated.");
-					break;
-				case "firefox":
-				case "ff":
-					WebDriverManager.firefoxdriver().setup();
-					driver = new FirefoxDriver();
-					log.info("Firefox Driver initiated.");
-					break;
-				default:
-					log.error("Unsupported browser: " + browserName);
-					throw new IllegalArgumentException("Unsupported browser: " + browserName);
-			}
-
-			driver.get(prop.getProperty("url"));
-			log.info("Navigated to URL: " + prop.getProperty("url"));
-
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
-
-			log.info("Browser initialized.");
-
-			eventListener = new WebEventListener();
-			driver = new EventFiringDecorator<>(eventListener).decorate(driver);
-
-			js = (JavascriptExecutor) driver;
-			faker = new Faker(new Locale.Builder().setLanguage("nl").build());
-			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-			// Initialize Page Objects with Debug Logs
-			try {
-				log.info("Initializing Page Objects...");
-				loginPage = PageFactory.initElements(driver, LoginTestPage.class);
-				log.info("LoginTestPage initialized.");
-/*				menuBar = PageFactory.initElements(driver, MenuBarTestPage.class);
-				log.info("MenuBarTestPage initialized.");
-				bookedFreights = PageFactory.initElements(driver, FreightTestPage.class);
-				log.info("FreightTestPage initialized.");
-				freightListing = PageFactory.initElements(driver, FreightListingTestPage.class);
-				log.info("FreightListingTestPage initialized.");
-				freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class);
-				log.info("FreightDetailTestPage initialized.");
-				carriersPage = PageFactory.initElements(driver, CarriersTestPage.class);
-				log.info("CarriersTestPage initialized.");
-				carrierListing = PageFactory.initElements(driver, CarrierListingTestPage.class);
-				log.info("CarrierListingTestPage initialized.");
-				clientPage = PageFactory.initElements(driver, ClientTestPage.class);
-				log.info("ClientTestPage initialized.");
-				shippersPage = PageFactory.initElements(driver, ShipperTestPage.class);
-				log.info("ShipperTestPage initialized.");
-				remarksPage = PageFactory.initElements(driver, RemarksTestPage.class);
-				log.info("RemarksTestPage initialized.");
-				incidentsRegistrationPage = PageFactory.initElements(driver, IncidentsRegistrationTestPage.class);
-				log.info("IncidentsRegistrationTestPage initialized.");
-				fycoDataPage = PageFactory.initElements(driver, FycoDataTestPage.class);
-				log.info("FycoDataTestPage initialized.");
-				billingCenterPage = PageFactory.initElements(driver, BillingCenterTestPage.class);
-				log.info("BillingCenterTestPage initialized.");
-				cargoDataPage = PageFactory.initElements(driver, CargoDataTestPage.class);
-				log.info("CargoDataTestPage initialized.");
-				log.info("All Page Objects initialized successfully.");*/
-			} catch (Exception e) {
-				log.error("Error initializing Page Objects", e);
-				throw new RuntimeException("Page Object initialization failed", e);
-			}
-		} catch (Exception e) {
-			log.error("Error during browser initialization", e);
-			throw new RuntimeException("Browser initialization failed", e);
+		switch (browserName) {
+			case "chrome":
+				WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver();
+				log.info("Chrome Driver initiated.");
+				break;
+			case "firefox":
+			case "ff":
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+				log.info("Firefox Driver initiated.");
+				break;
+			default:
+				log.error("Unsupported browser: " + browserName);
+				throw new IllegalArgumentException("Unsupported browser: " + browserName);
 		}
+
+		driver.get(prop.getProperty("url"));
+		log.info("Navigated to URL: " + prop.getProperty("url"));
 	}
+
+	private static void configureDriver() {
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
+
+		eventListener = new WebEventListener();
+		driver = new EventFiringDecorator<>(eventListener).decorate(driver);
+	}
+
+	private static void initializeUtilitiesAndPages() {
+		js = (JavascriptExecutor) driver;
+		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
+
+
+		log.info("Utilities and Page Objects initialized.");
+	}
+
 }
 
 
