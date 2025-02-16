@@ -36,7 +36,7 @@ public class LoginUsingConfigFileTest extends TestBaseClass {
 		loginPage.logout();
 	}
 
-	@Test(priority = 2, description = "Verify invalid login", groups = {"regression"}, enabled = false)
+	@Test(priority = 2, description = "Verify invalid login", groups = {"regression"})
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify that an invalid user cannot login")
 	@Epic("EP001")
@@ -51,13 +51,21 @@ public class LoginUsingConfigFileTest extends TestBaseClass {
 
 	@AfterMethod
 	public void tearDown(ITestResult result) throws IOException {
-		String testName = result.getMethod().getMethodName();
-		if (result.getStatus() == ITestResult.FAILURE) {
-			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-			log.error("Test FAILED: {} - Screenshot captured.", testName);
-		} else {
-			log.info("Test {}: {}", testName, result.getStatus() == ITestResult.SUCCESS ? "PASSED" : "SKIPPED");
+		try {
+			String testName = result.getMethod().getMethodName();
+			if (result.getStatus() == ITestResult.FAILURE) {
+				ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
+				log.error("Test FAILED: {} - Screenshot captured.", testName);
+			} else {
+				log.info("Test {}: {}", testName, result.getStatus() == ITestResult.SUCCESS ? "PASSED" : "SKIPPED");
+			}
+		} catch (Exception e) {
+			log.error("Error in tearDown", e);
+		} finally {
+			if (driver != null) {
+				driver.quit();
+				log.info("Browser closed successfully.");
+			}
 		}
-		driver.quit();
 	}
 }
