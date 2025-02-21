@@ -26,7 +26,6 @@ import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBaseClass {
-
 	public static WebDriver driver;
 	public static Properties prop;
 	public static WebEventListener eventListener;
@@ -35,21 +34,7 @@ public class TestBaseClass {
 	public static Faker faker;
 	private static WebDriverWait wait;
 
-	// Page Object references
-	public static LoginTestPage loginPage;
-	public static MenuBarTestPage menuBar;
-	public static FreightTestPage bookedFreights;
-	public static FreightListingTestPage freightListing;
-	public static FreightDetailTestPage freightDetail;
-	public static CarriersTestPage carriersPage;
-	public static CarrierListingTestPage carrierListing;
-	public static ClientTestPage clientPage;
-	public static ShipperTestPage shippersPage;
-	public static RemarksTestPage remarksPage;
-	public static IncidentsRegistrationTestPage incidentsRegistrationPage;
-	public static FycoDataTestPage fycoDataPage;
-	public static BillingCenterTestPage billingCenterPage;
-	public static CargoDataTestPage cargoDataPage;
+	public static PageObjectManager pageObjectManager; // New Page Object Manager
 
 	public TestBaseClass() {
 		if (prop == null) {
@@ -58,7 +43,8 @@ public class TestBaseClass {
 	}
 
 	private void loadProperties() {
-		String configPath = System.getProperty("user.dir") + "/src/main/java/com/LilyCargo/Config/configFile.properties";
+		String configPath = System.getProperty("user.dir")
+				+ "/src/main/java/com/LilyCargo/Config/configFile.properties";
 		try (FileInputStream ip = new FileInputStream(configPath)) {
 			prop = new Properties();
 			prop.load(ip);
@@ -70,13 +56,7 @@ public class TestBaseClass {
 	}
 
 	public static void initialization() {
-		setupBrowser();
-		configureDriver();
-		initializeUtilitiesAndPages();
-	}
-
-
-	private static void setupBrowser() {
+		log.info("Initializing WebDriver...");
 		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
 
 		switch (browserName) {
@@ -86,7 +66,6 @@ public class TestBaseClass {
 				log.info("Chrome Driver initiated.");
 				break;
 			case "firefox":
-			case "ff":
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 				log.info("Firefox Driver initiated.");
@@ -97,30 +76,20 @@ public class TestBaseClass {
 		}
 
 		driver.get(prop.getProperty("url"));
-		log.info("Navigated to URL: " + prop.getProperty("url"));
-	}
-
-	private static void configureDriver() {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtilClass.PAGE_LOAD_TIMEOUT));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtilClass.IMPLICIT_WAIT));
 
+		log.info("Browser initialized.");
+
 		eventListener = new WebEventListener();
 		driver = new EventFiringDecorator<>(eventListener).decorate(driver);
-	}
 
-	private static void initializeUtilitiesAndPages() {
 		js = (JavascriptExecutor) driver;
-		faker = new Faker(new Locale.Builder().setLanguage("nl").build());
+		faker = new Faker();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-		loginPage = PageFactory.initElements(driver, LoginTestPage.class);
 
-
-		log.info("Utilities and Page Objects initialized.");
 	}
-
 }
-
-
