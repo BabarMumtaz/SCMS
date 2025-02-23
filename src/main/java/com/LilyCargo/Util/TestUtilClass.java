@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -25,11 +27,21 @@ public class TestUtilClass extends TestBaseClass {
     public static String TESTDATA_SHEET_PATH = System.getProperty("user.dir")
             + "/src/main/java/SCMS/Cargo/Config/ScmsTestDataFile.xlsx";
 
-/*    public static void takeScreenshotAtEndOfTest() throws IOException {
+    public static void takeScreenshotAtEndOfTest(String testCaseName) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String currentDir = System.getProperty("user.dir");
-        FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
-    }*/
+
+        // Get current date and time
+        String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+
+        // Define screenshot name with test case name + timestamp
+        String fileName = testCaseName + "_" + timestamp + ".png";
+
+        // Save screenshot in the 'screenshots' folder
+        String currentDir = System.getProperty("user.dir") + "/screenshots/";
+        FileUtils.copyFile(scrFile, new File(currentDir + fileName));
+
+        System.out.println("Screenshot taken: " + fileName);
+    }
 
     public static Object[][] getTestData(String sheetName) {
         FileInputStream file = null;
@@ -60,3 +72,4 @@ public class TestUtilClass extends TestBaseClass {
         return data;
     }
 }
+
