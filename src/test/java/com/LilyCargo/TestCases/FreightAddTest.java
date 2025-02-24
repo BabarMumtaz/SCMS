@@ -15,11 +15,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Pages.FreightTestPage;
 import com.LilyCargo.Pages.FreightDetailTestPage;
 import com.LilyCargo.Pages.FreightListingTestPage;
 import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
 import com.github.javafaker.Faker;
 
 import io.qameta.allure.Description;
@@ -30,24 +30,9 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class FreightAddTest extends TestBaseClass {
+public class FreightAddTest extends TestBeforeAndAfter {
 
 	Logger log;
-
-	@BeforeMethod
-	public void setup() {
-		initialization(); // Opens a new browser instance
-
-		log = LogManager.getLogger(FreightAddTest.class);
-		log.info("Test setup completed.");
-
-		performLogin();
-	}
-
-	private void performLogin() {
-		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered valid username and password.");
-	}
 
 	@Test(priority = 1, description = "Verify that a user can Add/Create freight successfully", groups = {"smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
@@ -58,118 +43,97 @@ public class FreightAddTest extends TestBaseClass {
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
 	public void AddFreightTest() throws InterruptedException {
 
-		// Check if login is successful
-		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-		log.info("Login successful.");
+		performLogin();
 
-		bookedFreights.clickCreateFreightBtn();
+		log = LogManager.getLogger(FreightAddTest.class);
+		log.info("Starting Freight Add Test.");
+
+		pageObjectManager.getBookedFreights().clickCreateFreightBtn();
 		log.info("Clicked Create Freight Button");
 
-		bookedFreights.enterFNO(faker.number().digits(8));
+		pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
 
-		bookedFreights.selectETDDate("26", "09", "2024");
+		pageObjectManager.getBookedFreights().selectETDDate("26", "09", "2024");
 		log.info("Entered ETD DATE");
 
-		bookedFreights.selectETADate("10", "010", "2024");
+		pageObjectManager.getBookedFreights().selectETADate("10", "010", "2024");
 		log.info("Entered ETA DATE");
 
-		bookedFreights.enterBLNO("BL#84575487454");
+		pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
 
-		bookedFreights.selectClient();
+		pageObjectManager.getBookedFreights().selectClient();
 		log.info("Selected Client Dropdown Value");
 
-		bookedFreights.selectServiceType();
+		pageObjectManager.getBookedFreights().selectServiceType();
 		log.info("Selected Service Type Dropdown Value");
 
-		bookedFreights.selectShipper();
+		pageObjectManager.getBookedFreights().selectShipper();
 		log.info("Selected Shipper Dropdown Value");
 
-		bookedFreights.selectCOO();
+		pageObjectManager.getBookedFreights().selectCOO();
 		log.info("Selected COO");
 
-		bookedFreights.selectContainer();
+		pageObjectManager.getBookedFreights().selectContainer();
 		log.info("Selected Container Type Dropdown Value");
 
-		bookedFreights.enterContents("5,000");
+		pageObjectManager.getBookedFreights().enterContents("5,000");
 		log.info("Entered Contents");
 
-		bookedFreights.enterWeights("12654");
+		pageObjectManager.getBookedFreights().enterWeights("12654");
 		log.info("Entered Weights");
 
-		bookedFreights.enterMeasurements("85454.15");
+		pageObjectManager.getBookedFreights().enterMeasurements("85454.15");
 		log.info("Entered Measurements");
 
-		bookedFreights.selectPortOfLoading();
+		pageObjectManager.getBookedFreights().selectPortOfLoading();
 		log.info("Selected Port Of Loading Dropdown Value");
 
-		bookedFreights.selectPortOfDischarge();
+		pageObjectManager.getBookedFreights().selectPortOfDischarge();
 		log.info("Selected Port Of Discharge Dropdown Value");
 
-		bookedFreights.scrollToElement();
+		pageObjectManager.getBookedFreights().scrollToElement();
 		Thread.sleep(2000);
 
-		bookedFreights.selectCarrierCompany();
+		pageObjectManager.getBookedFreights().selectCarrierCompany();
 		log.info("Selected Carrier Company Value");
 
-		bookedFreights.selectExportCompany();
+		pageObjectManager.getBookedFreights().selectExportCompany();
 		log.info("Selected Export Company Value");
 
-		bookedFreights.selectFreightWay();
+		pageObjectManager.getBookedFreights().selectFreightWay();
 		log.info("Selected Freight Way Value");
 
-		bookedFreights.clickSaveReturnFreightBtn();
+		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 		Thread.sleep(2000);
 
-		menuBar.clickBookedFreightMenu();
+		pageObjectManager.getMenuBar().clickBookedFreightMenu();
 		log.info("Clicked on Booked Freight Menu");
 
-		Assert.assertTrue(bookedFreights.getHeading().contains("Booked Freights"), "Heading not Matched");
+		Assert.assertTrue(pageObjectManager.getBookedFreights().getHeading().contains("Booked Freights"), "Heading not Matched");
 
 		// Click on the last page of freight listings
-		freightListing.clickOnPaginationLastPageIcon();
+		pageObjectManager.getFreightListing().clickOnPaginationLastPageIcon();
 		log.info("Clicked on Freight Pagination Last Icon");
 
 		// Hover over the last record
-		freightListing.hoverOverLastRecord();
+		pageObjectManager.getFreightListing().hoverOverLastRecord();
 		log.info("Hovered over the last record");
 
 		// Click on the freight ID
-		freightListing.clickOnFreightID();
+		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
 
 		// Switch to the new tab
-		freightListing.switchToNewTab();
+		pageObjectManager.getFreightListing().switchToNewTab();
 		log.info("Switched to the new tab");
 
 		// Check if the edit wrapper is displayed
-		Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
+		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 		log.info("Freight Edit wrapper displayed successfully.");
 
 		// Log out after the test
-		loginPage.logout();
+		pageObjectManager.getLoginPage().logout();
 		log.info("Logged out successfully.");
-	}
-
-	@AfterMethod
-	public void tearDown() {
-		captureScreenshot("AddFreightTest");
-		closeBrowser();
-	}
-
-	private void captureScreenshot(String testName) {
-		try {
-			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-			log.info("Screenshot captured for test: " + testName);
-		} catch (IOException e) {
-			log.error("Error capturing screenshot.", e);
-		}
-	}
-
-	private void closeBrowser() {
-		if (driver != null) {
-			driver.quit();
-			log.info("Browser closed successfully.");
-		}
 	}
 }

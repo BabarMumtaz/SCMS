@@ -145,7 +145,7 @@ public class FreightTestPage {
 	WebElement exportCompanyDrop;
 
 	@CacheLookup
-	@FindBy(xpath = "//li[text()='Hang Zhou AnZhe Logistics and Technology']")
+	@FindBy(xpath = "//li[contains(.,'CREATIVE LABS PTE LTD C/O Chin')]")
 	WebElement exportCompanyDropValue;
 
 	@CacheLookup
