@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,10 +17,23 @@ public class TestBeforeAndAfter extends TestBaseClass {
     private static final Logger log = LogManager.getLogger(TestBeforeAndAfter.class);
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(Method method, ITestResult result) {
         initialization();
         log.info("Browser initialized successfully.");
         pageObjectManager = new PageObjectManager(driver);
+
+        // Skip login if the test belongs to the "login" group
+        boolean isLoginTest = false;
+        for (String group : result.getMethod().getGroups()) {
+            if (group.equals("login")) {
+                isLoginTest = true;
+                break;
+            }
+        }
+
+        if (!isLoginTest) {
+            performLogin();
+        }
     }
 
     public void performLogin() {

@@ -12,7 +12,7 @@ public class LoginUsingConfigFileTest extends TestBeforeAndAfter {
 
 	Logger log = LogManager.getLogger(LoginUsingConfigFileTest.class);
 
-	@Test(priority = 1, description = "Verify valid login", retryAnalyzer = RetryAnalyzer.class, groups = {"smoke", "regression"})
+	@Test(priority = 1, description = "Verify valid login", retryAnalyzer = RetryAnalyzer.class, groups = {"login", "smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a valid user can login")
 	@Epic("EP001")
@@ -28,7 +28,7 @@ public class LoginUsingConfigFileTest extends TestBeforeAndAfter {
 		pageObjectManager.getLoginPage().logout();
 	}
 
-	@Test(priority = 2, description = "Verify invalid login", groups = {"regression"})
+	@Test(priority = 2, description = "Verify invalid login", groups = {"login", "regression"})
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify that an invalid user cannot login")
 	@Epic("EP001")
