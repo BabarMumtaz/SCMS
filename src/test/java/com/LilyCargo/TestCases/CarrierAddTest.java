@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import java.io.IOException;
 
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,24 +27,9 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import java.util.Locale;
 
-public class CarrierAddTest extends TestBaseClass {
+public class CarrierAddTest extends TestBeforeAndAfter {
 
     Logger log;
-
-    @BeforeMethod
-    public void setup() {
-        initialization(); // Opens a new browser instance
-
-        log = LogManager.getLogger(CarrierAddTest.class);
-        log.info("Test setup completed.");
-
-        performLogin();
-    }
-
-    private void performLogin() {
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
-    }
 
     @Test(priority = 1, description = "Verify that a user can add carrier successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -54,9 +40,8 @@ public class CarrierAddTest extends TestBaseClass {
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
     public void AddCarrierTest() throws InterruptedException {
 
-        // Check if login is successful
-        Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-        log.info("Login successful.");
+        log = LogManager.getLogger(CarrierAddTest.class);
+        log.info("Starting Freight Edit Test from Detail Page.");
 
         menuBar.clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
@@ -114,25 +99,4 @@ public class CarrierAddTest extends TestBaseClass {
         log.info("Logged out successfully.");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        captureScreenshot("AddCarrierTest");
-        closeBrowser();
-    }
-
-    private void captureScreenshot(String testName) {
-        try {
-            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-            log.info("Screenshot captured for test: " + testName);
-        } catch (IOException e) {
-            log.error("Error capturing screenshot.", e);
-        }
-    }
-
-    private void closeBrowser() {
-        if (driver != null) {
-            driver.quit();
-            log.info("Browser closed successfully.");
-        }
-    }
 }
