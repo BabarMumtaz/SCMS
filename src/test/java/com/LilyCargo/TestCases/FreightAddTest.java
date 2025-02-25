@@ -43,8 +43,6 @@ public class FreightAddTest extends TestBeforeAndAfter {
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
 	public void AddFreightTest() throws InterruptedException {
 
-		performLogin();
-
 		log = LogManager.getLogger(FreightAddTest.class);
 		log.info("Starting Freight Add Test.");
 

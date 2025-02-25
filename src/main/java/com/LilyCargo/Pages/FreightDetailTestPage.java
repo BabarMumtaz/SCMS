@@ -1,6 +1,8 @@
 package com.LilyCargo.Pages;
 
 import java.time.Duration;
+
+import com.LilyCargo.Util.WaitUtil;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,7 @@ public class FreightDetailTestPage {
 	Actions actions;
 	WebDriverWait wait;
 	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
+	private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
 
 	// Constructor
 	public FreightDetailTestPage(WebDriver driver) {
@@ -129,6 +132,7 @@ public class FreightDetailTestPage {
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	public boolean isEditFreightIconDisplayed() {
+		waitUtil.waitUntilVisible(editFreightIconDP);
 		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
 	}
 

@@ -41,7 +41,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
     public void AddCarrierTest() throws InterruptedException {
 
         log = LogManager.getLogger(CarrierAddTest.class);
-        log.info("Starting Freight Edit Test from Detail Page.");
+        log.info("Starting Carrier Add Test from Freight Relations.");
 
         menuBar.clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
