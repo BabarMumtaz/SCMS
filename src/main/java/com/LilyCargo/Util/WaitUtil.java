@@ -1,7 +1,6 @@
 package com.LilyCargo.Util;
 
 import java.time.Duration;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,22 +12,35 @@ public class WaitUtil {
 
     public WaitUtil(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialize WebDriverWait
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public WebElement waitUntilElementClickable(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement isVisible(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitUntilVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void click(WebElement element) {
+        WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(element));
+        clickableElement.click();
     }
 
-    public void waitUntilElementInvisible(By locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    public void waitForElementToBeInvisible(WebElement element) {
+        wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public void waitForNumberOfWindows(int count) {
-        wait.until(ExpectedConditions.numberOfWindowsToBe(count));
+    public void waitForTextToBePresent(WebElement element, String text) {
+        wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+    }
+
+    public void waitForElementToBeSelected(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeSelected(element));
+    }
+
+    public void waitForUrlToContain(String urlFragment) {
+        wait.until(ExpectedConditions.urlContains(urlFragment));
+    }
+
+    public void waitForAlert() {
+        wait.until(ExpectedConditions.alertIsPresent());
     }
 }
