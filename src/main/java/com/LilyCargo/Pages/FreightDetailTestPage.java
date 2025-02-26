@@ -132,30 +132,29 @@ public class FreightDetailTestPage {
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	public boolean isEditFreightIconDisplayed() {
-		waitUtil.waitUntilVisible(editFreightIconDP);
-		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
+		return waitUtil.isVisible(editFreightIconDP).isDisplayed();
 	}
 
 	public void clickOnEditFreightIconDP() {
-		wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).click();
+		waitUtil.click(editFreightIconDP);
 	}
 
 	public void clickOnAlertPopupDP() {
-		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
+		waitUtil.click(alertPopupDP);
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-		dropdown.click();
+		waitUtil.click(dropdown);
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		dropdownValue.click();
+		waitUtil.click(dropdownValue);
 	}
 
 	public void clickSubFidAddIcon() {
-		wait.until(ExpectedConditions.elementToBeClickable(subFidAddIcon)).click();
+		waitUtil.click(subFidAddIcon);
 	}
 
 	public String getCreateSubFidPopupHeading() {
-		return createSubFidPopupHeading.getText();
+		return waitUtil.isVisible(createSubFidPopupHeading).getText();
 	}
 
 	public boolean isCreateSubFidPopupHeadingDisplayed() {
@@ -179,7 +178,7 @@ public class FreightDetailTestPage {
 	}
 
 	public void clickSubmitSubFidButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(submitSubFidButton)).click();
+		waitUtil.click(submitSubFidButton);
 	}
 
 	public void scrollToBottom() {
@@ -189,19 +188,19 @@ public class FreightDetailTestPage {
 	}
 
 	public void clickSubmitMrnTask() {
-		wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask)).click();
+		waitUtil.click(submitMRNTask);
 	}
 
 	public void clickUploadMrnButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(uploadMrnButton)).click();
+		waitUtil.click(uploadMrnButton);
 	}
 
 	public void clickSubmitMrnButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(submitMrnButton)).click();
+		waitUtil.click(submitMrnButton);
 	}
 
 	public void clickCancelMrnButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(cancelMrnButton)).click();
+		waitUtil.click(cancelMrnButton);
 	}
 
 	public boolean isRemarksTabDisplayed() {
