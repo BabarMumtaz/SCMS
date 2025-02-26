@@ -43,59 +43,59 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(CarrierAddTest.class);
         log.info("Starting Carrier Add Test from Freight Relations.");
 
-        menuBar.clickFreightRelationsMenu();
+        pageObjectManager.getMenuBar().clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
 
-        menuBar.clickCarriersFRSubMenu();
+        pageObjectManager.getMenuBar().clickCarriersFRSubMenu();
         log.info("Clicked Carriers FR Sub Menu");
 
-        Assert.assertTrue(carriersPage.isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + carriersPage.getPageHeading());
+        Assert.assertTrue(pageObjectManager.getCarriersPage().isHeadingDisplayed(), "Heading Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
 
-        carriersPage.clickAddCarrierBtn();
+        pageObjectManager.getCarriersPage().clickAddCarrierBtn();
         log.info("Clicked Carriers Add button");
 
-        carriersPage.enterTicker(faker.number().digits(7));
+        pageObjectManager.getCarriersPage().enterTicker(faker.number().digits(7));
         log.info("Entered Ticker Number");
 
-        carriersPage.enterCarrierName(faker.company().name());
+        pageObjectManager.getCarriersPage().enterCarrierName(faker.company().name());
         log.info("Entered Carrier's Name");
 
-        carriersPage.enterCarrierEmail(faker.internet().emailAddress());
+        pageObjectManager.getCarriersPage().enterCarrierEmail(faker.internet().emailAddress());
         log.info("Entered Carrier's Email");
 
-        carriersPage.enterDutchPhoneNumber(); // New method for Dutch phone number
+        pageObjectManager.getCarriersPage().enterDutchPhoneNumber(); // New method for Dutch phone number
         log.info("Entered Carrier's Tel Number");
 
-        carriersPage.enterAddress1(faker.address().streetAddress());
+        pageObjectManager.getCarriersPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        carriersPage.enterZipCity(faker.address().zipCode());
+        pageObjectManager.getCarriersPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        carriersPage.selectCountry();
+        pageObjectManager.getCarriersPage().selectCountry();
         log.info("Selected Country");
 
-        carriersPage.enterExtraEmailLabel("Extra Email");
+        pageObjectManager.getCarriersPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
-        carriersPage.enterExtraEmailValue(faker.internet().emailAddress());
+        pageObjectManager.getCarriersPage().enterExtraEmailValue(faker.internet().emailAddress());
         log.info("Entered Extra Email Value");
 
-        carriersPage.clickExtraAddressFieldCross();
+        pageObjectManager.getCarriersPage().clickExtraAddressFieldCross();
         log.info("Click Extra Address Field Cross");
 
-        carriersPage.clickExtraPhoneFieldCross();
+        pageObjectManager.getCarriersPage().clickExtraPhoneFieldCross();
         log.info("Click Extra Phone Field Cross");
 
-        carriersPage.clickSaveCarrierBack();
+        pageObjectManager.getCarriersPage().clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
 
-        carriersPage.clickOnAlertPopupDP();
+        pageObjectManager.getCarriersPage().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
         // Log out after the test
-        loginPage.logout();
+        pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
     }
 
