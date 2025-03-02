@@ -1,8 +1,8 @@
 package com.LilyCargo.Pages;
 
 import java.time.Duration;
+import java.util.Set;
 
-import com.LilyCargo.Util.WaitUtil;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +12,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.LilyCargo.Util.WaitUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,21 +23,20 @@ public class FreightDetailTestPage {
 	WebDriver driver;
 	JavascriptExecutor executor;
 	Actions actions;
-	WebDriverWait wait;
-	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 	private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
+	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 
 	// Constructor
 	public FreightDetailTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		this.waitUtil = new WaitUtil(driver); // Initialize WaitUtil
 		PageFactory.initElements(driver, this);
 		this.actions = new Actions(driver);
 	}
 
 	@CacheLookup
-	@FindBy(xpath = "(//div[@class='ft-edit-wrapper'])[1]")
+	@FindBy(xpath = "//div[@class='ft-edit-wrapper'][1]" )
 	WebElement editFreightIconDP;
 
 	@CacheLookup
@@ -131,6 +133,32 @@ public class FreightDetailTestPage {
 
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
+//	public void switchToNewTab() {
+//	    String originalWindow = driver.getWindowHandle(); // Store the original tab
+//
+//	    // Wait for the new tab to open
+//	    waitUtil.waitForNumberOfWindows(2);
+//
+//	    // Get all open tab handles
+//	    Set<String> windowHandles = driver.getWindowHandles();
+//	    for (String handle : windowHandles) {
+//	        if (!handle.equals(originalWindow)) {
+//	            driver.switchTo().window(handle); // Switch to the new tab
+//	            break;
+//	        }
+//	    }
+//
+//	    // Wait for the Freight Details page to load completely
+//	    waitUtil.waitForUrlToContain("/app/transactions/freights/details/");
+//
+//	    // Ensure the edit icon is visible before proceeding
+//	    waitUtil.isVisible(editFreightIconDP);
+//
+//	    System.out.println("Switched to new tab: " + driver.getCurrentUrl()); // Debugging info
+//	}
+
+
+
 	public boolean isEditFreightIconDisplayed() {
 		return waitUtil.isVisible(editFreightIconDP).isDisplayed();
 	}
@@ -158,7 +186,7 @@ public class FreightDetailTestPage {
 	}
 
 	public boolean isCreateSubFidPopupHeadingDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(createSubFidPopupHeading)).isDisplayed();
+		return waitUtil.isVisible(createSubFidPopupHeading).isDisplayed();
 	}
 
 	public void selectSubFidShipper() {
@@ -182,9 +210,8 @@ public class FreightDetailTestPage {
 	}
 
 	public void scrollToBottom() {
-		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility
+		waitUtil.isVisible(submitMRNTask); // Ensure visibility
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
-		wait.until(ExpectedConditions.elementToBeClickable(submitMRNTask));
 	}
 
 	public void clickSubmitMrnTask() {
@@ -204,42 +231,42 @@ public class FreightDetailTestPage {
 	}
 
 	public boolean isRemarksTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(remarksTab)).isDisplayed();
+		return waitUtil.isVisible(remarksTab).isDisplayed();
 	}
 	public void clickRemarksTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(remarksTab)).click();
+		waitUtil.click(remarksTab);
 	}
 
 	public boolean isIncidentsRegistrationTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(incidentsRegistrationTab)).isDisplayed();
+		return waitUtil.isVisible(incidentsRegistrationTab).isDisplayed();
 	}
 
 	public void clickIncidentsRegistrationTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(incidentsRegistrationTab)).click();
+		waitUtil.click(incidentsRegistrationTab);
 	}
 
 	public boolean isFycoDataTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(fycoDataTab)).isDisplayed();
+		return waitUtil.isVisible(fycoDataTab).isDisplayed();
 	}
 
 	public void clickFycoDataTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(fycoDataTab)).click();
+		waitUtil.click(fycoDataTab);
 	}
 
 	public boolean isBillingCenterTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(billingCenterTab)).isDisplayed();
+		return waitUtil.isVisible(billingCenterTab).isDisplayed();
 	}
 
 	public void clickBillingCenterTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(billingCenterTab)).click();
+		waitUtil.click(billingCenterTab);
 	}
 
 	public boolean isCargoDataTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(cargoDataTab)).isDisplayed();
+		return waitUtil.isVisible(cargoDataTab).isDisplayed();
 	}
 
 	public void clickCargoDataTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab)).click();
+		waitUtil.click(cargoDataTab);
 	}
 
 /*	public void scrollToRight() {
@@ -251,12 +278,12 @@ public class FreightDetailTestPage {
 
 	public void scrollToRight() {
 		// Ensure the freightTabHorizontalScroll element is visible before attempting to scroll
-		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll));
+		waitUtil.isVisible(freightTabHorizontalScroll);
 
 		// Scroll the cargoDataTab into view
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", cargoDataTab);
 
 		// Wait until the cargoDataTab is clickable
-		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
+		waitUtil.click(cargoDataTab);
 	}
 }

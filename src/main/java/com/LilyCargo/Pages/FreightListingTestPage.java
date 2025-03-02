@@ -93,7 +93,7 @@ public class FreightListingTestPage {
 	// Switch to a new tab
 	public void switchToNewTab() {
 		String originalWindow = driver.getWindowHandle();
-		waitUtil.waitForNumberOfWindows(2);
+		wait.waitForNumberOfWindows(2);
 		Set<String> windowHandles = driver.getWindowHandles();
 		for (String handle : windowHandles) {
 			if (!handle.equals(originalWindow)) {
