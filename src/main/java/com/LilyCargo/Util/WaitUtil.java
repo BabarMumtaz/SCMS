@@ -1,6 +1,7 @@
 package com.LilyCargo.Util;
 
 import java.time.Duration;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,13 +20,29 @@ public class WaitUtil {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void click(WebElement element) {
-        WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(element));
-        clickableElement.click();
+//    public void click(WebElement element) {
+//        WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(element));
+//        clickableElement.click();
+//    }
+
+    // Wait for an element to be clickable
+    public WebElement waitForElementToBeClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitForElementToBeInvisible(WebElement element) {
-        wait.until(ExpectedConditions.invisibilityOf(element));
+    // Click using wait (ensures element is clickable)
+    public void click(WebElement element) {
+        waitForElementToBeClickable(element).click();
+    }
+
+    /*
+     * public void waitForElementToBeInvisible(WebElement element) {
+     * wait.until(ExpectedConditions.invisibilityOf(element)); }
+     */
+
+    // ✅ Wait for an element to be visible
+    public WebElement waitForElementToBeVisible(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForTextToBePresent(WebElement element, String text) {
@@ -43,4 +60,9 @@ public class WaitUtil {
     public void waitForAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
     }
+
+    public void waitForNumberOfWindows(int expectedNumber) {
+        wait.until(ExpectedConditions.numberOfWindowsToBe(expectedNumber));
+    }
+
 }

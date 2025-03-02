@@ -1,5 +1,6 @@
 package com.LilyCargo.Pages;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.LilyCargo.Util.WaitUtil;
 
@@ -53,12 +56,17 @@ public class FreightListingTestPage {
 	@FindBy(xpath = "//img[@alt='Edit']")
 	WebElement editFreightIcon;
 
+	@CacheLookup
+	@FindBy(xpath = "//div[@class='_loading_overlay_overlay css-1mig4ck _loading-overlay-transition-enter-done']")
+	WebElement freightListingLoader;
+
+
 //------------------------------------------------------------------------------------------------------------------------------------
 
-	// Method to click on the pagination last page icon
+	// Click on pagination last page icon
 	public void clickOnPaginationLastPageIcon() {
-		waitUtil.waitUntilElementInvisible(By.cssSelector(".loading-overlay"));
-		waitUtil.waitUntilElementClickable(paginationLastPageIcon).click();
+		waitUtil.waitForElementToBeVisible(freightListingLoader);
+		waitUtil.click(paginationLastPageIcon);
 	}
 
 	// Scroll to the bottom of the page
@@ -68,12 +76,13 @@ public class FreightListingTestPage {
 
 	// Hover over the first row client cell
 	public void hoverOn1stRowClient() {
+		waitUtil.isVisible(clientCellLV);
 		actions.moveToElement(clientCellLV).perform();
 	}
 
 	// Hover over the last record
 	public void hoverOverLastRecord() {
-		waitUtil.waitUntilElementInvisible(By.cssSelector(".loading-overlay"));
+		waitUtil.waitForElementToBeVisible(freightListingLoader);
 		scrollToBottom();
 		WebElement lastRecord = getLastRecordElement();
 		actions.moveToElement(lastRecord).perform();
@@ -81,19 +90,19 @@ public class FreightListingTestPage {
 
 	// Get the last record element
 	public WebElement getLastRecordElement() {
-		waitUtil.waitUntilVisible(freightListRecords.get(freightListRecords.size() - 1));
-		return freightListRecords.get(freightListRecords.size() - 1);
+		WebElement lastRecord = freightListRecords.get(freightListRecords.size() - 1);
+		return waitUtil.isVisible(lastRecord);
 	}
 
 	// Click on Freight ID
 	public void clickOnFreightID() {
-		waitUtil.waitUntilElementClickable(viewFreight).click();
+		waitUtil.click(viewFreight);
 	}
 
 	// Switch to a new tab
 	public void switchToNewTab() {
 		String originalWindow = driver.getWindowHandle();
-		wait.waitForNumberOfWindows(2);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.numberOfWindowsToBe(2));
 		Set<String> windowHandles = driver.getWindowHandles();
 		for (String handle : windowHandles) {
 			if (!handle.equals(originalWindow)) {
@@ -102,4 +111,19 @@ public class FreightListingTestPage {
 			}
 		}
 	}
+
+//    // Click on view freight icon
+//    public void clickOnViewFreightIcon() {
+//        waitUtil.click(viewFreightIcon);
+//    }
+//
+//    // Click on edit freight icon
+//    public void clickOnEditFreightIcon() {
+//        waitUtil.click(editFreightIcon);
+//    }
+//
+//    // Get the view freight icon
+//    public WebElement getViewEditIcon() {
+//        return waitUtil.isVisible(viewFreightIcon);
+//    }
 }
