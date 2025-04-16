@@ -1,23 +1,10 @@
 package com.LilyCargo.TestCases;
 
-import java.io.IOException;
-
 import com.LilyCargo.Base.TestBeforeAndAfter;
-import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.CarriersTestPage;
-import com.LilyCargo.Pages.FreightDetailTestPage;
-import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
-import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -25,7 +12,6 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
-import java.util.Locale;
 
 public class CarrierAddTest extends TestBeforeAndAfter {
 
