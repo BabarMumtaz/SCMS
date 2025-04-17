@@ -32,21 +32,6 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 
 	Logger log;
 
-	@BeforeMethod
-	public void setup() {
-		initialization(); // Opens a new browser instance
-
-		log = LogManager.getLogger(FreightEditFromListingViewTest.class);
-		log.info("Test setup completed.");
-
-		performLogin();
-	}
-
-	private void performLogin() {
-		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		log.info("Entered valid username and password.");
-	}
-
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can edit freight successfully from the listing 1st page")
@@ -56,81 +41,58 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 	@Step("Hit Site Url -> Login with valid credentials -> Edit freight")
 	public void EditFreightTestFromListingView() throws InterruptedException {
 
-		// Check if login is successful
-		Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-		log.info("Login successful.");
+		log = LogManager.getLogger(FreightEditFromListingViewTest.class);
+		log.info("Starting Freight Edit Test from Listing Page.");
 
-		freightListing.hoverOn1stRowClient();
+		pageObjectManager.getFreightListing().hoverOn1stRowClient();
 		log.info("Hover over 1st Row");
 
 		// Click on the freight ID
-		freightListing.clickOnFreightID();
+		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
 
 		// Switch to the new tab
-		freightListing.switchToNewTab();
+		pageObjectManager.getFreightListing().switchToNewTab();
 		log.info("Switched to the new tab");
 
 		// Check if the edit wrapper is displayed
-		Assert.assertTrue(bookedFreights.isEditPageDisplayed(), "Edit Page is not Displayed");
+		Assert.assertTrue(pageObjectManager.getBookedFreights().isEditPageDisplayed(), "Edit Page is not Displayed");
 
-		bookedFreights.enterHouseBLNO(faker.number().digits(5));
+		pageObjectManager.getBookedFreights().enterHouseBLNO(faker.number().digits(5));
 		log.info("Entered House BL No");
 
-		bookedFreights.clickSaveNextFreightBtn();
+		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Save & Next Freight Button");
 
-		bookedFreights.enterBondedLocation("Industrial 193, 2511 79 Rotterdam, Netherlands");
+		pageObjectManager.getBookedFreights().enterBondedLocation("Industrial 193, 2511 79 Rotterdam, Netherlands");
 		log.info("Entered Bonded Location");
 
-		bookedFreights.clickCustomDocStatusBtn();
+		pageObjectManager.getBookedFreights().clickCustomDocStatusBtn();
 		log.info("Clicked Custom Doc Status Button");
 
-		bookedFreights.selectCustomDocStatus();
+		pageObjectManager.getBookedFreights().selectCustomDocStatus();
 		log.info("Select Custom Doc Status Drop");
 
-		bookedFreights.clickPurchaseStepBtn();
+		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
 		log.info("Clicked Purchase Step Button");
 
-		bookedFreights.enterAdminFee("800.25");
+		pageObjectManager.getBookedFreights().enterAdminFee("800.25");
 		log.info("Entered Admin Fee");
 
-		bookedFreights.clickSaleStepBtn();
+		pageObjectManager.getBookedFreights().clickSaleStepBtn();
 		log.info("Clicked Sale Step Button");
 
-		bookedFreights.enterDuty("400,66");
+		pageObjectManager.getBookedFreights().enterDuty("400,66");
 		log.info("Entered Duty");
 
-		bookedFreights.clickSaveReturnFreightBtn();
+		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 
-		freightDetail.clickOnAlertPopupDP();
+		pageObjectManager.getFreightDetail().clickOnAlertPopupDP();
 		log.info("Clicked Cross icon of Alert");
 
 		// Log out after the test
-		loginPage.logout();
+		pageObjectManager.getLoginPage().logout();
 		log.info("Logged out successfully.");
-	}
-
-	@AfterMethod
-	public void tearDown() {
-		captureScreenshot("EditFreightTestFromListingView");
-		closeBrowser();
-	}
-
-	private void captureScreenshot(String testName) {
-		try {
-			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-			log.info("Screenshot captured for test: " + testName);
-		} catch (IOException e) {
-			log.error("Error capturing screenshot.", e);
-		}
-	}
-
-	private void closeBrowser() {
-		if (driver != null) {
-			driver.quit();
-			log.info("Browser closed successfully.");
-		}
 	}
 }

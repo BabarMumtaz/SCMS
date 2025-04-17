@@ -16,21 +16,6 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
 
     private Logger log;
 
-    @BeforeMethod
-    public void setup() {
-        initialization(); // Opens a new browser instance
-
-        log = LogManager.getLogger(SubmitMrnUsingUploadFileTest.class);
-        log.info("Test setup completed.");
-
-        performLogin();
-    }
-
-    private void performLogin() {
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
-    }
-
     @Test(priority = 1, description = "Verify that a user can Submit MRN by uploading Doc MRN file successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Submit MRN by uploading Doc MRN file successfully from the Freight Detail page")
@@ -39,64 +24,42 @@ public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
     @Story("As a user, I should be able to Submit MRN by uploading Doc MRN file successfully")
     @Step("Hit Site URL -> Login with valid credentials -> Booked Freight > Freight Detail Page > Submit MRN")
     public void SubmitMrnUsingUploadFile() throws InterruptedException {
-        Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-        log.info("Login successful.");
+        log = LogManager.getLogger(SubmitMrnUsingUploadFileTest.class);
+        log.info("Test setup completed.");
 
         performFreightListingActions();
         performFreightDetailActions();
 
-        loginPage.logout();
+        pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
     }
 
     private void performFreightListingActions() {
-        freightListing.hoverOn1stRowClient();
+        pageObjectManager.getFreightListing().hoverOn1stRowClient();
         log.info("Hovered over the 1st row.");
 
-        freightListing.clickOnFreightID();
+        pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        freightListing.switchToNewTab();
+        pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab.");
     }
 
     private void performFreightDetailActions() throws InterruptedException {
-        Assert.assertTrue(freightDetail.isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
         log.info("Edit wrapper is displayed.");
 
-        freightDetail.scrollToBottom();
+        pageObjectManager.getFreightDetail().scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit MRN section.");
 
-        freightDetail.clickUploadMrnButton();
+        pageObjectManager.getFreightDetail().clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");
 
-        freightDetail.clickSubmitMrnTask();
+        pageObjectManager.getFreightDetail().clickSubmitMrnTask();
         log.info("Clicked on Submit MRN Task.");
 
-        freightDetail.clickCancelMrnButton();
+        pageObjectManager.getFreightDetail().clickCancelMrnButton();
         log.info("Clicked on Cancel MRN button.");
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        captureScreenshot("SubmitMrnUsingUploadFile");
-        closeBrowser();
-    }
-
-    private void captureScreenshot(String testName) {
-        try {
-            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-            log.info("Screenshot captured for test: " + testName);
-        } catch (IOException e) {
-            log.error("Error capturing screenshot.", e);
-        }
-    }
-
-    private void closeBrowser() {
-        if (driver != null) {
-            driver.quit();
-            log.info("Browser closed successfully.");
-        }
     }
 }
