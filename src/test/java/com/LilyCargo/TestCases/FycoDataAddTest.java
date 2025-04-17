@@ -1,36 +1,16 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Util.ScreenShotUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class FycoDataAddTest extends TestBaseClass {
 
     Logger log;
     String fycoDataAddTestDescription = faker.lorem().characters(100);
-
-    @BeforeMethod
-    public void setup() {
-        initialization(); // Opens a new browser instance
-
-        log = LogManager.getLogger(FycoDataAddTest.class);
-        log.info("Test setup completed.");
-
-        performLogin();
-    }
-
-    private void performLogin() {
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
-    }
 
     @Test(priority = 1, description = "Verify that a user can add Fyco Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -41,96 +21,73 @@ public class FycoDataAddTest extends TestBaseClass {
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Fyco Data Tab > Add Fyco Data")
     public void AddFycoDataTest() throws InterruptedException {
 
-        // Check if login is successful
-        Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-        log.info("Login successful.");
+        log = LogManager.getLogger(FycoDataAddTest.class);
+        log.info("Starting FYCO DATA Add Test from Detail Page.");
 
-        freightListing.hoverOn1stRowClient();
+        pageObjectManager.getFreightListing().hoverOn1stRowClient();
         log.info("Hover over 1st Row");
 
         // Click on the freight ID
-        freightListing.clickOnFreightID();
+        pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
         // Switch to the new tab
-        freightListing.switchToNewTab();
+        pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(freightDetail.isFycoDataTabDisplayed(), "FYCO DATA tab is not Displayed");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isFycoDataTabDisplayed(), "FYCO DATA tab is not Displayed");
 
-        freightDetail.clickFycoDataTab();
+        pageObjectManager.getFreightDetail().clickFycoDataTab();
         log.info("Clicked FYCO DATA Tab");
 
         //----------------------------------FYCO DATA----------------------------------
-        fycoDataPage.clickOnFycoDataAddIcon();
+        pageObjectManager.getFycoDataPage().clickOnFycoDataAddIcon();
         log.info("Clicked On FYCO DATA Add Icon");
 
-        Assert.assertTrue(fycoDataPage.isFycoDataPopupHeadingDisplayed(), "FYCO DATA Popup Heading Not Displayed");
-        log.info("Heading: " + fycoDataPage.getPopupHeading());
+        Assert.assertTrue(pageObjectManager.getFycoDataPage().isFycoDataPopupHeadingDisplayed(), "FYCO DATA Popup Heading Not Displayed");
+        log.info("Heading: " + pageObjectManager.getFycoDataPage().getPopupHeading());
 
-        fycoDataPage.enterPlatoNumberField(faker.number().digits(8));
+        pageObjectManager.getFycoDataPage().enterPlatoNumberField(faker.number().digits(8));
         log.info("Entered FYCO DATA Problem Text");
 
-        fycoDataPage.enterArticleNumberField(faker.number().digits(3));
+        pageObjectManager.getFycoDataPage().enterArticleNumberField(faker.number().digits(3));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterHsTaricNumberField(faker.number().digits(10));
+        pageObjectManager.getFycoDataPage().enterHsTaricNumberField(faker.number().digits(10));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterProductDescriptionField(fycoDataAddTestDescription);
+        pageObjectManager.getFycoDataPage().enterProductDescriptionField(fycoDataAddTestDescription);
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterCtnsNumberField(faker.number().digits(4));
+        pageObjectManager.getFycoDataPage().enterCtnsNumberField(faker.number().digits(4));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterPcsField(faker.number().digits(4));
+        pageObjectManager.getFycoDataPage().enterPcsField(faker.number().digits(4));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterGrossKGField(faker.number().digits(4));
+        pageObjectManager.getFycoDataPage().enterGrossKGField(faker.number().digits(4));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.enterCvEuroField(faker.number().digits(6));
+        pageObjectManager.getFycoDataPage().enterCvEuroField(faker.number().digits(6));
         log.info("Entered FYCO DATA Solution Text");
 
-        fycoDataPage.scrollToBottom();
+        pageObjectManager.getFycoDataPage().scrollToBottom();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
-        fycoDataPage.clickSubmitFycoDataButton();
+        pageObjectManager.getFycoDataPage().clickSubmitFycoDataButton();
         log.info("Clicked Submit FYCO DATA Button");
 
-        Assert.assertTrue(fycoDataPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + fycoDataPage.getSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getFycoDataPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getFycoDataPage().getSuccessAlertMessage());
 
-        fycoDataPage.clickOnAlertPopupCrossIcon();
+        pageObjectManager.getFycoDataPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
         // Log out after the test
-        loginPage.logout();
+        pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        captureScreenshot("AddFycoDataTest");
-        closeBrowser();
-    }
-
-    private void captureScreenshot(String testName) {
-        try {
-            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-            log.info("Screenshot captured for test: " + testName);
-        } catch (IOException e) {
-            log.error("Error capturing screenshot.", e);
-        }
-    }
-
-    private void closeBrowser() {
-        if (driver != null) {
-            driver.quit();
-            log.info("Browser closed successfully.");
-        }
     }
 }
 
