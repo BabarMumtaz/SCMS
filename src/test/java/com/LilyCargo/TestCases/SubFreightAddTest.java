@@ -1,35 +1,15 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Util.ScreenShotUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class SubFreightAddTest extends TestBaseClass {
 
     Logger log;
-
-    @BeforeMethod
-    public void setup() {
-        initialization(); // Opens a new browser instance
-
-        log = LogManager.getLogger(SubFreightAddTest.class);
-        log.info("Test setup completed.");
-
-        performLogin();
-    }
-
-    private void performLogin() {
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-        log.info("Entered valid username and password.");
-    }
 
     @Test(priority = 1, description = "Verify that a user can Create SubFreight successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -40,92 +20,69 @@ public class SubFreightAddTest extends TestBaseClass {
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
     public void CreateSubFreightTest() throws InterruptedException {
 
-        // Check if login is successful
-        Assert.assertTrue(loginPage.isLoginSuccessful(), "Login was not successful.");
-        log.info("Login successful.");
+        log = LogManager.getLogger(SubFreightAddTest.class);
+        log.info("Starting SubFreight Add Test from Detail Page.");
 
-        freightListing.hoverOn1stRowClient();
+        pageObjectManager.getFreightListing().hoverOn1stRowClient();
         log.info("Hover over 1st Row");
 
         // Click on the freight ID
-        freightListing.clickOnFreightID();
+        pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
         // Switch to the new tab
-        freightListing.switchToNewTab();
+        pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        freightDetail.scrollToRight();
+        pageObjectManager.getFreightDetail().scrollToRight();
         log.info("Clicked Incidents Registration Tab");
 
         // Check if the edit wrapper is displayed
-        Assert.assertTrue(freightDetail.isCargoDataTabDisplayed(), "Cargo Data Tab tab is not Displayed");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isCargoDataTabDisplayed(), "Cargo Data Tab tab is not Displayed");
 
-        freightDetail.clickCargoDataTab();
+        pageObjectManager.getFreightDetail().clickCargoDataTab();
         log.info("Clicked Cargo Data Tab");
 
         //----------------------------------Cargo Data Tab----------------------------------
 
-        Assert.assertTrue(cargoDataPage.isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + cargoDataPage.getCargoDataListingHs1stCellText());
+        Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingHs1stCellText());
 
-        cargoDataPage.selectNoTc();
+        pageObjectManager.getCargoDataPage().selectNoTc();
         log.info("Selected NoTC");
 
-        Assert.assertTrue(cargoDataPage.isCargoDataListingAreaDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + cargoDataPage.getCargoDataListingAreaMessage());
+        Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingAreaDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingAreaMessage());
 
-        cargoDataPage.clickOnUploadCargoDataIcon();
+        pageObjectManager.getCargoDataPage().clickOnUploadCargoDataIcon();
         log.info("Clicked Upload Cargo Data Icon");
 
-        Assert.assertTrue(cargoDataPage.isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + cargoDataPage.getUploadCargoDataPopupHeading());
+        Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoDataPopupHeading());
 
-        cargoDataPage.uploadCargoDataInChooseFile();
+        pageObjectManager.getCargoDataPage().uploadCargoDataInChooseFile();
         log.info("Selected NoTC");
 
-        cargoDataPage.clickCargoDataPopupSubmitButton();
+        pageObjectManager.getCargoDataPage().clickCargoDataPopupSubmitButton();
         log.info("Clicked Submit Button");
 
-        Assert.assertTrue(cargoDataPage.isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + cargoDataPage.getSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getCargoDataPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCargoDataPage().getSuccessAlertMessage());
 
-        cargoDataPage.clickOnAlertPopupCrossIcon();
+        pageObjectManager.getCargoDataPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
-        cargoDataPage.clickOnExportCargoDataIcon();
+        pageObjectManager.getCargoDataPage().clickOnExportCargoDataIcon();
         log.info("Clicked Export Cargo Data Icon");
 
-        Assert.assertTrue(cargoDataPage.isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
-        log.info("Heading: " + cargoDataPage.getExportSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getCargoDataPage().isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCargoDataPage().getExportSuccessAlertMessage());
 
-        cargoDataPage.clickOnExportAlertPopupCrossIcon();
+        pageObjectManager.getCargoDataPage().clickOnExportAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
         // Log out after the test
-        loginPage.logout();
+        pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        captureScreenshot("CreateSubFreightTest");
-        closeBrowser();
-    }
-
-    private void captureScreenshot(String testName) {
-        try {
-            ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-            log.info("Screenshot captured for test: " + testName);
-        } catch (IOException e) {
-            log.error("Error capturing screenshot.", e);
-        }
-    }
-
-    private void closeBrowser() {
-        if (driver != null) {
-            driver.quit();
-            log.info("Browser closed successfully.");
-        }
     }
 }
