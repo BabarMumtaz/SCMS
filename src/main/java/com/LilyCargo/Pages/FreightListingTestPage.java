@@ -66,6 +66,7 @@ public class FreightListingTestPage {
 	// Click on pagination last page icon
 	public void clickOnPaginationLastPageIcon() {
 		waitUtil.waitForElementToBeVisible(freightListingLoader);
+		waitUtil.waitForElementToBeVisible(paginationLastPageIcon);
 		waitUtil.click(paginationLastPageIcon);
 	}
 

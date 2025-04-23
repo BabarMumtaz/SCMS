@@ -106,7 +106,7 @@ public class ClientTestPage {
     WebElement clientLfrDropDown;
 
     @CacheLookup
-    @FindBy(xpath = "//li[contains(.,'NL LMBV B06 (IMPORT & Export)')]")
+    @FindBy(xpath = "//li[contains(.,'NL LMBV B02 (IMPORT)')]")
     WebElement clientLfrDropDownValue;
 
     @CacheLookup
