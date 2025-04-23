@@ -23,7 +23,7 @@ public class EuInvoiceAddTest extends TestBaseClass {
     public void AddEulInvoiceTest() throws InterruptedException {
 
         log = LogManager.getLogger(EuInvoiceAddTest.class);
-        log.info("Test setup completed.");
+        log.info("Starting EU INV Add Test from Billing Center Tab");
 
         pageObjectManager.getFreightListing().hoverOn1stRowClient();
         log.info("Hover over 1st Row");

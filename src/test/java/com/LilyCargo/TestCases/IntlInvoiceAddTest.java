@@ -22,7 +22,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
     public void AddIntlInvoiceTest() throws InterruptedException {
 
         log = LogManager.getLogger(IntlInvoiceAddTest.class);
-        log.info("Starting INTL INV Add Test from Detail Page.");
+        log.info("Starting INTL INV Add Test from Billing Center Tab.");
 
         pageObjectManager.getFreightListing().hoverOn1stRowClient();
         log.info("Hover over 1st Row");
