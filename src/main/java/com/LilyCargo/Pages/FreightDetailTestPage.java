@@ -131,6 +131,15 @@ public class FreightDetailTestPage {
 	@FindBy(className = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
+	@CacheLookup
+	@FindBy(id = "jfkgabhog")
+	WebElement addFreightSuccessAlertMessage;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+	WebElement successAlertCrossIcon;
+
+
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 //	public void switchToNewTab() {
@@ -157,7 +166,17 @@ public class FreightDetailTestPage {
 //	    System.out.println("Switched to new tab: " + driver.getCurrentUrl()); // Debugging info
 //	}
 
+	public String getSuccessAlertMessage() {
+		return addFreightSuccessAlertMessage.getText();
+	}
 
+	public boolean isSuccessAlertMessageDisplayed() {
+		return waitUtil.isVisible(addFreightSuccessAlertMessage).isDisplayed();
+	}
+
+	public void clickOnAlertPopupCrossIcon() {
+		waitUtil.click(successAlertCrossIcon);
+	}
 
 	public boolean isEditFreightIconDisplayed() {
 		return waitUtil.isVisible(editFreightIconDP).isDisplayed();

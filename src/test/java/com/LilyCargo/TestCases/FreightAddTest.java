@@ -34,10 +34,10 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
 		pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
 
-		pageObjectManager.getBookedFreights().selectETDDate("26", "09", "2024");
+		pageObjectManager.getBookedFreights().selectETDDate("26", "06", "2025");
 		log.info("Entered ETD DATE");
 
-		pageObjectManager.getBookedFreights().selectETADate("10", "010", "2024");
+		pageObjectManager.getBookedFreights().selectETADate("10", "07", "2025");
 		log.info("Entered ETA DATE");
 
 		pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
@@ -88,10 +88,11 @@ public class FreightAddTest extends TestBeforeAndAfter {
 		log.info("Clicked Save & Return Freight Button");
 		Thread.sleep(2000);
 
-		pageObjectManager.getMenuBar().clickBookedFreightMenu();
-		log.info("Clicked on Booked Freight Menu");
+		Assert.assertTrue(pageObjectManager.getFreightDetail().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+		log.info("Heading: " + pageObjectManager.getFreightDetail().getSuccessAlertMessage());
 
-		Assert.assertTrue(pageObjectManager.getBookedFreights().getHeading().contains("Booked Freights"), "Heading not Matched");
+		pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup ");
 
 		// Log out after the test
 		pageObjectManager.getLoginPage().logout();

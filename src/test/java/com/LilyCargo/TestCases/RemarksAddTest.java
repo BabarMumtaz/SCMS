@@ -1,13 +1,13 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RemarksAddTest extends TestBaseClass {
+public class RemarksAddTest extends TestBeforeAndAfter {
 
     Logger log;
     String importCustomsSalesRemarks = faker.lorem().characters(500);
