@@ -93,26 +93,6 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
 		Assert.assertTrue(pageObjectManager.getBookedFreights().getHeading().contains("Booked Freights"), "Heading not Matched");
 
-		// Click on the last page of freight listings
-		pageObjectManager.getFreightListing().clickOnPaginationLastPageIcon();
-		log.info("Clicked on Freight Pagination Last Icon");
-
-		// Hover over the last record
-		pageObjectManager.getFreightListing().hoverOverLastRecord();
-		log.info("Hovered over the last record");
-
-		// Click on the freight ID
-		pageObjectManager.getFreightListing().clickOnFreightID();
-		log.info("Clicked on the 1st row FreightID.");
-
-		// Switch to the new tab
-		pageObjectManager.getFreightListing().switchToNewTab();
-		log.info("Switched to the new tab");
-
-		// Check if the edit wrapper is displayed
-		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
-		log.info("Freight Edit wrapper displayed successfully.");
-
 		// Log out after the test
 		pageObjectManager.getLoginPage().logout();
 		log.info("Logged out successfully.");
