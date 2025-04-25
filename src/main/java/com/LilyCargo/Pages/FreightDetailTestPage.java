@@ -167,11 +167,11 @@ public class FreightDetailTestPage {
 //	}
 
 	public String getSuccessAlertMessage() {
-		return addFreightSuccessAlertMessage.getText();
+		return  waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).getText();
 	}
 
 	public boolean isSuccessAlertMessageDisplayed() {
-		return waitUtil.isVisible(addFreightSuccessAlertMessage).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).isDisplayed();
 	}
 
 	public void clickOnAlertPopupCrossIcon() {
