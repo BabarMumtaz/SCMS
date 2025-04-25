@@ -20,10 +20,6 @@ public class WaitUtil {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-//    public void click(WebElement element) {
-//        WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(element));
-//        clickableElement.click();
-//    }
 
     // Wait for an element to be clickable
     public WebElement waitForElementToBeClickable(WebElement element) {
@@ -35,10 +31,6 @@ public class WaitUtil {
         waitForElementToBeClickable(element).click();
     }
 
-    /*
-     * public void waitForElementToBeInvisible(WebElement element) {
-     * wait.until(ExpectedConditions.invisibilityOf(element)); }
-     */
 
     // ✅ Wait for an element to be visible
     public WebElement waitForElementToBeVisible(WebElement element) {
