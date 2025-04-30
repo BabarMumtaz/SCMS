@@ -92,8 +92,9 @@ public class FreightListingTestPage {
 	// Get the last record element
 	public WebElement getLastRecordElement() {
 		WebElement lastRecord = freightListRecords.get(freightListRecords.size() - 1);
-		return waitUtil.waitForElementToBeVisible(lastRecord);
-	}
+		waitUtil.waitForElementToBeVisible(lastRecord);
+        return lastRecord;
+    }
 
 	// Click on Freight ID
 	public void clickOnFreightID() {

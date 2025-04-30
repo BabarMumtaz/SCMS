@@ -3,7 +3,6 @@ package com.LilyCargo.Util;
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,8 +23,8 @@ public class WaitUtil {
     }
 
     // Wait for an element to be clickable
-    public WebElement waitForElementToBeClickable(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElementToBeClickable(WebElement element) {
+         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void waitForTextToBePresent(WebElement element, String text) {

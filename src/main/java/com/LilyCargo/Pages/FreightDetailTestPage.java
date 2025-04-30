@@ -180,7 +180,8 @@ public class FreightDetailTestPage {
 
 	public boolean isEditFreightIconDisplayed() {
 		return waitUtil.waitForElementToBeVisible(editFreightIconDP).isDisplayed();
-	}
+
+    }
 
 	public void clickOnEditFreightIconDP() {
 		waitUtil.waitForElementToBeClickable(editFreightIconDP);
