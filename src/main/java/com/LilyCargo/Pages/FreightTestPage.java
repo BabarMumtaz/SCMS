@@ -207,11 +207,6 @@ public class FreightTestPage {
 		return heading.getText();
 	}
 
-	// Method to click on Logout button
-	public void clickLogout() {
-		logoutButton.click();
-	}
-
 	public void clickCreateFreightBtn() {
 		createFreight.click();
 	}

@@ -166,15 +166,15 @@ public class FreightDetailTestPage {
 //	    System.out.println("Switched to new tab: " + driver.getCurrentUrl()); // Debugging info
 //	}
 
-	public String getSuccessAlertMessage() {
+	public String getBFSuccessAlertMessage() {
 		return  waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).getText();
 	}
 
-	public boolean isSuccessAlertMessageDisplayed() {
+	public boolean isBFSuccessAlertMessageDisplayed() {
 		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).isDisplayed();
 	}
 
-	public void clickOnAlertPopupCrossIcon() {
+	public void clickOnBFAlertPopupCrossIcon() {
 		waitUtil.waitForElementToBeClickable(successAlertCrossIcon);
 	}
 
