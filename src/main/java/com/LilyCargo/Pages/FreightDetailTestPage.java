@@ -175,37 +175,37 @@ public class FreightDetailTestPage {
 	}
 
 	public void clickOnAlertPopupCrossIcon() {
-		waitUtil.click(successAlertCrossIcon);
+		waitUtil.waitForElementToBeClickable(successAlertCrossIcon);
 	}
 
 	public boolean isEditFreightIconDisplayed() {
-		return waitUtil.isVisible(editFreightIconDP).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(editFreightIconDP).isDisplayed();
 	}
 
 	public void clickOnEditFreightIconDP() {
-		waitUtil.click(editFreightIconDP);
+		waitUtil.waitForElementToBeClickable(editFreightIconDP);
 	}
 
 	public void clickOnAlertPopupDP() {
-		waitUtil.click(alertPopupDP);
+		waitUtil.waitForElementToBeClickable(alertPopupDP);
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-		waitUtil.click(dropdown);
+		waitUtil.waitForElementToBeClickable(dropdown);
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		waitUtil.click(dropdownValue);
+		waitUtil.waitForElementToBeClickable(dropdownValue);
 	}
 
 	public void clickSubFidAddIcon() {
-		waitUtil.click(subFidAddIcon);
+		waitUtil.waitForElementToBeClickable(subFidAddIcon);
 	}
 
 	public String getCreateSubFidPopupHeading() {
-		return waitUtil.isVisible(createSubFidPopupHeading).getText();
+		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).getText();
 	}
 
 	public boolean isCreateSubFidPopupHeadingDisplayed() {
-		return waitUtil.isVisible(createSubFidPopupHeading).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).isDisplayed();
 	}
 
 	public void selectSubFidShipper() {
@@ -225,67 +225,67 @@ public class FreightDetailTestPage {
 	}
 
 	public void clickSubmitSubFidButton() {
-		waitUtil.click(submitSubFidButton);
+		waitUtil.waitForElementToBeClickable(submitSubFidButton);
 	}
 
 	public void scrollToBottom() {
-		waitUtil.isVisible(submitMRNTask); // Ensure visibility
+		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
 	}
 
 	public void clickSubmitMrnTask() {
-		waitUtil.click(submitMRNTask);
+		waitUtil.waitForElementToBeClickable(submitMRNTask);
 	}
 
 	public void clickUploadMrnButton() {
-		waitUtil.click(uploadMrnButton);
+		waitUtil.waitForElementToBeClickable(uploadMrnButton);
 	}
 
 	public void clickSubmitMrnButton() {
-		waitUtil.click(submitMrnButton);
+		waitUtil.waitForElementToBeClickable(submitMrnButton);
 	}
 
 	public void clickCancelMrnButton() {
-		waitUtil.click(cancelMrnButton);
+		waitUtil.waitForElementToBeClickable(cancelMrnButton);
 	}
 
 	public boolean isRemarksTabDisplayed() {
-		return waitUtil.isVisible(remarksTab).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(remarksTab).isDisplayed();
 	}
 	public void clickRemarksTab() {
-		waitUtil.click(remarksTab);
+		waitUtil.waitForElementToBeClickable(remarksTab);
 	}
 
 	public boolean isIncidentsRegistrationTabDisplayed() {
-		return waitUtil.isVisible(incidentsRegistrationTab).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(incidentsRegistrationTab).isDisplayed();
 	}
 
 	public void clickIncidentsRegistrationTab() {
-		waitUtil.click(incidentsRegistrationTab);
+		waitUtil.waitForElementToBeClickable(incidentsRegistrationTab);
 	}
 
 	public boolean isFycoDataTabDisplayed() {
-		return waitUtil.isVisible(fycoDataTab).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(fycoDataTab).isDisplayed();
 	}
 
 	public void clickFycoDataTab() {
-		waitUtil.click(fycoDataTab);
+		waitUtil.waitForElementToBeClickable(fycoDataTab);
 	}
 
 	public boolean isBillingCenterTabDisplayed() {
-		return waitUtil.isVisible(billingCenterTab).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(billingCenterTab).isDisplayed();
 	}
 
 	public void clickBillingCenterTab() {
-		waitUtil.click(billingCenterTab);
+		waitUtil.waitForElementToBeClickable(billingCenterTab);
 	}
 
 	public boolean isCargoDataTabDisplayed() {
-		return waitUtil.isVisible(cargoDataTab).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(cargoDataTab).isDisplayed();
 	}
 
 	public void clickCargoDataTab() {
-		waitUtil.click(cargoDataTab);
+		waitUtil.waitForElementToBeClickable(cargoDataTab);
 	}
 
 /*	public void scrollToRight() {
@@ -297,12 +297,12 @@ public class FreightDetailTestPage {
 
 	public void scrollToRight() {
 		// Ensure the freightTabHorizontalScroll element is visible before attempting to scroll
-		waitUtil.isVisible(freightTabHorizontalScroll);
+		waitUtil.waitForElementToBeVisible(freightTabHorizontalScroll);
 
 		// Scroll the cargoDataTab into view
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", cargoDataTab);
 
 		// Wait until the cargoDataTab is clickable
-		waitUtil.click(cargoDataTab);
+		waitUtil.waitForElementToBeClickable(cargoDataTab);
 	}
 }

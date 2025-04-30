@@ -1,6 +1,8 @@
 package com.LilyCargo.Util;
 
 import java.time.Duration;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,25 +18,14 @@ public class WaitUtil {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public WebElement isVisible(WebElement element) {
+    // ✅ Wait for an element to be visible
+    public WebElement waitForElementToBeVisible(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
-
 
     // Wait for an element to be clickable
     public WebElement waitForElementToBeClickable(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    // Click using wait (ensures element is clickable)
-    public void click(WebElement element) {
-        waitForElementToBeClickable(element).click();
-    }
-
-
-    // ✅ Wait for an element to be visible
-    public WebElement waitForElementToBeVisible(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForTextToBePresent(WebElement element, String text) {
@@ -45,12 +36,19 @@ public class WaitUtil {
         wait.until(ExpectedConditions.elementToBeSelected(element));
     }
 
-    public void waitForUrlToContain(String urlFragment) {
-        wait.until(ExpectedConditions.urlContains(urlFragment));
+    // Wait for alert to be present
+    public Alert waitForAlert() {
+        return wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public void waitForAlert() {
-        wait.until(ExpectedConditions.alertIsPresent());
+    // Wait for a specific title
+    public boolean waitForTitle(String title) {
+        return wait.until(ExpectedConditions.titleContains(title));
+    }
+
+    // Wait for URL to contain specific text
+    public boolean waitForUrlContains(String urlFraction) {
+        return wait.until(ExpectedConditions.urlContains(urlFraction));
     }
 
     public void waitForNumberOfWindows(int expectedNumber) {

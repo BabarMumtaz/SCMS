@@ -67,7 +67,7 @@ public class FreightListingTestPage {
 	public void clickOnPaginationLastPageIcon() {
 		waitUtil.waitForElementToBeVisible(freightListingLoader);
 		waitUtil.waitForElementToBeVisible(paginationLastPageIcon);
-		waitUtil.click(paginationLastPageIcon);
+		waitUtil.waitForElementToBeClickable(paginationLastPageIcon);
 	}
 
 	// Scroll to the bottom of the page
@@ -77,7 +77,7 @@ public class FreightListingTestPage {
 
 	// Hover over the first row client cell
 	public void hoverOn1stRowClient() {
-		waitUtil.isVisible(clientCellLV);
+		waitUtil.waitForElementToBeVisible(clientCellLV);
 		actions.moveToElement(clientCellLV).perform();
 	}
 
@@ -92,12 +92,12 @@ public class FreightListingTestPage {
 	// Get the last record element
 	public WebElement getLastRecordElement() {
 		WebElement lastRecord = freightListRecords.get(freightListRecords.size() - 1);
-		return waitUtil.isVisible(lastRecord);
+		return waitUtil.waitForElementToBeVisible(lastRecord);
 	}
 
 	// Click on Freight ID
 	public void clickOnFreightID() {
-		waitUtil.click(viewFreight);
+		waitUtil.waitForElementToBeClickable(viewFreight);
 	}
 
 	// Switch to a new tab
