@@ -26,6 +26,7 @@ public class FreightDetailTestPage {
 	private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
 	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 
+
 	// Constructor
 	public FreightDetailTestPage(WebDriver driver) {
 		this.driver = driver;
@@ -128,7 +129,7 @@ public class FreightDetailTestPage {
 	WebElement cargoDataTab;
 
 	@CacheLookup
-	@FindBy(className = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
+	@FindBy(xpath = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
 	@CacheLookup
