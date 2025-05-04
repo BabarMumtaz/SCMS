@@ -199,6 +199,15 @@ public class FreightTestPage {
 	@CacheLookup
 	@FindBy(css = "div[class='createFlight-title'] p")
 	WebElement editPageID;
+
+	@CacheLookup
+	@FindBy(id = "jfkgabhog")
+	WebElement addFreightSuccessAlertMessage;
+
+	@CacheLookup
+	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+	WebElement successAlertCrossIcon;
+
 	
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -349,6 +358,19 @@ public class FreightTestPage {
 	
 	public boolean isEditPageDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(editPageID)).isDisplayed();
+	}
+
+	public String getBFSuccessAlertMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).getText();
+	}
+
+	public boolean isBFSuccessAlertMessageDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).isDisplayed();
+	}
+
+
+	public void clickOnBFAlertPopupCrossIcon() {
+		wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
 	}
 
 }
