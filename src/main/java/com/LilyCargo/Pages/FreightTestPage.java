@@ -195,20 +195,20 @@ public class FreightTestPage {
 	@CacheLookup
 	@FindBy(xpath = "//input[@name='DutyEUR']")
 	WebElement duty;
-	
+
 	@CacheLookup
 	@FindBy(css = "div[class='createFlight-title'] p")
 	WebElement editPageID;
 
-	@CacheLookup
-	@FindBy(id = "jfkgabhog")
+/*	@CacheLookup
+	@FindBy(xpath = "//div[contains(text(),'Freight successfully created.')]")
 	WebElement addFreightSuccessAlertMessage;
 
 	@CacheLookup
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement successAlertCrossIcon;
+	WebElement successAlertCrossIcon;*/
 
-	
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to capture the page heading
@@ -223,12 +223,12 @@ public class FreightTestPage {
 	public void enterFNO(String text) {
 		fNO.sendKeys(text);
 	}
-	
+
     // Date picker helper
     private void selectDate(WebElement element, String day, String month, String year) {
         actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
     }
-    
+
     public void selectETDDate(String day, String month, String year) {
         selectDate(etdDatePicker, day, month, year);
     }
@@ -355,12 +355,12 @@ public class FreightTestPage {
 		.perform();
 		duty.sendKeys(text);
 	}
-	
+
 	public boolean isEditPageDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(editPageID)).isDisplayed();
 	}
 
-	public String getBFSuccessAlertMessage() {
+/*	public String getBFSuccessAlertMessage() {
 		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).getText();
 	}
 
@@ -371,6 +371,6 @@ public class FreightTestPage {
 
 	public void clickOnBFAlertPopupCrossIcon() {
 		wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
-	}
+	}*/
 
 }
