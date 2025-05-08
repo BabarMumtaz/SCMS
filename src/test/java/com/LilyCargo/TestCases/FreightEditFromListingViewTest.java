@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import java.io.IOException;
 
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +29,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class FreightEditFromListingViewTest extends TestBaseClass {
+public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 
 	Logger log;
 
@@ -44,9 +45,6 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 		log = LogManager.getLogger(FreightEditFromListingViewTest.class);
 		log.info("Starting Freight Edit Test from Listing Page.");
 
-		pageObjectManager.getFreightListing().hoverOn1stRowClient();
-		log.info("Hover over 1st Row");
-
 		// Click on the freight ID
 		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
@@ -56,7 +54,14 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 		log.info("Switched to the new tab");
 
 		// Check if the edit wrapper is displayed
-		Assert.assertTrue(pageObjectManager.getBookedFreights().isEditPageDisplayed(), "Edit Page is not Displayed");
+		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
+
+		pageObjectManager.getFreightDetail().clickOnEditFreightIconDP();
+		log.info("Clicked on Booked Freight Edit Icon");
+
+		// Check if the edit page is displayed
+		Assert.assertTrue(pageObjectManager.getBookedFreights().isEditPageDisplayed(), "Edit page is not Displayed");
+		log.info("Heading: " + pageObjectManager.getBookedFreights().getEditFreightID());
 
 		pageObjectManager.getBookedFreights().enterHouseBLNO(faker.number().digits(5));
 		log.info("Entered House BL No");
@@ -88,7 +93,10 @@ public class FreightEditFromListingViewTest extends TestBaseClass {
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 
-		pageObjectManager.getFreightDetail().clickOnAlertPopupDP();
+		Assert.assertTrue(pageObjectManager.getFreightDetail().isUpdateBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+		log.info("Heading: " + pageObjectManager.getFreightDetail().getUpdatedBFSuccessAlertMessage());
+
+		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
 		log.info("Clicked Cross icon of Alert");
 
 		// Log out after the test

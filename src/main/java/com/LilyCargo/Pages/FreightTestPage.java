@@ -360,6 +360,10 @@ public class FreightTestPage {
 		return wait.until(ExpectedConditions.visibilityOf(editPageID)).isDisplayed();
 	}
 
+	public String getEditFreightID() {
+		return wait.until(ExpectedConditions.visibilityOf(editPageID)).getText();
+	}
+
 /*	public String getBFSuccessAlertMessage() {
 		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).getText();
 	}

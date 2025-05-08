@@ -41,10 +41,6 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//div[@class='ft-edit-wrapper'][1]" )
 	WebElement editFreightIconDP;
 
-	@CacheLookup
-	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement alertPopupDP;
-
 	//-------------------------------------CREATE SUBFID ----------------------------------------------------------
 
 	@CacheLookup
@@ -137,6 +133,10 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement successAlertCrossIcon;
 
+	@FindBy(xpath = "//div[contains(text(),'Freight successfully updated.')]")
+	WebElement updateFreightSuccessAlertMessage;
+
+
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 //	public void switchToNewTab() {
@@ -183,8 +183,12 @@ public class FreightDetailTestPage {
 		wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).click();
 	}
 
-	public void clickOnAlertPopupDP() {
-		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
+	public boolean isUpdateBFSuccessAlertMessageDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(updateFreightSuccessAlertMessage)).isDisplayed();
+	}
+
+	public String getUpdatedBFSuccessAlertMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(updateFreightSuccessAlertMessage)).getText();
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {

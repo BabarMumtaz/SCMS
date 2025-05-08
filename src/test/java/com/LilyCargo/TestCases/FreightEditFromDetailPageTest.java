@@ -35,8 +35,6 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		System.out.println("After switching, active window: " + driver.getWindowHandle());
 		System.out.println("All open windows: " + driver.getWindowHandles());
 
-		Thread.sleep(2000);
-
 		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
 		pageObjectManager.getFreightDetail().clickOnEditFreightIconDP();
@@ -51,7 +49,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 
-		pageObjectManager.getFreightDetail().clickOnAlertPopupDP();
+		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
 		log.info("Clicked Cross icon of mAlert");
 
 		// Log out after the test

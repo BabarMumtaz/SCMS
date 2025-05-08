@@ -31,31 +31,27 @@ public class FreightListingTestPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@CacheLookup
 	@FindBy(xpath = "//button[@aria-label='Go to last page']//*[name()='svg']")
 	WebElement paginationLastPageIcon;
 
-	@CacheLookup
 	@FindBy(xpath = "//table[@id=\"grid\"]/tbody/tr")
 	List<WebElement> freightListRecords;
 
-	@CacheLookup
 	@FindBy(xpath = "//table[@id=\"grid\"]/tbody/tr[1]/td[8]")
 	WebElement clientCellLV;
 
-	@CacheLookup
-	@FindBy(xpath = "//div[@title='Open Freight'][1]")
-	WebElement viewFreight;
+	@FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr[1]/td[1]")
+	WebElement freightIDCellLV;
 
-	@CacheLookup
+	@FindBy(xpath = "//table//tbody/tr[1]/td[1]//div[@title='Open Freight']")
+	WebElement freightList1stRecord;
+
 	@FindBy(xpath = "//img[@alt='View']")
 	WebElement viewFreightIcon;
 
-	@CacheLookup
 	@FindBy(xpath = "//img[@alt='Edit']")
 	WebElement editFreightIcon;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[@class='_loading_overlay_overlay css-1mig4ck _loading-overlay-transition-enter-done']")
 	WebElement freightListingLoader;
 
@@ -75,9 +71,14 @@ public class FreightListingTestPage {
 	}
 
 	// Hover over the first row client cell
+//	public void hoverOn1stRowClient() {
+//		waitUtil.waitForElementToBeVisible(clientCellLV);
+//		actions.moveToElement(clientCellLV).perform();
+//	}
+
 	public void hoverOn1stRowClient() {
-		waitUtil.waitForElementToBeVisible(clientCellLV);
-		actions.moveToElement(clientCellLV).perform();
+		waitUtil.waitForElementToBeVisible(freightIDCellLV);
+		//actions.moveToElement(freightIDCellLV).perform();
 	}
 
 	// Hover over the last record
@@ -97,7 +98,7 @@ public class FreightListingTestPage {
 
 	// Click on Freight ID
 	public void clickOnFreightID() {
-		waitUtil.waitForElementToBeClickable(viewFreight);
+		waitUtil.waitForElementToBeVisible(freightList1stRecord).click();
 	}
 
 	// Switch to a new tab
