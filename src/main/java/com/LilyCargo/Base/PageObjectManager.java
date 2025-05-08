@@ -45,17 +45,9 @@ public class PageObjectManager {
         return (freightListing == null) ? freightListing = PageFactory.initElements(driver, FreightListingTestPage.class) : freightListing;
     }
 
-/*    public FreightDetailTestPage getFreightDetail() {
-        return (freightDetail == null) ? freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class) : freightDetail;
-    }*/
-
     public FreightDetailTestPage getFreightDetail() {
-        if (freightDetail == null) {
-            freightDetail = new FreightDetailTestPage(driver); // pass driver explicitly// initialize @FindBy fields
-        }
-        return freightDetail;
+        return (freightDetail == null) ? freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class) : freightDetail;
     }
-
 
     public CarriersTestPage getCarriersPage() {
         return (carriersPage == null) ? carriersPage = PageFactory.initElements(driver, CarriersTestPage.class) : carriersPage;

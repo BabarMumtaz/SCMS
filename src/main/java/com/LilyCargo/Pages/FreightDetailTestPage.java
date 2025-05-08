@@ -28,14 +28,13 @@ public class FreightDetailTestPage {
 	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 
 
-	// Constructor
+	// Constructor in FreightDetailTestPage
 	public FreightDetailTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialize WebDriverWait
-		//this.waitUtil = new WaitUtil(driver); // Initialize WaitUtil
+		//this.waitUtil = new WaitUtil(driver); // Initialize WaitUtil (if needed)
 		PageFactory.initElements(driver, this);
-		this.actions = new Actions(driver);
 	}
 
 	@CacheLookup
@@ -49,7 +48,7 @@ public class FreightDetailTestPage {
 	//-------------------------------------CREATE SUBFID ----------------------------------------------------------
 
 	@CacheLookup
-	@FindBy(className = "fid-add-btn btn btn-primary")
+	@FindBy(css = "button[class='fid-add-btn btn btn-primary']")
 	WebElement subFidAddIcon;
 
 	@CacheLookup
@@ -126,22 +125,17 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Billing Center']")
 	WebElement billingCenterTab;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Cargo Data']")
 	WebElement cargoDataTab;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[contains(text(),'Freight successfully created.')]")
 	WebElement addFreightSuccessAlertMessage;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement successAlertCrossIcon;
-
 
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -176,7 +170,6 @@ public class FreightDetailTestPage {
 	public boolean isBFSuccessAlertMessageDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).isDisplayed();
 	}
-
 
 	public void clickOnBFAlertPopupCrossIcon() {
 		wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();

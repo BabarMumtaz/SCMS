@@ -1,6 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.ScreenShotUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class SubmitMrnUsingUploadFileTest extends TestBaseClass {
+public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
 
     private Logger log;
 

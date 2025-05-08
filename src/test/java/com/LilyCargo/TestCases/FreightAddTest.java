@@ -26,75 +26,75 @@ public class FreightAddTest extends TestBeforeAndAfter {
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
 	public void AddFreightTest() throws InterruptedException {
 
-		log = LogManager.getLogger(FreightAddTest.class);
-		log.info("Starting Freight Add Test.");
+        log = LogManager.getLogger(FreightAddTest.class);
+        log.info("Starting Freight Add Test.");
 
-		pageObjectManager.getBookedFreights().clickCreateFreightBtn();
-		log.info("Clicked Create Freight Button");
+        pageObjectManager.getBookedFreights().clickCreateFreightBtn();
+        log.info("Clicked Create Freight Button");
 
-		pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
+        pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
 
-		pageObjectManager.getBookedFreights().selectETDDate("26", "06", "2025");
-		log.info("Entered ETD DATE");
+        pageObjectManager.getBookedFreights().selectETDDate("26", "06", "2025");
+        log.info("Entered ETD DATE");
 
-		pageObjectManager.getBookedFreights().selectETADate("10", "07", "2025");
-		log.info("Entered ETA DATE");
+        pageObjectManager.getBookedFreights().selectETADate("10", "07", "2025");
+        log.info("Entered ETA DATE");
 
-		pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
+        pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
 
-		pageObjectManager.getBookedFreights().selectClient();
-		log.info("Selected Client Dropdown Value");
+        pageObjectManager.getBookedFreights().selectClient();
+        log.info("Selected Client Dropdown Value");
 
-		pageObjectManager.getBookedFreights().selectServiceType();
-		log.info("Selected Service Type Dropdown Value");
+        pageObjectManager.getBookedFreights().selectServiceType();
+        log.info("Selected Service Type Dropdown Value");
 
-		pageObjectManager.getBookedFreights().selectShipper();
-		log.info("Selected Shipper Dropdown Value");
+        pageObjectManager.getBookedFreights().selectShipper();
+        log.info("Selected Shipper Dropdown Value");
 
-		pageObjectManager.getBookedFreights().selectCOO();
-		log.info("Selected COO");
+        pageObjectManager.getBookedFreights().selectCOO();
+        log.info("Selected COO");
 
-		pageObjectManager.getBookedFreights().selectContainer();
-		log.info("Selected Container Type Dropdown Value");
+        pageObjectManager.getBookedFreights().selectContainer();
+        log.info("Selected Container Type Dropdown Value");
 
-		pageObjectManager.getBookedFreights().enterContents("5,000");
-		log.info("Entered Contents");
+        pageObjectManager.getBookedFreights().enterContents("5,000");
+        log.info("Entered Contents");
 
-		pageObjectManager.getBookedFreights().enterWeights("12654");
-		log.info("Entered Weights");
+        pageObjectManager.getBookedFreights().enterWeights("12654");
+        log.info("Entered Weights");
 
-		pageObjectManager.getBookedFreights().enterMeasurements("85454.15");
-		log.info("Entered Measurements");
+        pageObjectManager.getBookedFreights().enterMeasurements("85454.15");
+        log.info("Entered Measurements");
 
-		pageObjectManager.getBookedFreights().selectPortOfLoading();
-		log.info("Selected Port Of Loading Dropdown Value");
+        pageObjectManager.getBookedFreights().selectPortOfLoading();
+        log.info("Selected Port Of Loading Dropdown Value");
 
-		pageObjectManager.getBookedFreights().selectPortOfDischarge();
-		log.info("Selected Port Of Discharge Dropdown Value");
+        pageObjectManager.getBookedFreights().selectPortOfDischarge();
+        log.info("Selected Port Of Discharge Dropdown Value");
 
-		pageObjectManager.getBookedFreights().scrollToElement();
-		Thread.sleep(2000);
+        pageObjectManager.getBookedFreights().scrollToElement();
+        Thread.sleep(2000);
 
-		pageObjectManager.getBookedFreights().selectCarrierCompany();
-		log.info("Selected Carrier Company Value");
+        pageObjectManager.getBookedFreights().selectCarrierCompany();
+        log.info("Selected Carrier Company Value");
 
-		pageObjectManager.getBookedFreights().selectExportCompany();
-		log.info("Selected Export Company Value");
+        pageObjectManager.getBookedFreights().selectExportCompany();
+        log.info("Selected Export Company Value");
 
-		pageObjectManager.getBookedFreights().selectFreightWay();
-		log.info("Selected Freight Way Value");
+        pageObjectManager.getBookedFreights().selectFreightWay();
+        log.info("Selected Freight Way Value");
 
-		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
-		log.info("Clicked Save & Return Freight Button");
+        pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
+        log.info("Clicked Save & Return Freight Button");
 
-		Assert.assertTrue(pageObjectManager.getFreightDetail().isBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-		log.info("Heading: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
 
-		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
-		log.info("Clicked Alert Popup ");
+        pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup ");
 
-		// Log out after the test
-		pageObjectManager.getLoginPage().logout();
-		log.info("Logged out successfully.");
-	}
+        // Log out after the test
+        pageObjectManager.getLoginPage().logout();
+        log.info("Logged out successfully.");
+    }
 }
