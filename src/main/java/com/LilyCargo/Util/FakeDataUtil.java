@@ -12,7 +12,7 @@ public class FakeDataUtil {
     private static final Faker fakerEN = new Faker(new Locale("en")); // Default for other fields
 
     public static String getHouseBLNo() {
-        return fakerEN.number().digits(5);
+        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
     public static String getBondedLocation(String country) {

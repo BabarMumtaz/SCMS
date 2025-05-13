@@ -3,6 +3,7 @@ package com.LilyCargo.TestCases;
 import java.io.IOException;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,13 +64,13 @@ public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 		Assert.assertTrue(pageObjectManager.getBookedFreights().isEditPageDisplayed(), "Edit page is not Displayed");
 		log.info("Heading: " + pageObjectManager.getBookedFreights().getEditFreightID());
 
-		pageObjectManager.getBookedFreights().enterHouseBLNO(faker.number().digits(5));
+		pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
 		log.info("Entered House BL No");
 
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Save & Next Freight Button");
 
-		pageObjectManager.getBookedFreights().enterBondedLocation("Industrial 193, 2511 79 Rotterdam, Netherlands");
+		pageObjectManager.getBookedFreights().enterBondedLocation(FakeDataUtil.getBondedLocation("Netherlands"));
 		log.info("Entered Bonded Location");
 
 		pageObjectManager.getBookedFreights().clickCustomDocStatusBtn();
@@ -81,13 +82,13 @@ public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
 		log.info("Clicked Purchase Step Button");
 
-		pageObjectManager.getBookedFreights().enterAdminFee("800.25");
+		pageObjectManager.getBookedFreights().enterAdminFee(FakeDataUtil.getAdminFee());
 		log.info("Entered Admin Fee");
 
 		pageObjectManager.getBookedFreights().clickSaleStepBtn();
 		log.info("Clicked Sale Step Button");
 
-		pageObjectManager.getBookedFreights().enterDuty("400,66");
+		pageObjectManager.getBookedFreights().enterDuty(FakeDataUtil.getDuty());
 		log.info("Entered Duty");
 
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
