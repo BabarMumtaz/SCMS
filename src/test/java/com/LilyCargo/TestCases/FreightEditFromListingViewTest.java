@@ -1,27 +1,12 @@
 package com.LilyCargo.TestCases;
 
-import java.io.IOException;
-
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
-import com.LilyCargo.Util.ScreenShotUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.Test;
-
-import com.LilyCargo.Base.TestBaseClass;
-import com.LilyCargo.Pages.FreightTestPage;
-import com.LilyCargo.Pages.FreightDetailTestPage;
-import com.LilyCargo.Pages.FreightListingTestPage;
-import com.LilyCargo.Pages.LoginTestPage;
-import com.LilyCargo.Pages.MenuBarTestPage;
-import com.github.javafaker.Faker;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;

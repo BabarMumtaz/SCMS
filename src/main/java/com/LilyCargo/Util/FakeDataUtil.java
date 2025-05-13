@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FakeDataUtil {
 
@@ -11,8 +13,66 @@ public class FakeDataUtil {
     private static final Faker fakerCN = new Faker(new Locale("zh-CN"));  // China
     private static final Faker fakerEN = new Faker(new Locale("en")); // Default for other fields
 
+    public static String getFNO() {
+        return fakerEN.number().digits(8);  // Example: "37281945"
+    }
+
+    //--------------------------------------------------------------- Generate Date PART ------------------------
+    public static String[] getFutureETDDate(int daysFromToday) {
+        LocalDate etd = LocalDate.now().plusDays(daysFromToday);
+        return splitDate(etd);
+    }
+
+    public static String[] getFutureETADate(int etdOffset, int daysAfterETD) {
+        LocalDate eta = LocalDate.now().plusDays(etdOffset + daysAfterETD);
+        return splitDate(eta);
+    }
+
+    // Optional: If you need full date as a string like "2025-06-26"
+    public static String getFormattedDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
+
+    private static String[] splitDate(LocalDate date) {
+        String day = String.format("%02d", date.getDayOfMonth());
+        String month = String.format("%02d", date.getMonthValue());
+        String year = String.valueOf(date.getYear());
+        return new String[]{day, month, year};
+    }
+
+    // If you prefer direct day/month/year for ETD
+    public static String[] getETDDayMonthYear() {
+        return getFutureETDDate(10); // You can change 10 to any default offset
+    }
+
+    // And for ETA
+    public static String[] getETADayMonthYear() {
+        return getFutureETADate(10, 14);
+    }
+
+    //--------------------------------------------------------------- Generate Date PART ------------------------
+
     public static String getHouseBLNo() {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
+    public static String getBLNo() {
+        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
+    public static String getContents() {
+        int amount = 1000 + fakerEN.number().numberBetween(100, 9000);
+        return String.valueOf(amount);
+    }
+
+    public static String getWeights() {
+        double weight = fakerEN.number().randomDouble(2, 1000, 20000);
+        return String.format("%.2f", weight);
+    }
+
+    public static String getMeasurements() {
+        double measurement = fakerEN.number().randomDouble(2, 1000, 100000);
+        return String.format("%.2f", measurement);
     }
 
     public static String getBondedLocation(String country) {
@@ -37,6 +97,6 @@ public class FakeDataUtil {
 
     private static String formatAmount(double value) {
         DecimalFormat formatter = new DecimalFormat("0.00");
-        return formatter.format(value).replace('.', ',');
+        return formatter.format(value);
     }
 }

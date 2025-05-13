@@ -3,6 +3,8 @@ package com.LilyCargo.TestCases;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import com.LilyCargo.Util.FakeDataUtil;
+
 import org.testng.annotations.Test;
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.Description;
@@ -12,6 +14,8 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+
+
 
 public class FreightAddTest extends TestBeforeAndAfter {
 
@@ -32,15 +36,19 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().clickCreateFreightBtn();
         log.info("Clicked Create Freight Button");
 
-        pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
+        pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getFNO());
+        log.info("Entered FNO");
 
-        pageObjectManager.getBookedFreights().selectETDDate("26", "06", "2025");
+        String[] etd = FakeDataUtil.getETDDayMonthYear();
+        pageObjectManager.getBookedFreights().selectETDDate(etd[0], etd[1], etd[2]);
         log.info("Entered ETD DATE");
 
-        pageObjectManager.getBookedFreights().selectETADate("10", "07", "2025");
+        String[] eta = FakeDataUtil.getETADayMonthYear();
+        pageObjectManager.getBookedFreights().selectETADate(eta[0], eta[1], eta[2]);
         log.info("Entered ETA DATE");
 
-        pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
+        pageObjectManager.getBookedFreights().enterBLNO(FakeDataUtil.getBLNo());
+        log.info("Entered BLNo");
 
         pageObjectManager.getBookedFreights().selectClient();
         log.info("Selected Client Dropdown Value");
@@ -57,13 +65,13 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectContainer();
         log.info("Selected Container Type Dropdown Value");
 
-        pageObjectManager.getBookedFreights().enterContents("5,000");
+        pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getContents());
         log.info("Entered Contents");
 
-        pageObjectManager.getBookedFreights().enterWeights("12654");
+        pageObjectManager.getBookedFreights().enterWeights(FakeDataUtil.getWeights());
         log.info("Entered Weights");
 
-        pageObjectManager.getBookedFreights().enterMeasurements("85454.15");
+        pageObjectManager.getBookedFreights().enterMeasurements(FakeDataUtil.getMeasurements());
         log.info("Entered Measurements");
 
         pageObjectManager.getBookedFreights().selectPortOfLoading();
