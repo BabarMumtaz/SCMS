@@ -7,7 +7,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,182 +31,128 @@ public class FreightTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-	@CacheLookup
 	@FindBy(xpath = "//h2[text()='Booked Freights']")
 	WebElement heading;
 
-	@CacheLookup
-	@FindBy(className = "logout")
-	WebElement logoutButton;
-
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Create Freight']")
 	WebElement createFreight;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='FNO']")
 	WebElement fNO;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='Loaded']")
 	WebElement etdDatePicker;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='Arrival']")
 	WebElement etaDatePicker;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='BLNo']")
 	WebElement bLNO;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='houseBLNo']")
 	WebElement hBLNO;
 
-	@CacheLookup
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[1]")
+	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])]")
 	WebElement clientDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")
 	WebElement clientDropValue;
 
-	@CacheLookup
-	@FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
+	@FindBy(xpath = "(//div[@id='select-[object Object]'])]")
 	WebElement serviceTypeDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'Clear')]")
 	WebElement serviceDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[2]")
 	WebElement shipperDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
 	WebElement shipperDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[3]")
 	WebElement cOODrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='BELGIUM - BE']")
 	WebElement cOODropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
 	WebElement containerDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'45HQ')]")
 	WebElement containerDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='Contents']")
 	WebElement contents;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='Weights']")
 	WebElement weights;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='volume']")
 	WebElement measurements;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[4]")
 	WebElement portOfLoadingDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'Brandenburg international / DE BER')]")
 	WebElement portOfLoadingDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[5]")
 	WebElement portOfDischargeDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'Noibai International Airport / VNHAN')]")
 	WebElement portOfDischargeDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[6]")
 	WebElement carrierCompanyDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='China Eastern Airlines']")
 	WebElement carrierCompanyDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[7]")
 	WebElement exportCompanyDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'CREATIVE LABS PTE LTD C/O Chin')]")
 	WebElement exportCompanyDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//div[@id='select-[object Object]'])[3]")
 	WebElement freightWayDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='Air']")
 	WebElement freightWayDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='BondedLocation']")
 	WebElement bondedLocation;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Save & Return']")
 	WebElement saveReturnFreight;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Save & Next']")
 	WebElement saveNextFreight;
 
-	@CacheLookup
 	@FindBy(css = ".custom-status")
 	WebElement customDocStatusBtn;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[@id='select-Custom Doc Status']")
 	WebElement customDocStatusDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='sent']")
 	WebElement customDocStatusDropValue;
 
-	@CacheLookup
 	@FindBy(css = ".purchase-stage")
 	WebElement purchaseStepBtn;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='AdminFee']")
 	WebElement administrationFee;
 
-	@CacheLookup
 	@FindBy(css = ".sale-stage")
 	WebElement saleStepBtn;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='DutyEUR']")
 	WebElement duty;
-
-	@CacheLookup
+	
 	@FindBy(css = "div[class='createFlight-title'] p")
 	WebElement editPageID;
-
-/*	@CacheLookup
-	@FindBy(xpath = "//div[contains(text(),'Freight successfully created.')]")
-	WebElement addFreightSuccessAlertMessage;
-
-	@CacheLookup
-	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement successAlertCrossIcon;*/
-
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -363,18 +308,4 @@ public class FreightTestPage {
 	public String getEditFreightID() {
 		return wait.until(ExpectedConditions.visibilityOf(editPageID)).getText();
 	}
-
-/*	public String getBFSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).getText();
-	}
-
-	public boolean isBFSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).isDisplayed();
-	}
-
-
-	public void clickOnBFAlertPopupCrossIcon() {
-		wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
-	}*/
-
 }

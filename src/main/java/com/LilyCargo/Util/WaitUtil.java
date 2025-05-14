@@ -23,8 +23,8 @@ public class WaitUtil {
     }
 
     // Wait for an element to be clickable
-    public void waitForElementToBeClickable(WebElement element) {
-         wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementToBeClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void waitForTextToBePresent(WebElement element, String text) {

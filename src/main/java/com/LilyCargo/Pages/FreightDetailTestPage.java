@@ -1,20 +1,12 @@
 package com.LilyCargo.Pages;
 
-import java.time.Duration;
-import java.util.Set;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.LilyCargo.Util.WaitUtil;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,101 +15,80 @@ public class FreightDetailTestPage {
 	WebDriver driver;
 	JavascriptExecutor executor;
 	Actions actions;
-	WebDriverWait wait;
-	//private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
+	private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
 	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 
 
-	// Constructor in FreightDetailTestPage
+	// Constructor
 	public FreightDetailTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialize WebDriverWait
-		//this.waitUtil = new WaitUtil(driver); // Initialize WaitUtil (if needed)
+		this.waitUtil = new WaitUtil(driver); // Initialize WaitUtil
 		PageFactory.initElements(driver, this);
+		this.actions = new Actions(driver);
 	}
 
-	@CacheLookup
 	@FindBy(xpath = "//div[@class='ft-edit-wrapper'][1]" )
 	WebElement editFreightIconDP;
 
 	//-------------------------------------CREATE SUBFID ----------------------------------------------------------
 
-	@CacheLookup
 	@FindBy(css = "button[class='fid-add-btn btn btn-primary']")
 	WebElement subFidAddIcon;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[text()='Create Sub Freight']")
 	WebElement createSubFidPopupHeading;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[contains(@id,'selectable-')]")
 	WebElement subFidShipperDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
 	WebElement subFidShipperDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "//div[contains(@id,'select-NoTC ')]")
 	WebElement subFidNoTcDrop;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[text()='TC1']")
 	WebElement subFidNoTcDropValue;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='hbl_no']")
 	WebElement subFidHblNo;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='client_ref']")
 	WebElement subFidClientRef;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Yes']")
 	WebElement submitSubFidButton;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Cancel']")
 	WebElement cancelSubFidButton;
 
-	@CacheLookup
 	@FindBy(className = "btn-close")
 	WebElement SubFidPopupCloseIcon;
 
 	//-----------------------------------------------------------------------------------------------
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Submit MRN #']")
 	WebElement submitMRNTask;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Upload']")
 	WebElement uploadMrnButton;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Submit']")
 	WebElement submitMrnButton;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Cancel']")
 	WebElement cancelMrnButton;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Incidents Registration']")
 	WebElement incidentsRegistrationTab;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Fyco Data']")
 	WebElement fycoDataTab;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Billing Center']")
 	WebElement billingCenterTab;
 
@@ -136,78 +107,51 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//div[contains(text(),'Freight successfully updated.')]")
 	WebElement updateFreightSuccessAlertMessage;
 
-
 	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//	public void switchToNewTab() {
-//	    String originalWindow = driver.getWindowHandle(); // Store the original tab
-//
-//	    // Wait for the new tab to open
-//	    waitUtil.waitForNumberOfWindows(2);
-//
-//	    // Get all open tab handles
-//	    Set<String> windowHandles = driver.getWindowHandles();
-//	    for (String handle : windowHandles) {
-//	        if (!handle.equals(originalWindow)) {
-//	            driver.switchTo().window(handle); // Switch to the new tab
-//	            break;
-//	        }
-//	    }
-//
-//	    // Wait for the Freight Details page to load completely
-//	    waitUtil.waitForUrlToContain("/app/transactions/freights/details/");
-//
-//	    // Ensure the edit icon is visible before proceeding
-//	    waitUtil.isVisible(editFreightIconDP);
-//
-//	    System.out.println("Switched to new tab: " + driver.getCurrentUrl()); // Debugging info
-//	}
-
 	public String getBFSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).getText();
+		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).getText();
 	}
 
 	public boolean isBFSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(addFreightSuccessAlertMessage)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).isDisplayed();
 	}
 
 	public void clickOnBFAlertPopupCrossIcon() {
-		wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
+		waitUtil.waitForElementToBeClickable(successAlertCrossIcon);
 	}
 
 	public boolean isEditFreightIconDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).isDisplayed();
-    }
+		return waitUtil.waitForElementToBeVisible(editFreightIconDP).isDisplayed();
+	}
 
 	public void clickOnEditFreightIconDP() {
-		wait.until(ExpectedConditions.visibilityOf(editFreightIconDP)).click();
+		waitUtil.waitForElementToBeClickable(editFreightIconDP).click();
 	}
 
 	public boolean isUpdateBFSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(updateFreightSuccessAlertMessage)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(updateFreightSuccessAlertMessage).isDisplayed();
 	}
 
 	public String getUpdatedBFSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(updateFreightSuccessAlertMessage)).getText();
+		return waitUtil.waitForElementToBeVisible(updateFreightSuccessAlertMessage).getText();
 	}
-
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-		wait.until(ExpectedConditions.visibilityOf(dropdown)).click();
+		waitUtil.waitForElementToBeClickable(dropdown);
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		wait.until(ExpectedConditions.visibilityOf(dropdownValue)).click();
-
+		waitUtil.waitForElementToBeClickable(dropdownValue);
 	}
 
 	public void clickSubFidAddIcon() {
-		wait.until(ExpectedConditions.visibilityOf(subFidAddIcon)).click();
+		waitUtil.waitForElementToBeClickable(subFidAddIcon).click();
 	}
 
 	public String getCreateSubFidPopupHeading() {
-		return wait.until(ExpectedConditions.visibilityOf(createSubFidPopupHeading)).getText();
+		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).getText();
 	}
 
 	public boolean isCreateSubFidPopupHeadingDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(createSubFidPopupHeading)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).isDisplayed();
 	}
 
 	public void selectSubFidShipper() {
@@ -227,67 +171,67 @@ public class FreightDetailTestPage {
 	}
 
 	public void clickSubmitSubFidButton() {
-		wait.until(ExpectedConditions.visibilityOf(submitSubFidButton)).click();
+		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
 	}
 
 	public void scrollToBottom() {
-		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)); // Ensure visibility
+		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
 	}
 
 	public void clickSubmitMrnTask() {
-		wait.until(ExpectedConditions.visibilityOf(submitMRNTask)).click();
+		waitUtil.waitForElementToBeClickable(submitMRNTask).click();
 	}
 
 	public void clickUploadMrnButton() {
-		wait.until(ExpectedConditions.visibilityOf(uploadMrnButton)).click();
+		waitUtil.waitForElementToBeClickable(uploadMrnButton).click();
 	}
 
 	public void clickSubmitMrnButton() {
-		wait.until(ExpectedConditions.visibilityOf(submitMrnButton)).click();
+		waitUtil.waitForElementToBeClickable(submitMrnButton).click();
 	}
 
 	public void clickCancelMrnButton() {
-		wait.until(ExpectedConditions.visibilityOf(cancelMrnButton)).click();
+		waitUtil.waitForElementToBeClickable(cancelMrnButton).click();
 	}
 
 	public boolean isRemarksTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(remarksTab)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(remarksTab).isDisplayed();
 	}
 	public void clickRemarksTab() {
-		wait.until(ExpectedConditions.visibilityOf(remarksTab)).click();
+		waitUtil.waitForElementToBeClickable(remarksTab).click();
 	}
 
 	public boolean isIncidentsRegistrationTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(incidentsRegistrationTab)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(incidentsRegistrationTab).isDisplayed();
 	}
 
 	public void clickIncidentsRegistrationTab() {
-		wait.until(ExpectedConditions.visibilityOf(incidentsRegistrationTab)).click();
+		waitUtil.waitForElementToBeClickable(incidentsRegistrationTab).click();
 	}
 
 	public boolean isFycoDataTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(fycoDataTab)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(fycoDataTab).isDisplayed();
 	}
 
 	public void clickFycoDataTab() {
-		wait.until(ExpectedConditions.visibilityOf(fycoDataTab)).click();
+		waitUtil.waitForElementToBeClickable(fycoDataTab).click();
 	}
 
 	public boolean isBillingCenterTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(billingCenterTab)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(billingCenterTab).isDisplayed();
 	}
 
 	public void clickBillingCenterTab() {
-		wait.until(ExpectedConditions.visibilityOf(billingCenterTab)).click();
+		waitUtil.waitForElementToBeClickable(billingCenterTab).click();
 	}
 
 	public boolean isCargoDataTabDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(cargoDataTab)).isDisplayed();
+		return waitUtil.waitForElementToBeVisible(cargoDataTab).isDisplayed();
 	}
 
 	public void clickCargoDataTab() {
-		wait.until(ExpectedConditions.visibilityOf(cargoDataTab)).click();
+		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
 	}
 
 /*	public void scrollToRight() {
@@ -299,11 +243,12 @@ public class FreightDetailTestPage {
 
 	public void scrollToRight() {
 		// Ensure the freightTabHorizontalScroll element is visible before attempting to scroll
-		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll));
+		waitUtil.waitForElementToBeVisible(freightTabHorizontalScroll);
+
 		// Scroll the cargoDataTab into view
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", cargoDataTab);
 
 		// Wait until the cargoDataTab is clickable
-		wait.until(ExpectedConditions.visibilityOf(cargoDataTab)).click();
+		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
 	}
 }

@@ -78,6 +78,7 @@ public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
+		Thread.sleep(7000);
 
 		Assert.assertTrue(pageObjectManager.getFreightDetail().isUpdateBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
 		log.info("Heading: " + pageObjectManager.getFreightDetail().getUpdatedBFSuccessAlertMessage());
