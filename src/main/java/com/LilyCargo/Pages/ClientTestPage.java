@@ -37,101 +37,92 @@ public class ClientTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    @CacheLookup
     @FindBy(xpath = "//h2[text()='Clients']")
     WebElement clientPageHeading;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Add Client']")
     WebElement addClientBtn;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='name']")
     WebElement clientName;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='contactPerson']")
     WebElement contactPerson;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='address1']")
     WebElement clientAddress1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='email1']")
     WebElement clientEmail1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='financeEmail']")
     WebElement clientFinancialEmail;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='exportEmail']")
     WebElement clientFiscalMattersEmail1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='ceoEmail']")
     WebElement clientCeoEmail1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='tel']")
     WebElement clientTelephoneNumber1;
 
-    @CacheLookup
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement regionDropDown;
 
-    @CacheLookup
     @FindBy(xpath = "//li[contains(.,'nl')]")
     WebElement regionDropDownValue;
 
-    @CacheLookup
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
     WebElement countryDropDown;
 
-    @CacheLookup
     @FindBy(xpath = "//li[contains(.,'UNITED KINGDOM')]")
     WebElement countryDropDownValue;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='zipCity']")
     WebElement clientZipCity;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='vat']")
     WebElement clientVat;
 
-    @CacheLookup
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[3]")
     WebElement clientLfrDropDown;
 
-    @CacheLookup
     @FindBy(xpath = "//li[contains(.,'NL LMBV B02 (IMPORT)')]")
     WebElement clientLfrDropDownValue;
 
-    @CacheLookup
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
     WebElement extraEmailFieldCross;
 
-    @CacheLookup
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
     WebElement extraAddressFieldCross;
 
-    @CacheLookup
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
     WebElement extraPhoneFieldCross;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Save & Back']")
     WebElement saveClientBack;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveClientNew;
 
-    @CacheLookup
+    @FindBy(xpath = "//div[contains(text(),'Client successfully created.')]")
+    WebElement addClientSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Client successfully updated.')]")
+    WebElement updateClientSuccessAlertMessage;
+
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement clientAlertPopupLP;
+
+    @FindBy(xpath = "//input[@name='scmEmails']")
+    WebElement scmEmails;
+
+    @FindBy(xpath = "//input[@name='customsReleaseEmails']")
+    WebElement customsReleaseEmails;
+
+    @FindBy(xpath = "//input[@name='billingEmails']")
+    WebElement billingEmails;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -159,7 +150,7 @@ public class ClientTestPage {
 
     public void addClientData(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
                               String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
-                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
         clientName.sendKeys(Name);
         contactPerson.sendKeys(ContactPerson);
         clientAddress1.sendKeys(Address1);
@@ -176,6 +167,9 @@ public class ClientTestPage {
         clickExtraEmailFieldCross();
         clickExtraAddressFieldCross();
         clickExtraPhoneFieldCross();
+        scmEmails.sendKeys(ScmEmails);
+        customsReleaseEmails.sendKeys(CustomsReleaseEmails);
+        billingEmails.sendKeys(BillingEmails);
 
         clickSaveClientBack();
     }
@@ -198,6 +192,22 @@ public class ClientTestPage {
 
     public void clickSaveClientNew() {
         saveClientNew.click();
+    }
+
+    public String getClientSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(addClientSuccessAlertMessage)).getText();
+    }
+
+    public boolean isClientSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(addClientSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isUpdateClientSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(updateClientSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getUpdatedClientSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(updateClientSuccessAlertMessage)).getText();
     }
 
     public void clickOnAlertPopupLP() {

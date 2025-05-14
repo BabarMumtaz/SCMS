@@ -38,7 +38,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
     @Step("Hit Site Url -> Login with valid credentials -> Create Client")
     public void AddClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
                               String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
-                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown) {
+                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
 
         log = LogManager.getLogger(ClientAddTest.class);
         log.info("Starting Client Add Test from Freight Relations.");
@@ -60,12 +60,13 @@ public class ClientAddTest extends TestBeforeAndAfter {
                 + LfrDropDown);
 
         pageObjectManager.getClientPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
-                TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown);
+                TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
+
+        Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
 
         pageObjectManager.getClientPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
-
-        Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
 
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
