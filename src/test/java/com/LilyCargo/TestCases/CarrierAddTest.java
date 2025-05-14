@@ -41,8 +41,8 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().clickAddCarrierBtn();
         log.info("Clicked Carriers Add button");
 
-        pageObjectManager.getCarriersPage().enterTicker(faker.number().digits(7));
-        log.info("Entered Ticker Number");
+        pageObjectManager.getCarriersPage().enterTicker(faker.company().name());
+        log.info("Entered Ticker Name");
 
         pageObjectManager.getCarriersPage().enterCarrierName(faker.company().name());
         log.info("Entered Carrier's Name");
@@ -76,6 +76,9 @@ public class CarrierAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getCarriersPage().clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
+
+        Assert.assertTrue(pageObjectManager.getCarriersPage().isCarrierSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCarriersPage().getCarrierSuccessAlertMessage());
 
         pageObjectManager.getCarriersPage().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");

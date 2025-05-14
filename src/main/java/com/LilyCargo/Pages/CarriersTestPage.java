@@ -113,6 +113,12 @@ public class CarriersTestPage {
 	@FindBy(xpath = "//button[text()='Save & New']")
 	WebElement saveCarrierNew;
 
+	@FindBy(xpath = "//div[contains(text(),'Carrier successfully created.')]")
+	WebElement addCarrierSuccessAlertMessage;
+
+	@FindBy(xpath = "//div[contains(text(),'Carrier successfully updated.')]")
+	WebElement updateCarrierSuccessAlertMessage;
+
 	@CacheLookup
 	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
 	WebElement alertPopupDP;
@@ -231,6 +237,22 @@ public class CarriersTestPage {
 
 	public void clickSaveCarrierNew() {
 		saveCarrierNew.click();
+	}
+
+	public String getCarrierSuccessAlertMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).getText();
+	}
+
+	public boolean isCarrierSuccessAlertMessageDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).isDisplayed();
+	}
+
+	public boolean isUpdateCarrierSuccessAlertMessageDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).isDisplayed();
+	}
+
+	public String getUpdatedCarrierSuccessAlertMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).getText();
 	}
 
 	public void clickOnAlertPopupDP() {

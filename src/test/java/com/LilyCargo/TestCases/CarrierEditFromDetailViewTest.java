@@ -66,6 +66,9 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
 
+        Assert.assertTrue(pageObjectManager.getCarriersPage().isUpdateCarrierSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCarriersPage().getUpdatedCarrierSuccessAlertMessage());
+
         pageObjectManager.getCarriersPage().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
