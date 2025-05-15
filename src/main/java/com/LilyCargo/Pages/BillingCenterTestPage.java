@@ -113,8 +113,8 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//th[text()='Product']")
     WebElement productSectionHeading;
 
-    //@FindBy(id = "select-PID")
-    @FindBy(xpath = "//input[@name='products[0].product_id']")
+    //      (//div[@id='select-PID'])[1]                    //input[@name='products[0].product_id']
+    @FindBy(css = "input[placeholder='PID'][name='products[0].product_id']")
     WebElement pidDropdown;
 
     @FindBy(xpath = "//li[text()='80210 - 2% Disbursement Fee']")
@@ -342,7 +342,7 @@ public class BillingCenterTestPage {
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-        dropdownValue.click();
+        wait.until(ExpectedConditions.elementToBeClickable(dropdownValue)).click();
     }
 
     public void selectClient() throws InterruptedException {
@@ -363,7 +363,7 @@ public class BillingCenterTestPage {
     }
 
     private void selectDate(WebElement element, String month,String day, String year) {
-        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(year).perform();
+        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
     }
 
     public void selectIntlEuInvDate(String day, String month, String year) {
