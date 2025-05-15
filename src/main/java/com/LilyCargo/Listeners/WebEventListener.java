@@ -12,8 +12,10 @@ as an when the action done (click, findBy etc).
 */
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.LilyCargo.Util.ScreenShotUtil;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -66,10 +68,16 @@ public class WebEventListener extends TestBaseClass implements WebDriverListener
 	}
 
 	public void onException(Throwable error, WebDriver driver) {
-		System.out.println("Exception occured: " + error);
+		System.out.println("Exception occurred: " + error);
+
 		try {
-			ScreenShotUtil.takeScreenshotAtEndOfTest(driver, "Exception_" + System.currentTimeMillis());
-		} catch (IOException e) {
+			String screenshotName = "Exception_" + System.currentTimeMillis();
+			InputStream screenshotStream = ScreenShotUtil.takeScreenshotForAllure(driver, screenshotName);
+
+			if (screenshotStream != null) {
+				Allure.addAttachment("Screenshot on Exception", screenshotStream);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

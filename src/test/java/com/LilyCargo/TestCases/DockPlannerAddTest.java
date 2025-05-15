@@ -1,6 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class DockPlannerAddTest extends TestBaseClass {
+public class DockPlannerAddTest extends TestBeforeAndAfter {
 
     private Logger log;
 

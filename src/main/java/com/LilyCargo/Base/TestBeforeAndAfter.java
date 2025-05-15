@@ -1,11 +1,14 @@
 package com.LilyCargo.Base;
 
+import io.qameta.allure.Allure;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,8 +20,10 @@ public class TestBeforeAndAfter extends TestBaseClass {
     private static final Logger log = LogManager.getLogger(TestBeforeAndAfter.class);
 
     @BeforeMethod
-    public void setUp(Method method, ITestResult result) {
+    public void setUp(Method method, ITestResult result, ITestContext context) {
         initialization();
+        context.setAttribute("WebDriver", driver);
+
         log.info("Browser initialized successfully.");
         pageObjectManager = new PageObjectManager(driver);
 
@@ -50,11 +55,9 @@ public class TestBeforeAndAfter extends TestBaseClass {
         String testName = result.getMethod().getMethodName();
 
         if (result.getStatus() == ITestResult.FAILURE) {
-            try {
-                ScreenShotUtil.takeScreenshotAtEndOfTest(driver, testName);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            InputStream screenshotStream = ScreenShotUtil.takeScreenshotForAllure(driver, testName);
+            if (screenshotStream != null) {
+                Allure.addAttachment("Screenshot on Failure", screenshotStream);
             }
             log.error("Test FAILED: {} - Screenshot captured.", testName);
         } else {
@@ -66,5 +69,6 @@ public class TestBeforeAndAfter extends TestBaseClass {
             log.info("Browser closed.");
         }
     }
+
 
 }

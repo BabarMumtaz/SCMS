@@ -24,7 +24,9 @@ import com.LilyCargo.Util.TestUtilClass;
 import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.Listeners;
 
+@Listeners({com.LilyCargo.Listeners.AllureReportListener.class})
 public class TestBaseClass {
 	public static WebDriver driver;
 	public static Properties prop;

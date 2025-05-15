@@ -1,79 +1,85 @@
 package com.LilyCargo.Listeners;
 
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.testng.*;
 
-import com.LilyCargo.Base.TestBaseClass;
+public class AllureReportListener implements ITestListener {
 
-import io.qameta.allure.Attachment;
+	// Get the test method name
+	private static String getTestMethodName(ITestResult result) {
+		return result.getMethod().getMethodName();
+	}
 
-public class AllureReportListener extends TestBaseClass implements ITestListener {
-
-	@Attachment(value = "Page screenshot", type = "image/png")
+	// Attach screenshot to Allure
+	@Attachment(value = "Screenshot on Failure", type = "image/png")
 	public byte[] saveScreenshotPNG(WebDriver driver) {
+		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	}
+
+	// Attach failure reason to Allure
+	@Attachment(value = "Failure Reason", type = "text/plain")
+	public String saveFailureReason(Throwable throwable) {
+		return throwable == null ? "No exception message" : throwable.toString();
+	}
+
+	@Attachment(value = "Execution Log", type = "text/plain")
+	public byte[] attachLogFile() {
 		try {
-			return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			String logPath = System.getProperty("user.dir") + "/logs/test-log.log";
+			return java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(logPath));
 		} catch (Exception e) {
-			System.out.println("Failed to capture screenshot: " + e.getMessage());
-			return new byte[0]; // Return empty array if screenshot capture fails
+			return ("Unable to attach log file: " + e.getMessage()).getBytes();
 		}
 	}
 
 	@Override
-	public void onStart(ITestContext iTestContext) {
-		System.out.println("Starting Test Suite '" + iTestContext.getName() + "'.......");
+	public void onTestFailure(ITestResult result) {
+		System.out.println("❌ Test Failed: " + getTestMethodName(result));
 
-		// Ensure WebDriver is available before setting it in the context
+		// Get WebDriver from context
+		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("WebDriver");
+
 		if (driver != null) {
-			iTestContext.setAttribute("WebDriver", driver);
-		} else {
-			System.out.println("WebDriver instance is null in onStart.");
-		}
-	}
-
-	@Override
-	public void onFinish(ITestContext iTestContext) {
-		System.out.println("Finished Test Suite '" + iTestContext.getName() + "'");
-	}
-
-	@Override
-	public void onTestStart(ITestResult iTestResult) {
-		System.out.println("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
-	}
-
-	@Override
-	public void onTestSuccess(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' passed.");
-	}
-
-	@Override
-	public void onTestFailure(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' failed.");
-
-		// Ensure WebDriver is available before attempting to capture a screenshot
-		if (driver != null) {
-			System.out.println("Attempting to capture screenshot for test method '" + getTestMethodName(iTestResult) + "'");
+			System.out.println("📸 Capturing screenshot for: " + getTestMethodName(result));
 			saveScreenshotPNG(driver);
 		} else {
-			System.out.println("WebDriver instance is null, unable to capture screenshot for test method '" + getTestMethodName(iTestResult) + "'");
+			System.out.println("⚠️ WebDriver is null. Cannot capture screenshot.");
 		}
+
+		// Attach exception message
+		saveFailureReason(result.getThrowable());
+		attachLogFile();
+
 	}
 
 	@Override
-	public void onTestSkipped(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' skipped.");
+	public void onTestStart(ITestResult result) {
+		System.out.println("🚀 Test Started: " + getTestMethodName(result));
 	}
 
 	@Override
-	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-		System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' failed but within success percentage.");
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("✅ Test Passed: " + getTestMethodName(result));
 	}
 
-	private static String getTestMethodName(ITestResult iTestResult) {
-		return iTestResult.getMethod().getConstructorOrMethod().getName();
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("⏩ Test Skipped: " + getTestMethodName(result));
+	}
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {}
+
+	@Override
+	public void onStart(ITestContext context) {
+		System.out.println("📘 Test Suite Started: " + context.getName());
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
+		System.out.println("📕 Test Suite Finished: " + context.getName());
 	}
 }
