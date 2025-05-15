@@ -50,7 +50,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
         log.info("Edit wrapper is displayed.");
 
-        pageObjectManager.getFreightDetail().scrollToBottom();
+        pageObjectManager.getFreightDetail().scrollToElement();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit MRN section.");
 

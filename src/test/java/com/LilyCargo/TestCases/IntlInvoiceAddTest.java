@@ -1,16 +1,16 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class IntlInvoiceAddTest extends TestBaseClass {
+public class IntlInvoiceAddTest extends TestBeforeAndAfter {
 
     Logger log;
-    String InvoiceRemarksText = faker.lorem().characters(100);
 
     @Test(priority = 1, description = "Verify that a user can add INTL Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -24,9 +24,6 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         log = LogManager.getLogger(IntlInvoiceAddTest.class);
         log.info("Starting INTL INV Add Test from Billing Center Tab.");
 
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
-
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
@@ -37,6 +34,7 @@ public class IntlInvoiceAddTest extends TestBaseClass {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -46,33 +44,24 @@ public class IntlInvoiceAddTest extends TestBaseClass {
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
-        pageObjectManager.getBillingCenterPage().clickOnClientDropdownCrossIcon();
-        log.info("Clicked On Client Dropdown Cross Icon");
-
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-/*        pageObjectManager.getBillingCenterPage().selectInvoiceType();
-        log.info("Selected Invoice Type");*/
-
-        pageObjectManager.getBillingCenterPage().enterRemarks(InvoiceRemarksText);
+        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
 
-        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate("02", "24", "2025");
-        log.info("Selected Intl Invoice DATE");
-
-        // Generate the invoice number
-        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-        System.out.println("Generated Invoice Number: " + generatedInvoice);
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered Intl Invoice DATE");
 
         // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(generatedInvoice);
+        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        pageObjectManager.getBillingCenterPage().scrollToBottom();
+        pageObjectManager.getBillingCenterPage().scrollToElement();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Bottom");
 

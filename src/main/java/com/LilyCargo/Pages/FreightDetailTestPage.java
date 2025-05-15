@@ -68,7 +68,7 @@ public class FreightDetailTestPage {
 
 	//-----------------------------------------------------------------------------------------------
 
-	@FindBy(xpath = "//button[text()='Submit MRN #']")
+	@FindBy(xpath = "//button[text()='Submit MRN & Customs Status")
 	WebElement submitMRNTask;
 
 	@FindBy(xpath = "//button[text()='Upload']")
@@ -136,6 +136,7 @@ public class FreightDetailTestPage {
 	public String getUpdatedBFSuccessAlertMessage() {
 		return waitUtil.waitForElementToBeVisible(updateFreightSuccessAlertMessage).getText();
 	}
+
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
 		waitUtil.waitForElementToBeClickable(dropdown);
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
@@ -174,9 +175,13 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
 	}
 
-	public void scrollToBottom() {
+/*	public void scrollToBottom() {
 		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
+	}*/
+
+	public void scrollToElement() {
+		executor.executeScript("arguments[0].scrollIntoView(true);", submitMRNTask);
 	}
 
 	public void clickSubmitMrnTask() {
@@ -220,6 +225,10 @@ public class FreightDetailTestPage {
 
 	public boolean isBillingCenterTabDisplayed() {
 		return waitUtil.waitForElementToBeVisible(billingCenterTab).isDisplayed();
+	}
+
+	public String getBillingCenterTabDisplayedText() {
+		return waitUtil.waitForElementToBeVisible(billingCenterTab).getText();
 	}
 
 	public void clickBillingCenterTab() {

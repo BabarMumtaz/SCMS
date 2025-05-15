@@ -1,6 +1,5 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
@@ -46,9 +45,11 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
         log.info("Edit wrapper is displayed.");
 
-        pageObjectManager.getFreightDetail().scrollToBottom();
-        Thread.sleep(2000); // Replace with explicit wait if needed
+        pageObjectManager.getFreightDetail().scrollToElement();
         log.info("Scrolled to Submit MRN section.");
+
+        pageObjectManager.getFreightDetail().clickUploadMrnButton();
+        log.info("Clicked on Upload MRN Button.");
 
         pageObjectManager.getFreightDetail().clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");

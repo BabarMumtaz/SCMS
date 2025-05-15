@@ -1,6 +1,8 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class EuInvoiceAddTest extends TestBaseClass {
+public class EuInvoiceAddTest extends TestBeforeAndAfter {
 
     Logger log;
     String InvoiceRemarksText = faker.lorem().characters(100);
@@ -53,8 +55,8 @@ public class EuInvoiceAddTest extends TestBaseClass {
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
-        pageObjectManager.getBillingCenterPage().clickOnClientDropdownCrossIcon();
-        log.info("Clicked On Client Dropdown Cross Icon");
+/*        pageObjectManager.getBillingCenterPage().clickOnClientDropdownCrossIcon();
+        log.info("Clicked On Client Dropdown Cross Icon");*/
 
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
@@ -68,12 +70,12 @@ public class EuInvoiceAddTest extends TestBaseClass {
         pageObjectManager.getBillingCenterPage().selectIntlEuInvDate("02", "24", "2025");
         log.info("Selected Intl Invoice DATE");
 
-        // Generate the invoice number
+/*        // Generate the invoice number
         String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-        System.out.println("Generated Invoice Number: " + generatedInvoice);
+        System.out.println("Generated Invoice Number: " + generatedInvoice);*/
 
         // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(generatedInvoice);
+        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");

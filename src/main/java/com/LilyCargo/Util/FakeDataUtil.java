@@ -99,4 +99,32 @@ public class FakeDataUtil {
         DecimalFormat formatter = new DecimalFormat("0.00");
         return formatter.format(value);
     }
+
+    public static String getRemarks() {
+        return fakerEN.lorem().characters(100);
+    }
+
+    // Returns current date split into day, month, and year for Invoice field
+    public static String[] getCurrentInvoiceDate() {
+        LocalDate today = LocalDate.now();
+        return splitDate(today);
+    }
+
+    public static String[] getInvoiceDayMonthYear() {
+        return getCurrentInvoiceDate(); // You can change 10 to any default offset
+    }
+
+    // Method to generate invoice number
+    public static String generateInvoiceNumber() {
+        // Generate a random number for the invoice part (e.g., 010155)
+        String invoicePart = fakerEN.number().digits(6);
+
+        // Generate a random uppercase letter for the prefix (e.g., 25X)
+        String prefix = fakerEN.letterify("25?", true);
+
+        // Combine prefix and invoice part
+        return prefix + "-" + invoicePart;
+    }
+
+
 }

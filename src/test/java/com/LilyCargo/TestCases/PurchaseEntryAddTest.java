@@ -1,6 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,12 +61,12 @@ public class PurchaseEntryAddTest extends TestBaseClass {
         pageObjectManager.getBillingCenterPage().selectExtraInvDate("02", "24", "2025");
         log.info("Selected Extra Invoice DATE");
 
-        // Generate the invoice number
-        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-        System.out.println("Generated Invoice Number: " + generatedInvoice);
+//        // Generate the invoice number
+//        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
+//        System.out.println("Generated Invoice Number: " + generatedInvoice);
 
         // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(generatedInvoice);
+        pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
