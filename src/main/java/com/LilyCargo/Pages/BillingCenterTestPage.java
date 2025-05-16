@@ -113,12 +113,33 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//th[text()='Product']")
     WebElement productSectionHeading;
 
-    //      (//div[@id='select-PID'])[1]                    //input[@name='products[0].product_id']
-    @FindBy(css = "input[placeholder='PID'][name='products[0].product_id']")
+    @FindBy(css = ".billing-table-wrapper.table") // Update selector as needed
+    WebElement productListContainer;
+
+    //      input[placeholder='PID'][name='products[0].product_id']                   //input[@name='products[0].product_id']
+    @FindBy(xpath = "(//div[@id='select-PID'])[1]")
     WebElement pidDropdown;
+
+    @FindBy(xpath = "(//div[@id='select-PID'])[2]")
+    WebElement pidDropdown2;
+
+    @FindBy(xpath = "(//div[@id='select-PID'])[3]")
+    WebElement pidDropdown3;
+
+    @FindBy(xpath = "(//div[@id='select-PID'])[4]")
+    WebElement pidDropdown4;
+
+    @FindBy(xpath = "(//div[@id='select-PID'])[5]")
+    WebElement pidDropdown5;
+
+    @FindBy(xpath = "(//div[@id='select-PID'])[6]")
+    WebElement pidDropdown6;
 
     @FindBy(xpath = "//li[text()='80210 - 2% Disbursement Fee']")
     WebElement pidDropdownValue;
+
+    @FindBy(xpath = "//input[@name='products[2].description']")
+    WebElement pidDropdownDescription;
 
     @FindBy(xpath = "//button[text()='+ Add Row']")
     WebElement addRowButton;
@@ -133,6 +154,7 @@ public class BillingCenterTestPage {
     WebElement totalEntriesByLedgerTabPE;
 
     //PURCHASE ENTRY
+
     @FindBy(xpath = "//input[@name='supplier")
     WebElement shipperDropdown;
 
@@ -340,7 +362,7 @@ public class BillingCenterTestPage {
     }*/
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-        dropdown.click();
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
         wait.until(ExpectedConditions.elementToBeClickable(dropdownValue)).click();
     }
@@ -396,11 +418,40 @@ public class BillingCenterTestPage {
     }
 
     public void scrollToElement() {
-        executor.executeScript("arguments[0].scrollIntoView(true);", pidDropdown);
+        executor.executeScript("arguments[0].scrollIntoView(true);", pidDropdown5);
+    }
+
+    public void scrollToElementInContainer() {
+        executor.executeScript(
+                "arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, pidDropdown5);
     }
 
     public void selectPidDropdown() {
         selectDropdownValue(pidDropdown, pidDropdownValue);
+    }
+
+    public void selectPidDropdown2() {
+        selectDropdownValue(pidDropdown2, pidDropdownValue);
+    }
+
+    public void selectPidDropdown3() {
+        selectDropdownValue(pidDropdown3, pidDropdownValue);
+    }
+
+    public void selectPidDropdown4() {
+        selectDropdownValue(pidDropdown4, pidDropdownValue);
+    }
+
+    public void selectPidDropdown5() {
+        selectDropdownValue(pidDropdown5, pidDropdownValue);
+    }
+
+    public void selectPidDropdown6() {
+        selectDropdownValue(pidDropdown6, pidDropdownValue);
+    }
+
+    public void clickPidDropdownDescription() {
+        wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();
     }
 
     public void clickSaveWorksButton() {

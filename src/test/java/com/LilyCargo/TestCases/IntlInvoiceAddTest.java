@@ -61,12 +61,29 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        pageObjectManager.getBillingCenterPage().scrollToElement();
-        Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Bottom");
-
         pageObjectManager.getBillingCenterPage().selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdown2();
+        log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdown3();
+        log.info("Selected 80210 - 2% Disbursement Fee Product (3rd time)");
+
+        pageObjectManager.getBillingCenterPage().clickPidDropdownDescription();
+        log.info("Clicked 3rd Product Description field to adjust focus");
+
+        pageObjectManager.getBillingCenterPage().scrollToElementInContainer();
+        log.info("Scrolled to pidDropdown5");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdown4();
+        log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdown5();
+        log.info("Selected 80210 - 2% Disbursement Fee Product");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdown6();
+        log.info("Selected 80210 - 2% Disbursement Fee Product (6th time)");
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
