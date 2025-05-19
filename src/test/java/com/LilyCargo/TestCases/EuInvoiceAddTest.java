@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 public class EuInvoiceAddTest extends TestBeforeAndAfter {
 
     Logger log;
-    String InvoiceRemarksText = faker.lorem().characters(100);
 
     @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -27,9 +26,6 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuInvoiceAddTest.class);
         log.info("Starting EU INV Add Test from Billing Center Tab");
 
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
-
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
@@ -40,6 +36,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -55,30 +52,24 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
-/*        pageObjectManager.getBillingCenterPage().clickOnClientDropdownCrossIcon();
-        log.info("Clicked On Client Dropdown Cross Icon");*/
-
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
         pageObjectManager.getBillingCenterPage().selectInvoiceType();
-        log.info("Selected Invoice Type");
+        log.info("Selected 'Amazon Brokerage'  Invoice Type");
 
-        pageObjectManager.getBillingCenterPage().enterRemarks(InvoiceRemarksText);
+        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
 
-        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate("02", "24", "2025");
-        log.info("Selected Intl Invoice DATE");
-
-/*        // Generate the invoice number
-        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-        System.out.println("Generated Invoice Number: " + generatedInvoice);*/
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered EU Invoice DATE");
 
         // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
-        pageObjectManager.getBillingCenterPage().enterGraceDays("14");
+        pageObjectManager.getBillingCenterPage().enterGraceDays("60");
         log.info("Entered Grace Days");
 
 /*        pageObjectManager.getBillingCenterPage().scrollToBottom();
@@ -92,7 +83,18 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Finish Button.");*/
 
-        pageObjectManager.getBillingCenterPage().clickFinishINVButton();
+        int totalProducts = 15;
+
+        for (int i = 1; i <= totalProducts; i++) {
+            if (i > 10) {
+                pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
+            }
+
+            pageObjectManager.getBillingCenterPage()
+                    .selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
+        }
+
+        pageObjectManager.getBillingCenterPage().scrollToFinishButton();
         log.info("Clicked Finish INV Button");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
