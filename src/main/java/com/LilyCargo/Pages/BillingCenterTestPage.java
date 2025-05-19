@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Locale;
 
 public class BillingCenterTestPage {
@@ -134,6 +135,10 @@ public class BillingCenterTestPage {
 
     @FindBy(xpath = "(//div[@id='select-PID'])[6]")
     WebElement pidDropdown6;
+
+    // Store all PID dropdowns in a list
+    @FindBy(xpath = "//div[@id='select-PID']")
+    List<WebElement> pidDropdownsList;
 
     @FindBy(xpath = "//li[text()='80210 - 2% Disbursement Fee']")
     WebElement pidDropdownValue;
@@ -449,6 +454,54 @@ public class BillingCenterTestPage {
     public void selectPidDropdown6() {
         selectDropdownValue(pidDropdown6, pidDropdownValue);
     }
+
+    public void selectPidDropdownByIndex(int index, String productName) {
+        WebElement dropdown = pidDropdownsList.get(index - 1); // zero-based indexing
+
+        // Scroll the dropdown into view within its container
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
+
+        // Click and select the value
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", pidDropdownValue);
+        wait.until(ExpectedConditions.elementToBeClickable(pidDropdownValue)).click();
+
+        log.info("Selected " + productName + " in Product #" + index);
+    }
+
+   /* Use this method with multiple dropdown values, pass the value locator text too:
+ public void selectPidDropdownByIndex(int index, String valueText, String productName) {
+    // Index is 1-based; adjust for list (0-based)
+    WebElement dropdown = pidDropdownList.get(index - 1);
+
+    // Scroll into the product list container (not full page)
+    executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
+
+    wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+    // Build dynamic XPath for value (not hardcoded)
+    WebElement value = wait.until(ExpectedConditions
+        .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+
+    executor.executeScript("arguments[0].scrollIntoView(true);", value);
+    wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
+    log.info("Selected " + productName + " in Product #" + index);
+}
+*/
+
+    public int getPidDropdownCount() {
+        return pidDropdownsList.size();
+    }
+
+    public void clickAddRowAndWaitForNewRow() {
+        int oldCount = getPidDropdownCount();
+        wait.until(ExpectedConditions.elementToBeClickable(addRowButton)).click();
+        log.info("Clicked Add Row button.");
+        wait.until(driver -> getPidDropdownCount() > oldCount);
+        log.info("Verified new row added successfully.");
+    }
+
 
     public void clickPidDropdownDescription() {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();

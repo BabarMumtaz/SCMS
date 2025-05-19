@@ -61,7 +61,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        pageObjectManager.getBillingCenterPage().selectPidDropdown();
+    /*    pageObjectManager.getBillingCenterPage().selectPidDropdown();
         log.info("Selected 80210 - 2% Disbursement Fee Product");
 
         pageObjectManager.getBillingCenterPage().selectPidDropdown2();
@@ -84,6 +84,18 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().selectPidDropdown6();
         log.info("Selected 80210 - 2% Disbursement Fee Product (6th time)");
+
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(1, "80210 - 2% Disbursement Fee");
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(2, "80210 - 2% Disbursement Fee");
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(3, "80210 - 2% Disbursement Fee");
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(4, "80210 - 2% Disbursement Fee");
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(5, "80210 - 2% Disbursement Fee");
+        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(6, "80210 - 2% Disbursement Fee");
+*/
+
+        for (int i = 1; i <= 10; i++) {
+            pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
+        }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();
         Thread.sleep(2000); // Replace with explicit wait if needed
