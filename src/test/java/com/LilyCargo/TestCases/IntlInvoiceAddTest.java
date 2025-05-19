@@ -61,40 +61,15 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
-    /*    pageObjectManager.getBillingCenterPage().selectPidDropdown();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");
+        int totalProducts = 15;
 
-        pageObjectManager.getBillingCenterPage().selectPidDropdown2();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");
+        for (int i = 1; i <= totalProducts; i++) {
+            if (i > 10) {
+                pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
+            }
 
-        pageObjectManager.getBillingCenterPage().selectPidDropdown3();
-        log.info("Selected 80210 - 2% Disbursement Fee Product (3rd time)");
-
-        pageObjectManager.getBillingCenterPage().clickPidDropdownDescription();
-        log.info("Clicked 3rd Product Description field to adjust focus");
-
-        pageObjectManager.getBillingCenterPage().scrollToElementInContainer();
-        log.info("Scrolled to pidDropdown5");
-
-        pageObjectManager.getBillingCenterPage().selectPidDropdown4();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");
-
-        pageObjectManager.getBillingCenterPage().selectPidDropdown5();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");
-
-        pageObjectManager.getBillingCenterPage().selectPidDropdown6();
-        log.info("Selected 80210 - 2% Disbursement Fee Product (6th time)");
-
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(1, "80210 - 2% Disbursement Fee");
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(2, "80210 - 2% Disbursement Fee");
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(3, "80210 - 2% Disbursement Fee");
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(4, "80210 - 2% Disbursement Fee");
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(5, "80210 - 2% Disbursement Fee");
-        pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(6, "80210 - 2% Disbursement Fee");
-*/
-
-        for (int i = 1; i <= 10; i++) {
-            pageObjectManager.getBillingCenterPage().selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
+            pageObjectManager.getBillingCenterPage()
+                    .selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();

@@ -3,10 +3,7 @@ package com.LilyCargo.Pages;
 import com.github.javafaker.Faker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -466,40 +463,41 @@ public class BillingCenterTestPage {
         executor.executeScript("arguments[0].scrollIntoView(true);", pidDropdownValue);
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownValue)).click();
 
+        log.info("Selected product" + productName + " in Product #" + index);
+    }
+
+   // Use this method with multiple dropdown values, pass the value locator text too:
+     public void selectPidDropdownByIndexValue(int index, String valueText, String productName) {
+        // Index is 1-based; adjust for list (0-based)
+        WebElement dropdown = pidDropdownsList.get(index - 1);
+
+        // Scroll into the product list container (not full page)
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
+
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+        // Build dynamic XPath for value (not hardcoded)
+        WebElement value = wait.until(ExpectedConditions
+            .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+
+        executor.executeScript("arguments[0].scrollIntoView(true);", value);
+        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
         log.info("Selected " + productName + " in Product #" + index);
     }
 
-   /* Use this method with multiple dropdown values, pass the value locator text too:
- public void selectPidDropdownByIndex(int index, String valueText, String productName) {
-    // Index is 1-based; adjust for list (0-based)
-    WebElement dropdown = pidDropdownList.get(index - 1);
-
-    // Scroll into the product list container (not full page)
-    executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
-
-    wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-
-    // Build dynamic XPath for value (not hardcoded)
-    WebElement value = wait.until(ExpectedConditions
-        .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
-
-    executor.executeScript("arguments[0].scrollIntoView(true);", value);
-    wait.until(ExpectedConditions.elementToBeClickable(value)).click();
-
-    log.info("Selected " + productName + " in Product #" + index);
-}
-*/
-
-    public int getPidDropdownCount() {
+    public int getPidDropdownsCount() {
         return pidDropdownsList.size();
     }
 
     public void clickAddRowAndWaitForNewRow() {
-        int oldCount = getPidDropdownCount();
+        int oldCount = getPidDropdownsCount();
         wait.until(ExpectedConditions.elementToBeClickable(addRowButton)).click();
         log.info("Clicked Add Row button.");
-        wait.until(driver -> getPidDropdownCount() > oldCount);
+
+        wait.until(driver -> getPidDropdownsCount() > oldCount);
         log.info("Verified new row added successfully.");
+        log.info("New product row added. Total products now: " + getPidDropdownsCount());
     }
 
 
