@@ -5,6 +5,7 @@ import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -88,11 +89,11 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         );
 
         for (int i = 1; i <= productNames.size(); i++) {
-            if (i > pageObjectManager.getBillingCenterPage().getPidDropdownsCount()) {
+            if (i > 10) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
             String product = productNames.get(i - 1);
-            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, productNames.get(i - 1));
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, product);
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();

@@ -491,12 +491,19 @@ public class BillingCenterTestPage {
         log.info("Selected product" + productName + " in Product #" + index);
     }*/
 
+
     public void selectDropdownByIndexValue(int index, String valueText) {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
 
         // Scroll to dropdown
         executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+
+        WebElement dropdownOptionsContainer = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.MuiMenu-list"))
+        );
+
 
         // Find and click value
         WebElement value = wait.until(ExpectedConditions
@@ -507,8 +514,6 @@ public class BillingCenterTestPage {
 
         log.info("Selected value '" + valueText + "' at dropdown #" + index);
     }
-
-
 
 
 /*    public void selectINTLPiD() {
@@ -558,7 +563,12 @@ public class BillingCenterTestPage {
 
         wait.until(driver -> getPidDropdownsCount() > oldCount);
         log.info("Verified new row added successfully.");
+
         log.info("New product row added. Total products now: " + getPidDropdownsCount());
+
+        // Optional: wait until the last dropdown is clickable
+        WebElement newDropdown = pidDropdownsList.get(pidDropdownsList.size() - 1);
+        wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
 
 
