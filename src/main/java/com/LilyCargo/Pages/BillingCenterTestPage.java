@@ -138,7 +138,10 @@ public class BillingCenterTestPage {
     List<WebElement> pidDropdownsList;
 
     @FindBy(xpath = "//li[text()='80210 - 2% Disbursement Fee']")
-    WebElement pidDropdownValue;
+    WebElement pidINTLDropdownValue;
+
+    @FindBy(xpath = "//li[text()='80120 - ACU - Trading Standards']")
+    WebElement pidEUDropdownValue;
 
     @FindBy(xpath = "//input[@name='products[2].description']")
     WebElement pidDropdownDescription;
@@ -428,6 +431,7 @@ public class BillingCenterTestPage {
                 "arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, pidDropdown5);
     }
 
+/*
     public void selectPidDropdown() {
         selectDropdownValue(pidDropdown, pidDropdownValue);
     }
@@ -451,8 +455,32 @@ public class BillingCenterTestPage {
     public void selectPidDropdown6() {
         selectDropdownValue(pidDropdown6, pidDropdownValue);
     }
+*/
 
-    public void selectPidDropdownByIndex(int index, String productName) {
+
+    public void selectDropdownByIndex( int index, WebElement valueElement, String productName, WebElement scrollContainer) {
+        WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
+
+        // Scroll into view inside container
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", scrollContainer, dropdown);
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+        executor.executeScript("arguments[0].scrollIntoView(true);", valueElement);
+        wait.until(ExpectedConditions.elementToBeClickable(valueElement)).click();
+
+        log.info("Selected Product " + productName + " in dropdown #" + index);
+    }
+
+    public void selectINTLPidByIndex(int index) {
+        selectDropdownByIndex( index, pidINTLDropdownValue, "INTL Product", productListContainer);
+    }
+
+    public void selectEUPidByIndex(int index) {
+        selectDropdownByIndex( index, pidEUDropdownValue, "EU Product", productListContainer);
+    }
+
+
+/*    public void selectPidDropdownByIndex(int index, String productName) {
         WebElement dropdown = pidDropdownsList.get(index - 1); // zero-based indexing
 
         // Scroll the dropdown into view within its container
@@ -464,7 +492,36 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownValue)).click();
 
         log.info("Selected product" + productName + " in Product #" + index);
+    }*/
+
+    public void selectDropdownByIndexValue(List<WebElement> dropdownList, int index, String valueText, String productName, WebElement scrollContainer) {
+        // Get dropdown by index (1-based to 0-based)
+        WebElement dropdown = dropdownList.get(index - 1);
+
+        // Scroll to dropdown within the container
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", scrollContainer, dropdown);
+
+        // Click dropdown
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+        // Build dynamic XPath for value
+        WebElement value = wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+
+        executor.executeScript("arguments[0].scrollIntoView(true);", value);
+        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
+        log.info("Selected product " + productName + " in dropdown #" + index);
     }
+
+
+/*    public void selectINTLPiD() {
+        selectDropdownValueByIndex(pidDropdownsList, pidINTLDropdownValue);
+    }
+
+    public void selectEUPiD() {
+        selectDropdownValueByIndex(pidDropdownsList, pidEUDropdownValue);
+    }*/
 
    // Use this method with multiple dropdown values, pass the value locator text too:
      public void selectPidDropdownByIndexValue(int index, String valueText, String productName) {

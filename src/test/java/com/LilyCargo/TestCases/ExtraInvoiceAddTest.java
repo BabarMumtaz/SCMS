@@ -83,8 +83,8 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Bottom");
 
-        pageObjectManager.getBillingCenterPage().selectPidDropdown();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");
+/*        pageObjectManager.getBillingCenterPage().selectPidDropdown();
+        log.info("Selected 80210 - 2% Disbursement Fee Product");*/
 
         pageObjectManager.getBillingCenterPage().scrollToSubmitButton();
         Thread.sleep(2000); // Replace with explicit wait if needed

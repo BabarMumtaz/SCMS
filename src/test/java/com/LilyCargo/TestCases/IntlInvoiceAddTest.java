@@ -8,6 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class IntlInvoiceAddTest extends TestBeforeAndAfter {
 
     Logger log;
@@ -19,7 +22,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add INTL Invoice successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add INTL Invoice")
-    public void AddIntlInvoiceTest() throws InterruptedException {
+    public void VerifyIntlInvoiceCreation() throws InterruptedException {
 
         log = LogManager.getLogger(IntlInvoiceAddTest.class);
         log.info("Starting INTL INV Add Test from Billing Center Tab.");
@@ -61,20 +64,42 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
-        int totalProducts = 15;
+        List<String> productNames = Arrays.asList(
+                "80210 - 2% Disbursement Fee",
+                "80210 - Additional Customs Line",
+                "80210 - Additional HS Code Charge",
+                "80299 - Administration fee",
+                "80208 - Air Shipping Fee",
+                "80200 - All in handling",
+                "80220 - CBAM Filing Charge",
+                "80220 - CBAM Lines",
+                "23016 - CBAM Tax",
+                "43600 - Claim on Cargo (Value)",
+                "23011 - Container Trucking",
+                "80200 - Contract DDP service (Air) Cargo",
+                "80210 - Customs Declaration",
+                "80200 - DDP Service 20 FT Container",
+                "80200 - DDP Service 40 FT Container",
+                "80200 - DDP Service 45 FT Container",
+                "23013 - Delivery / DPD Express Parcels (Value)",
+                "23011 - Delivery / Logistics payable (Value)",
+                "23012 - Delivery/UPS Express Parcels (Value)",
+                "80299 - Detention / Demurrage"
+        );
 
-        for (int i = 1; i <= totalProducts; i++) {
-            if (i > 10) {
+        for (int i = 1; i <= productNames.size(); i++) {
+            if (i > pageObjectManager.getBillingCenterPage().getPidDropdownsCount()) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
 
-            pageObjectManager.getBillingCenterPage()
-                    .selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
+            String product = productNames.get(i - 1);
+
+            pageObjectManager.getBillingCenterPage().selectPidDropdownByIndexValue(i, product, product);
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();
-        Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Finish Button.");
+        log.info("Scrolled to Finish Button after selecting all products.");
+        Thread.sleep(2000);
 
         pageObjectManager.getBillingCenterPage().clickFinishINVButton();
         log.info("Clicked Finish INV Button");

@@ -21,7 +21,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add EU Invoice successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
-    public void AddEulInvoiceTest() throws InterruptedException {
+    public void VerifyEUInvoiceCreation() throws InterruptedException {
 
         log = LogManager.getLogger(EuInvoiceAddTest.class);
         log.info("Starting EU INV Add Test from Billing Center Tab");
@@ -55,8 +55,8 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-        pageObjectManager.getBillingCenterPage().selectInvoiceType();
-        log.info("Selected 'Amazon Brokerage'  Invoice Type");
+/*        pageObjectManager.getBillingCenterPage().selectInvoiceType();
+        log.info("Selected 'Amazon Brokerage'  Invoice Type");*/
 
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
@@ -91,7 +91,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
             }
 
             pageObjectManager.getBillingCenterPage()
-                    .selectPidDropdownByIndex(i, "80210 - 2% Disbursement Fee");
+                    .selectEUPidByIndex(i);
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();
