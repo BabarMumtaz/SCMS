@@ -91,10 +91,8 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
             if (i > pageObjectManager.getBillingCenterPage().getPidDropdownsCount()) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
-
             String product = productNames.get(i - 1);
-
-            pageObjectManager.getBillingCenterPage().selectPidDropdownByIndexValue(i, product, product);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, productNames.get(i - 1));
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();

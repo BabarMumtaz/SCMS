@@ -89,12 +89,13 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
             if (i > 10) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
-
-            pageObjectManager.getBillingCenterPage()
-                    .selectEUPidByIndex(i);
+            pageObjectManager.getBillingCenterPage().selectEUPidByIndex(i);
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();
+        log.info("Scrolled to Finish Button after selecting all products.");
+
+        pageObjectManager.getBillingCenterPage().clickFinishINVButton();
         log.info("Clicked Finish INV Button");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
