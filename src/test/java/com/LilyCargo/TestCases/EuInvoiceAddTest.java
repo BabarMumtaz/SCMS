@@ -6,8 +6,12 @@ import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class EuInvoiceAddTest extends TestBeforeAndAfter {
@@ -83,13 +87,20 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Finish Button.");*/
 
-        int totalProducts = 15;
+        List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3, 4);
+        int totalProducts = 33;
+        String vatValue = "2";
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
         for (int i = 1; i <= totalProducts; i++) {
             if (i > 10) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
             pageObjectManager.getBillingCenterPage().selectEUPidByIndex(i);
+
+            if (vatApplicableIndexes.contains(i)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
+            }
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();

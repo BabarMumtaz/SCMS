@@ -83,17 +83,23 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
                 "80200 - DDP Service 40 FT Container",
                 "80200 - DDP Service 45 FT Container",
                 "23013 - Delivery / DPD Express Parcels (Value)",
-                "23011 - Delivery / Logistics payable (Value)",
-                "23012 - Delivery/UPS Express Parcels (Value)",
-                "80299 - Detention / Demurrage"
+                "23011 - Delivery / Logistics payable (Value)"
         );
+
+        List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3);
+        String vatValue = "2";
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
         for (int i = 1; i <= productNames.size(); i++) {
             if (i > 10) {
                 pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
             }
             String product = productNames.get(i - 1);
-            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, product);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, product, scrollContainer);
+            // Step 2: If VAT applies to this row, select VAT
+            if (vatApplicableIndexes.contains(i)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
+            }
         }
 
         pageObjectManager.getBillingCenterPage().scrollToFinishButton();

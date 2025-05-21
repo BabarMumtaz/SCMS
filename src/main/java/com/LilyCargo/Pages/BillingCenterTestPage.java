@@ -135,14 +135,33 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//div[@id='select-PID']")
     List<WebElement> pidDropdownsList;
 
+    @FindBy(xpath = "//ul[@role='listbox']")
+    WebElement pidDropdownsListBox;
+
+    @FindBy(xpath = "//li[@role='option']")
+    WebElement pidDropdownsListBoxOption;
+
     @FindBy(xpath = "//li[text()='80210 - 2% Disbursement Fee']")
     WebElement pidINTLDropdownValue;
 
-    @FindBy(xpath = "//li[text()='80120 - ACU - Trading Standards']")
+    @FindBy(xpath = "//li[text()='80110 - B2C Customs Entry']")
     WebElement pidEUDropdownValue;
 
     @FindBy(xpath = "//input[@name='products[2].description']")
     WebElement pidDropdownDescription;
+
+    @FindBy(xpath = "(//div[@id='select-VAT Code'])")
+    List<WebElement> vatDropdownList;
+
+    //label[contains(text(),'VAT Code')]
+    @FindBy(xpath = "//label[contains(text(),'VAT Code')]")
+    List<WebElement> vatDropdownText;
+
+    @FindBy(xpath = "(//div[@id='select-VAT Code'])[1]")
+    WebElement vatDropdown;
+
+    @FindBy(xpath = "//li[text()='2']")
+    WebElement vatDropdownValue;
 
     @FindBy(xpath = "//button[text()='+ Add Row']")
     WebElement addRowButton;
@@ -466,6 +485,7 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(valueElement)).click();
 
         log.info("Selected Product " + productName + " in dropdown #" + index);
+
     }
 
     public void selectINTLPidByIndex(int index) {
@@ -476,38 +496,25 @@ public class BillingCenterTestPage {
         selectDropdownByIndex( index, pidEUDropdownValue, "EU Product", productListContainer);
     }
 
+    public void selectVat() {
+        selectDropdownValue(vatDropdown, vatDropdownValue);
+    }
 
-/*    public void selectPidDropdownByIndex(int index, String productName) {
-        WebElement dropdown = pidDropdownsList.get(index - 1); // zero-based indexing
-
-        // Scroll the dropdown into view within its container
-        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
-
-        // Click and select the value
-        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-        executor.executeScript("arguments[0].scrollIntoView(true);", pidDropdownValue);
-        wait.until(ExpectedConditions.elementToBeClickable(pidDropdownValue)).click();
-
-        log.info("Selected product" + productName + " in Product #" + index);
-    }*/
-
-
-    public void selectDropdownByIndexValue(int index, String valueText) {
+    public void selectDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
 
         // Scroll to dropdown
         executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
 
+        wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBox));
 
-        WebElement dropdownOptionsContainer = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.MuiMenu-list"))
-        );
+        //wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBoxOption));
 
+        wait.until(ExpectedConditions.visibilityOfAllElements(pidDropdownsListBoxOption));
 
         // Find and click value
-        WebElement value = wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+        WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
 
         executor.executeScript("arguments[0].scrollIntoView(true);", value);
         wait.until(ExpectedConditions.elementToBeClickable(value)).click();
@@ -515,6 +522,27 @@ public class BillingCenterTestPage {
         log.info("Selected value '" + valueText + "' at dropdown #" + index);
     }
 
+
+    public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
+        WebElement vatDropdown = vatDropdownList.get(index - 1); // 1-based to 0-based
+
+        // Scroll into view and click the VAT dropdown
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, vatDropdown);
+        wait.until(ExpectedConditions.elementToBeClickable(vatDropdown)).click();
+
+        // Force click via JS to avoid label overlap
+       // executor.executeScript("arguments[0].click();", vatDropdown);
+
+        // Now locate the VAT value dynamically
+        WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+
+        wait.until(ExpectedConditions.visibilityOfAllElements(vatDropdownList));
+
+        executor.executeScript("arguments[0].scrollIntoView(true);", value);
+        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
+        log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
+    }
 
 /*    public void selectINTLPiD() {
         selectDropdownValueByIndex(pidDropdownsList, pidINTLDropdownValue);
@@ -525,24 +553,6 @@ public class BillingCenterTestPage {
     }*/
 
    // Use this method with multiple dropdown values, pass the value locator text too:
-/*     public void selectPidDropdownByIndexValue(int index, String valueText, String productName) {
-        // Index is 1-based; adjust for list (0-based)
-        WebElement dropdown = pidDropdownsList.get(index - 1);
-
-        // Scroll into the product list container (not full page)
-        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
-
-        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-
-        // Build dynamic XPath for value (not hardcoded)
-        WebElement value = wait.until(ExpectedConditions
-            .presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
-
-        executor.executeScript("arguments[0].scrollIntoView(true);", value);
-        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
-
-        log.info("Selected " + productName + " in Product #" + index);
-    }*/
 
     public List<WebElement> getPidDropdownList() {
         return pidDropdownsList;
