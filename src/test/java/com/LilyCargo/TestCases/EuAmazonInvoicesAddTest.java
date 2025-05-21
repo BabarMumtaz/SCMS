@@ -1,6 +1,5 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
@@ -11,23 +10,23 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-
-public class EuInvoiceAddTest extends TestBeforeAndAfter {
+public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully using Standard INV Type", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add EU Invoice successfully using Standard INV Type")
+    @Description("Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to add EU Invoice successfully using Standard INV Type")
+    @Story("As a user, I should be able to add EU Invoice successfully using Amazon Brokerage INV Type")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
-    public void VerifyEUInvoiceCreation() throws InterruptedException {
+    public void VerifyEUAmazonBrokerageInvoiceCreation() throws InterruptedException {
 
-        log = LogManager.getLogger(EuInvoiceAddTest.class);
+        log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
         log.info("Starting EU INV Add Test from Billing Center Tab");
 
         // Click on the freight ID
@@ -59,8 +58,10 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-/*        pageObjectManager.getBillingCenterPage().selectInvoiceType();
-        log.info("Selected 'Amazon Brokerage'  Invoice Type");*/
+        pageObjectManager.getBillingCenterPage().selectAmazonBrokerageInvoiceType();
+        log.info("Selected 'Amazon Brokerage'  Invoice Type");
+
+        Thread.sleep(1000);
 
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
@@ -73,22 +74,32 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
-        pageObjectManager.getBillingCenterPage().enterGraceDays("60");
+        pageObjectManager.getBillingCenterPage().enterGraceDays("21");
         log.info("Entered Grace Days");
 
-        List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3, 4);
-        int totalProducts = 33;
+        List<String> productNames = Arrays.asList(
+                "80120 - CEC - Export Customs Clearance",
+                "23016 - CBAM TAX",
+                "80120 - CBAM 3+ HS Lines",
+                "80120 - CBAM Filing Charge",
+                "80199 - PGH - Partner Government Agency Handling"
+        );
+
+        List<Integer> vatApplicableIndexes = Arrays.asList(0, 2);
         String vatValue = "2";
         WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
-        for (int i = 1; i <= totalProducts; i++) {
-            if (i > 10) {
-                pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRow();
-            }
-            pageObjectManager.getBillingCenterPage().selectEUPidByIndex(i);
+        // Start from PID row 4
+        int startingRowIndex = 4;
 
-            if (vatApplicableIndexes.contains(i)) {
-                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
+        for (int j = 0; j < productNames.size(); j++) {
+            int currentRow = startingRowIndex + j;
+
+            String product = productNames.get(j);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(currentRow, product, scrollContainer);
+
+            if (vatApplicableIndexes.contains(j)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(currentRow, vatValue, scrollContainer);
             }
         }
 

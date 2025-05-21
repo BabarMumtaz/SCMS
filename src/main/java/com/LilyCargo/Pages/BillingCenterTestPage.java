@@ -60,7 +60,10 @@ public class BillingCenterTestPage {
 
     // STANDARD, AMAZON BROKERAGE INV, AMAZON DUTY INV, and CREDIT INV
     @FindBy(xpath = "//li[text()='AMAZON BROKERAGE INV']")
-    WebElement invoiceTypeDropdownValue;
+    WebElement invoiceAmzBrokerageTypeDropdownValue;
+
+    @FindBy(xpath = "//li[text()='AMAZON BROKERAGE INV']")
+    WebElement invoiceAmzDutyTypeDropdownValue;
 
     @FindBy(xpath = "//input[@name='remarks']")
     WebElement remarksField;
@@ -398,8 +401,12 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(clientDropdownValue)).click();
     }
 
-    public void selectInvoiceType() {
-        selectDropdownValue(invoiceTypeDropdown, invoiceTypeDropdownValue);
+    public void selectAmazonBrokerageInvoiceType() {
+        selectDropdownValue(invoiceTypeDropdown, invoiceAmzBrokerageTypeDropdownValue);
+    }
+
+    public void selectAmazonDutyInvoiceType() {
+        selectDropdownValue(invoiceTypeDropdown, invoiceAmzDutyTypeDropdownValue);
     }
 
     public void enterRemarks(String text) {
@@ -522,7 +529,6 @@ public class BillingCenterTestPage {
         log.info("Selected value '" + valueText + "' at dropdown #" + index);
     }
 
-
     public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
         WebElement vatDropdown = vatDropdownList.get(index - 1); // 1-based to 0-based
 
@@ -552,8 +558,6 @@ public class BillingCenterTestPage {
         selectDropdownValueByIndex(pidDropdownsList, pidEUDropdownValue);
     }*/
 
-   // Use this method with multiple dropdown values, pass the value locator text too:
-
     public List<WebElement> getPidDropdownList() {
         return pidDropdownsList;
     }
@@ -580,7 +584,6 @@ public class BillingCenterTestPage {
         WebElement newDropdown = pidDropdownsList.get(pidDropdownsList.size() - 1);
         wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
-
 
     public void clickPidDropdownDescription() {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();

@@ -101,7 +101,7 @@ public class FakeDataUtil {
     }
 
     public static String getRemarks() {
-        return fakerEN.lorem().characters(100);
+        return fakerEN.lorem().sentence(15); // Generates ~15 words
     }
 
     // Returns current date split into day, month, and year for Invoice field
