@@ -116,9 +116,6 @@ public class ShipperTestPage {
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveShipperNew;
 
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement alertPopupDP;
-
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Method to capture the page heading
@@ -242,9 +239,5 @@ public class ShipperTestPage {
 
     public void clickSaveShipperNew() {
         saveShipperNew.click();
-    }
-
-    public void clickOnAlertPopupDP() {
-        wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
     }
 }
