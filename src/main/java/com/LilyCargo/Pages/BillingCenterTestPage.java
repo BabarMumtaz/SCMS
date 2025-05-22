@@ -559,21 +559,21 @@ public class BillingCenterTestPage {
         salePrice.sendKeys(text);
     }
 
-    public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) {
+    public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
         WebElement saleInput = scrollContainer.findElement(
                 By.xpath(".//input[@name='products[" + (rowIndex - 1) + "].sale']")
         );
 
         wait.until(ExpectedConditions.visibilityOf(saleInput));
-        wait.until(ExpectedConditions.elementToBeClickable(saleInput));
 
         // Scroll into view if necessary (optional for hidden containers)
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", saleInput);
+        executor.executeScript("arguments[0].scrollIntoView(true);", saleInput);
 
         // Clear and enter value
         actions.moveToElement(saleInput).click().keyDown(Keys.CONTROL).sendKeys("a")
                 .keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).perform();
-
+        saleInput.clear();
+        Thread.sleep(2000);
         saleInput.sendKeys(amountValue);
 
         log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
