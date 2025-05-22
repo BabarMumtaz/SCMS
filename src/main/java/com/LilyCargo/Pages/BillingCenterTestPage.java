@@ -62,7 +62,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//li[text()='AMAZON BROKERAGE INV']")
     WebElement invoiceAmzBrokerageTypeDropdownValue;
 
-    @FindBy(xpath = "//li[text()='AMAZON BROKERAGE INV']")
+    @FindBy(xpath = "//li[text()='AMAZON DUTY INV']")
     WebElement invoiceAmzDutyTypeDropdownValue;
 
     @FindBy(xpath = "//input[@name='remarks']")
@@ -165,6 +165,9 @@ public class BillingCenterTestPage {
 
     @FindBy(xpath = "//li[text()='2']")
     WebElement vatDropdownValue;
+
+    @FindBy(xpath = "//input[@name='houseBLNo']")
+    WebElement salePrice;
 
     @FindBy(xpath = "//button[text()='+ Add Row']")
     WebElement addRowButton;
@@ -549,6 +552,34 @@ public class BillingCenterTestPage {
 
         log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
     }
+
+    public void enterSalePrice(String text) {
+        actions.click(salePrice).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        salePrice.sendKeys(text);
+    }
+
+    public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) {
+        WebElement saleInput = scrollContainer.findElement(
+                By.xpath(".//input[@name='products[" + (rowIndex - 1) + "].sale']")
+        );
+
+        wait.until(ExpectedConditions.visibilityOf(saleInput));
+        wait.until(ExpectedConditions.elementToBeClickable(saleInput));
+
+        // Scroll into view if necessary (optional for hidden containers)
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", saleInput);
+
+        // Clear and enter value
+        actions.moveToElement(saleInput).click().keyDown(Keys.CONTROL).sendKeys("a")
+                .keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).perform();
+
+        saleInput.sendKeys(amountValue);
+
+        log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
+    }
+
+
 
 /*    public void selectINTLPiD() {
         selectDropdownValueByIndex(pidDropdownsList, pidINTLDropdownValue);

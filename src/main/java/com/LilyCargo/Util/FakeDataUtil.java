@@ -126,5 +126,11 @@ public class FakeDataUtil {
         return prefix + "-" + invoicePart;
     }
 
+    public static String getRandomSaleAmount() {
+        double amount = fakerEN.number().randomDouble(2, 10, 100); // 2 decimal places, range 10–100
+        return String.format("%.2f", amount); // ensures two decimal places
+    }
+
+
 
 }

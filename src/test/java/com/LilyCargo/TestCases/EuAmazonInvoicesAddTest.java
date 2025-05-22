@@ -10,14 +10,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression"})
+    @Test(priority = 0, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression",}, enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type")
     @Epic("EP001")
@@ -27,7 +26,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
     public void VerifyEUAmazonBrokerageInvoiceCreation() throws InterruptedException {
 
         log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
-        log.info("Starting EU INV Add Test from Billing Center Tab");
+        log.info("Starting EUAmazonBrokerage INV Add Test from Billing Center Tab");
 
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
@@ -110,7 +109,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log.info("Clicked Finish INV Button");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+        log.info("Success Alert Message 1st Time: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
@@ -118,5 +117,112 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         // Log out after the test
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
+    }
+
+//--------------------------------------------------------------------------------------------
+
+    @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully using Amazon DUTY INV Type", groups = {"smoke", "regression"})
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can add EU Invoice successfully using Amazon DUTY INV Type")
+    @Epic("EP001")
+    @Feature("Feature:004")
+    @Story("As a user, I should be able to add EU Invoice successfully using Amazon DUTY INV Type")
+    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
+    public void VerifyEUAmazonDutyInvoiceCreation() throws InterruptedException {
+
+        log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
+        log.info("Starting EuAmazon Duty Invoice Add Test from Billing Center Tab");
+
+        // Click on the freight ID
+        pageObjectManager.getFreightListing().clickOnFreightID();
+        log.info("Clicked on the 1st row FreightID 2nd Time");
+
+        // Switch to the new tab
+        pageObjectManager.getFreightListing().switchToNewTab();
+        log.info("Switched to the new tab 2nd Time");
+
+        // Check if the edit wrapper is displayed
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        log.info("Heading 2nd Time: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+
+        pageObjectManager.getFreightDetail().clickBillingCenterTab();
+        log.info("Clicked Billing Center Tab ");
+
+        //----------------------------------EU Invoice----------------------------------
+
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isEuInvTabDisplayed(), "EU Tab Not Displayed");
+        log.info("Heading 2nd Time: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
+
+        pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
+        log.info("Clicked EU INV Tab for Amazon Duty INV Type");
+
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
+        log.info("Heading 2nd Time: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+
+        pageObjectManager.getBillingCenterPage().selectClient();
+        log.info("Selected Amazon EU SARL, Dutch Branch Client for Amazon Duty INV Type");
+
+        pageObjectManager.getBillingCenterPage().selectAmazonDutyInvoiceType();
+        log.info("Selected 'Amazon Duty'  Invoice Type");
+
+        Thread.sleep(1000);
+
+        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
+        log.info("Entered Invoice Remarks Text for Amazon Duty INV Type");
+
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered EU Invoice DATE for Amazon Duty INV Type");
+
+        // Enter the invoice number
+        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
+        log.info("Entered Invoice Number for Amazon Duty INV Type");
+
+        pageObjectManager.getBillingCenterPage().enterGraceDays("21");
+        log.info("Entered Grace Days for Amazon Duty INV Type");
+
+        List<String> productNames = Arrays.asList(
+                "23015 - IVT - Import duty ( to replace VAT)",
+                "23015 - DUT - Duty",
+                "23016 - VAT - VAT fees"
+        );
+
+        List<Integer> vatApplicableIndexes = Arrays.asList(0, 2);
+        String vatValue = "2";
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
+
+        // Start from PID row 4
+        int startingRowIndex = 4;
+
+        for (int j = 0; j < productNames.size(); j++) {
+            int currentRow = startingRowIndex + j;
+
+            String product = productNames.get(j);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(currentRow, product, scrollContainer);
+
+            if (vatApplicableIndexes.contains(j)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(currentRow, vatValue, scrollContainer);
+            }
+
+            // Enter random Sale amount using Faker
+            String randomSaleAmount = FakeDataUtil.getRandomSaleAmount();
+            pageObjectManager.getBillingCenterPage().enterSaleAmountByRowIndex(currentRow, randomSaleAmount, scrollContainer);
+        }
+
+        pageObjectManager.getBillingCenterPage().scrollToFinishButton();
+        log.info("Scrolled to Finish Button after selecting all products for Amazon Duty INV Type");
+
+        pageObjectManager.getBillingCenterPage().clickFinishINVButton();
+        log.info("Clicked Finish INV Button for Amazon Duty INV Type");
+
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Success Alert Message 2nd Time: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+
+        pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup Cross Icon for Amazon Duty INV Type");
+
+        // Log out after the test
+        pageObjectManager.getLoginPage().logout();
+        log.info("Logged out successfully. Again");
     }
 }
