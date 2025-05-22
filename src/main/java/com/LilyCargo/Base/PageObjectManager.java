@@ -17,6 +17,7 @@ public class PageObjectManager {
     private CarrierListingTestPage carrierListing;
     private ClientTestPage clientPage;
     private ShipperTestPage shippersPage;
+    private ShipperListingPage shipperListing;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
@@ -63,6 +64,10 @@ public class PageObjectManager {
 
     public ShipperTestPage getShippersPage() {
         return (shippersPage == null) ? shippersPage = PageFactory.initElements(driver, ShipperTestPage.class) : shippersPage;
+    }
+
+    public ShipperListingPage getShipperListing() {
+        return (shipperListing == null) ? shipperListing = PageFactory.initElements(driver, ShipperListingPage.class) : shipperListing;
     }
 
     public RemarksTestPage getRemarksPage() {

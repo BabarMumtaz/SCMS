@@ -33,23 +33,18 @@ public class CarrierListingTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    @CacheLookup
     @FindBy(xpath = "//table[@id='grid']/tbody/tr")
     List<WebElement> carrierListRecords;
 
-    @CacheLookup
     @FindBy(xpath = "//table[@id='grid'][1]/tbody/tr[1]/td[3]")
     WebElement addressCellLV;
 
-    @CacheLookup
     @FindBy(xpath = "//img[@alt='View'][1]")
     WebElement viewCarrierIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//img[@alt='Edit'][1]")
     WebElement editCarrierIcon;
 
-    @CacheLookup
     @FindBy(css = "button[type='button'] p")
     WebElement editCarrierIconFromDetail;
 

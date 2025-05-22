@@ -80,7 +80,10 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getShippersPage().clickSaveShipperBack();
         log.info("Click Save Shipper Button");
 
-        pageObjectManager.getShippersPage().clickOnAlertPopupDP();
+        Assert.assertTrue(pageObjectManager.getShipperListing().isShipperSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getShipperListing().getShipperSuccessAlertMessage());
+
+        pageObjectManager.getShipperListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
         // Log out after the test

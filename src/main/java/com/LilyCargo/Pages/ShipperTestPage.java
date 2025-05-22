@@ -6,7 +6,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,115 +35,87 @@ public class ShipperTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    @CacheLookup
     @FindBy(xpath = "//h2[text()='Shippers']")
     WebElement shipperPageHeading;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Add Shipper']")
     WebElement addShipperBtn;
 
-    @CacheLookup
     @FindBy(xpath = "//h5[text()='Shipper']")
     WebElement shipperAddPageHeading;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='storeFront']")
     WebElement storeFront;
 
-    @CacheLookup
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement exportCompanyDropdown;
 
-    @CacheLookup
     @FindBy(xpath = "//li[contains(.,'HT GARDEN LEISURE IMPORT AND EXPORT CO.,LTD')]")
     WebElement exportCompanyDropDownValue;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='name']")
     WebElement shipperName;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='address1']")
     WebElement shipperAddress1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='address2']")
     WebElement shipperAddress2;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='zipCity']")
     WebElement zipCity;
 
-    @CacheLookup
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
     WebElement countryDropDown;
 
-    @CacheLookup
     @FindBy(xpath = "//li[contains(.,'CANADA')]")
     WebElement countryDropDownValue;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='email1']")
     WebElement shipperEmail1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='email2']")
     WebElement shipperEmail2;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='tel1']")
     WebElement shipperTelephoneNumber1;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='tel2']")
     WebElement shipperTelephoneNumber2;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='masterId']")
     WebElement shipperMasterId;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='iorId']")
     WebElement shipperIorId;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='shipperId']")
     WebElement shipperId;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='emails[0].label']")
     WebElement extraEmailLabel;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='emails[0].value']")
     WebElement extraEmailValue;
 
-    @CacheLookup
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[12]")
     WebElement extraAddressFieldCross;
 
-    @CacheLookup
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[12]")
     WebElement extraPhoneFieldCross;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='scmEmails']")
     WebElement shipperSCMEmail;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement saveShipperCancel;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Save & Back']")
     WebElement saveShipperBack;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveShipperNew;
 
-    @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement alertPopupDP;
 
