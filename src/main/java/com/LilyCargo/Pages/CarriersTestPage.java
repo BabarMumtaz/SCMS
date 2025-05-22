@@ -37,91 +37,63 @@ public class CarriersTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-	@CacheLookup
 	@FindBy(xpath = "//h2[text()='Carriers']")
 	WebElement carrierPageHeading;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Add Carrier']")
 	WebElement addCarrierBtn;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='ticker']")
 	WebElement ticker;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='name']")
 	WebElement carrierName;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='email1']")
 	WebElement carrierEmail1;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='email2']")
 	WebElement carrierEmail2;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='tel1']")
 	WebElement telephoneNumber1;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='tel2']")
 	WebElement telephoneNumber2;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='address1']")
 	WebElement address1;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='address2']")
 	WebElement address2;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='zipCity']")
 	WebElement zipCity;
 
-	@CacheLookup
 	@FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
 	WebElement countryDropDown;
 
-	@CacheLookup
 	@FindBy(xpath = "//li[contains(.,'CANADA')]")
 	WebElement countryDropDownValue;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='emails[0].label']")
 	WebElement extraEmailLabel;
 
-	@CacheLookup
 	@FindBy(xpath = "//input[@name='emails[0].value']")
 	WebElement extraEmailValue;
 
-	@CacheLookup
 	@FindBy(xpath = "(//*[name()='svg'][@role='img'])[12]")
 	WebElement extraAddressFieldCross;
 
-	@CacheLookup
 	@FindBy(xpath = "(//*[name()='svg'][@role='img'])[12]")
 	WebElement extraPhoneFieldCross;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Save & Back']")
 	WebElement saveCarrierBack;
 
-	@CacheLookup
 	@FindBy(xpath = "//button[text()='Save & New']")
 	WebElement saveCarrierNew;
 
-	@FindBy(xpath = "//div[contains(text(),'Carrier successfully created.')]")
-	WebElement addCarrierSuccessAlertMessage;
-
-	@FindBy(xpath = "//div[contains(text(),'Carrier successfully updated.')]")
-	WebElement updateCarrierSuccessAlertMessage;
-
-	@CacheLookup
-	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement alertPopupDP;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -239,23 +211,4 @@ public class CarriersTestPage {
 		saveCarrierNew.click();
 	}
 
-	public String getCarrierSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).getText();
-	}
-
-	public boolean isCarrierSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).isDisplayed();
-	}
-
-	public boolean isUpdateCarrierSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).isDisplayed();
-	}
-
-	public String getUpdatedCarrierSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).getText();
-	}
-
-	public void clickOnAlertPopupDP() {
-		wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
-	}
 }

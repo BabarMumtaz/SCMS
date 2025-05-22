@@ -77,7 +77,7 @@ public class ShipperTestPage {
     WebElement zipCity;
 
     @CacheLookup
-    @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
+    @FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
     WebElement countryDropDown;
 
     @CacheLookup

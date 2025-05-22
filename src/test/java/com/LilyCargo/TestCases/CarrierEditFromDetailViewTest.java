@@ -23,7 +23,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
     @Feature("Feature:002")
     @Story("As a user, I should be able to edit carrier successfully")
     @Step("Hit Site Url > Login with valid credentials > Detail Page of Carrier > Edit carrier")
-    public void EditCarrierTest() throws InterruptedException {
+    public void VerifyCarrierEditTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(CarrierEditFromDetailViewTest.class);
         log.info("Starting Carrier Edit Test from Freight Relations.");
@@ -66,10 +66,10 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
 
-        Assert.assertTrue(pageObjectManager.getCarriersPage().isUpdateCarrierSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarriersPage().getUpdatedCarrierSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getCarrierListing().isUpdateCarrierSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCarrierListing().getUpdatedCarrierSuccessAlertMessage());
 
-        pageObjectManager.getCarriersPage().clickOnAlertPopupDP();
+        pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
         // Log out after the test

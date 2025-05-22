@@ -53,6 +53,15 @@ public class CarrierListingTestPage {
     @FindBy(css = "button[type='button'] p")
     WebElement editCarrierIconFromDetail;
 
+    @FindBy(xpath = "//div[contains(text(),'Carrier successfully created.')]")
+    WebElement addCarrierSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Carrier successfully updated.')]")
+    WebElement updateCarrierSuccessAlertMessage;
+
+    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+    WebElement alertPopupDP;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Scroll to the bottom of the page
@@ -96,7 +105,6 @@ public class CarrierListingTestPage {
 
     public void clickOnEditCarrierIconFromDetail() {
         waitUntilElementClickable(editCarrierIconFromDetail).click();
-
     }
 
     public boolean isViewPageDisplayed() {
@@ -116,6 +124,26 @@ public class CarrierListingTestPage {
     // Utility method to wait until element is invisible
     private void waitUntilElementInvisible(By locator) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    public String getCarrierSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).getText();
+    }
+
+    public boolean isCarrierSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(addCarrierSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isUpdateCarrierSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getUpdatedCarrierSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(updateCarrierSuccessAlertMessage)).getText();
+    }
+
+    public void clickOnAlertPopupDP() {
+        wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
     }
 
 }

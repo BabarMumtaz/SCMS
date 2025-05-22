@@ -1,13 +1,13 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ShipperAddTest extends TestBaseClass {
+public class ShipperAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -18,7 +18,7 @@ public class ShipperAddTest extends TestBaseClass {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add SHIPPER successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add SHIPPER")
-    public void AddShipperTest() throws InterruptedException {
+    public void VerifyShipperAddTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(ShipperAddTest.class);
         log.info("Starting Shipper Add Test from Freight Relations Tab.");

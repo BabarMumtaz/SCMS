@@ -24,7 +24,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
     @Feature("Feature:003")
     @Story("As a user, I should be able to add carrier successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
-    public void AddCarrierTest() throws InterruptedException {
+    public void VerifyCarrierAddTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(CarrierAddTest.class);
         log.info("Starting Carrier Add Test from Freight Relations.");
@@ -77,10 +77,10 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().clickSaveCarrierBack();
         log.info("Click Save Carrier Button");
 
-        Assert.assertTrue(pageObjectManager.getCarriersPage().isCarrierSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarriersPage().getCarrierSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getCarrierListing().isCarrierSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Heading: " + pageObjectManager.getCarrierListing().getCarrierSuccessAlertMessage());
 
-        pageObjectManager.getCarriersPage().clickOnAlertPopupDP();
+        pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
         // Log out after the test
