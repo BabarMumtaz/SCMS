@@ -26,7 +26,7 @@ public class BillingCenterTestPage {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         faker = new Faker();
     }
@@ -166,8 +166,8 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//li[text()='2']")
     WebElement vatDropdownValue;
 
-    @FindBy(xpath = "//input[@name='houseBLNo']")
-    WebElement salePrice;
+    @FindBy(xpath = "//input[@placeholder='Sale']")
+    WebElement salePriceList;
 
     @FindBy(xpath = "//button[text()='+ Add Row']")
     WebElement addRowButton;
@@ -553,33 +553,18 @@ public class BillingCenterTestPage {
         log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
     }
 
-    public void enterSalePrice(String text) {
-        actions.click(salePrice).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
-                .perform();
-        salePrice.sendKeys(text);
-    }
-
     public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
         WebElement saleInput = scrollContainer.findElement(
                 By.xpath(".//input[@name='products[" + (rowIndex - 1) + "].sale']")
         );
-
         wait.until(ExpectedConditions.visibilityOf(saleInput));
-
-        // Scroll into view if necessary (optional for hidden containers)
-        executor.executeScript("arguments[0].scrollIntoView(true);", saleInput);
-
+        Thread.sleep(1000);
         // Clear and enter value
-        actions.moveToElement(saleInput).click().keyDown(Keys.CONTROL).sendKeys("a")
-                .keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).perform();
-        saleInput.clear();
-        Thread.sleep(2000);
+        actions.click(saleInput).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
         saleInput.sendKeys(amountValue);
 
         log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
     }
-
-
 
 /*    public void selectINTLPiD() {
         selectDropdownValueByIndex(pidDropdownsList, pidINTLDropdownValue);

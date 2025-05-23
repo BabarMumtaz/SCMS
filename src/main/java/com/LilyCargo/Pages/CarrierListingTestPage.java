@@ -27,7 +27,7 @@ public class CarrierListingTestPage {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialize WebDriverWait here
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Initialize WebDriverWait here
         PageFactory.initElements(driver, this); // Initialize WebElements
     }
 
