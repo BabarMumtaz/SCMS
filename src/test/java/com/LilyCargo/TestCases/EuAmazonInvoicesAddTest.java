@@ -16,7 +16,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 0, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression",}, enabled = false)
+    @Test(priority = 0, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression",}, enabled = true)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type")
     @Epic("EP001")
