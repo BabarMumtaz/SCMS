@@ -131,6 +131,8 @@ public class FakeDataUtil {
         return String.format("%.2f", amount); // ensures two decimal places
     }
 
-
-
+    public static String getAmountEur() {
+        int amount = fakerEN.number().numberBetween(1, 10);
+        return String.valueOf(amount);
+    }
 }

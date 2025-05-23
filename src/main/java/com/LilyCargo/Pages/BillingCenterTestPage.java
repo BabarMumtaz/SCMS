@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class BillingCenterTestPage {
     WebDriver driver;
@@ -26,7 +27,7 @@ public class BillingCenterTestPage {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
         faker = new Faker();
     }
@@ -183,13 +184,16 @@ public class BillingCenterTestPage {
 
     //PURCHASE ENTRY
 
-    @FindBy(xpath = "//input[@name='supplier")
+    @FindBy(xpath = "//th[text()='G/L Accounts']")
+    WebElement glAccountsSectionHeading;
+
+    @FindBy(xpath = "(//div[@id='select-Supplier'])")
     WebElement shipperDropdown;
 
     @FindBy(xpath = "//li[text()='BTT Multimodal Container Solutions B.V.']")
     WebElement shipperDropdownValue;
 
-    @FindBy(xpath = "//input[@name='InvoiceNumber']")
+    @FindBy(xpath = "//input[@name='invoiceNumber']")
     WebElement invoiceNumberPE;
 
     @FindBy(xpath = "//input[@name='invoiceDate']")
@@ -198,18 +202,23 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//input[@name='totalAmount']")
     WebElement totalAmount;
 
-    @FindBy(id = "invoice_pdf")
+    @FindBy(xpath = "(//input[@id='invoice_pdf'])")
     WebElement attachPdfPE;
 
-    //@FindBy(id = "select-PID")
-    @FindBy(xpath = "(//div[@id='select-Select'])[1]")
-    WebElement glAccountDropdownPE;
+    @FindBy(xpath = "(//div[@id='select-Select'])")
+    List<WebElement> glAccountDropdownListPE;
+
+    @FindBy(xpath = "//ul[@role='listbox']")
+    WebElement glAccountDropdownListPEListBox;
+
+    @FindBy(xpath = "//li[@role='option']")
+    WebElement glAccountDropdownListPEListBoxOption;
 
     //(//li[contains(text(),'23025 - Duty')])[1]
     @FindBy(xpath = "//li[text()='23025 - Duty  payable (Credit)")
     WebElement glAccountDropdownValuePE;
 
-    @FindBy(xpath = "(//input[@placeholder='Manual'])[1]")
+    @FindBy(xpath = "(//input[@placeholder='Manual'])")
     WebElement amountEur;
 
     @FindBy(xpath = "//button[text()='Delete']")
@@ -232,6 +241,7 @@ public class BillingCenterTestPage {
 
     @FindBy(xpath = "//button[text()='Push All Invoices Amazon']")
     WebElement pushAllInvoicesAmazonButton;
+
 
     //EXTRA INVOICE
 
@@ -278,6 +288,9 @@ public class BillingCenterTestPage {
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
+
+    @FindBy(xpath = "//div[contains(text(),'Unable to connect to Exact')]")
+    WebElement errorAlertMessage;
 
     @FindBy(xpath = "(//img[contains(@alt,'Edit')])[1]")
     WebElement invoiceEditIcon;
@@ -454,35 +467,8 @@ public class BillingCenterTestPage {
     }
 
     public void scrollToElementInContainer() {
-        executor.executeScript(
-                "arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, pidDropdown5);
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, pidDropdown5);
     }
-
-/*
-    public void selectPidDropdown() {
-        selectDropdownValue(pidDropdown, pidDropdownValue);
-    }
-
-    public void selectPidDropdown2() {
-        selectDropdownValue(pidDropdown2, pidDropdownValue);
-    }
-
-    public void selectPidDropdown3() {
-        selectDropdownValue(pidDropdown3, pidDropdownValue);
-    }
-
-    public void selectPidDropdown4() {
-        selectDropdownValue(pidDropdown4, pidDropdownValue);
-    }
-
-    public void selectPidDropdown5() {
-        selectDropdownValue(pidDropdown5, pidDropdownValue);
-    }
-
-    public void selectPidDropdown6() {
-        selectDropdownValue(pidDropdown6, pidDropdownValue);
-    }
-*/
 
     public void selectDropdownByIndex( int index, WebElement valueElement, String productName, WebElement scrollContainer) {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
@@ -495,7 +481,6 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(valueElement)).click();
 
         log.info("Selected Product " + productName + " in dropdown #" + index);
-
     }
 
     public void selectINTLPidByIndex(int index) {
@@ -532,6 +517,30 @@ public class BillingCenterTestPage {
         log.info("Selected value '" + valueText + "' at dropdown #" + index);
     }
 
+    public void selectDropdownByIndexValueForPE(int index, String valueText, WebElement scrollContainer) {
+        WebElement dropdown = glAccountDropdownListPE.get(index - 1); // 1-based to 0-based
+
+        // Scroll to dropdown
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, dropdown);
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+        wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBox));
+
+        //wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBoxOption));
+
+        wait.until(ExpectedConditions.visibilityOfAllElements(pidDropdownsListBoxOption));
+
+        // Find and click value
+        //WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
+
+        WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(text(),'" + valueText + "')]")));
+
+        executor.executeScript("arguments[0].scrollIntoView(true);", value);
+        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
+        log.info("Selected GL Account value '" + valueText + "' at dropdown #" + index);
+    }
+
     public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
         WebElement vatDropdown = vatDropdownList.get(index - 1); // 1-based to 0-based
 
@@ -566,6 +575,19 @@ public class BillingCenterTestPage {
         log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
     }
 
+    public void enterAmountEURByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
+
+        WebElement amountEurInput = scrollContainer.findElement(
+                By.xpath(".//input[@name='ledgers[" + (rowIndex - 1) + "].amountEur']")
+        );
+        wait.until(ExpectedConditions.visibilityOf(amountEurInput));
+        Thread.sleep(1000);
+
+        amountEurInput.sendKeys(amountValue);
+
+        log.info("Entered Amount EUR '" + amountValue + "' at #" + rowIndex);
+    }
+
 /*    public void selectINTLPiD() {
         selectDropdownValueByIndex(pidDropdownsList, pidINTLDropdownValue);
     }
@@ -586,18 +608,65 @@ public class BillingCenterTestPage {
         return pidDropdownsList.size();
     }
 
+    public int getGlAccountDropdownsCount() {
+        return glAccountDropdownListPE.size();
+    }
+
+    public List<WebElement> getGlAccountDropdownListPE() {
+        return glAccountDropdownListPE;
+    }
+
+    public WebElement getAddRowButton() {
+        return addRowButton;
+    }
+
     public void clickAddRowAndWaitForNewRow() {
         int oldCount = getPidDropdownsCount();
         wait.until(ExpectedConditions.elementToBeClickable(addRowButton)).click();
-        log.info("Clicked Add Row button.");
+        log.info("Clicked Add Row button in INTL or EU INV.");
 
         wait.until(driver -> getPidDropdownsCount() > oldCount);
-        log.info("Verified new row added successfully.");
+        log.info("Verified new row added successfully in INTL or EU INV.");
 
-        log.info("New product row added. Total products now: " + getPidDropdownsCount());
+        log.info("New product row added in INTL or EU INV. Total products now: " + getPidDropdownsCount());
 
         // Optional: wait until the last dropdown is clickable
         WebElement newDropdown = pidDropdownsList.get(pidDropdownsList.size() - 1);
+        wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
+    }
+
+    public void clickAddRowAndWaitForNewRowPE() {
+        int oldCount = getGlAccountDropdownsCount();
+        wait.until(ExpectedConditions.elementToBeClickable(addRowButton)).click();
+        log.info("Clicked Add Row button in Purchase Entry.");
+
+        wait.until(driver -> getGlAccountDropdownsCount() > oldCount);
+        log.info("Verified new row added successfully.");
+
+        log.info("New product row added. Total products now: " + getGlAccountDropdownsCount());
+
+        // Optional: wait until the last dropdown is clickable
+        WebElement newDropdown = glAccountDropdownListPE.get(glAccountDropdownListPE.size() - 1);
+        wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
+    }
+
+    public void clickAddRowAndWaitForNewRowGeneric(
+            Supplier<Integer> getDropdownCount,
+            Supplier<List<WebElement>> getDropdownList,
+            WebElement addButton,
+            String contextLabel
+    ) {
+        int oldCount = getDropdownCount.get();
+        wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
+        log.info("Clicked Add Row button in " + contextLabel + ".");
+
+        wait.until(driver -> getDropdownCount.get() > oldCount);
+        log.info("Verified new row added successfully in " + contextLabel + ".");
+
+        log.info("New product row added in " + contextLabel + ". Total rows now: " + getDropdownCount.get());
+
+        // Wait until the new dropdown is clickable
+        WebElement newDropdown = getDropdownList.get().get(getDropdownList.get().size() - 1);
         wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
 
@@ -666,6 +735,14 @@ public class BillingCenterTestPage {
 
     //PURCHASE ENTRY METHODS
 
+    public String getGlAccountsSectionColHeading() {
+        return glAccountsSectionHeading.getText();
+    }
+
+    public boolean isGlAccountsSectionColHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(glAccountsSectionHeading)).isDisplayed();
+    }
+
     public void clickOnPurchaseEntryTab() {
         wait.until(ExpectedConditions.visibilityOf(purchaseEntryTab)).click();
     }
@@ -695,8 +772,10 @@ public class BillingCenterTestPage {
         totalAmount.sendKeys(text);
     }
 
-    public void selectGLAccountDropdown() {
-        selectDropdownValue(glAccountDropdownPE, glAccountDropdownValuePE);
+    public void uploadInvoicePDF(String filePath) throws InterruptedException {
+        //WebElement fileInput = driver.findElement(By.id("invoice_pdf"));
+        attachPdfPE.sendKeys(filePath);
+        log.info("Uploaded PDF file: " + filePath);
     }
 
     public void enterGlAccountAmount(String text) {
@@ -709,5 +788,13 @@ public class BillingCenterTestPage {
 
     public void clickPushPurchaseEntryButton() {
         wait.until(ExpectedConditions.elementToBeClickable(pushNewINVButton)).click();
+    }
+
+    public String getErrorAlertMessage() {
+        return errorAlertMessage.getText();
+    }
+
+    public boolean isErrorAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(errorAlertMessage)).isDisplayed();
     }
 }

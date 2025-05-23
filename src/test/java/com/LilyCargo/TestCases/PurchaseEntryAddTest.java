@@ -1,18 +1,22 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
 
-public class PurchaseEntryAddTest extends TestBaseClass {
+
+public class PurchaseEntryAddTest extends TestBeforeAndAfter {
 
     Logger log;
-    String InvoiceRemarksText = faker.lorem().characters(100);
 
     @Test(priority = 1, description = "Verify that a user can add Purchase Entry successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -21,14 +25,11 @@ public class PurchaseEntryAddTest extends TestBaseClass {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add Purchase Entry successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Purchase Entry")
-    public void AddPurchaseEntryTest() throws InterruptedException {
+    public void VerifyPurchaseEntryCreation() throws InterruptedException {
 
         // Check if login is successful
         log = LogManager.getLogger(PurchaseEntryAddTest.class);
-        log.info("Starting Purchase Entry Add Test from Detail Page.");
-
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
+        log.info("Starting Purchase Entry Add Test from Billing Center Tab.");
 
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
@@ -40,63 +41,85 @@ public class PurchaseEntryAddTest extends TestBaseClass {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
 
-        //----------------------------------Extra Invoice----------------------------------
+        //---------------------------------- Purchase Entry ----------------------------------
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPurchaseEntryTabDisplayed(), "Purchase Entry Tab Displayed Not Displayed");
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPurchaseEntryTabDisplayed(), "Purchase Entry Tab is Not Displayed");
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getPurchaseEntryTabName());
 
-        pageObjectManager.getBillingCenterPage().clickOnExtraInvTab();
-        log.info("Clicked Extra INV Tab");
+        pageObjectManager.getBillingCenterPage().clickOnPurchaseEntryTab();
+        log.info("Clicked Purchase Entry Tab");
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isGlAccountsSectionColHeadingDisplayed(), "Gl Accounts Section Column Heading Not Displayed");
+        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getGlAccountsSectionColHeading());
 
-        pageObjectManager.getBillingCenterPage().selectExtraInvClient();
-        log.info("Selected Amazon EU SARL, Dutch Branch Client");
-
-        pageObjectManager.getBillingCenterPage().selectExtraInvDate("02", "24", "2025");
-        log.info("Selected Extra Invoice DATE");
-
-//        // Generate the invoice number
-//        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-//        System.out.println("Generated Invoice Number: " + generatedInvoice);
+        pageObjectManager.getBillingCenterPage().selectPurchaseEntryShipper();
+        log.info("Selected 'BTT Multimodal Container Solutions B.V.' Shipper");
 
         // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");
+        pageObjectManager.getBillingCenterPage().enterPurchaseEntryNumber(FakeDataUtil.generateInvoiceNumber());
+        log.info("Entered Purchase Entry Invoice Number");
 
-        pageObjectManager.getBillingCenterPage().enterGraceDays("14");
-        log.info("Entered Grace Days");
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().selectPurchaseEntryDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered Purchase Entry DATE");
 
-        pageObjectManager.getBillingCenterPage().enterExtraInvRemarks(InvoiceRemarksText);
-        log.info("Entered Invoice Remarks Text");
+        pageObjectManager.getBillingCenterPage().enterPurchaseEntryTotalAmount(FakeDataUtil.getRandomSaleAmount());
+        log.info("Entered Total Amount");
 
-        pageObjectManager.getBillingCenterPage().selectLedgerTypeDropdown();
-        log.info("Selected Ledger Type");
+        String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\25Z-800016_LM24090910_PONU7928774_Amazon EU SARL, Dutch Branch.pdf";
+        pageObjectManager.getBillingCenterPage().uploadInvoicePDF(filePath);
+        log.info("Attached PDF file");
 
-        pageObjectManager.getBillingCenterPage().selectExtraInvType();
-        log.info("Selected Extra Invoice Type");
+/*        pageObjectManager.getBillingCenterPage().selectLedgerTypeDropdown();
+        log.info("Selected Ledger Type");*/
 
-        pageObjectManager.getBillingCenterPage().scrollToBottom();
-        Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Bottom");
+        List<String> productNames = Arrays.asList(
+                "23021 - Logistics Payable",
+                "23025 - Duty  payable (Credit)",
+                "23026 - Paid to third party on client behalf",
+                "43500 - Customs Fine",
+                "70008 - Shipping Purchase",
+                "71000 - Terminal and Cross Docking"
+        );
 
-/*        pageObjectManager.getBillingCenterPage().selectPidDropdown();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");*/
+        List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3);
+        String vatValue = "2";
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
-        pageObjectManager.getBillingCenterPage().scrollToSubmitButton();
-        Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Submit Button.");
+        for (int i = 1; i <= productNames.size(); i++) {
+            if (i > 5) {
+                pageObjectManager.getBillingCenterPage().clickAddRowAndWaitForNewRowGeneric(
+                        pageObjectManager.getBillingCenterPage()::getGlAccountDropdownsCount,
+                        () -> pageObjectManager.getBillingCenterPage().getGlAccountDropdownListPE(),
+                        pageObjectManager.getBillingCenterPage().getAddRowButton(),
+                        "Purchase Entry"
+                );
+            }
 
-        pageObjectManager.getBillingCenterPage().clickSubmitINVButton();
-        log.info("Clicked Submit INV Button");
+            String product = productNames.get(i - 1);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValueForPE(i, product, scrollContainer);
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+            if (vatApplicableIndexes.contains(i)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
+            }
+
+            String randomSaleAmount = FakeDataUtil.getAmountEur();
+            pageObjectManager.getBillingCenterPage().enterAmountEURByRowIndex(i, randomSaleAmount, scrollContainer);
+        }
+
+        pageObjectManager.getBillingCenterPage().scrollToPushPurchaseEntryButton();
+        log.info("Scrolled to Finish Button after selecting all products for Purchase Entry Type");
+
+        pageObjectManager.getBillingCenterPage().clickPushPurchaseEntryButton();
+        log.info("Clicked Finish INV Button for Purchase Entry Type");
+
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isErrorAlertMessageDisplayed(), "Error Alert Message is Different");
+        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getErrorAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
