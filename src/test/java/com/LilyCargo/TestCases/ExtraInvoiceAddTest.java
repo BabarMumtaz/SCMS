@@ -51,9 +51,10 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectExtraInvClient();
-        log.info("Selected Amazon EU SARL, Dutch Branch Client");
+        log.info("Selected 'A.I. Trading GmbH' Client");
 
-        pageObjectManager.getBillingCenterPage().selectExtraInvDate("02", "24", "2025");
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().selectExtraInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Selected Extra Invoice DATE");
 
 /*        // Generate the invoice number
@@ -64,10 +65,10 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
 
-        pageObjectManager.getBillingCenterPage().enterGraceDays("14");
-        log.info("Entered Grace Days");
+        pageObjectManager.getBillingCenterPage().enterGraceDays("7");
+        log.info("Entered Invoice Period/Grace Days");
 
-        pageObjectManager.getBillingCenterPage().enterExtraInvRemarks(InvoiceRemarksText);
+        pageObjectManager.getBillingCenterPage().enterExtraInvRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
 
         pageObjectManager.getBillingCenterPage().selectLedgerTypeDropdown();
