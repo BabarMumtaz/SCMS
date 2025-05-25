@@ -1,6 +1,6 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
@@ -8,10 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ExtraInvoiceAddTest extends TestBaseClass {
+public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
     Logger log;
-    String InvoiceRemarksText = faker.lorem().characters(100);
 
     @Test(priority = 1, description = "Verify that a user can add Extra Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -20,13 +19,10 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
     @Feature("Feature:004")
     @Story("As a user, I should be able to add Extra Invoice successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Extra Invoice")
-    public void AddExtraInvoiceTest() throws InterruptedException {
+    public void VerifyExtraInvoiceCreation() throws InterruptedException {
 
         log = LogManager.getLogger(ExtraInvoiceAddTest.class);
         log.info("Starting EXTRA INV Add Test from Billing Center Tab");
-
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
 
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
@@ -38,6 +34,7 @@ public class ExtraInvoiceAddTest extends TestBaseClass {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
