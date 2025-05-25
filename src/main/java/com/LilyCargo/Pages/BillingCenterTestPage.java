@@ -254,7 +254,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//input[@name='invoice_date']")
     WebElement invoiceDateEI;
 
-    @FindBy(xpath = "//input[@id='inv']")
+    @FindBy(xpath = "//input[@name='inv']")
     WebElement invoiceNumberEI;
 
     @FindBy(xpath = "//input[@name='remarks[0]']")
@@ -704,8 +704,8 @@ public class BillingCenterTestPage {
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
     }
 
-    public void selectExtraInvDate(String month,String day, String year) {
-        selectDate(invoiceDateEI, month, day, year);
+    public void selectExtraInvDate(String day, String month, String year) {
+        selectDate(invoiceDateEI, day, month, year);
     }
 
     // Method to enter invoice number into the invoiceNumber field

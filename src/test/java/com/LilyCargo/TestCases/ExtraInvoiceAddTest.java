@@ -5,8 +5,12 @@ import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
@@ -57,10 +61,6 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectExtraInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Selected Extra Invoice DATE");
 
-/*        // Generate the invoice number
-        String generatedInvoice = pageObjectManager.getBillingCenterPage().generateInvoiceNumber();
-        System.out.println("Generated Invoice Number: " + generatedInvoice);*/
-
         // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
@@ -77,15 +77,28 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectExtraInvType();
         log.info("Selected Extra Invoice Type");
 
-        pageObjectManager.getBillingCenterPage().scrollToBottom();
-        Thread.sleep(2000); // Replace with explicit wait if needed
-        log.info("Scrolled to Bottom");
+        List<String> productNames = Arrays.asList(
+                "80210 - 2% Disbursement Fee",
+                "80210 - Additional Customs Line",
+                "80210 - Additional HS Code Charge",
+                "80299 - Administration fee",
+                "80208 - Air Shipping Fee"
+        );
 
-/*        pageObjectManager.getBillingCenterPage().selectPidDropdown();
-        log.info("Selected 80210 - 2% Disbursement Fee Product");*/
+        List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3);
+        String vatValue = "2";
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
+
+        for (int i = 1; i <= productNames.size(); i++) {
+            String product = productNames.get(i - 1);
+            pageObjectManager.getBillingCenterPage().selectDropdownByIndexValue(i, product, scrollContainer);
+            // Step 2: If VAT applies to this row, select VAT
+            if (vatApplicableIndexes.contains(i)) {
+                pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
+            }
+        }
 
         pageObjectManager.getBillingCenterPage().scrollToSubmitButton();
-        Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit Button.");
 
         pageObjectManager.getBillingCenterPage().clickSubmitINVButton();
