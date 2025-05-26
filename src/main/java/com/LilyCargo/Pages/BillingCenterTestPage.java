@@ -470,24 +470,24 @@ public class BillingCenterTestPage {
         executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", productListContainer, pidDropdown5);
     }
 
-    public void selectDropdownByIndex( int index, WebElement valueElement, String productName, WebElement scrollContainer) {
+    public void selectDropdownByIndex( int index, WebElement valueElement, String productName, WebElement scrollContainer) throws InterruptedException {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
 
         // Scroll into view inside container
         executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", scrollContainer, dropdown);
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-
+Thread.sleep(1000);
         executor.executeScript("arguments[0].scrollIntoView(true);", valueElement);
         wait.until(ExpectedConditions.elementToBeClickable(valueElement)).click();
 
         log.info("Selected Product " + productName + " in dropdown #" + index);
     }
 
-    public void selectINTLPidByIndex(int index) {
+    public void selectINTLPidByIndex(int index) throws InterruptedException {
         selectDropdownByIndex( index, pidINTLDropdownValue, "INTL Product", productListContainer);
     }
 
-    public void selectEUPidByIndex(int index) {
+    public void selectEUPidByIndex(int index) throws InterruptedException {
         selectDropdownByIndex( index, pidEUDropdownValue, "EU Product", productListContainer);
     }
 
