@@ -5,7 +5,7 @@
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t]%-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="file" fileName="E:/TrainingFiles/SCMSlogsFile/log4j_2.log" append="false">
+        <File name="file" fileName="E:/ScriptLogFiles/log4j_2.log" append="false">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t]%-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
