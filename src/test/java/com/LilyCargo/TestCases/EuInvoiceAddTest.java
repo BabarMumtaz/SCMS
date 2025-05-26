@@ -77,7 +77,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Entered Grace Days");
 
         List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3, 4);
-        int totalProducts = 33;
+        int totalProducts = 20;
         String vatValue = "2";
         WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
