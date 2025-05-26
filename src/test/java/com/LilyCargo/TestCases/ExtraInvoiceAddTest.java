@@ -58,8 +58,8 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Selected 'A.I. Trading GmbH' Client");
 
         String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().selectExtraInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Selected Extra Invoice DATE");
+        pageObjectManager.getBillingCenterPage().enterExtraInvoiceDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered Purchase Entry DATE");
 
         // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
@@ -96,6 +96,14 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
             if (vatApplicableIndexes.contains(i)) {
                 pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
             }
+
+            String randomAmount = FakeDataUtil.getAmountEur();
+            pageObjectManager.getBillingCenterPage().enterAmountEInvoiceByRowIndex(i, randomAmount, scrollContainer);
+
+            // Enter random Sale amount using Faker
+            String randomSaleAmount = FakeDataUtil.getRandomSaleAmount();
+            pageObjectManager.getBillingCenterPage().enterSaleAmountByRowIndex(i, randomSaleAmount, scrollContainer);
+
         }
 
         pageObjectManager.getBillingCenterPage().scrollToSubmitButton();

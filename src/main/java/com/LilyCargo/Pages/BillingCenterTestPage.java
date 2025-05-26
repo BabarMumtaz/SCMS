@@ -429,13 +429,22 @@ public class BillingCenterTestPage {
         remarksField.sendKeys(text);
     }
 
-    private void selectDate(WebElement element, String month,String day, String year) {
+    private void selectDate(WebElement element, String day, String month, String year) {
         actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
     }
 
-    public void selectIntlEuInvDate(String day, String month, String year) {
+    public void enterIntlEuInvDate(String day, String month, String year) {
         selectDate(invDate, day, month, year);
     }
+
+    public void enterPurchaseEntryDate(String day, String month, String year) {
+        selectDate(invoiceDatePE, day, month, year);
+    }
+
+    public void enterExtraInvoiceDate(String day, String month, String year) {
+        selectDate(invoiceDateEI, day, month, year);
+    }
+
 
     // Method to enter invoice number into the invoiceNumber field
     public void enterInvoiceNumber(String invoice) {
@@ -495,7 +504,9 @@ Thread.sleep(1000);
         selectDropdownValue(vatDropdown, vatDropdownValue);
     }
 
-    public void selectDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
+    //-------------------------------------------------------------- selectDropdownByIndexValue Methods
+
+    public void selectDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) throws InterruptedException {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
 
         // Scroll to dropdown
@@ -507,6 +518,8 @@ Thread.sleep(1000);
         //wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBoxOption));
 
         wait.until(ExpectedConditions.visibilityOfAllElements(pidDropdownsListBoxOption));
+
+        Thread.sleep(500);
 
         // Find and click value
         WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[text()='" + valueText + "']")));
@@ -541,6 +554,48 @@ Thread.sleep(1000);
         log.info("Selected GL Account value '" + valueText + "' at dropdown #" + index);
     }
 
+
+    public void selectDropdownByIndexValueGeneric(
+            int index,
+            List<WebElement> dropdownList,
+            String valueText,
+            WebElement scrollContainer,
+            String contextLabel
+    ) {
+        WebElement dropdown = dropdownList.get(index - 1); // Convert 1-based to 0-based index
+
+        // Scroll to dropdown
+        executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", scrollContainer, dropdown);
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+
+        wait.until(ExpectedConditions.visibilityOf(pidDropdownsListBox));
+        wait.until(ExpectedConditions.visibilityOfAllElements(pidDropdownsListBoxOption));
+
+        // Handle contains vs exact match based on context (optional)
+        By valueLocator = By.xpath("//li[contains(text(),'" + valueText + "')]");
+
+        WebElement value = wait.until(ExpectedConditions.presenceOfElementLocated(valueLocator));
+        executor.executeScript("arguments[0].scrollIntoView(true);", value);
+        wait.until(ExpectedConditions.elementToBeClickable(value)).click();
+
+        log.info("Selected " + contextLabel + " value '" + valueText + "' at dropdown #" + index);
+    }
+
+    public void selectPEglAccountByIndexValue(int index, String valueText, WebElement scrollContainer) {
+        selectDropdownByIndexValueGeneric(index, glAccountDropdownListPE, valueText, scrollContainer, "GL Account");
+    }
+
+    public void selectEUPidByIndex(int index, String valueText, WebElement scrollContainer) throws InterruptedException {
+        selectDropdownByIndexValueGeneric(index, pidDropdownsList, valueText, scrollContainer, "EU Product");
+    }
+
+    public void selectINTLPidByIndex(int index, String valueText, WebElement scrollContainer) throws InterruptedException {
+        selectDropdownByIndexValueGeneric(index, pidDropdownsList, valueText, scrollContainer, "INTL Product");
+    }
+
+
+    //-------------------------------------------------------------- selectVatDropdownByIndexValue
+
     public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
         WebElement vatDropdown = vatDropdownList.get(index - 1); // 1-based to 0-based
 
@@ -562,18 +617,22 @@ Thread.sleep(1000);
         log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
     }
 
+    //-------------------------------------------------------------- enterSaleAmountByRowIndex
+
     public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
         WebElement saleInput = scrollContainer.findElement(
                 By.xpath(".//input[@name='products[" + (rowIndex - 1) + "].sale']")
         );
         wait.until(ExpectedConditions.visibilityOf(saleInput));
-        Thread.sleep(1000);
+        Thread.sleep(500);
         // Clear and enter value
         actions.click(saleInput).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
         saleInput.sendKeys(amountValue);
 
         log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
     }
+
+    //--------------------------------------------------------------
 
     public void enterAmountEURByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
 
@@ -586,6 +645,20 @@ Thread.sleep(1000);
         amountEurInput.sendKeys(amountValue);
 
         log.info("Entered Amount EUR '" + amountValue + "' at #" + rowIndex);
+    }
+
+
+    public void enterAmountEInvoiceByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
+
+        WebElement amountEurInput = scrollContainer.findElement(
+                By.xpath(".//input[@name='products[" + (rowIndex - 1) + "].amount']")
+        );
+        wait.until(ExpectedConditions.visibilityOf(amountEurInput));
+        Thread.sleep(1000);
+
+        amountEurInput.sendKeys(amountValue);
+
+        log.info("Entered Amount '" + amountValue + "' at #" + rowIndex);
     }
 
 /*    public void selectINTLPiD() {
@@ -619,6 +692,8 @@ Thread.sleep(1000);
     public WebElement getAddRowButton() {
         return addRowButton;
     }
+
+    //-------------------------------------------------------------- clickAddRowAndWaitForNew All Methods
 
     public void clickAddRowAndWaitForNewRow() {
         int oldCount = getPidDropdownsCount();
@@ -670,6 +745,8 @@ Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
 
+    //--------------------------------------------------------------
+
     public void clickPidDropdownDescription() {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();
     }
@@ -704,9 +781,7 @@ Thread.sleep(1000);
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
     }
 
-    public void selectExtraInvDate(String day, String month, String year) {
-        selectDate(invoiceDateEI, day, month, year);
-    }
+
 
     // Method to enter invoice number into the invoiceNumber field
     public void enterExtraInvoiceNumber(String invoice) {
@@ -757,10 +832,6 @@ Thread.sleep(1000);
 
     public void selectPurchaseEntryShipper() {
         selectDropdownValue(shipperDropdown, shipperDropdownValue);
-    }
-
-    public void selectPurchaseEntryDate(String month,String day, String year) {
-        selectDate(invoiceDatePE, month, day, year);
     }
 
     // Method to enter invoice number into the invoiceNumber field

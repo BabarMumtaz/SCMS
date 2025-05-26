@@ -66,7 +66,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log.info("Entered Invoice Remarks Text");
 
         String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered EU Invoice DATE");
 
         // Enter the invoice number
@@ -171,7 +171,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log.info("Entered Invoice Remarks Text for Amazon Duty INV Type");
 
         String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered EU Invoice DATE for Amazon Duty INV Type");
 
         // Enter the invoice number
@@ -203,7 +203,6 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
             if (vatApplicableIndexes.contains(j)) {
                 pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(currentRow, vatValue, scrollContainer);
             }
-
             // Enter random Sale amount using Faker
             String randomSaleAmount = FakeDataUtil.getRandomSaleAmount();
             pageObjectManager.getBillingCenterPage().enterSaleAmountByRowIndex(currentRow, randomSaleAmount, scrollContainer);

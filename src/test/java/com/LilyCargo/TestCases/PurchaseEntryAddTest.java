@@ -65,7 +65,7 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         log.info("Entered Purchase Entry Invoice Number");
 
         String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().selectPurchaseEntryDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        pageObjectManager.getBillingCenterPage().enterPurchaseEntryDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered Purchase Entry DATE");
 
         pageObjectManager.getBillingCenterPage().enterPurchaseEntryTotalAmount(FakeDataUtil.getRandomSaleAmount());
@@ -108,8 +108,8 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
                 pageObjectManager.getBillingCenterPage().selectVatDropdownByIndexValue(i, vatValue, scrollContainer);
             }
 
-            String randomSaleAmount = FakeDataUtil.getAmountEur();
-            pageObjectManager.getBillingCenterPage().enterAmountEURByRowIndex(i, randomSaleAmount, scrollContainer);
+            String randomAmount = FakeDataUtil.getAmountEur();
+            pageObjectManager.getBillingCenterPage().enterAmountEURByRowIndex(i, randomAmount, scrollContainer);
         }
 
         pageObjectManager.getBillingCenterPage().scrollToPushPurchaseEntryButton();

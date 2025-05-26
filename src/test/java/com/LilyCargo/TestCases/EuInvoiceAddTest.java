@@ -66,7 +66,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Entered Invoice Remarks Text");
 
         String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().selectIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered EU Invoice DATE");
 
         // Enter the invoice number
