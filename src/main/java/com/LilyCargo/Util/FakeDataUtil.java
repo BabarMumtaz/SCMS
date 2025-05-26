@@ -104,6 +104,10 @@ public class FakeDataUtil {
         return fakerEN.lorem().sentence(10); // Generates ~15 words
     }
 
+    public static String getRemarksInCharacters() {
+        return fakerEN.lorem().characters(40); // Generates ~15 words
+    }
+
     // Returns current date split into day, month, and year for Invoice field
     public static String[] getCurrentInvoiceDate() {
         LocalDate today = LocalDate.now();
