@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,39 +30,30 @@ public class IncidentsRegistrationTestPage {
         this.actions = new Actions(driver);
     }
 
-    @CacheLookup
     @FindBy(xpath = "//img[@alt='Add']")
     WebElement incidentsRegAddIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='Add Incidents Register']")
     WebElement incidentsRegPopupHeading;
 
-    @CacheLookup
     @FindBy(className = "btn-close")
     WebElement incidentsRegPopupCloseIcon;
 
-    @CacheLookup
     @FindBy(id = "problem")
     WebElement incidentsRegPopupProblemField;
 
-    @CacheLookup
     @FindBy(id = "solution")
     WebElement incidentsRegPopupSolutionField;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement submitIncidentsRegButton;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement cancelIncidentsRegButton;
 
-    @CacheLookup
-    @FindBy(id = "79vn6timw")
+    @FindBy(xpath = "//div[contains(text(),'Incident registered successfully')]")
     WebElement successAlertMessage;
 
-    @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 

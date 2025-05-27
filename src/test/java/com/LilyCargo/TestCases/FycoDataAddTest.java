@@ -1,6 +1,5 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;

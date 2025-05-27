@@ -211,6 +211,10 @@ public class FreightDetailTestPage {
 		return waitUtil.waitForElementToBeVisible(incidentsRegistrationTab).isDisplayed();
 	}
 
+	public String getIncidentsRegistrationTabText() {
+		return waitUtil.waitForElementToBeVisible(fycoDataTab).getText();
+	}
+
 	public void clickIncidentsRegistrationTab() {
 		waitUtil.waitForElementToBeClickable(incidentsRegistrationTab).click();
 	}

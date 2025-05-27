@@ -104,6 +104,10 @@ public class FakeDataUtil {
         return fakerEN.lorem().sentence(15); // Generates ~15 words
     }
 
+    public static String getIncidentsRegProblemSolution() {
+        return fakerEN.lorem().sentence(30); // Generates ~15 words
+    }
+
     public static String getRemarksInCharacters() {
         return fakerEN.lorem().characters(40); // Generates ~15 words
     }
