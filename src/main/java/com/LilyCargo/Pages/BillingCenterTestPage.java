@@ -442,6 +442,8 @@ public class BillingCenterTestPage {
     }
 
     public void enterExtraInvoiceDate(String day, String month, String year) {
+        //wait.until(ExpectedConditions.visibilityOf(invoiceDateEI));
+        wait.until(ExpectedConditions.elementToBeClickable(invoiceDateEI));
         selectDate(invoiceDateEI, day, month, year);
     }
 
@@ -781,8 +783,6 @@ Thread.sleep(1000);
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
     }
 
-
-
     // Method to enter invoice number into the invoiceNumber field
     public void enterExtraInvoiceNumber(String invoice) {
         invoiceNumberEI.sendKeys(invoice);
@@ -807,6 +807,14 @@ Thread.sleep(1000);
     public void clickSubmitINVButton() {
         wait.until(ExpectedConditions.elementToBeClickable(submitButtonEI)).click();
     }
+
+    public boolean isPidDropdownDisabled() {
+        String ariaDisabled = pidDropdown.getAttribute("aria-disabled");
+        String classAttr = pidDropdown.getAttribute("class");
+
+        return "true".equalsIgnoreCase(ariaDisabled) || classAttr.contains("Mui-disabled");
+    }
+
 
     //PURCHASE ENTRY METHODS
 

@@ -101,7 +101,7 @@ public class FakeDataUtil {
     }
 
     public static String getRemarks() {
-        return fakerEN.lorem().sentence(10); // Generates ~15 words
+        return fakerEN.lorem().sentence(15); // Generates ~15 words
     }
 
     public static String getRemarksInCharacters() {

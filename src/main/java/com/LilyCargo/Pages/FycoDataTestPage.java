@@ -31,75 +31,57 @@ public class FycoDataTestPage {
         this.actions = new Actions(driver);
     }
 
-    @CacheLookup
     @FindBy(id = "moal")
     WebElement fycoDataAddIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='New']")
     WebElement fycoDataPopupHeading;
 
-    @CacheLookup
     @FindBy(className = "btn-close")
     WebElement fycoDataPopupCloseIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='platoNumber']")
     WebElement platoNumberField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='articleNumber']")
     WebElement articleNumberField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='hsTaricNumber']")
     WebElement hsTaricNumberField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='productDescription']")
     WebElement productDescriptionField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='ctns']")
     WebElement ctnsNumberField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='pcs']")
     WebElement pcsField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='grossKG']")
     WebElement grossKGField;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='cvEuro']")
     WebElement cvEuroField;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement submitFycoDataButton;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement cancelFycoDataButton;
 
-    @CacheLookup
-    @FindBy(id = "sv88jm5lo")
+    @FindBy(xpath = "//div[contains(text(),'Fyco successfully added.')]")
     WebElement successAlertMessage;
 
-    @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//img[@alt='Edit']")
     WebElement fycoDataEditIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='Update']")
     WebElement fycoDataEditPopupHeading;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Update']")
     WebElement updateFycoDataButton;
 
@@ -167,11 +149,11 @@ public class FycoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(fycoDataPopupCloseIcon)).click();
     }
 
-    public String getSuccessAlertMessage() {
+    public String getFycoDataSuccessAlertMessage() {
         return successAlertMessage.getText();
     }
 
-    public boolean isSuccessAlertMessageDisplayed() {
+    public boolean isFycoDataSuccessAlertMessageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
     }
 

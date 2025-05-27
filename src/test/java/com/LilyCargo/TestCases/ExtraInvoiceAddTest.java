@@ -57,13 +57,13 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectExtraInvClient();
         log.info("Selected 'A.I. Trading GmbH' Client");
 
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterExtraInvoiceDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered Extra Invoice DATE");
-
         // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Invoice Number");
+
+        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+        pageObjectManager.getBillingCenterPage().enterExtraInvoiceDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
+        log.info("Entered Extra Invoice DATE");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Invoice Period/Grace Days");
@@ -111,6 +111,10 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().clickSubmitINVButton();
         log.info("Clicked Submit INV Button");
+
+        Thread.sleep(2000);
+
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
 
 /*        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Heading: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());

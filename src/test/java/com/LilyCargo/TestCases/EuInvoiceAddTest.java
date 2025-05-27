@@ -30,11 +30,9 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuInvoiceAddTest.class);
         log.info("Starting EU INV Add Test from Billing Center Tab");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
@@ -77,7 +75,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Entered Grace Days");
 
         List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3, 4);
-        int totalProducts = 20;
+        int totalProducts = 22;
         String vatValue = "2";
         WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
 
