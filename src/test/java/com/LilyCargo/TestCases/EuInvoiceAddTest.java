@@ -36,7 +36,6 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 

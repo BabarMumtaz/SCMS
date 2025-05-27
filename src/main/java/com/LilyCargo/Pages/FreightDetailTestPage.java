@@ -203,6 +203,11 @@ public class FreightDetailTestPage {
 	public boolean isRemarksTabDisplayed() {
 		return waitUtil.waitForElementToBeVisible(remarksTab).isDisplayed();
 	}
+
+	public String getRemarksTabText() {
+		return waitUtil.waitForElementToBeVisible(remarksTab).getText();
+	}
+
 	public void clickRemarksTab() {
 		waitUtil.waitForElementToBeClickable(remarksTab).click();
 	}

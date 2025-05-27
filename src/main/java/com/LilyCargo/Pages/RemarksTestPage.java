@@ -31,71 +31,60 @@ public class RemarksTestPage {
         this.actions = new Actions(driver);
     }
 
-    @CacheLookup
     @FindBy(xpath = "//img[@alt='Add']")
     WebElement remarksAddIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Import Remarks']")
     WebElement importRemarksTab;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Customs Remarks']")
     WebElement customsRemarksTab;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Sales Remarks']")
     WebElement salesRemarksTab;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='import']")
     WebElement importRemarksPopupHeading;
 
-    @CacheLookup
     @FindBy(className = "btn-close")
     WebElement remarksPopupCloseIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//textarea[@name='remarks']")
     WebElement RemarksPopupTextField;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement submitRemarksButton;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement cancelRemarksButton;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='customs']")
     WebElement customsRemarksPopupHeading;
 
-    @CacheLookup
     @FindBy(xpath = "//input[@name='cRemarksDate']")
     WebElement customsRemarksDateField;
 
-    @CacheLookup
     @FindBy(id = "select-Set Time")
     WebElement customsRemarksTimeField;
 
-    @CacheLookup
     @FindBy(xpath = "//li[text()='two days']")
     WebElement customsRemarksTimeOptions;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit & Email']")
     WebElement submitEmailRemarksButton;
 
-    @CacheLookup
     @FindBy(xpath = "//div[text()='sales']")
     WebElement salesRemarksPopupHeading;
 
-    @CacheLookup
-    @FindBy(id = "jfkgabhog")
-    WebElement successAlertMessage;
+    @FindBy(xpath = "//div[contains(text(),'Import Remark added successfully')]")
+    WebElement importRemarksSuccessAlertMessage;
 
-    @CacheLookup
+    @FindBy(xpath = "//div[contains(text(),'Custom Remark added successfully')]")
+    WebElement cutomsRemarksSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Sale Remark added successfully')]")
+    WebElement salesRemarksSuccessAlertMessage;
+
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
@@ -177,12 +166,28 @@ public class RemarksTestPage {
         return wait.until(ExpectedConditions.visibilityOf(salesRemarksPopupHeading)).isDisplayed();
     }
 
-    public String getSuccessAlertMessage() {
-        return successAlertMessage.getText();
+    public String getImportRemarkSuccessAlertMessage() {
+        return importRemarksSuccessAlertMessage.getText();
     }
 
-    public boolean isSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    public String getCustomRemarkSuccessAlertMessage() {
+        return cutomsRemarksSuccessAlertMessage.getText();
+    }
+
+    public String getSaleRemarkSuccessAlertMessage() {
+        return salesRemarksSuccessAlertMessage.getText();
+    }
+
+    public boolean isImportRemarkSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(importRemarksSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isCustomRemarkSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cutomsRemarksSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isSaleRemarkSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(salesRemarksSuccessAlertMessage)).isDisplayed();
     }
 
     public void clickOnAlertPopupCrossIcon() {

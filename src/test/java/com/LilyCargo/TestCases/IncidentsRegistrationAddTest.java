@@ -24,16 +24,12 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(IncidentsRegistrationAddTest.class);
         log.info("Starting Incidents Registration Add Test from Incidents Registration Tab.");
 
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
-
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isIncidentsRegistrationTabDisplayed(), "Incidents Registration tab is not Displayed");
         log.info("Heading: " + pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText());
 
