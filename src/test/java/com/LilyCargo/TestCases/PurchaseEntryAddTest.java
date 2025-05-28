@@ -27,15 +27,12 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Purchase Entry")
     public void VerifyPurchaseEntryCreation() throws InterruptedException {
 
-        // Check if login is successful
         log = LogManager.getLogger(PurchaseEntryAddTest.class);
         log.info("Starting Purchase Entry Add Test from Billing Center Tab.");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 

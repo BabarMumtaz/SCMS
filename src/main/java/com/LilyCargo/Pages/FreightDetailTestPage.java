@@ -69,7 +69,7 @@ public class FreightDetailTestPage {
 	//-----------------------------------------------------------------------------------------------
 
 	@FindBy(xpath = "//button[text()='Submit MRN & Customs Status")
-	WebElement submitMRNTask;
+	WebElement submitMrnTask;
 
 	@FindBy(xpath = "//button[text()='Upload']")
 	WebElement uploadMrnButton;
@@ -181,11 +181,11 @@ public class FreightDetailTestPage {
 	}*/
 
 	public void scrollToElement() {
-		executor.executeScript("arguments[0].scrollIntoView(true);", submitMRNTask);
+		executor.executeScript("arguments[0].scrollIntoView(true);", submitMrnTask);
 	}
 
 	public void clickSubmitMrnTask() {
-		waitUtil.waitForElementToBeClickable(submitMRNTask).click();
+		waitUtil.waitForElementToBeClickable(submitMrnTask).click();
 	}
 
 	public void clickUploadMrnButton() {

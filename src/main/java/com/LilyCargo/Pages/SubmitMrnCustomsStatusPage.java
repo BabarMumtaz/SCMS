@@ -1,6 +1,7 @@
 package com.LilyCargo.Pages;
 
-import java.time.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,10 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class RemarksTestPage {
+import java.time.Duration;
+
+public class SubmitMrnCustomsStatusPage {
 
     WebDriver driver;
     JavascriptExecutor executor;
@@ -21,7 +22,7 @@ public class RemarksTestPage {
     Logger log = LogManager.getLogger(RemarksTestPage.class);
 
     // Constructor
-    public RemarksTestPage(WebDriver driver) {
+    public SubmitMrnCustomsStatusPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

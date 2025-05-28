@@ -18,19 +18,14 @@ public class SubFreightAddTest extends TestBaseClass {
     @Feature("Feature:003")
     @Story("As a user, I should be able to Create SubFreight successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
-    public void CreateSubFreightTest() throws InterruptedException {
+    public void VerifySubFreightCreation() throws InterruptedException {
 
         log = LogManager.getLogger(SubFreightAddTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");
 
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
-
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 

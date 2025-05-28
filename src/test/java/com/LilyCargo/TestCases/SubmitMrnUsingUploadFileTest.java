@@ -36,23 +36,27 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
     }
 
     private void performFreightListingActions() {
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hovered over the 1st row.");
 
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();
-        log.info("Switched to the new tab.");
+        log.info("Switched to the new tab");
     }
 
     private void performFreightDetailActions() throws InterruptedException {
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
         pageObjectManager.getFreightDetail().scrollToElement();
         Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit MRN section.");
+
+        pageObjectManager.getFreightDetail().clickSubmitMrnTask();
+        log.info("Clicked on Submit MRN Task Shortcut.");
+
+        Assert.assertTrue(pageObjectManager.getRemarksPage().isImportRemarksPopupHeadingDisplayed(), "Submit MRN popup not visible");
+        log.info("Popup Heading: " + pageObjectManager.getRemarksPage().getImportRemarksPopupHeading());
 
         pageObjectManager.getFreightDetail().clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");
