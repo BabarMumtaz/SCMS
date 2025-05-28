@@ -36,7 +36,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Clicked Shipper Add button");
 
         Assert.assertTrue(pageObjectManager.getShippersPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getShippersPage().getAddPageHeading());
+        log.info("Page Heading: " + pageObjectManager.getShippersPage().getAddPageHeading());
 
         pageObjectManager.getShippersPage().enterShipperStore(faker.company().name());
         log.info("Entered Shipper Store Name");
@@ -81,7 +81,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Click Save Shipper Button");
 
         Assert.assertTrue(pageObjectManager.getShipperListing().isShipperSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getShipperListing().getShipperSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getShipperListing().getShipperSuccessAlertMessage());
 
         pageObjectManager.getShipperListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");

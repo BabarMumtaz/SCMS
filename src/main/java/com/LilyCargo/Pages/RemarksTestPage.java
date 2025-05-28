@@ -80,7 +80,7 @@ public class RemarksTestPage {
     WebElement importRemarksSuccessAlertMessage;
 
     @FindBy(xpath = "//div[contains(text(),'Custom Remark added successfully')]")
-    WebElement cutomsRemarksSuccessAlertMessage;
+    WebElement customsRemarksSuccessAlertMessage;
 
     @FindBy(xpath = "//div[contains(text(),'Sale Remark added successfully')]")
     WebElement salesRemarksSuccessAlertMessage;
@@ -112,12 +112,12 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(salesRemarksTab)).click();
     }
 
-    public String getPopupHeading() {
-        return importRemarksPopupHeading.getText();
-    }
-
     public boolean isImportRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(importRemarksPopupHeading)).isDisplayed();
+    }
+
+    public String getImportRemarksPopupHeading() {
+        return importRemarksPopupHeading.getText();
     }
 
     public void clickOnRemarksAddIcon() {
@@ -136,12 +136,12 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(cancelRemarksButton)).click();
     }
 
-    private void selectDate(WebElement element, String month,String day, String year) {
-        actions.click(element).sendKeys(month).sendKeys(day).sendKeys(year).perform();
+    private void selectDate(WebElement element, String day, String month, String year) {
+        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(year).perform();
     }
 
-    public void selectCustomsRemarksDateDate(String month,String day, String year) {
-        selectDate(customsRemarksDateField, month, day, year);
+    public void selectCustomsRemarksDateDate(String day, String month, String year) {
+        selectDate(customsRemarksDateField, day, month, year);
     }
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -162,32 +162,41 @@ public class RemarksTestPage {
         return wait.until(ExpectedConditions.visibilityOf(customsRemarksPopupHeading)).isDisplayed();
     }
 
+    public String getCustomsRemarksPopupHeading() {
+        return customsRemarksPopupHeading.getText();
+    }
+
     public boolean isSalesRemarksPopupHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(salesRemarksPopupHeading)).isDisplayed();
+    }
+
+    public String getSalesRemarksPopupHeading() {
+        return salesRemarksPopupHeading.getText();
+    }
+
+
+    public boolean isImportRemarkSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(importRemarksSuccessAlertMessage)).isDisplayed();
     }
 
     public String getImportRemarkSuccessAlertMessage() {
         return importRemarksSuccessAlertMessage.getText();
     }
 
-    public String getCustomRemarkSuccessAlertMessage() {
-        return cutomsRemarksSuccessAlertMessage.getText();
-    }
-
-    public String getSaleRemarkSuccessAlertMessage() {
-        return salesRemarksSuccessAlertMessage.getText();
-    }
-
-    public boolean isImportRemarkSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(importRemarksSuccessAlertMessage)).isDisplayed();
-    }
-
     public boolean isCustomRemarkSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cutomsRemarksSuccessAlertMessage)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(customsRemarksSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getCustomRemarkSuccessAlertMessage() {
+        return customsRemarksSuccessAlertMessage.getText();
     }
 
     public boolean isSaleRemarkSuccessAlertMessageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(salesRemarksSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getSaleRemarkSuccessAlertMessage() {
+        return salesRemarksSuccessAlertMessage.getText();
     }
 
     public void clickOnAlertPopupCrossIcon() {

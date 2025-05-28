@@ -38,7 +38,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -46,13 +46,13 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         //----------------------------------EU Invoice----------------------------------
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isEuInvTabDisplayed(), "EU Tab Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
+        log.info("Tab Heading: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
         log.info("Clicked EU INV Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
@@ -151,7 +151,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         //----------------------------------EU Invoice----------------------------------
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isEuInvTabDisplayed(), "EU Tab Not Displayed");
-        log.info("Heading 2nd Time: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
+        log.info("Page Heading 2nd Time: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
         log.info("Clicked EU INV Tab for Amazon Duty INV Type");

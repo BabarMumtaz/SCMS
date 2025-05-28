@@ -47,7 +47,7 @@ public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 
 		// Check if the edit page is displayed
 		Assert.assertTrue(pageObjectManager.getBookedFreights().isEditPageDisplayed(), "Edit page is not Displayed");
-		log.info("Heading: " + pageObjectManager.getBookedFreights().getEditFreightID());
+		log.info("Page Heading: " + pageObjectManager.getBookedFreights().getEditFreightID());
 
 		pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
 		log.info("Entered House BL No");
@@ -81,7 +81,7 @@ public class FreightEditFromListingViewTest extends TestBeforeAndAfter {
 		Thread.sleep(7000);
 
 		Assert.assertTrue(pageObjectManager.getFreightDetail().isUpdateBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-		log.info("Heading: " + pageObjectManager.getFreightDetail().getUpdatedBFSuccessAlertMessage());
+		log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getUpdatedBFSuccessAlertMessage());
 
 		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
 		log.info("Clicked Cross icon of Alert");

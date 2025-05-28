@@ -50,7 +50,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
         log.info("Clicked Client FR Sub Menu");
 
         Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getClientPage().getPageHeading());
+        log.info("Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
 
         pageObjectManager.getClientPage().clickAddClientBtn();
         log.info("Clicked Client Add button");
@@ -63,7 +63,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
                 TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
 
         Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
 
         pageObjectManager.getClientPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");

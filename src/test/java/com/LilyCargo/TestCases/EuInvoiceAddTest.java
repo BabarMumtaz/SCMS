@@ -37,7 +37,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Switched to the new tab");
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -45,13 +45,13 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         //----------------------------------EU Invoice----------------------------------
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isEuInvTabDisplayed(), "EU Tab Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
+        log.info("Tab Heading: " + pageObjectManager.getBillingCenterPage().getEuInvTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
         log.info("Clicked EU INV Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
@@ -96,7 +96,7 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Clicked Finish INV Button");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");

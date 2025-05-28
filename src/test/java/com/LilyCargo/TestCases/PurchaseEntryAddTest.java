@@ -41,7 +41,7 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -49,13 +49,13 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         //---------------------------------- Purchase Entry ----------------------------------
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPurchaseEntryTabDisplayed(), "Purchase Entry Tab is Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getPurchaseEntryTabName());
+        log.info("Tab Heading: " + pageObjectManager.getBillingCenterPage().getPurchaseEntryTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnPurchaseEntryTab();
         log.info("Clicked Purchase Entry Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isGlAccountsSectionColHeadingDisplayed(), "Gl Accounts Section Column Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getGlAccountsSectionColHeading());
+        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getGlAccountsSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectPurchaseEntryShipper();
         log.info("Selected 'BTT Multimodal Container Solutions B.V.' Shipper");
@@ -119,7 +119,7 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         log.info("Clicked Finish INV Button for Purchase Entry Type");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isErrorAlertMessageDisplayed(), "Error Alert Message is Different");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getErrorAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getErrorAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");

@@ -36,7 +36,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Clicked Carriers FR Sub Menu");
 
         Assert.assertTrue(pageObjectManager.getCarriersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
+        log.info("Page Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
 
         pageObjectManager.getCarriersPage().clickAddCarrierBtn();
         log.info("Clicked Carriers Add button");
@@ -78,7 +78,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Click Save Carrier Button");
 
         Assert.assertTrue(pageObjectManager.getCarrierListing().isCarrierSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarrierListing().getCarrierSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getCarrierListing().getCarrierSuccessAlertMessage());
 
         pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");

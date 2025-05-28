@@ -38,7 +38,7 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -46,13 +46,13 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         //----------------------------------Extra Invoice----------------------------------
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isExtraInvTabDisplayed(), "Extra Tab Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getExtraInvTabName());
+        log.info("Page Heading: " + pageObjectManager.getBillingCenterPage().getExtraInvTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnExtraInvTab();
         log.info("Clicked Extra INV Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectExtraInvClient();
         log.info("Selected 'A.I. Trading GmbH' Client");
@@ -117,7 +117,7 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
 
 /*        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");*/

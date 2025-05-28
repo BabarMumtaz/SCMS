@@ -96,7 +96,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save & Return Freight Button");
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
 
         pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");

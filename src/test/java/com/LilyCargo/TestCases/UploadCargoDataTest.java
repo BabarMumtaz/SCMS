@@ -46,13 +46,13 @@ public class UploadCargoDataTest extends TestBaseClass {
     //----------------------------------Cargo Data Tab----------------------------------
 
         Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingHs1stCellText());
+        log.info("Tab Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingHs1stCellText());
 
         pageObjectManager.getCargoDataPage().selectNoTc();
         log.info("Selected NoTC");
 
         Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingAreaDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingAreaMessage());
+        log.info("Section Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingAreaMessage());
 
         pageObjectManager.getCargoDataPage().clickOnUploadCargoDataIcon();
         log.info("Clicked Upload Cargo Data Icon");
@@ -76,7 +76,7 @@ public class UploadCargoDataTest extends TestBaseClass {
         log.info("Clicked Export Cargo Data Icon");
 
         Assert.assertTrue(pageObjectManager.getCargoDataPage().isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getExportSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getCargoDataPage().getExportSuccessAlertMessage());
 
         pageObjectManager.getCargoDataPage().clickOnExportAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");

@@ -32,7 +32,7 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
 
         // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isFycoDataTabDisplayed(), "FYCO DATA tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getFycoDataTabText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getFycoDataTabText());
 
         pageObjectManager.getFreightDetail().clickFycoDataTab();
         log.info("Clicked FYCO DATA Tab");
@@ -42,7 +42,7 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         log.info("Clicked On FYCO DATA Add Icon");
 
         Assert.assertTrue(pageObjectManager.getFycoDataPage().isFycoDataPopupHeadingDisplayed(), "FYCO DATA Popup Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getFycoDataPage().getPopupHeading());
+        log.info("Popup Heading: " + pageObjectManager.getFycoDataPage().getPopupHeading());
 
         pageObjectManager.getFycoDataPage().enterPlatoNumberField(faker.number().digits(8));
         log.info("Entered PLATO #");
@@ -75,7 +75,7 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         log.info("Clicked Submit Button");
 
         Assert.assertTrue(pageObjectManager.getFycoDataPage().isFycoDataSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getFycoDataPage().getFycoDataSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getFycoDataPage().getFycoDataSuccessAlertMessage());
 
         pageObjectManager.getFycoDataPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");

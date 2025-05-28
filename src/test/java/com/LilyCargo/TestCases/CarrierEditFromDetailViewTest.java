@@ -35,7 +35,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         log.info("Clicked Carriers FR Sub Menu");
 
         Assert.assertTrue(pageObjectManager.getCarriersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
+        log.info("Page Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
 
         pageObjectManager.getCarrierListing().hoverOnCarrier1stRow();
         log.info("Hover over 1st Row");
@@ -67,7 +67,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         log.info("Click Save Carrier Button");
 
         Assert.assertTrue(pageObjectManager.getCarrierListing().isUpdateCarrierSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCarrierListing().getUpdatedCarrierSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getCarrierListing().getUpdatedCarrierSuccessAlertMessage());
 
         pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");

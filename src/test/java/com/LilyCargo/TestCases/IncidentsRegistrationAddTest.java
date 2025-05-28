@@ -31,7 +31,7 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         log.info("Switched to the new tab");
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isIncidentsRegistrationTabDisplayed(), "Incidents Registration tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText());
+        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText());
 
         pageObjectManager.getFreightDetail().clickIncidentsRegistrationTab();
         log.info("Clicked Incidents Registration Tab");
@@ -42,7 +42,7 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         log.info("Clicked On Incidents Registration Add Icon");
 
         Assert.assertTrue(pageObjectManager.getIncidentsRegistrationPage().isIncidentsRegPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getIncidentsRegistrationPage().getPopupHeading());
+        log.info("Page Heading: " + pageObjectManager.getIncidentsRegistrationPage().getPopupHeading());
 
         pageObjectManager.getIncidentsRegistrationPage().enterIncidentsRegPopupProblemField(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Incidents Registration Problem Text");
@@ -54,7 +54,7 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         log.info("Clicked Submit Incidents Registration Button");
 
         Assert.assertTrue(pageObjectManager.getIncidentsRegistrationPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getIncidentsRegistrationPage().getSuccessAlertMessage());
+        log.info("Success Alert Message: " + pageObjectManager.getIncidentsRegistrationPage().getSuccessAlertMessage());
 
         pageObjectManager.getIncidentsRegistrationPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
