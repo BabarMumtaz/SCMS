@@ -13,6 +13,7 @@ public class PageObjectManager {
     private FreightTestPage bookedFreights;
     private FreightListingTestPage freightListing;
     private FreightDetailTestPage freightDetail;
+    private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
     private CarriersTestPage carriersPage;
     private CarrierListingTestPage carrierListing;
     private ClientTestPage clientPage;
@@ -23,6 +24,7 @@ public class PageObjectManager {
     private FycoDataTestPage fycoDataPage;
     private BillingCenterTestPage billingCenterPage;
     private CargoDataTestPage cargoDataPage;
+
 
     // Constructor initializes WebDriver
     public PageObjectManager(WebDriver driver) {
@@ -48,6 +50,10 @@ public class PageObjectManager {
 
     public FreightDetailTestPage getFreightDetail() {
         return (freightDetail == null) ? freightDetail = PageFactory.initElements(driver, FreightDetailTestPage.class) : freightDetail;
+    }
+
+    public SubmitMrnCustomsStatusPage getSubmitMrnCustomsStatusPage() {
+        return (submitMrnCustomsStatus == null) ? submitMrnCustomsStatus = PageFactory.initElements(driver, SubmitMrnCustomsStatusPage.class) : submitMrnCustomsStatus;
     }
 
     public CarriersTestPage getCarriersPage() {

@@ -60,6 +60,10 @@ public class FakeDataUtil {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
+    public static String getMrnNo() {
+        return fakerEN.bothify("??###?##??##??#").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
     public static String getContents() {
         int amount = 1000 + fakerEN.number().numberBetween(100, 9000);
         return String.valueOf(amount);

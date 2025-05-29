@@ -45,19 +45,19 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
         log.info("Edit wrapper is displayed.");
 
-        pageObjectManager.getFreightDetail().scrollToElement();
+        pageObjectManager.getSubmitMrnCustomsStatusPage().scrollToElement();
+        Thread.sleep(2000); // Replace with explicit wait if needed
         log.info("Scrolled to Submit MRN section.");
 
-        pageObjectManager.getFreightDetail().clickUploadMrnButton();
+        pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnTask();
+        log.info("Clicked on Submit MRN Task Shortcut.");
+        pageObjectManager.getSubmitMrnCustomsStatusPage().clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");
 
-        pageObjectManager.getFreightDetail().clickUploadMrnButton();
-        log.info("Clicked on Upload MRN Button.");
-
-        pageObjectManager.getFreightDetail().clickSubmitMrnTask();
+        pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnTask();
         log.info("Clicked on Submit MRN Task.");
 
-        pageObjectManager.getFreightDetail().clickCancelMrnButton();
+        pageObjectManager.getSubmitMrnCustomsStatusPage().clickCancelMrnButton();
         log.info("Clicked on Cancel MRN button.");
     }
 }

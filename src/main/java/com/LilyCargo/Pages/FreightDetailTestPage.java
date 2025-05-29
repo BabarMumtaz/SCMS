@@ -68,17 +68,7 @@ public class FreightDetailTestPage {
 
 	//-----------------------------------------------------------------------------------------------
 
-	@FindBy(xpath = "//button[text()='Submit MRN & Customs Status")
-	WebElement submitMrnTask;
 
-	@FindBy(xpath = "//button[text()='Upload']")
-	WebElement uploadMrnButton;
-
-	@FindBy(xpath = "//button[text()='Submit']")
-	WebElement submitMrnButton;
-
-	@FindBy(xpath = "//button[text()='Cancel']")
-	WebElement cancelMrnButton;
 
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
@@ -179,26 +169,6 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
 	}*/
-
-	public void scrollToElement() {
-		executor.executeScript("arguments[0].scrollIntoView(true);", submitMrnTask);
-	}
-
-	public void clickSubmitMrnTask() {
-		waitUtil.waitForElementToBeClickable(submitMrnTask).click();
-	}
-
-	public void clickUploadMrnButton() {
-		waitUtil.waitForElementToBeClickable(uploadMrnButton).click();
-	}
-
-	public void clickSubmitMrnButton() {
-		waitUtil.waitForElementToBeClickable(submitMrnButton).click();
-	}
-
-	public void clickCancelMrnButton() {
-		waitUtil.waitForElementToBeClickable(cancelMrnButton).click();
-	}
 
 	public boolean isRemarksTabDisplayed() {
 		return waitUtil.waitForElementToBeVisible(remarksTab).isDisplayed();

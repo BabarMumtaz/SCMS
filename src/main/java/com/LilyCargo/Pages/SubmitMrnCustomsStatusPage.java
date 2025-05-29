@@ -19,7 +19,7 @@ public class SubmitMrnCustomsStatusPage {
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
-    Logger log = LogManager.getLogger(RemarksTestPage.class);
+    Logger log = LogManager.getLogger(SubmitMrnCustomsStatusPage.class);
 
     // Constructor
     public SubmitMrnCustomsStatusPage(WebDriver driver) {
@@ -30,105 +30,122 @@ public class SubmitMrnCustomsStatusPage {
         this.actions = new Actions(driver);
     }
 
-    @FindBy(xpath = "//img[@alt='Add']")
-    WebElement remarksAddIcon;
 
-    @FindBy(xpath = "//button[text()='Import Remarks']")
-    WebElement importRemarksTab;
-
-    @FindBy(xpath = "//button[text()='Customs Remarks']")
-    WebElement customsRemarksTab;
-
-    @FindBy(xpath = "//button[text()='Sales Remarks']")
-    WebElement salesRemarksTab;
-
-    @FindBy(xpath = "//div[text()='import']")
-    WebElement importRemarksPopupHeading;
+    @FindBy(xpath = "//div[text()='Submit / Delete MRN # / Customs Status']")
+    WebElement mrnPopupHeading;
 
     @FindBy(className = "btn-close")
-    WebElement remarksPopupCloseIcon;
+    WebElement mrnPopupCloseIcon;
 
-    @FindBy(xpath = "//textarea[@name='remarks']")
-    WebElement RemarksPopupTextField;
+    @FindBy(xpath = "//input[@name='mrn']")
+    WebElement mrnNumberField;
 
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitRemarksButton;
+    @FindBy(xpath = "//input[@name='remarks']")
+    WebElement mrnRemarksTextField;
 
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement cancelRemarksButton;
 
-    @FindBy(xpath = "//div[text()='customs']")
-    WebElement customsRemarksPopupHeading;
+    @FindBy(xpath = "//input[@name='imaDate']")
+    WebElement mrnDateField;
 
-    @FindBy(xpath = "//input[@name='cRemarksDate']")
-    WebElement customsRemarksDateField;
+    @FindBy(xpath = "//div[@id='select-Customs Status']")
+    WebElement customsStatusDropdown;
 
-    @FindBy(id = "select-Set Time")
-    WebElement customsRemarksTimeField;
+    @FindBy(xpath = "//li[text()='Clear']")
+    WebElement customsStatusDropdownOptions;
 
-    @FindBy(xpath = "//li[text()='two days']")
-    WebElement customsRemarksTimeOptions;
+    @FindBy(xpath = "//div[text()='Warning!']")
+    WebElement deleteMrnPopupHeading;
 
-    @FindBy(xpath = "//button[text()='Submit & Email']")
-    WebElement submitEmailRemarksButton;
+    @FindBy(xpath = "//div[text()='delete MRN for SUB-FID !']")
+    WebElement deleteMrnPopupWarningText;
 
-    @FindBy(xpath = "//div[text()='sales']")
-    WebElement salesRemarksPopupHeading;
+    @FindBy(xpath = "//div[text()='Upload MRN File']")
+    WebElement uploadMrnPopupHeading;
 
-    @FindBy(xpath = "//div[contains(text(),'Import Remark added successfully')]")
-    WebElement importRemarksSuccessAlertMessage;
+    @FindBy(xpath = "//div[contains(text(),'Customs Status updated')]")
+    WebElement noMrnAddedUpdatedCSSuccessAlertMessage;
 
-    @FindBy(xpath = "//div[contains(text(),'Custom Remark added successfully')]")
-    WebElement customsRemarksSuccessAlertMessage;
+    @FindBy(xpath = "//div[contains(text(),'MRN submitted against SUB-FID & Customs Status updated')]")
+    WebElement mrnAddedUpdatedCSSuccessAlertMessage;
 
-    @FindBy(xpath = "//div[contains(text(),'Sale Remark added successfully')]")
-    WebElement salesRemarksSuccessAlertMessage;
+    @FindBy(xpath = "//div[contains(text(),'MRN already exists against SUB-FID & Customs Status updated')]")
+    WebElement mrnExistUpdatedCSSuccessAlertMessage;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
+    @FindBy(xpath = "//button[text()='Submit MRN & Customs Status']")
+    WebElement submitMrnTask;
+
+    @FindBy(xpath = "//button[text()='Upload']")
+    WebElement uploadMrnButton;
+
+    @FindBy(xpath = "//button[text()='Submit']")
+    WebElement submitMrnButton;
+
+    @FindBy(xpath = "//button[text()='Update']")
+    WebElement updateMrnButton;
+
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElement cancelMrnButton;
+
+    @FindBy(xpath = "//button[text()='Delete']")
+    WebElement deleteMrnButton;
+
     //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public boolean isImportRemarksTabDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(importRemarksTab)).isDisplayed();
+    public void scrollToElement() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", submitMrnTask);
     }
 
-    public void clickOnRemarksPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(remarksPopupCloseIcon)).click();
+    public void clickSubmitMrnTask() {
+        wait.until(ExpectedConditions.visibilityOf(submitMrnTask)).click();
     }
 
-    public void clickOnCustomsRemarksTab() {
-        wait.until(ExpectedConditions.visibilityOf(customsRemarksTab)).click();
+    public void clickUploadMrnButton() {
+        wait.until(ExpectedConditions.visibilityOf(uploadMrnButton)).click();
     }
 
-    public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitRemarksButton)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitRemarksButton);
-        wait.until(ExpectedConditions.elementToBeClickable(submitRemarksButton));
+    public void clickSubmitMrnButton() {
+        wait.until(ExpectedConditions.visibilityOf(submitMrnButton)).click();
     }
 
-    public void clickSalesRemarksTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(salesRemarksTab)).click();
+    public void clickUpdateMrnButton() {
+        wait.until(ExpectedConditions.visibilityOf(updateMrnButton)).click();
     }
 
-    public boolean isImportRemarksPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(importRemarksPopupHeading)).isDisplayed();
+    public void clickCancelMrnButton() {
+        wait.until(ExpectedConditions.visibilityOf(cancelMrnButton)).click();
     }
 
-    public String getImportRemarksPopupHeading() {
-        return importRemarksPopupHeading.getText();
+    public void clickDeleteMrnButton() {
+        wait.until(ExpectedConditions.visibilityOf(deleteMrnButton)).click();
     }
 
-    public void clickOnRemarksAddIcon() {
-        wait.until(ExpectedConditions.visibilityOf(remarksAddIcon)).click();
+    public void clickOnMrnPopupCloseIcon() {
+        wait.until(ExpectedConditions.visibilityOf(mrnPopupCloseIcon)).click();
     }
 
-    public void enterRemarksText(String text) {
-        RemarksPopupTextField.sendKeys(text);
+    public boolean isSubmitMrnPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(mrnPopupHeading)).isDisplayed();
     }
 
-    public void clickSubmitRemarksButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitRemarksButton)).click();
+    public String getSubmitMrnPopupHeading() {
+        return mrnPopupHeading.getText();
+    }
+
+    public void enterMrnNumber(String text) {
+        mrnNumberField.sendKeys(text);
+    }
+
+    public WebElement getMrnInput() {
+        return mrnNumberField;
+    }
+
+    public void enterMrnRemarks(String text) {
+        mrnRemarksTextField.sendKeys(text);
     }
 
     public void clickCancelRemarksButton() {
@@ -140,7 +157,7 @@ public class SubmitMrnCustomsStatusPage {
     }
 
     public void selectCustomsRemarksDateDate(String day, String month, String year) {
-        selectDate(customsRemarksDateField, day, month, year);
+        selectDate(mrnDateField, day, month, year);
     }
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -149,53 +166,49 @@ public class SubmitMrnCustomsStatusPage {
         dropdownValue.click();
     }
 
-    public void selectCustomsRemarksTime() {
-        selectDropdownValue(customsRemarksTimeField, customsRemarksTimeOptions);
+    public void selectCustomsStatusDropdown() {
+        selectDropdownValue(customsStatusDropdown, customsStatusDropdownOptions);
     }
 
-    public void clickSubmitEmailRemarksButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitEmailRemarksButton)).click();
+    public boolean isDeleteMrnPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(deleteMrnPopupHeading)).isDisplayed();
     }
 
-    public boolean isCustomsRemarksPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(customsRemarksPopupHeading)).isDisplayed();
+    public String getDeleteMrnPopupWarningText() {
+        return deleteMrnPopupWarningText.getText();
     }
 
-    public String getCustomsRemarksPopupHeading() {
-        return customsRemarksPopupHeading.getText();
+    public boolean isUploadMrnPopupHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(uploadMrnPopupHeading)).isDisplayed();
     }
 
-    public boolean isSalesRemarksPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(salesRemarksPopupHeading)).isDisplayed();
-    }
-
-    public String getSalesRemarksPopupHeading() {
-        return salesRemarksPopupHeading.getText();
+    public String getUploadMrnPopupHeading() {
+        return uploadMrnPopupHeading.getText();
     }
 
 
-    public boolean isImportRemarkSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(importRemarksSuccessAlertMessage)).isDisplayed();
+    public boolean isNoMrnAddedUpdatedCSSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(noMrnAddedUpdatedCSSuccessAlertMessage)).isDisplayed();
     }
 
-    public String getImportRemarkSuccessAlertMessage() {
-        return importRemarksSuccessAlertMessage.getText();
+    public String getNoMrnAddedUpdatedCSSuccessAlertMessage() {
+        return noMrnAddedUpdatedCSSuccessAlertMessage.getText();
     }
 
-    public boolean isCustomRemarkSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(customsRemarksSuccessAlertMessage)).isDisplayed();
+    public boolean isMrnAddedUpdatedCSSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(mrnAddedUpdatedCSSuccessAlertMessage)).isDisplayed();
     }
 
-    public String getCustomRemarkSuccessAlertMessage() {
-        return customsRemarksSuccessAlertMessage.getText();
+    public String getMrnAddedUpdatedCSSuccessAlertMessage() {
+        return mrnAddedUpdatedCSSuccessAlertMessage.getText();
     }
 
-    public boolean isSaleRemarkSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(salesRemarksSuccessAlertMessage)).isDisplayed();
+    public boolean isMrnExistUpdatedCSSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(mrnExistUpdatedCSSuccessAlertMessage)).isDisplayed();
     }
 
-    public String getSaleRemarkSuccessAlertMessage() {
-        return salesRemarksSuccessAlertMessage.getText();
+    public String getMrnExistUpdatedCSSuccessAlertMessage() {
+        return mrnExistUpdatedCSSuccessAlertMessage.getText();
     }
 
     public void clickOnAlertPopupCrossIcon() {
