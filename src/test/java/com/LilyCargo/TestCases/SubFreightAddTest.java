@@ -1,13 +1,14 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SubFreightAddTest extends TestBaseClass {
+public class SubFreightAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -29,54 +30,38 @@ public class SubFreightAddTest extends TestBaseClass {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        pageObjectManager.getFreightDetail().scrollToRight();
-        log.info("Clicked Incidents Registration Tab");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
+        log.info("Edit wrapper is displayed.");
 
-        // Check if the edit wrapper is displayed
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isCargoDataTabDisplayed(), "Cargo Data Tab tab is not Displayed");
+        //----------------------------------SubFId----------------------------------
 
-        pageObjectManager.getFreightDetail().clickCargoDataTab();
-        log.info("Clicked Cargo Data Tab");
+        pageObjectManager.getFreightDetail().clickSubFidAddIcon();
+        log.info("Clicked SubFid Add Icon");
 
-        //----------------------------------Cargo Data Tab----------------------------------
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isCreateSubFidPopupHeadingDisplayed(), "SubFid popup Not Displayed");
+        log.info("Popup Heading: " + pageObjectManager.getFreightDetail().getCreateSubFidPopupHeading());
 
-        Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Tab Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingHs1stCellText());
+        pageObjectManager.getFreightDetail().selectSubFidShipper();
+        log.info("Selected SubFid Shipper");
 
-        pageObjectManager.getCargoDataPage().selectNoTc();
-        log.info("Selected NoTC");
+        pageObjectManager.getFreightDetail().selectSubFidNoTc();
+        log.info("Selected SubFid NoTC");
 
-        Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingAreaDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Section Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingAreaMessage());
+        pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getHouseBLNo());
+        log.info("Entered SubFid House BL No");
 
-        pageObjectManager.getCargoDataPage().clickOnUploadCargoDataIcon();
-        log.info("Clicked Upload Cargo Data Icon");
+        pageObjectManager.getFreightDetail().enterSubFidClientRef(FakeDataUtil.getHouseBLNo());
+        log.info("Entered SubFid Client Ref");
 
-        Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoDataPopupHeading());
-
-        pageObjectManager.getCargoDataPage().uploadCargoDataInChooseFile();
-        log.info("Selected NoTC");
-
-        pageObjectManager.getCargoDataPage().clickCargoDataPopupSubmitButton();
+        pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
         log.info("Clicked Submit Button");
 
-        Assert.assertTrue(pageObjectManager.getCargoDataPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isSubFidAddSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
+        log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getSubFidAddSuccessAlertMessage());
 
-        pageObjectManager.getCargoDataPage().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
-        pageObjectManager.getCargoDataPage().clickOnExportCargoDataIcon();
-        log.info("Clicked Export Cargo Data Icon");
-
-        Assert.assertTrue(pageObjectManager.getCargoDataPage().isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getCargoDataPage().getExportSuccessAlertMessage());
-
-        pageObjectManager.getCargoDataPage().clickOnExportAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup ");
-
-        // Log out after the test
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
     }

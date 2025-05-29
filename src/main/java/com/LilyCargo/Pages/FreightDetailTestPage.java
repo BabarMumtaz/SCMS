@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.LilyCargo.Util.WaitUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FreightDetailTestPage {
 
@@ -66,9 +67,10 @@ public class FreightDetailTestPage {
 	@FindBy(className = "btn-close")
 	WebElement SubFidPopupCloseIcon;
 
+	@FindBy(xpath = "//div[contains(text(),'Sub FID successfully added')]")
+	WebElement subFidAddSuccessAlertMessage;
+
 	//-----------------------------------------------------------------------------------------------
-
-
 
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
@@ -128,11 +130,12 @@ public class FreightDetailTestPage {
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-		waitUtil.waitForElementToBeClickable(dropdown);
+		waitUtil.waitForElementToBeClickable(dropdown).click();
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		waitUtil.waitForElementToBeClickable(dropdownValue);
+		waitUtil.waitForElementToBeClickable(dropdownValue).click();
 	}
 
+	//--------------------------------------------------------------- SUBFID ------------------------
 	public void clickSubFidAddIcon() {
 		waitUtil.waitForElementToBeClickable(subFidAddIcon).click();
 	}
@@ -164,6 +167,20 @@ public class FreightDetailTestPage {
 	public void clickSubmitSubFidButton() {
 		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
 	}
+
+	public boolean isSubFidAddSuccessAlertMessageDisplayed() {
+		return waitUtil.waitForElementToBeVisible(subFidAddSuccessAlertMessage).isDisplayed();
+	}
+
+	public String getSubFidAddSuccessAlertMessage() {
+		return subFidAddSuccessAlertMessage.getText();
+	}
+
+	public void clickOnAlertPopupCrossIcon() {
+		waitUtil.waitForElementToBeClickable(successAlertCrossIcon).click();
+	}
+
+	//---------------------------------------------------------------
 
 /*	public void scrollToBottom() {
 		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
