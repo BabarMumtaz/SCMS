@@ -1,13 +1,13 @@
 package com.LilyCargo.TestCases;
 
-import com.LilyCargo.Base.TestBaseClass;
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UploadCargoDataTest extends TestBaseClass {
+public class UploadCargoDataTest extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -23,22 +23,17 @@ public class UploadCargoDataTest extends TestBaseClass {
         log = LogManager.getLogger(UploadCargoDataTest.class);
         log.info("Test setup completed.");
 
-        pageObjectManager.getFreightListing().hoverOn1stRowClient();
-        log.info("Hover over 1st Row");
-
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
         pageObjectManager.getFreightDetail().scrollToRight();
         log.info("Clicked Incidents Registration Tab");
 
-        // Check if the edit wrapper is displayed
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isCargoDataTabDisplayed(), "Cargo Data Tab tab is not Displayed");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
+        log.info("Edit wrapper is displayed.");
 
         pageObjectManager.getFreightDetail().clickCargoDataTab();
         log.info("Clicked Cargo Data Tab");
