@@ -56,7 +56,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
         log.info("Clicked Submit Button");
 
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isSubFidAddSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isSubFidAddSuccessAlertMessageDisplayed(), "Sub FID Creation Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getSubFidAddSuccessAlertMessage());
 
         pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();

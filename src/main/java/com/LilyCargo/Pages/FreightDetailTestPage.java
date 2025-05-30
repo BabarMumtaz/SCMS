@@ -67,6 +67,12 @@ public class FreightDetailTestPage {
 	@FindBy(className = "btn-close")
 	WebElement SubFidPopupCloseIcon;
 
+	@FindBy(css = ".status-select.fid-status-select.form-select")
+	WebElement subFidDrop;
+
+	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
+	WebElement subFidDropValue;
+
 	@FindBy(xpath = "//div[contains(text(),'Sub FID successfully added')]")
 	WebElement subFidAddSuccessAlertMessage;
 
@@ -136,6 +142,10 @@ public class FreightDetailTestPage {
 	}
 
 	//--------------------------------------------------------------- SUBFID ------------------------
+
+	public WebElement getSubFidDrop() {
+		return subFidDrop;
+	}
 	public void clickSubFidAddIcon() {
 		waitUtil.waitForElementToBeClickable(subFidAddIcon).click();
 	}

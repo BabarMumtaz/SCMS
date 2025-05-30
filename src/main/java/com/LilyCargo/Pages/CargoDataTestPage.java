@@ -81,8 +81,8 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement uploadCargoDataPopupCancelButton;
 
-    @FindBy(id = "zpwjtrupj")
-    WebElement successAlertMessage;
+    @FindBy(xpath = "//div[contains(text(),'Data successfully uploaded')]")
+    WebElement uploadCargoSuccessAlertMessage;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
@@ -103,13 +103,18 @@ public class CargoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(cargoDataListingHs1stCell)).isDisplayed();
     }
 
+    public boolean isCargoDataListingAreaDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
+    }
+
     public String getCargoDataListingAreaMessage() {
         return cargoDataListingEmptyArea.getText();
     }
 
-    public boolean isCargoDataListingAreaDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
+    public WebElement getNoDataFound() {
+        return cargoDataListingEmptyArea;
     }
+
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
@@ -141,8 +146,9 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
     }
 
-    public void uploadCargoDataInChooseFile() {
-        uploadCargoDataPopupChooseFile.sendKeys();
+    public void uploadCargoDataInChooseFile(String filePath) {
+        uploadCargoDataPopupChooseFile.sendKeys(filePath);
+        log.info("Uploaded A file: " + filePath);
     }
 
     public void clickCargoDataPopupSubmitButton() {
@@ -153,13 +159,14 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
-    public String getSuccessAlertMessage() {
-        return successAlertMessage.getText();
+    public boolean isUploadCargoSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(uploadCargoSuccessAlertMessage)).isDisplayed();
     }
 
-    public boolean isSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    public String getUploadCargoSuccessAlertMessage() {
+        return uploadCargoSuccessAlertMessage.getText();
     }
+
 
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
@@ -176,4 +183,21 @@ public class CargoDataTestPage {
     public void clickOnExportAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(exportSuccessAlertCrossIcon)).click();
     }
+
+    public void uploadAndSubmitCargoData(String filePath, Logger log) {
+
+        clickOnUploadCargoDataIcon();
+        log.info("📤 Clicked upload icon");
+
+        uploadCargoDataInChooseFile(filePath);
+        log.info("📎 File selected: " + filePath);
+
+        clickCargoDataPopupSubmitButton();
+        log.info("📨 Clicked Submit on upload popup");
+
+        isUploadCargoSuccessAlertMessageDisplayed();
+        log.info("✅ Upload confirmed: " + getUploadCargoSuccessAlertMessage());
+    }
+
+
 }

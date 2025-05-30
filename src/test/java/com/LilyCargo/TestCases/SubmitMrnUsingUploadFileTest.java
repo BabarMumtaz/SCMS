@@ -57,7 +57,6 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
 
         WebElement mrnInput = pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnInput();
 
-
         // Check if the field is disabled OR already filled
         boolean isDisabled = mrnInput.getAttribute("disabled") != null;
         boolean hasValue = !mrnInput.getAttribute("value").trim().isEmpty();
