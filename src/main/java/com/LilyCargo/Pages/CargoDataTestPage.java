@@ -32,64 +32,64 @@ public class CargoDataTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    @CacheLookup
     @FindBy(xpath = "//tbody/tr[1]/td[4]")
     WebElement cargoDataListingHs1stCell;
 
-    @CacheLookup
     @FindBy(xpath = "//p[text()='No data found']")
     WebElement cargoDataListingEmptyArea;
 
-    @CacheLookup
     //button[@id='tc-no']
     @FindBy(id = "tc-no")
     WebElement noTcDropdown;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='TC1']")
     WebElement noTcDropdownValue;
 
-    @CacheLookup
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
     WebElement exportCargoDataIcon;
 
-    @CacheLookup
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[4]")
     WebElement uploadCargoDataIcon;
 
-    @CacheLookup
-    @FindBy(className = "//div[@class='lc-header-title modal-title h4']")
+    @FindBy(id = "delete-cargo-data")
+    WebElement deleteCargoDataButton;
+
+    @FindBy(css = ".lc-header-title.modal-title.h4")
+    WebElement deleteCargoDataPopupHeading;
+
+    @FindBy(css = ".text-center.my-3")
+    WebElement deleteCargoDataPopupText;
+
+    @FindBy(xpath = "//button[text()='Yes']")
+    WebElement deleteCargoDataPopupSubmitButton;
+
+    @FindBy(xpath = "//button[text()='No & Close']")
+    WebElement deleteCargoDataPopupCancelButton;
+
+    @FindBy(xpath = "//div[@class='lc-header-title modal-title h4']")
     WebElement uploadCargoDataPopupHeading;
 
-    @CacheLookup
     @FindBy(className = "btn-close")
     WebElement uploadCargoDataPopupCloseIcon;
 
-    @CacheLookup
-    @FindBy(className = "//input[@name='file']")
+    @FindBy(xpath = "//input[@name='file']")
     WebElement uploadCargoDataPopupChooseFile;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement uploadCargoDataPopupSubmitButton;
 
-    @CacheLookup
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement uploadCargoDataPopupCancelButton;
 
-    @CacheLookup
     @FindBy(id = "zpwjtrupj")
     WebElement successAlertMessage;
 
-    @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
-    @CacheLookup
     @FindBy(id = "72e9s8its")
     WebElement exportSuccessAlertMessage;
 
-    @CacheLookup
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement exportSuccessAlertCrossIcon;
 
