@@ -10,6 +10,9 @@ import com.LilyCargo.Util.WaitUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class FreightDetailTestPage {
 
@@ -189,6 +192,23 @@ public class FreightDetailTestPage {
 	public void clickOnAlertPopupCrossIcon() {
 		waitUtil.waitForElementToBeClickable(successAlertCrossIcon).click();
 	}
+
+	public void selectLastSubFID() {
+		Select subFidSelect = new Select(subFidDrop);  // Wrap the WebElement
+		List<WebElement> options = subFidSelect.getOptions();
+
+		if (options.size() > 1) {
+			WebElement lastOption = options.get(options.size() - 1);
+			String subFidText = lastOption.getText().trim();
+
+			subFidSelect.selectByVisibleText(subFidText);
+			log.info("🔁 Selected last SubFID: " + subFidText);
+		} else {
+			log.warn("⚠️ Only one SubFID option found. Nothing new to select.");
+		}
+	}
+
+
 
 	//---------------------------------------------------------------
 

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CargoDataTestPage {
     WebDriver driver;
@@ -36,7 +37,7 @@ public class CargoDataTestPage {
     WebElement cargoDataListingHs1stCell;
 
     @FindBy(xpath = "//p[text()='No data found']")
-    WebElement cargoDataListingEmptyArea;
+    List<WebElement> cargoDataListingEmptyArea;
 
     //button[@id='tc-no']
     @FindBy(id = "tc-no")
@@ -103,7 +104,7 @@ public class CargoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(cargoDataListingHs1stCell)).isDisplayed();
     }
 
-    public boolean isCargoDataListingAreaDisplayed() {
+/*    public boolean isCargoDataListingAreaDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
     }
 
@@ -113,7 +114,12 @@ public class CargoDataTestPage {
 
     public WebElement getNoDataFound() {
         return cargoDataListingEmptyArea;
+    }*/
+
+    public List<WebElement> getNoDataFoundElements() {
+        return cargoDataListingEmptyArea;
     }
+
 
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -197,6 +203,9 @@ public class CargoDataTestPage {
 
         isUploadCargoSuccessAlertMessageDisplayed();
         log.info("✅ Upload confirmed: " + getUploadCargoSuccessAlertMessage());
+
+        clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup ");
     }
 
 
