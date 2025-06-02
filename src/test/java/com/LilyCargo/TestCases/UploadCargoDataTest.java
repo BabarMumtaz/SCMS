@@ -62,6 +62,16 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 
         if (!noDataElements.isEmpty() && noDataElements.get(0).isDisplayed()) {
             log.info("📄 'No data found' is displayed. Proceeding to upload.");
+
+            pageObjectManager.getCargoDataPage().selectNoTc();
+            log.info("Selected NoTC");
+
+            Assert.assertTrue(pageObjectManager.getCargoDataPage().isUpdateNoTcSuccessAlertMessageDisplayed(), "NoTc update Alert popup Not Displayed");
+            log.info("NoTC Success Alert Message: " + pageObjectManager.getCargoDataPage().getUpdateNoTcSuccessAlertMessage());
+
+            pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+            log.info("Clicked NoTC Alert Popup Cross Icon");
+
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
         }
 
@@ -71,14 +81,14 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getFreightDetail().clickSubFidAddIcon();
             log.info("Clicked SubFid Add Icon");
 
-            Assert.assertTrue(pageObjectManager.getFreightDetail().isCreateSubFidPopupHeadingDisplayed(), "SubFid popup Not Displayed");
+            Assert.assertTrue(pageObjectManager.getFreightDetail().isCreateSubFidPopupHeadingDisplayed(), "SubFid  Alert popup Not Displayed");
             log.info("Popup Heading: " + pageObjectManager.getFreightDetail().getCreateSubFidPopupHeading());
 
             pageObjectManager.getFreightDetail().selectSubFidShipper();
             log.info("Selected SubFid Shipper");
 
-            pageObjectManager.getFreightDetail().selectSubFidNoTc();
-            log.info("Selected SubFid NoTC");
+/*            pageObjectManager.getFreightDetail().selectSubFidNoTc();
+            log.info("Selected SubFid NoTC");*/
 
             pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getHouseBLNo());
             log.info("Entered SubFid House BL No");
@@ -94,6 +104,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 
             pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
             log.info("Clicked Alert Popup ");
+
+            Thread.sleep(2000);
 
             pageObjectManager.getFreightDetail().selectLastSubFID();
 

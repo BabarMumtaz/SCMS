@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,7 +42,7 @@ public class CargoDataTestPage {
     @FindBy(id = "tc-no")
     WebElement noTcDropdown;
 
-    @FindBy(xpath = "//button[text()='TC1']")
+    @FindBy(xpath = "//button[text()='TC9']")
     WebElement noTcDropdownValue;
 
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
@@ -84,6 +83,9 @@ public class CargoDataTestPage {
 
     @FindBy(xpath = "//div[contains(text(),'Data successfully uploaded')]")
     WebElement uploadCargoSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'NoTC updated')]")
+    WebElement updateNoTcSuccessAlertMessage;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
@@ -165,12 +167,20 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
-    public boolean isUploadCargoSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(uploadCargoSuccessAlertMessage)).isDisplayed();
+    public void isUploadCargoSuccessAlertMessageDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(uploadCargoSuccessAlertMessage)).isDisplayed();
     }
 
     public String getUploadCargoSuccessAlertMessage() {
         return uploadCargoSuccessAlertMessage.getText();
+    }
+
+    public boolean isUpdateNoTcSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(updateNoTcSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getUpdateNoTcSuccessAlertMessage() {
+        return updateNoTcSuccessAlertMessage.getText();
     }
 
 

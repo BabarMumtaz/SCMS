@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.LilyCargo.Util.WaitUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -193,19 +192,37 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(successAlertCrossIcon).click();
 	}
 
-	public void selectLastSubFID() {
+	public String selectLastSubFID() {
+		waitUtil.waitForElementToBeVisible(subFidDrop);
 		Select subFidSelect = new Select(subFidDrop);  // Wrap the WebElement
 		List<WebElement> options = subFidSelect.getOptions();
 
-		if (options.size() > 1) {
+/*		if (options.size() > 1) {
 			WebElement lastOption = options.get(options.size() - 1);
 			String subFidText = lastOption.getText().trim();
 
 			subFidSelect.selectByVisibleText(subFidText);
-			log.info("🔁 Selected last SubFID: " + subFidText);
+			log.info("🔁 Selected last SubFID: " + subFidText);*/
+
+		if (options.size() > 1) {
+			WebElement lastOption = options.get(options.size() - 1);
+			String text = lastOption.getText().trim();
+
+			if (!text.equalsIgnoreCase("A") && !text.equalsIgnoreCase("None")) {
+				subFidSelect.selectByVisibleText(text);
+				log.info("🔁 Selected last valid SubFID: " + text);
+				return text;
+			} else {
+				log.warn("⚠️ Last SubFID option is invalid (A or None): " + text);
+			}
 		} else {
-			log.warn("⚠️ Only one SubFID option found. Nothing new to select.");
+			log.warn("⚠️ No SubFID options available.");
 		}
+
+/*		else {
+			log.warn("⚠️ Only one SubFID option found. Nothing new to select.");
+		}*/
+		return null;
 	}
 
 
