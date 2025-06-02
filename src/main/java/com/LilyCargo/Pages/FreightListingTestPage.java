@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,6 +45,9 @@ public class FreightListingTestPage {
 
 	@FindBy(xpath = "//table//tbody/tr[1]/td[1]//div[@title='Open Freight']")
 	WebElement freightList1stRecord;
+
+	@FindBy(xpath = "//table//tbody/tr[2]/td[1]//div[@title='Open Freight']")
+	WebElement freightList2ndRecord;
 
 	@FindBy(xpath = "//img[@alt='View']")
 	WebElement viewFreightIcon;
@@ -99,6 +103,19 @@ public class FreightListingTestPage {
 	public void clickOnFreightID() {
 		waitUtil.waitForElementToBeVisible(freightList1stRecord).click();
 	}
+
+	public void clickOn2ndFreightID() {
+		waitUtil.waitForElementToBeVisible(freightList2ndRecord).click();
+	}
+
+/*	public void clickFIDByRowIndex(int rowIndex) {
+		By fidLocator = By.xpath("(//td[@role='cell'][1]/a)[" + rowIndex + "]");
+		WebElement rowIndexBased = waitUtil.waitForElementToBeClickable(fidLocator);
+
+		System.out.println("Clicking FID at row index: " + rowIndex);
+		rowIndexBased.click();
+	}*/
+
 
 	// Switch to a new tab
 	public void switchToNewTab() {
