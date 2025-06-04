@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,12 +72,6 @@ public class FreightListingTestPage {
 		executor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	}
 
-	// Hover over the first row client cell
-//	public void hoverOn1stRowClient() {
-//		waitUtil.waitForElementToBeVisible(clientCellLV);
-//		actions.moveToElement(clientCellLV).perform();
-//	}
-
 	public void hoverOn1stRowClient() {
 		waitUtil.waitForElementToBeVisible(freightIDCellLV);
 		//actions.moveToElement(freightIDCellLV).perform();
@@ -129,19 +122,4 @@ public class FreightListingTestPage {
 			}
 		}
 	}
-
-//    // Click on view freight icon
-//    public void clickOnViewFreightIcon() {
-//        waitUtil.click(viewFreightIcon);
-//    }
-//
-//    // Click on edit freight icon
-//    public void clickOnEditFreightIcon() {
-//        waitUtil.click(editFreightIcon);
-//    }
-//
-//    // Get the view freight icon
-//    public WebElement getViewEditIcon() {
-//        return waitUtil.isVisible(viewFreightIcon);
-//    }
 }

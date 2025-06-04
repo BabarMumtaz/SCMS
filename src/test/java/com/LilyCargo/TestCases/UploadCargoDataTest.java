@@ -15,7 +15,6 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 
     Logger log;
 
-
     @Test(priority = 1, description = "Verify that a user can Upload Cargo Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Upload Cargo Data successfully")
@@ -46,17 +45,6 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log.info("Clicked Cargo Data Tab");
 
         //----------------------------------Cargo Data Tab----------------------------------
-
-
-        // Check if 'No data found' is visible
-/*        WebElement noDataMessage = pageObjectManager.getCargoDataPage().getNoDataFound();
-
-        if (noDataMessage.isDisplayed()) {
-            log.info("📄 'No data found' is displayed. Proceeding to upload.");
-
-            pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
-
-        }*/
 
         List<WebElement> noDataElements = pageObjectManager.getCargoDataPage().getNoDataFoundElements(); // This should return List<WebElement>
 
@@ -110,81 +98,9 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getFreightDetail().selectLastSubFID();
 
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
-
         }
-
         // Log out after the test
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
-
-
     }
-
 }
-
-
-
-
-
-
-
-/*
-        public void uploadAndSubmitCargoData (String filePath){
-
-            // Click upload icon
-            pageObjectManager.getCargoDataPage().clickOnUploadCargoDataIcon();
-            log.info("Clicked Upload Cargo Data Icon");
-
-            Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-            log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoDataPopupHeading());
-
-            filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC9 Upload Data - 38 Records.xlsx";
-            pageObjectManager.getCargoDataPage().uploadCargoDataInChooseFile(filePath);
-            log.info("Uploaded A file");
-
-            pageObjectManager.getCargoDataPage().clickCargoDataPopupSubmitButton();
-            log.info("Clicked Submit Button");
-
-            Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-            log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoSuccessAlertMessage());
-
-
-            //----------------------------
-
-                Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingHs1stCellDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-                log.info("Tab Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingHs1stCellText());
-
-           pageObjectManager.getCargoDataPage().selectNoTc();
-        log.info("Selected NoTC");
-
-                Assert.assertTrue(pageObjectManager.getCargoDataPage().isCargoDataListingAreaDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Section Heading: " + pageObjectManager.getCargoDataPage().getCargoDataListingAreaMessage());
-
-        pageObjectManager.getCargoDataPage().clickOnUploadCargoDataIcon();
-                log.info("Clicked Upload Cargo Data Icon");
-
-                Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoDataPopupDisplayed(), "Cargo Data Listing Hs 1st Cell Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoDataPopupHeading());
-
-        pageObjectManager.getCargoDataPage().clickCargoDataPopupSubmitButton();
-                log.info("Clicked Submit Button");
-
-                Assert.assertTrue(pageObjectManager.getCargoDataPage().isUploadCargoSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Heading: " + pageObjectManager.getCargoDataPage().getUploadCargoSuccessAlertMessage());
-
-        pageObjectManager.getCargoDataPage().clickOnAlertPopupCrossIcon();
-                log.info("Clicked Alert Popup ");
-
-                pageObjectManager.getCargoDataPage().clickOnExportCargoDataIcon();
-                log.info("Clicked Export Cargo Data Icon");
-
-                Assert.assertTrue(pageObjectManager.getCargoDataPage().isExportSuccessAlertMessageDisplayed(), "Export Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getCargoDataPage().getExportSuccessAlertMessage());
-
-        pageObjectManager.getCargoDataPage().clickOnExportAlertPopupCrossIcon();
-                log.info("Clicked Alert Popup ");
-
-
-//----------------------------
-
-        }*/

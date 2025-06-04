@@ -122,8 +122,6 @@ public class CargoDataTestPage {
         return cargoDataListingEmptyArea;
     }
 
-
-
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
@@ -183,7 +181,6 @@ public class CargoDataTestPage {
         return updateNoTcSuccessAlertMessage.getText();
     }
 
-
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
@@ -217,6 +214,4 @@ public class CargoDataTestPage {
         clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
     }
-
-
 }

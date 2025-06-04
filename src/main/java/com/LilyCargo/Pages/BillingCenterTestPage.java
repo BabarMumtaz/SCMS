@@ -32,6 +32,8 @@ public class BillingCenterTestPage {
         faker = new Faker();
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------------
+
     @FindBy(xpath = "//button[text()='INTL INV']")
     WebElement intlInvTab;
 
@@ -79,7 +81,6 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//div[@class=' css-ackcql']//input")
     WebElement clientDropdownInput;
 
-    //------
     @FindBy(xpath = "//div[text()='Amazon EU SARL, Dutch Branch']")
     WebElement clientDropdownValue;
 
@@ -182,7 +183,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Total Entries by Ledger']")
     WebElement totalEntriesByLedgerTabPE;
 
-    //PURCHASE ENTRY
+    //---------------------PURCHASE ENTRY---------------------
 
     @FindBy(xpath = "//th[text()='G/L Accounts']")
     WebElement glAccountsSectionHeading;
@@ -243,7 +244,7 @@ public class BillingCenterTestPage {
     WebElement pushAllInvoicesAmazonButton;
 
 
-    //EXTRA INVOICE
+    //---------------------EXTRA INVOICE---------------------
 
     @FindBy(id = "select-Client")
     WebElement clientDropdownEI;
@@ -382,26 +383,6 @@ public class BillingCenterTestPage {
         actions.moveToElement(clientDropdown).perform();
     }
 
- /*   // Utility method to wait until element is clickable
-    private WebElement waitUntilElementClickable(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    // Utility method to wait until element is visible
-    private void waitUntilVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    // Method to get the view freight icon
-    public WebElement getClientDropdownCrossIcon() {
-        waitUntilVisible(clientDropdownCrossIcon);
-        return clientDropdownCrossIcon;
-    }
-
-    public void clickOnClientDropdownCrossIcon() {
-        waitUntilElementClickable(clientDropdownCrossIcon).click();
-    }*/
-
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
@@ -447,7 +428,6 @@ public class BillingCenterTestPage {
         selectDate(invoiceDateEI, day, month, year);
     }
 
-
     // Method to enter invoice number into the invoiceNumber field
     public void enterInvoiceNumber(String invoice) {
         invoiceNumber.sendKeys(invoice);
@@ -487,7 +467,7 @@ public class BillingCenterTestPage {
         // Scroll into view inside container
         executor.executeScript("arguments[0].scrollTop = arguments[1].offsetTop;", scrollContainer, dropdown);
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-Thread.sleep(1000);
+        Thread.sleep(1000);
         executor.executeScript("arguments[0].scrollIntoView(true);", valueElement);
         wait.until(ExpectedConditions.elementToBeClickable(valueElement)).click();
 
@@ -556,7 +536,6 @@ Thread.sleep(1000);
         log.info("Selected GL Account value '" + valueText + "' at dropdown #" + index);
     }
 
-
     public void selectDropdownByIndexValueGeneric(
             int index,
             List<WebElement> dropdownList,
@@ -595,7 +574,6 @@ Thread.sleep(1000);
         selectDropdownByIndexValueGeneric(index, pidDropdownsList, valueText, scrollContainer, "INTL Product");
     }
 
-
     //-------------------------------------------------------------- selectVatDropdownByIndexValue
 
     public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
@@ -619,7 +597,7 @@ Thread.sleep(1000);
         log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
     }
 
-    //-------------------------------------------------------------- enterSaleAmountByRowIndex
+    //-------------------------------------------------------------- enterSaleAmountByRowIndex---------------------
 
     public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
         WebElement saleInput = scrollContainer.findElement(
@@ -648,7 +626,6 @@ Thread.sleep(1000);
 
         log.info("Entered Amount EUR '" + amountValue + "' at #" + rowIndex);
     }
-
 
     public void enterAmountEInvoiceByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
 
@@ -695,7 +672,7 @@ Thread.sleep(1000);
         return addRowButton;
     }
 
-    //-------------------------------------------------------------- clickAddRowAndWaitForNew All Methods
+    //-------------------------------------------------------------- clickAddRowAndWaitForNew All Methods---------------------
 
     public void clickAddRowAndWaitForNewRow() {
         int oldCount = getPidDropdownsCount();
@@ -747,7 +724,7 @@ Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
 
-    //--------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
     public void clickPidDropdownDescription() {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();
@@ -777,7 +754,7 @@ Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
-    //EXTRA INV
+    //---------------------EXTRA INV---------------------
 
     public void selectExtraInvClient() {
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
@@ -815,8 +792,7 @@ Thread.sleep(1000);
         return "true".equalsIgnoreCase(ariaDisabled) || classAttr.contains("Mui-disabled");
     }
 
-
-    //PURCHASE ENTRY METHODS
+    //---------------------------------------PURCHASE ENTRY METHODS---------------------
 
     public String getGlAccountsSectionColHeading() {
         return glAccountsSectionHeading.getText();

@@ -192,17 +192,10 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(successAlertCrossIcon).click();
 	}
 
-	public String selectLastSubFID() {
+	public void selectLastSubFID() {
 		waitUtil.waitForElementToBeVisible(subFidDrop);
 		Select subFidSelect = new Select(subFidDrop);  // Wrap the WebElement
 		List<WebElement> options = subFidSelect.getOptions();
-
-/*		if (options.size() > 1) {
-			WebElement lastOption = options.get(options.size() - 1);
-			String subFidText = lastOption.getText().trim();
-
-			subFidSelect.selectByVisibleText(subFidText);
-			log.info("🔁 Selected last SubFID: " + subFidText);*/
 
 		if (options.size() > 1) {
 			WebElement lastOption = options.get(options.size() - 1);
@@ -211,21 +204,13 @@ public class FreightDetailTestPage {
 			if (!text.equalsIgnoreCase("A") && !text.equalsIgnoreCase("None")) {
 				subFidSelect.selectByVisibleText(text);
 				log.info("🔁 Selected last valid SubFID: " + text);
-				return text;
 			} else {
 				log.warn("⚠️ Last SubFID option is invalid (A or None): " + text);
 			}
 		} else {
 			log.warn("⚠️ No SubFID options available.");
 		}
-
-/*		else {
-			log.warn("⚠️ Only one SubFID option found. Nothing new to select.");
-		}*/
-		return null;
 	}
-
-
 
 	//---------------------------------------------------------------
 
@@ -289,13 +274,6 @@ public class FreightDetailTestPage {
 	public void clickCargoDataTab() {
 		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
 	}
-
-/*	public void scrollToRight() {
-		wait.until(ExpectedConditions.visibilityOf(freightTabHorizontalScroll)); // Ensure visibility
-		//executor.executeScript("arguments[0].scrollLeft = arguments[0].offsetWidth", scrollArea);
-		executor.executeScript("argument[0].scrollIntoView()", cargoDataTab);
-		wait.until(ExpectedConditions.elementToBeClickable(cargoDataTab));
-	}*/
 
 	public void scrollToRight() {
 		// Ensure the freightTabHorizontalScroll element is visible before attempting to scroll

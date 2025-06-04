@@ -186,7 +186,6 @@ public class SubmitMrnCustomsStatusPage {
         return uploadMrnPopupHeading.getText();
     }
 
-
     public boolean isNoMrnAddedUpdatedCSSuccessAlertMessageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(noMrnAddedUpdatedCSSuccessAlertMessage)).isDisplayed();
     }
