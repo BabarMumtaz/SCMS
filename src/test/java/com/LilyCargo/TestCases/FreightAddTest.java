@@ -15,8 +15,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-
-
 public class FreightAddTest extends TestBeforeAndAfter {
 
 	Logger log;
@@ -28,7 +26,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
 	@Feature("Feature:002")
 	@Story("As a user, I should be able to Add/Create freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
-	public void AddFreightTest() throws InterruptedException {
+	public void VerifyFreightCreation() throws InterruptedException {
 
         log = LogManager.getLogger(FreightAddTest.class);
         log.info("Starting Freight Add Test.");

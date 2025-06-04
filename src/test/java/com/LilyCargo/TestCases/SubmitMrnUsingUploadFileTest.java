@@ -22,7 +22,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
     @Feature("Feature:002")
     @Story("As a user, I should be able to Submit MRN by uploading Doc MRN file successfully")
     @Step("Hit Site URL -> Login with valid credentials -> Booked Freight > Freight Detail Page > Submit MRN")
-    public void SubmitMrnUsingUploadFile() throws InterruptedException {
+    public void VerifySubmitMrnTest() throws InterruptedException {
         log = LogManager.getLogger(SubmitMrnUsingUploadFileTest.class);
         log.info("Test setup completed.");
 
@@ -62,6 +62,13 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
         boolean hasValue = !mrnInput.getAttribute("value").trim().isEmpty();
 
         if (isDisabled || hasValue) {
+
+            pageObjectManager.getSubmitMrnCustomsStatusPage().selectCustomsStatusDropdown();
+            log.info("Selected Clear Customs Status");
+
+            pageObjectManager.getSubmitMrnCustomsStatusPage().enterMrnRemarks(FakeDataUtil.getMrnNo());
+            log.info("Entering Remarks");
+
             pageObjectManager.getSubmitMrnCustomsStatusPage().clickUpdateMrnButton();
             log.info("MRN field is either disabled or already filled. Clicking Update MRN Button.");
 
@@ -72,8 +79,15 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
             log.info("Closed the success alert for Update MRN");
         }
         else {
+
             pageObjectManager.getSubmitMrnCustomsStatusPage().enterMrnNumber(FakeDataUtil.getMrnNo());
             log.info("MRN field is enabled and empty. Entering MRN value: ");
+
+            pageObjectManager.getSubmitMrnCustomsStatusPage().selectCustomsStatusDropdown();
+            log.info("Selected Clear Customs Status After Entering MRN");
+
+            pageObjectManager.getSubmitMrnCustomsStatusPage().enterMrnRemarks(FakeDataUtil.getMrnNo());
+            log.info("Entering Remarks After Entering MRN");
 
             pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnButton();
             log.info("Clicking Submit button.");

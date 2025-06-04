@@ -14,6 +14,7 @@ public class PageObjectManager {
     private FreightListingTestPage freightListing;
     private FreightDetailTestPage freightDetail;
     private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
+    private DockPlannerPage dockPlanner;
     private CarriersTestPage carriersPage;
     private CarrierListingTestPage carrierListing;
     private ClientTestPage clientPage;
@@ -54,6 +55,10 @@ public class PageObjectManager {
 
     public SubmitMrnCustomsStatusPage getSubmitMrnCustomsStatusPage() {
         return (submitMrnCustomsStatus == null) ? submitMrnCustomsStatus = PageFactory.initElements(driver, SubmitMrnCustomsStatusPage.class) : submitMrnCustomsStatus;
+    }
+
+    public DockPlannerPage getDockPlannerPage() {
+        return (dockPlanner == null) ? dockPlanner = PageFactory.initElements(driver, DockPlannerPage.class) : dockPlanner;
     }
 
     public CarriersTestPage getCarriersPage() {
