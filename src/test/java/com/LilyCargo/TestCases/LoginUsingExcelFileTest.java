@@ -1,15 +1,15 @@
 package com.LilyCargo.TestCases;
 
+import com.LilyCargo.Base.TestBeforeAndAfter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.LilyCargo.Base.TestBaseClass;
 import com.LilyCargo.Util.ExcelUtil;
 
 
-public class LoginUsingExcelFileTest extends TestBaseClass {
+public class LoginUsingExcelFileTest extends TestBeforeAndAfter {
 
 	Logger log;
 

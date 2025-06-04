@@ -52,7 +52,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='houseBLNo']")
 	WebElement hBLNO;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])]")
+	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[1]")
 	WebElement clientDrop;
 
 	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")

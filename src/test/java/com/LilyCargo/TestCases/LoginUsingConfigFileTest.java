@@ -20,7 +20,7 @@ public class LoginUsingConfigFileTest extends TestBeforeAndAfter {
 	@Story("Valid login")
 	@Step("Perform login with valid credentials")
 	public void validLoginTest() {
-		pageObjectManager.getLoginPage().login(prop.getProperty("username1"), prop.getProperty("password"));
+		pageObjectManager.getLoginPage().login(prop.getProperty("username"), prop.getProperty("password"));
 
 		// Verifying successful login
 		Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "Login failed!");

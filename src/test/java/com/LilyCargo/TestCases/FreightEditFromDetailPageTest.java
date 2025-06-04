@@ -50,10 +50,9 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log.info("Clicked Save & Return Freight Button");
 
 		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
-		log.info("Clicked Cross icon of mAlert");
+		log.info("Clicked Cross icon of Alert");
 
 		pageObjectManager.getLoginPage().logout();
 		log.info("Logged out successfully.");
 	}
-
 }
