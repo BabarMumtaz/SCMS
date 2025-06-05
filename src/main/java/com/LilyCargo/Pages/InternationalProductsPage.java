@@ -82,7 +82,6 @@ public class InternationalProductsPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement alertPopupDP;
 
-
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public boolean isIntlProductsPageHeadingDisplayed() {
@@ -167,5 +166,4 @@ public class InternationalProductsPage {
     public void clickOnAlertPopupDP() {
         wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
     }
-
 }
