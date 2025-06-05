@@ -87,5 +87,4 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
     }
-
 }

@@ -80,7 +80,7 @@ public class RemarksTestPage {
     @FindBy(xpath = "//div[contains(text(),'Custom Remark added successfully')]")
     WebElement customsRemarksSuccessAlertMessage;
 
-    @FindBy(xpath = "//div[contains(text(),'Sale Remark added successfully')]")
+    @FindBy(xpath = "//div[contains(text(),'Sales Remark added successfully')]")
     WebElement salesRemarksSuccessAlertMessage;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")

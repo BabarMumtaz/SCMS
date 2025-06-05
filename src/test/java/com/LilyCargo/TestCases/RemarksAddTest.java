@@ -39,7 +39,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Add Icon for Import Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isImportRemarksPopupHeadingDisplayed(), "Import Remarks popup not visible");
-        log.info("Popup Heading: " + pageObjectManager.getRemarksPage().getImportRemarksPopupHeading());
+        log.info("Popup Heading of Import Remark: " + pageObjectManager.getRemarksPage().getImportRemarksPopupHeading());
 
         pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Import Remarks Text");
@@ -48,7 +48,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Submit button for Import Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isImportRemarkSuccessAlertMessageDisplayed(), "Import Remark success alert not displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getImportRemarkSuccessAlertMessage());
+        log.info("Success Alert Message For Import Remark: " + pageObjectManager.getRemarksPage().getImportRemarkSuccessAlertMessage());
 
         pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
         log.info("Closed the success alert for Import Remarks");
@@ -68,7 +68,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Add Icon for Customs Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isCustomsRemarksPopupHeadingDisplayed(), "Customs Remarks popup not visible");
-        log.info("Popup Heading: " + pageObjectManager.getRemarksPage().getCustomsRemarksPopupHeading());
+        log.info("Popup Heading of Customs Remark: " + pageObjectManager.getRemarksPage().getCustomsRemarksPopupHeading());
 
         pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Customs Remarks Text");
@@ -81,7 +81,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Submit button for Customs Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isCustomRemarkSuccessAlertMessageDisplayed(), "Customs Remark success alert not displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getCustomRemarkSuccessAlertMessage());
+        log.info("Success Alert Message For Customs Remark: " + pageObjectManager.getRemarksPage().getCustomRemarkSuccessAlertMessage());
 
         pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
         log.info("Closed the success alert for Customs Remarks");
@@ -101,7 +101,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Add Icon for Sales Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isSalesRemarksPopupHeadingDisplayed(), "Sales Remarks popup not visible");
-        log.info("Popup Heading: " + pageObjectManager.getRemarksPage().getSalesRemarksPopupHeading());
+        log.info("Popup Heading of Sales Remark: " + pageObjectManager.getRemarksPage().getSalesRemarksPopupHeading());
 
         pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Sales Remarks Text");
@@ -110,7 +110,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Submit button for Sales Remarks");
 
         Assert.assertTrue(pageObjectManager.getRemarksPage().isSaleRemarkSuccessAlertMessageDisplayed(), "Sales Remark success alert not displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getSaleRemarkSuccessAlertMessage());
+        log.info("Success Alert Message For Sales Remark: " + pageObjectManager.getRemarksPage().getSaleRemarkSuccessAlertMessage());
 
         pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
         log.info("Closed the success alert for Sales Remarks");
@@ -119,105 +119,3 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Logged out successfully.");
     }
 }
-
-
-/*
-    @Test(priority = 1, description = "Verify that a user can add Remarks successfully", groups = {"smoke", "regression"})
-    @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Remarks successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a user, I should be able to add Remarks successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Remarks Tab > Remarks")
-    public void VerifyAll () throws InterruptedException {
-
-        log = LogManager.getLogger(RemarksAddTest.class);
-        log.info("Starting Remarks Add Test from Remarks Tab.");
-
-        pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the 1st row FreightID.");
-
-        pageObjectManager.getFreightListing().switchToNewTab();
-        log.info("Switched to the new tab");
-
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isRemarksTabDisplayed(), "Remarks tab is not Displayed");
-        log.info("Heading: " + pageObjectManager.getFreightDetail().getRemarksTabText());
-
-        pageObjectManager.getFreightDetail().clickRemarksTab();
-        log.info("Clicked Remarks Tab");
-
-        //----------------------------------IMPORT REMARKS----------------------------------
-        pageObjectManager.getRemarksPage().clickOnRemarksAddIcon();
-        log.info("Clicked On Remarks Add Icon");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isImportRemarksPopupHeadingDisplayed(), "Import Remarks Popup Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getRemarksPage().getImportRemarksPopupHeading());
-
-        pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
-        log.info("Entered Remarks Text");
-
-        pageObjectManager.getRemarksPage().clickSubmitRemarksButton();
-        log.info("Clicked Submit Remarks Button");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isImportRemarkSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getImportRemarkSuccessAlertMessage());
-
-        pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup Cross Icon");
-
-        //----------------------------------CUSTOMS REMARKS----------------------------------
-
-        pageObjectManager.getRemarksPage().clickOnCustomsRemarksTab();
-        log.info("Click On Customs Remarks Tab");
-
-        pageObjectManager.getRemarksPage().clickOnRemarksAddIcon();
-        log.info("Clicked On Remarks Add Icon");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isCustomsRemarksPopupHeadingDisplayed(), "Customs Remarks Popup Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getRemarksPage().getCustomsRemarksPopupHeading());
-
-        pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
-        log.info("Entered Remarks Text");
-
-        String[] customsRemarksDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getRemarksPage().selectCustomsRemarksDateDate(customsRemarksDate[0], customsRemarksDate[1], customsRemarksDate[2]);
-        log.info("Selected Customs Remarks DATE");
-
-  *//*    pageObjectManager.getRemarksPage().selectCustomsRemarksTime();
-        log.info("Selected Customs Remarks Time");*//*
-
-        pageObjectManager.getRemarksPage().clickSubmitRemarksButton();
-        log.info("Clicked Submit Remarks Button");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isCustomRemarkSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getCustomRemarkSuccessAlertMessage());
-
-        pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup Cross Icon");
-
-        //----------------------------------SALES REMARKS----------------------------------
-
-        pageObjectManager.getRemarksPage().clickSalesRemarksTab();
-        log.info("Click On Sales Remarks Tab");
-
-        pageObjectManager.getRemarksPage().clickOnRemarksAddIcon();
-        log.info("Clicked On Remarks Add Icon");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isSalesRemarksPopupHeadingDisplayed(), "Sales Remarks Popup Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getRemarksPage().getSalesRemarksPopupHeading());
-
-        pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
-        log.info("Entered Remarks Text");
-
-        pageObjectManager.getRemarksPage().clickSubmitRemarksButton();
-        log.info("Clicked Submit Remarks Button");
-
-        Assert.assertTrue(pageObjectManager.getRemarksPage().isSaleRemarkSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getRemarksPage().getSaleRemarkSuccessAlertMessage());
-
-        pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup ");
-
-        */
-
-

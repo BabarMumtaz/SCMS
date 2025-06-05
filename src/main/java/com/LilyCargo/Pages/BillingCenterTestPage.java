@@ -287,6 +287,9 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//div[contains(text(),'Invoice Created Successfully')]")
     WebElement successAlertMessage;
 
+    @FindBy(xpath = "//div[contains(text(),'Extra Invoice Created Successfully')]")
+    WebElement extraInvoiceSuccessAlertMessage;
+
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
@@ -742,13 +745,22 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(finishINVButton)).click();
     }
 
+    public boolean isSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    }
+
     public String getSuccessAlertMessage() {
         return successAlertMessage.getText();
     }
 
-    public boolean isSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
+    public boolean isExtraInvSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(extraInvoiceSuccessAlertMessage)).isDisplayed();
     }
+
+    public String getExtraInvSuccessAlertMessage() {
+        return extraInvoiceSuccessAlertMessage.getText();
+    }
+
 
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();

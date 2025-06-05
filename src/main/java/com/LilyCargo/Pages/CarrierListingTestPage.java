@@ -140,5 +140,4 @@ public class CarrierListingTestPage {
     public void clickOnAlertPopupDP() {
         wait.until(ExpectedConditions.visibilityOf(alertPopupDP)).click();
     }
-
 }

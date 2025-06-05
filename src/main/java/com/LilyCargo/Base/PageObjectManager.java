@@ -16,6 +16,7 @@ public class PageObjectManager {
     private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
     private DockPlannerPage dockPlanner;
     private CarriersTestPage carriersPage;
+    private InternationalProductsPage internationalProductsPage;
     private CarrierListingTestPage carrierListing;
     private ClientTestPage clientPage;
     private ShipperTestPage shippersPage;
@@ -59,6 +60,10 @@ public class PageObjectManager {
 
     public DockPlannerPage getDockPlannerPage() {
         return (dockPlanner == null) ? dockPlanner = PageFactory.initElements(driver, DockPlannerPage.class) : dockPlanner;
+    }
+
+    public InternationalProductsPage getInternationalProductsPage() {
+        return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
     }
 
     public CarriersTestPage getCarriersPage() {

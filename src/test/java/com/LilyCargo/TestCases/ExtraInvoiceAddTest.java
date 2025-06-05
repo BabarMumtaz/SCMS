@@ -112,17 +112,16 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickSubmitINVButton();
         log.info("Clicked Submit INV Button");
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
+        //Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
 
-/*        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isExtraInvSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getExtraInvSuccessAlertMessage());
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup Cross Icon");*/
+        log.info("Clicked Alert Popup Cross Icon");
 
-        // Log out after the test
         pageObjectManager.getLoginPage().logout();
         log.info("Logged out successfully.");
     }

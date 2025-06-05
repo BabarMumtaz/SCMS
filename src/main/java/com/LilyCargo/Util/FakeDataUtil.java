@@ -147,4 +147,8 @@ public class FakeDataUtil {
         int amount = fakerEN.number().numberBetween(1, 10);
         return String.valueOf(amount);
     }
+    public static String getPidNo() {
+        return fakerEN.bothify("INT###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
 }
