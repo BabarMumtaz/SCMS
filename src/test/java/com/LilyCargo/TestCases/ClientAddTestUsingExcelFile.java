@@ -15,7 +15,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class ClientAddTest extends TestBeforeAndAfter {
+public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -36,11 +36,11 @@ public class ClientAddTest extends TestBeforeAndAfter {
     @Feature("Feature:004")
     @Story("As a user, I should be able to Add/Create Client successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Create Client")
-    public void AddClientTest(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
+    public void AddClientTestUsingExcelFile(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
                               String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
                               String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
 
-        log = LogManager.getLogger(ClientAddTest.class);
+        log = LogManager.getLogger(ClientAddTestUsingExcelFile.class);
         log.info("Starting Client Add Test from Freight Relations.");
 
         pageObjectManager.getMenuBar().clickFreightRelationsMenu();
