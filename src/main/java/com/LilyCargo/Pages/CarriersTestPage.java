@@ -138,6 +138,7 @@ public class CarriersTestPage {
 	 * telephoneNumber2.sendKeys(text); }
 	 */
 
+/*
 	// Method to generate a Dutch phone number without dashes
 	public String getDutchPhoneNumber() {
 		String dutchPhoneNumber = faker.phoneNumber().phoneNumber();
@@ -161,6 +162,16 @@ public class CarriersTestPage {
 				.perform();
 		String dutchPhoneNumber = getDutchPhoneNumber();
 		telephoneNumber2.sendKeys(dutchPhoneNumber);
+	}
+*/
+
+
+	public void enterCarrierDutchPhoneNumber(String phoneNumber) {
+		telephoneNumber1.sendKeys(phoneNumber);
+	}
+
+	public void enterCarrierDutchPhoneNumber2(String phoneNumber) {
+		telephoneNumber2.sendKeys(phoneNumber);
 	}
 
 	public void enterAddress1(String text) {

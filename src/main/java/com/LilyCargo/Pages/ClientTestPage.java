@@ -2,10 +2,7 @@ package com.LilyCargo.Pages;
 
 import com.github.javafaker.Faker;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -43,6 +40,9 @@ public class ClientTestPage {
     @FindBy(xpath = "//button[text()='Add Client']")
     WebElement addClientBtn;
 
+    @FindBy(xpath = "//h5[text()='Client']")
+    WebElement clientAddPageHeading;
+
     @FindBy(xpath = "//input[@name='name']")
     WebElement clientName;
 
@@ -51,6 +51,9 @@ public class ClientTestPage {
 
     @FindBy(xpath = "//input[@name='address1']")
     WebElement clientAddress1;
+
+    @FindBy(xpath = "//input[@name='address2']")
+    WebElement clientAddress2;
 
     @FindBy(xpath = "//input[@name='email1']")
     WebElement clientEmail1;
@@ -66,6 +69,9 @@ public class ClientTestPage {
 
     @FindBy(xpath = "//input[@name='tel']")
     WebElement clientTelephoneNumber1;
+
+    @FindBy(xpath = "//input[@name='tel2']")
+    WebElement clientTelephoneNumber2;
 
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement regionDropDown;
@@ -139,6 +145,93 @@ public class ClientTestPage {
         addClientBtn.click();
     }
 
+    public String getAddPageHeading() {
+        return clientAddPageHeading.getText();
+    }
+
+    public boolean isAddPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(clientAddPageHeading)).isDisplayed();
+    }
+
+    public void enterShipperAddress1(String text) {
+        clientAddress1.sendKeys(text);
+    }
+
+    public void enterAddress2(String text) {
+        actions.click(clientAddress2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+        clientAddress2.sendKeys(text);
+    }
+
+    public void enterClientName(String text) {
+        clientName.sendKeys(text);
+    }
+
+    public void enterContactPerson(String text) {
+        contactPerson.sendKeys(text);
+    }
+
+    public void enterClientEmail1(String text) {
+        clientEmail1.sendKeys(text);
+    }
+
+    public void enterClientFinancialEmail(String text) {
+        clientFinancialEmail.sendKeys(text);
+    }
+
+    public void enterClientFiscalMattersEmail1(String text) {
+        clientFiscalMattersEmail1.sendKeys(text);
+    }
+
+    public void enterClientCeoEmail1(String text) {
+        clientCeoEmail1.sendKeys(text);
+    }
+
+    // Method to enter invoice number into the invoiceNumber field
+    public void enterClientDutchPhoneNumber(String phoneNumber) {
+        clientTelephoneNumber1.sendKeys(phoneNumber);
+    }
+    public void enterClientDutchPhoneNumber2(String phoneNumber) {
+        clientTelephoneNumber2.sendKeys(phoneNumber);
+    }
+
+    public void enterClientZipCity(String text) {
+        clientZipCity.sendKeys(text);
+    }
+
+
+    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+        dropdown.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+        dropdownValue.click();
+    }
+
+    public void selectRegion() {
+        selectDropdownValue(regionDropDown, regionDropDownValue);
+    }
+
+    public void selectCountry() {
+        selectDropdownValue(countryDropDown, countryDropDownValue);
+    }
+
+    public void selectLfr() {
+        selectDropdownValue(clientLfrDropDown, clientLfrDropDownValue);
+    }
+
+    public void enterScmEmail1(String text) {
+        scmEmails.sendKeys(text);
+    }
+
+    public void enterCustomsReleaseEmail1(String text) {
+        customsReleaseEmails.sendKeys(text);
+    }
+
+    public void enterBillingEmail1(String text) {
+        billingEmails.sendKeys(text);
+    }
+
+
+    //--------------------------------------------------------------------------------------------
+
     // Method to select a dropdown value by visible text
     public void selectDropdownByText(WebElement dropdownElement, String value) {
         dropdownElement.click(); // open the dropdown
@@ -173,6 +266,9 @@ public class ClientTestPage {
 
         clickSaveClientBack();
     }
+
+
+    //--------------------------------------------------------------------------------------------
 
     public void clickExtraEmailFieldCross() {
         extraEmailFieldCross.click();

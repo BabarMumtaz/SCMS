@@ -151,29 +151,12 @@ public class ShipperTestPage {
         shipperTelephoneNumber1.sendKeys(text);
     }
 
-    // Method to generate a Dutch phone number without dashes
-    public String getDutchPhoneNumber() {
-        String dutchPhoneNumber = faker.phoneNumber().phoneNumber();
-
-        // Replace unwanted characters and ensure it starts with +31
-        dutchPhoneNumber = dutchPhoneNumber.replaceAll("[^\\d+]", ""); // Keep only digits and the plus sign
-        if (!dutchPhoneNumber.startsWith("+31")) {
-            dutchPhoneNumber = "+31" + dutchPhoneNumber.substring(1); // Ensure it starts with +31
-        }
-
-        return dutchPhoneNumber;
+    public void enterShipperDutchPhoneNumber(String phoneNumber) {
+        shipperTelephoneNumber1.sendKeys(phoneNumber);
     }
 
-    public void enterShipperDutchPhoneNumber() {
-        String dutchPhoneNumber = getDutchPhoneNumber();
-        shipperTelephoneNumber1.sendKeys(dutchPhoneNumber);
-    }
-
-    public void enterShipperDutchPhoneNumber2() {
-        actions.click(shipperTelephoneNumber2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
-                .perform();
-        String dutchPhoneNumber = getDutchPhoneNumber();
-        shipperTelephoneNumber2.sendKeys(dutchPhoneNumber);
+    public void enterShipperDutchPhoneNumber2(String phoneNumber) {
+        shipperTelephoneNumber2.sendKeys(phoneNumber);
     }
 
     public void enterShipperAddress1(String text) {

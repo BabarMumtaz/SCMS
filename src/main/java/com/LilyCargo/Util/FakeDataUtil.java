@@ -138,6 +138,18 @@ public class FakeDataUtil {
         return prefix + "-" + invoicePart;
     }
 
+    public static String getDutchPhoneNumber() {
+        String dutchPhoneNumber = fakerNL.phoneNumber().phoneNumber();
+
+        // Replace unwanted characters and ensure it starts with +31
+        dutchPhoneNumber = dutchPhoneNumber.replaceAll("[^\\d+]", ""); // Keep only digits and the plus sign
+        if (!dutchPhoneNumber.startsWith("+31")) {
+            dutchPhoneNumber = "+31" + dutchPhoneNumber.substring(1); // Ensure it starts with +31
+        }
+
+        return dutchPhoneNumber;
+    }
+
     public static String getRandomSaleAmount() {
         double amount = fakerEN.number().randomDouble(2, 10, 100); // 2 decimal places, range 10–100
         return String.format("%.2f", amount); // ensures two decimal places

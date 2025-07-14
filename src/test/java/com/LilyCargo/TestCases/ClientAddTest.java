@@ -1,21 +1,15 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.ExcelUtil;
+import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.LilyCargo.Util.ExcelUtil;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Step;
-import io.qameta.allure.Story;
 
-public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
+public class ClientAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -28,17 +22,14 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
 
     @Test(priority = 1,
             description = "Add Client",
-            dataProvider = "getClientTestData",
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can Add/Create Client successfully by entering data in required fields Using Excel File")
+    @Description("Verify that a user can add Client successfully")
     @Epic("EP001")
     @Feature("Feature:004")
     @Story("As a user, I should be able to Add/Create Client successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Create Client")
-    public void AddClientTestUsingExcelFile(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
-                              String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
-                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
+    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Client")
+    public void AddClientAddTestCase(){
 
         log = LogManager.getLogger(ClientAddTestUsingExcelFile.class);
         log.info("Starting Client Add Test from Freight Relations.");
@@ -54,13 +45,6 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
 
         pageObjectManager.getClientPage().clickAddClientBtn();
         log.info("Clicked Client Add button");
-
-        // Log the dropdown selections for clarity
-        log.info("Adding client data: Region - " + RegionDropDown + ", Country - " + CountryDropDown + ", LFR - "
-                + LfrDropDown);
-
-        pageObjectManager.getClientPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
-                TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
 
         Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());

@@ -1,5 +1,6 @@
 package com.LilyCargo.TestCases;
 import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -51,7 +52,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().enterCarrierEmail2(faker.internet().emailAddress());
         log.info("Entered Carrier's Email 2");
 
-        pageObjectManager.getCarriersPage().enterDutchPhoneNumber2(); // New method for Dutch phone number
+        pageObjectManager.getCarriersPage().enterCarrierDutchPhoneNumber2(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Carrier's Tel 2 Number");
 
         pageObjectManager.getCarriersPage().enterAddress2(faker.address().streetAddress());

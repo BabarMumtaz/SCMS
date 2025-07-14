@@ -1,6 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +60,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getShippersPage().enterShipperEmail1(faker.internet().emailAddress());
         log.info("Entered Shipper's Email");
 
-        pageObjectManager.getShippersPage().enterShipperDutchPhoneNumber(); // New method for Dutch phone number
+        pageObjectManager.getShippersPage().enterShipperDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Shipper's Tel Number");
 
         pageObjectManager.getShippersPage().enterExtraEmailLabel("Extra Email");
