@@ -37,7 +37,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Clicked Shipper Add button");
 
         Assert.assertTrue(pageObjectManager.getShippersPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getShippersPage().getAddPageHeading());
+        log.info("Shipper Add Page Heading: " + pageObjectManager.getShippersPage().getAddPageHeading());
 
         pageObjectManager.getShippersPage().enterShipperStore(faker.company().name());
         log.info("Entered Shipper Store Name");

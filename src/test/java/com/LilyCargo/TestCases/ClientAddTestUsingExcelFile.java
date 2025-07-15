@@ -41,7 +41,7 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
                               String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
 
         log = LogManager.getLogger(ClientAddTestUsingExcelFile.class);
-        log.info("Starting Client Add Test from Freight Relations.");
+        log.info("Starting Client Add Test from Freight Relations using Excel file.");
 
         pageObjectManager.getMenuBar().clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");

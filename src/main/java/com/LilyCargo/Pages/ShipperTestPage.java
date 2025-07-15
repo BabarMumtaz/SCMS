@@ -1,6 +1,5 @@
 package com.LilyCargo.Pages;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,9 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.Locale;
 
 public class ShipperTestPage {
 
@@ -20,7 +17,6 @@ public class ShipperTestPage {
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
-    Faker faker;
 
     // Constructor that will be automatically called as soon as the object of the
     // class is created
@@ -30,7 +26,6 @@ public class ShipperTestPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver);
-        faker = new Faker(new Locale.Builder().setLanguage("nl").build());
     }
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------

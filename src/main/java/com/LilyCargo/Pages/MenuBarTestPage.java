@@ -26,34 +26,37 @@ public class MenuBarTestPage {
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	@FindBy(xpath = "//img[@src = '/static/media/aside-uncollapse.bd6caeaeff8ed082011267c649cadb4e.svg']")
-	WebElement SideBarExpand;
+	WebElement sideBarExpand;
 
 	@FindBy(xpath = "//div[@title='Dashboard']")
-	WebElement DashboardMenu;
+	WebElement dashboardMenu;
 
 	@FindBy(xpath = "//li[contains(@title,'Intrastats')]")
-	WebElement IntrastatsDashSubMenu;
+	WebElement intrastatsDashSubMenu;
 
 	@FindBy(xpath = "//div[@title='Administration']")
-	WebElement AdministrationMenu;
+	WebElement administrationMenu;
 
 	@FindBy(xpath = "//li[@title='Overview']")
-	WebElement OverviewAdmSubMenu;
+	WebElement overviewAdmSubMenu;
 
 	@FindBy(xpath = "//li[@title='Booked Freight']")
-	WebElement BookedFreightMenu;
+	WebElement bookedFreightMenu;
 
 	@FindBy(xpath = "//div[@title='Freight Relations']")
-	WebElement FreightRelationsMenu;
+	WebElement freightRelationsMenu;
 
 	@FindBy(xpath = "//li[@title='Carriers']")
-	WebElement CarriersFRSubMenu;
+	WebElement carriersFRSubMenu;
 
 	@FindBy(xpath = "//li[@title='Clients']")
-	WebElement ClientFRSubMenu;
+	WebElement clientFRSubMenu;
+
+	@FindBy(xpath = "//li[@title='Export Companies']")
+	WebElement exportCompaniesFRSubMenu;
 
 	@FindBy(xpath = "//li[@title='Shippers']")
-	WebElement ShippersFRSubMenu;
+	WebElement shippersFRSubMenu;
 
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
@@ -65,44 +68,47 @@ public class MenuBarTestPage {
 
 	// Method to click on Logout button
 	public void ClickExpandSideBarIcon() {
-		SideBarExpand.click();
+		sideBarExpand.click();
 	}
 
 	public void clickDashboardMenu() {
-		DashboardMenu.click();
+		dashboardMenu.click();
 	}
 
 	public void clickIntrastatsDashSubMenu() {
-		// Click on date picker
-		IntrastatsDashSubMenu.click();
+		intrastatsDashSubMenu.click();
 	}
 
 	public void clickAdministrationMenu() {
-		AdministrationMenu.click();
+		administrationMenu.click();
 	}
 
 	public void clickOverviewAdmSubMenu() {
-		OverviewAdmSubMenu.click();
+		overviewAdmSubMenu.click();
 	}
 
 	public void clickBookedFreightMenu() {
-		BookedFreightMenu.click();
+		bookedFreightMenu.click();
 	}
 
 	public void clickFreightRelationsMenu() {
-		FreightRelationsMenu.click();
+		freightRelationsMenu.click();
 	}
 
 	public void clickCarriersFRSubMenu() {
-		CarriersFRSubMenu.click();
+		carriersFRSubMenu.click();
 	}
 
 	public void clickClientFRSubMenu() {
-		ClientFRSubMenu.click();
+		clientFRSubMenu.click();
+	}
+
+	public void clickExportCompaniesFRSubMenu() {
+		exportCompaniesFRSubMenu.click();
 	}
 
 	public void clickShippersFRSubMenu() {
-		ShippersFRSubMenu.click();
+		shippersFRSubMenu.click();
 	}
 
 	public void clickFinanceMenu() {

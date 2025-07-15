@@ -1,17 +1,12 @@
 package com.LilyCargo.Pages;
 
-import com.github.javafaker.Faker;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.Locale;
 
 public class ClientTestPage {
 
@@ -19,7 +14,6 @@ public class ClientTestPage {
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
-    Faker faker;
 
     // Constructor that will be automatically called as soon as the object of the
     // class is created
@@ -29,7 +23,6 @@ public class ClientTestPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver);
-        faker = new Faker(new Locale.Builder().setLanguage("nl").build());
     }
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -76,7 +69,7 @@ public class ClientTestPage {
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement regionDropDown;
 
-    @FindBy(xpath = "//li[contains(.,'nl')]")
+    @FindBy(xpath = "//li[text()='nl']")
     WebElement regionDropDownValue;
 
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
@@ -94,7 +87,7 @@ public class ClientTestPage {
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[3]")
     WebElement clientLfrDropDown;
 
-    @FindBy(xpath = "//li[contains(.,'NL LMBV B02 (IMPORT)')]")
+    @FindBy(xpath = "//li[contains(.,'NL LMLOG Fiscal Rep (Import)')]")
     WebElement clientLfrDropDownValue;
 
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
@@ -153,11 +146,11 @@ public class ClientTestPage {
         return wait.until(ExpectedConditions.visibilityOf(clientAddPageHeading)).isDisplayed();
     }
 
-    public void enterShipperAddress1(String text) {
+    public void enterClientAddress1(String text) {
         clientAddress1.sendKeys(text);
     }
 
-    public void enterAddress2(String text) {
+    public void enterClientAddress2(String text) {
         actions.click(clientAddress2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
         clientAddress2.sendKeys(text);
     }
@@ -178,11 +171,11 @@ public class ClientTestPage {
         clientFinancialEmail.sendKeys(text);
     }
 
-    public void enterClientFiscalMattersEmail1(String text) {
+    public void enterClientFiscalMattersEmail(String text) {
         clientFiscalMattersEmail1.sendKeys(text);
     }
 
-    public void enterClientCeoEmail1(String text) {
+    public void enterClientCeoEmail(String text) {
         clientCeoEmail1.sendKeys(text);
     }
 
@@ -217,15 +210,15 @@ public class ClientTestPage {
         selectDropdownValue(clientLfrDropDown, clientLfrDropDownValue);
     }
 
-    public void enterScmEmail1(String text) {
+    public void enterScmEmail(String text) {
         scmEmails.sendKeys(text);
     }
 
-    public void enterCustomsReleaseEmail1(String text) {
+    public void enterCustomsReleaseEmail(String text) {
         customsReleaseEmails.sendKeys(text);
     }
 
-    public void enterBillingEmail1(String text) {
+    public void enterBillingEmail(String text) {
         billingEmails.sendKeys(text);
     }
 
@@ -266,7 +259,6 @@ public class ClientTestPage {
 
         clickSaveClientBack();
     }
-
 
     //--------------------------------------------------------------------------------------------
 
@@ -309,5 +301,4 @@ public class ClientTestPage {
     public void clickOnAlertPopupLP() {
         wait.until(ExpectedConditions.visibilityOf(clientAlertPopupLP)).click();
     }
-
 }

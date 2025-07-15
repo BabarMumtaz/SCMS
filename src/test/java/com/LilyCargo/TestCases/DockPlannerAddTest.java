@@ -75,7 +75,6 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getDockPlannerPage().isDockPlannerSuccessAlertMessageDisplayed(), "Alert Message is different");
         log.info("Success Alert Message on Submit: " + pageObjectManager.getDockPlannerPage().getDockPlannerSuccessAlertMessage());
 
-
         pageObjectManager.getDockPlannerPage().clickDockPlannerExportButton();
         log.info("Clicked on Export Dock Planner button.");
 
