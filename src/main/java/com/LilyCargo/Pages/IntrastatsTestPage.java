@@ -79,8 +79,8 @@ public class IntrastatsTestPage {
 	}
 
 	// Method to click on Logout button
-	public void clickLogout() {
-		logoutButton.click();
+	public void clickGenerateDataButton() {
+		generateDataButton.click();
 	}
 
 	public void clickCreateFreightBtn() {
@@ -93,8 +93,8 @@ public class IntrastatsTestPage {
 		dropdownValue.click();
 	}
 
-	public void selectCountry() {
-		selectDropdownValue(countryDropDown, countryDropDownValue);
+	public void selectClient() {
+		selectDropdownValue(clientDropDown, clientDropDownValue);
 	}
 
 }
