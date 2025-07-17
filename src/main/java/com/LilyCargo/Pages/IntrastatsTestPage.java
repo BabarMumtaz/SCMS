@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -62,15 +63,21 @@ public class IntrastatsTestPage {
 	@FindBy(className = "Generate Data")
 	WebElement generateDataButton;
 
-	@FindBy(xpath = "//button[text()='Create Freight']")
-	WebElement CreateFreight;
+	@FindBy(xpath = "//td[text()='No data found']")
+	WebElement noDataFoundText;
 
-	@FindBy(xpath = "//input[@name='FNO']")
-	WebElement FNO;
+	@FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr[1]/td[2]")
+	WebElement listingMonthFirstCell;
 
-	@FindBy(xpath = "//input[@name='Loaded']")
-	WebElement ETDdatePicker;
+	//id = download-dropdown
+	@FindBy(xpath = "//img[@alt='Download']")
+	WebElement exportIcon;
 
+	@FindBy(xpath = "//a[text()='Freights Data']")
+	WebElement freightDataExportOption;
+
+	@FindBy(xpath = "//a[text()='Cargo Data']")
+	WebElement cargoDataExportOption;
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to capture the page heading
@@ -78,13 +85,8 @@ public class IntrastatsTestPage {
 		return intrastatsHeading.getText();
 	}
 
-	// Method to click on Logout button
-	public void clickGenerateDataButton() {
-		generateDataButton.click();
-	}
-
-	public void clickCreateFreightBtn() {
-		CreateFreight.click();
+	public boolean isIntrastatsPageHeadingDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(intrastatsHeading)).isDisplayed();
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -93,8 +95,42 @@ public class IntrastatsTestPage {
 		dropdownValue.click();
 	}
 
+	public void selectlfr() {
+		selectDropdownValue(lfrDropDown, lfrDropDownValue);
+	}
+
+	public void selectYear() {
+		selectDropdownValue(yearDropDown, yearDropDownValue);
+	}
+
+	public void selectMonth() {
+		selectDropdownValue(monthDropDown, monthDropDownValue);
+	}
+
+	public void selectZone() {
+		selectDropdownValue(zoneDropDown, zoneDropDownValue);
+	}
+
 	public void selectClient() {
 		selectDropdownValue(clientDropDown, clientDropDownValue);
 	}
+
+	// Method to click on Logout button
+	public void clickGenerateDataButton() {
+		generateDataButton.click();
+	}
+
+	public void clickExportIcon() {
+		exportIcon.click();
+	}
+
+	public void clickFreightDataExportOption() {
+		freightDataExportOption.click();
+	}
+
+	public void clickCargoDataExportOption() {
+		cargoDataExportOption.click();
+	}
+
 
 }
