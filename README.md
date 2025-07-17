@@ -1,7 +1,7 @@
 # Welcome to My GitHub Portfolio 👋  
 
 ## About Me  
-Hi, I'm **Babar Mumtaz**, a passionate **Software Quality Assurance Engineer** with 3+ years of experience in manual and automation testing.  
+Hi, I'm **Babar Mumtaz**, a passionate **Senior Software Quality Assurance Engineer** with 4+ years of experience in manual and automation testing.  
 I specialize in ensuring the delivery of high-quality software through rigorous testing methodologies and effective collaboration with development teams.  
 
 ---
@@ -27,7 +27,7 @@ I specialize in ensuring the delivery of high-quality software through rigorous 
 
 ## Projects  
 
-### 1. **LilyCargo**  
+### 1. **CargoMover**  
 - **Description:**  
   An automated testing project using Selenium with Java to ensure efficient cargo tracking and management.  
 - **Key Features:**  
@@ -35,7 +35,7 @@ I specialize in ensuring the delivery of high-quality software through rigorous 
   - Integrated Extent Reports for detailed test reporting.  
   - CI/CD pipeline setup using Jenkins.  
 
-### 2. **Genius Travel**  
+### 2. **G-Travel**  
 - **Description:**  
   Mobile app testing for a travel management system.  
 - **Key Features:**  
