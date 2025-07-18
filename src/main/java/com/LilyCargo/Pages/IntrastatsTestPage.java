@@ -1,8 +1,6 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -60,7 +58,7 @@ public class IntrastatsTestPage {
 	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")
 	WebElement clientDropDownValue;
 
-	@FindBy(className = "Generate Data")
+	@FindBy(xpath = "//button[text()='Generate Data']")
 	WebElement generateDataButton;
 
 	@FindBy(xpath = "//td[text()='No data found']")
@@ -78,6 +76,12 @@ public class IntrastatsTestPage {
 
 	@FindBy(xpath = "//a[text()='Cargo Data']")
 	WebElement cargoDataExportOption;
+
+	@FindBy(xpath = "//div[contains(text(),'Data exported')]")
+	WebElement exportDataSuccessAlertMessage;
+
+	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+	WebElement exportDataAlertPopup;
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to capture the page heading
@@ -92,7 +96,8 @@ public class IntrastatsTestPage {
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
 		dropdown.click();
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		dropdownValue.click();
+		//String xpath = String.format("//li[normalize-space()='%s']", optionText);
+		wait.until(ExpectedConditions.visibilityOf(dropdownValue)).click();
 	}
 
 	public void selectlfr() {
@@ -115,6 +120,33 @@ public class IntrastatsTestPage {
 		selectDropdownValue(clientDropDown, clientDropDownValue);
 	}
 
+
+	// Reusable Method to select dropdown
+	private void selectDropdownOption(WebElement dropdown, String optionText) {
+		dropdown.click();
+		String xpath = String.format("//li[normalize-space()='%s']", optionText);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
+	}
+
+	/*-------------------------------------------------------------------------
+
+
+	// Reusable method to select client
+	public void selectClient(String clientText) {
+		clientSearchInput.sendKeys(clientText);
+		String xpath = String.format("//li[contains(text(),'%s')]", clientText);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
+	}
+
+	public void selectFields(String lfr, String zone, String year, String client) {
+		selectDropdownOption(lfrDropdown, lfr);
+		selectDropdownOption(zoneDropdown, zone);
+		selectDropdownOption(yearDropdown, year);
+		selectClient(client);
+	}
+
+	----------------------------------------------------------*/
+
 	// Method to click on Logout button
 	public void clickGenerateDataButton() {
 		generateDataButton.click();
@@ -132,5 +164,34 @@ public class IntrastatsTestPage {
 		cargoDataExportOption.click();
 	}
 
+	public void selectMonthAndGenerate(int month) {
+		selectDropdownOption(monthDropDown, String.valueOf(month));
+		executor.executeScript("arguments[0].scrollIntoView(true);", monthDropDownValue);
+		wait.until(ExpectedConditions.visibilityOf(generateDataButton)).click();
+	}
+
+	public boolean isNoDataFoundVisible() {
+		try {
+			return wait.until(ExpectedConditions.visibilityOf(noDataFoundText)).isDisplayed();
+		} catch (TimeoutException e) {
+			return false;
+		}
+	}
+
+	public String getMonthFromFirstRow() {
+		return wait.until(ExpectedConditions.visibilityOf(listingMonthFirstCell)).getText();
+	}
+
+	public String getExportDataSuccessAlertMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(exportDataSuccessAlertMessage)).getText();
+	}
+
+	public boolean isExportDataSuccessAlertMessageDisplayed() {
+		return wait.until(ExpectedConditions.visibilityOf(exportDataSuccessAlertMessage)).isDisplayed();
+	}
+
+	public void clickOnAlertPopup() {
+		wait.until(ExpectedConditions.visibilityOf(exportDataAlertPopup)).click();
+	}
 
 }

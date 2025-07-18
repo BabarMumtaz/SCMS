@@ -10,6 +10,7 @@ public class PageObjectManager {
     // Declare all page objects
     private LoginTestPage loginPage;
     private MenuBarTestPage menuBar;
+    private IntrastatsTestPage intrastatsPage;
     private FreightTestPage bookedFreights;
     private FreightListingTestPage freightListing;
     private FreightDetailTestPage freightDetail;
@@ -41,6 +42,10 @@ public class PageObjectManager {
 
     public MenuBarTestPage getMenuBar() {
         return (menuBar == null) ? menuBar = PageFactory.initElements(driver, MenuBarTestPage.class) : menuBar;
+    }
+
+    public IntrastatsTestPage getIntrastatsPage() {
+        return (intrastatsPage == null) ? intrastatsPage = PageFactory.initElements(driver, IntrastatsTestPage.class) : intrastatsPage;
     }
 
     public FreightTestPage getBookedFreights() {
