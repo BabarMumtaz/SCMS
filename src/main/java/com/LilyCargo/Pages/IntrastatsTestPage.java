@@ -164,10 +164,11 @@ public class IntrastatsTestPage {
 		cargoDataExportOption.click();
 	}
 
-	public void selectMonthAndGenerate(int month) {
+	public void selectMonthAndGenerate(int month) throws InterruptedException {
 		selectDropdownOption(monthDropDown, String.valueOf(month));
 		executor.executeScript("arguments[0].scrollIntoView(true);", monthDropDownValue);
 		wait.until(ExpectedConditions.visibilityOf(generateDataButton)).click();
+		Thread.sleep(1000);
 	}
 
 	public boolean isNoDataFoundVisible() {
