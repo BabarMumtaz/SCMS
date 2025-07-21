@@ -50,6 +50,16 @@ public class TestBeforeAndAfter extends TestBaseClass {
         log.info("Login successful.");
     }
 
+    public void logout() {
+        try {
+            pageObjectManager.getLoginPage().logout();
+            log.info("Logged out successfully.");
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            log.warn("Logout attempt failed or user was already logged out.");
+        }
+    }
+
     @AfterMethod
     public void tearDown(ITestResult result) {
         String testName = result.getMethod().getMethodName();
@@ -64,11 +74,11 @@ public class TestBeforeAndAfter extends TestBaseClass {
             log.info("Test {}: {}", testName, (result.getStatus() == ITestResult.SUCCESS) ? "PASSED" : "SKIPPED");
         }
 
+        // ✅ Auto logout after every test
+        logout();
         if (driver != null) {
             driver.quit();
             log.info("Browser closed.");
         }
     }
-
-
 }

@@ -68,7 +68,5 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         pageObjectManager.getClientPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

@@ -62,7 +62,5 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

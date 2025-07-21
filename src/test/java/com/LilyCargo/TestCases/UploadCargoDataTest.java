@@ -99,8 +99,5 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
         }
-        // Log out after the test
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

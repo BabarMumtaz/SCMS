@@ -115,7 +115,5 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
         log.info("Closed the success alert for Sales Remarks");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

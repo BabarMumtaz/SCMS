@@ -32,6 +32,6 @@ public class LoginUsingExcelFileTest extends TestBeforeAndAfter {
 
 		// Verifying successful login
 		Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "Login failed for: " + username);
-		pageObjectManager.getLoginPage().logout();
+
 	}
 }

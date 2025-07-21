@@ -59,7 +59,5 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         pageObjectManager.getIncidentsRegistrationPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

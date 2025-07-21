@@ -25,7 +25,7 @@ public class LoginUsingConfigFileTest extends TestBeforeAndAfter {
 		// Verifying successful login
 		Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "Login failed!");
 		log.info("Valid login test passed.");
-		pageObjectManager.getLoginPage().logout();
+
 	}
 
 	@Test(priority = 2, description = "Verify invalid login", groups = {"login", "regression"})

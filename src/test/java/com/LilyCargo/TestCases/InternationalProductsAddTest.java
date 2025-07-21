@@ -66,7 +66,5 @@ public class InternationalProductsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getInternationalProductsPage().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

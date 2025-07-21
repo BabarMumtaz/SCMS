@@ -64,7 +64,7 @@ public class IntrastatsTestPage {
 	@FindBy(xpath = "//td[text()='No data found']")
 	WebElement noDataFoundText;
 
-	@FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr[1]/td[2]")
+	@FindBy(xpath = "//table[@id='grid']//tbody/tr[1]/td[2]")
 	WebElement listingMonthFirstCell;
 
 	//id = download-dropdown
@@ -128,24 +128,24 @@ public class IntrastatsTestPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
 	}
 
-	/*-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 
 
 	// Reusable method to select client
 	public void selectClient(String clientText) {
-		clientSearchInput.sendKeys(clientText);
+		clientDropDown.sendKeys(clientText);
 		String xpath = String.format("//li[contains(text(),'%s')]", clientText);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
 	}
 
 	public void selectFields(String lfr, String zone, String year, String client) {
-		selectDropdownOption(lfrDropdown, lfr);
-		selectDropdownOption(zoneDropdown, zone);
-		selectDropdownOption(yearDropdown, year);
+		selectDropdownOption(lfrDropDown, lfr);
+		selectDropdownOption(zoneDropDown, zone);
+		selectDropdownOption(yearDropDown, year);
 		selectClient(client);
 	}
 
-	----------------------------------------------------------*/
+	//----------------------------------------------------------
 
 	// Method to click on Logout button
 	public void clickGenerateDataButton() {
@@ -168,7 +168,7 @@ public class IntrastatsTestPage {
 		selectDropdownOption(monthDropDown, String.valueOf(month));
 		executor.executeScript("arguments[0].scrollIntoView(true);", monthDropDownValue);
 		wait.until(ExpectedConditions.visibilityOf(generateDataButton)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 	}
 
 	public boolean isNoDataFoundVisible() {

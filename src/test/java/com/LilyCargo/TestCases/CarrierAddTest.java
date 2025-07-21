@@ -84,8 +84,8 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
 
-        // Log out after the test
+/*        // Log out after the test
         pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
+        log.info("Logged out successfully.");*/
     }
 }

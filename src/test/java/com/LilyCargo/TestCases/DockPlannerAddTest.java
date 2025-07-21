@@ -26,8 +26,6 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         performFreightListingActions();
         performFreightDetailActions();
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 
     private void performFreightListingActions() {

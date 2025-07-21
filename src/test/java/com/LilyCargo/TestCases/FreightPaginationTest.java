@@ -107,8 +107,5 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
         log.info("Freight Edit wrapper displayed successfully.");
 
-        // Log out after the test
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }

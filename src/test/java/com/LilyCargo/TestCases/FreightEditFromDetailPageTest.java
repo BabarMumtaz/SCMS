@@ -52,7 +52,5 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
 		log.info("Clicked Cross icon of Alert");
 
-		pageObjectManager.getLoginPage().logout();
-		log.info("Logged out successfully.");
 	}
 }

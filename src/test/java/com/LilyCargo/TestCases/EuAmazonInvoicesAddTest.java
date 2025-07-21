@@ -114,9 +114,6 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        // Log out after the test
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 
 //--------------------------------------------------------------------------------------------
@@ -220,8 +217,5 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon for Amazon Duty INV Type");
 
-        // Log out after the test
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully. Again");
     }
 }

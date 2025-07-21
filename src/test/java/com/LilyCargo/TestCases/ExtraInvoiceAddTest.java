@@ -122,7 +122,5 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");
     }
 }
