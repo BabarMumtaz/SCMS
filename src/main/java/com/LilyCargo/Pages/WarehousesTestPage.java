@@ -47,7 +47,7 @@ public class WarehousesTestPage {
     WebElement contactPerson;
 
     @FindBy(xpath = "//input[@name='email']")
-    WebElement warehouseEmail1;
+    WebElement warehouseEmail;
 
     @FindBy(xpath = "//input[@name='address']")
     WebElement warehouseAddress1;
@@ -128,8 +128,8 @@ public class WarehousesTestPage {
         contactPerson.sendKeys(text);
     }
 
-    public void enterWarehouseEmail1(String text) {
-        warehouseEmail1.sendKeys(text);
+    public void enterWarehouseEmail(String text) {
+        warehouseEmail.sendKeys(text);
     }
 
     public void enterWarehouseAddress1(String text) {

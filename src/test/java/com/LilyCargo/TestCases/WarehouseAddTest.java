@@ -45,22 +45,22 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         log.info("Entered Warehouse Company Name");
 
         pageObjectManager.getWarehousePage().enterContactPerson(faker.company().name());
-        log.info("Entered Warehouse Name");
-
-        pageObjectManager.getWarehousePage().enterWarehouseEmail1(faker.internet().emailAddress());
-        log.info("Entered Warehouse Email");
+        log.info("Entered Warehouse Contact Person");
 
         pageObjectManager.getWarehousePage().enterWarehouseAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getWarehousePage().selectCountry();
-        log.info("Selected Country");
-
         pageObjectManager.getWarehousePage().enterWarehouseZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
+        pageObjectManager.getWarehousePage().selectCountry();
+        log.info("Selected Country");
+
         pageObjectManager.getWarehousePage().enterWarehouseDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Warehouse Tel Number");
+
+        pageObjectManager.getWarehousePage().enterWarehouseEmail(faker.internet().emailAddress());
+        log.info("Entered Warehouse Email");
 
         pageObjectManager.getWarehousePage().enterWarehouseAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Warehouse Agreement Notes");
