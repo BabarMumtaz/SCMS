@@ -1,0 +1,231 @@
+package com.LilyCargo.Pages;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class AdminOverviewTestPage {
+    WebDriver driver;
+    JavascriptExecutor executor;
+    Actions actions;
+    WebDriverWait wait;
+    Logger log = LogManager.getLogger(AdminOverviewTestPage.class);
+
+    // Constructor that will be automatically called as soon as the object of the
+    // class is created
+    public AdminOverviewTestPage(WebDriver driver) {
+        this.driver = driver;
+        this.executor = (JavascriptExecutor) this.driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        PageFactory.initElements(driver, this);
+        this.actions = new Actions(driver);
+    }
+
+//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+    @FindBy(xpath = "//h4[text()='Quick Actions']")
+    WebElement adminOverviewPageHeading;
+
+    @FindBy(xpath = "//p[text()='User Management']")
+    WebElement userManagementBtn;
+
+    @FindBy(xpath = "//p[text()='My Profile']")
+    WebElement myProfileBtn;
+
+    @FindBy(xpath = "//h2[text()='Users']")
+    WebElement userPageHeading;
+
+    @FindBy(xpath = "//h2[text()='Roles']")
+    WebElement rolesPageHeading;
+
+    @FindBy(xpath = "//button[text()='USERS']")
+    WebElement userListingBtn;
+
+    @FindBy(xpath = "//button[text()='ROLES']")
+    WebElement rolesListingBtn;
+
+    @FindBy(xpath = "//button[text()='Create User']")
+    WebElement userCreateBtn;
+
+    @FindBy(xpath = "//button[text()='Email All Active']")
+    WebElement userEmailAllBtn;
+
+    @FindBy(xpath = "//h5[text()='User']")
+    WebElement userAddPageHeading;
+
+    @FindBy(xpath = "//input[@name='avatar']")
+    WebElement userProfileImage;
+
+    @FindBy(xpath = "//input[@name='name']")
+    WebElement userName;
+
+    @FindBy(xpath = "//input[@name='email']")
+    WebElement userEmail;
+
+    @FindBy(xpath = "//input[@name='password']")
+    WebElement userPassword;
+
+    @FindBy(xpath = "//input[@name='password_confirmation']")
+    WebElement userConfirmPassword;
+
+    @FindBy(xpath = "//div[@class=' css-ackcql']")
+    WebElement userRolesDropDown;
+
+    @FindBy(xpath = "//div[contains(@class, 'css-1rhbuit-multiValue')]//di[contains(text(),'\" + role + \"')]")
+    WebElement userRolesDropDownOptions;
+
+    @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
+    WebElement countryDropDownValue;
+
+    @FindBy(xpath = "//input[@name='department']")
+    WebElement userDepartment;
+
+    @FindBy(xpath = "//input[@name='tel']")
+    WebElement userTelephoneNumber;
+
+    @FindBy(xpath = "//input[@name='address']")
+    WebElement userAddress;
+
+    @FindBy(xpath = "//button[text()='Save & Back']")
+    WebElement saveUserBack;
+
+    @FindBy(xpath = "//button[text()='Save & New']")
+    WebElement saveUserNew;
+
+    @FindBy(xpath = "//div[contains(text(),'User successfully created.')]")
+    WebElement addUserSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'User successfully updated.')]")
+    WebElement updateUserSuccessAlertMessage;
+
+    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
+    WebElement userAlertPopupLP;
+
+//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // Method to capture the page heading
+    public String getOverviewPageHeading() {
+        return adminOverviewPageHeading.getText();
+    }
+
+    public boolean isAdminOverviewPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(adminOverviewPageHeading)).isDisplayed();
+    }
+
+    public void clickUserManagementBtn() {
+        userManagementBtn.click();
+    }
+
+    public String getUserPageHeading() {
+        return userPageHeading.getText();
+    }
+
+    public boolean isUserPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(userPageHeading)).isDisplayed();
+    }
+
+    public void clickAddUserBtn() {
+        userCreateBtn.click();
+    }
+
+    public String getUserAddPageHeading() {
+        return userAddPageHeading.getText();
+    }
+
+    public boolean isUserAddPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(userAddPageHeading)).isDisplayed();
+    }
+
+    public void addUserProfileImage(String filePath) {
+        userProfileImage.sendKeys(filePath);
+        log.info("Uploaded A file: " + filePath);
+    }
+
+    public void enterUserName(String text) {
+        userName.sendKeys(text);
+    }
+
+    public void enterUserEmail1(String text) {
+        userEmail.sendKeys(text);
+    }
+
+    public void enterUserAddress(String text) {
+        userAddress.sendKeys(text);
+    }
+
+    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+        dropdown.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
+        dropdownValue.click();
+    }
+
+    public void enterUserPassword(String text) {
+        userPassword.sendKeys(text);
+    }
+
+    public void enterUserConfirmPassword(String text) {
+        userConfirmPassword.sendKeys(text);
+    }
+
+    public void enterUserDutchPhoneNumber(String phoneNumber) {
+        userTelephoneNumber.sendKeys(phoneNumber);
+    }
+
+    public void enterUserDepartment(String text) {
+        userDepartment.sendKeys(text);
+    }
+
+    public void selectRoles(String... rolesToSelect) {
+        // Click the Roles dropdown
+        userRolesDropDown.click();
+        log.info("🔽 Opened Roles dropdown");
+
+        for (String role : rolesToSelect) {
+            try {
+                wait.until(ExpectedConditions.visibilityOf(userRolesDropDownOptions)).click();
+                    log.info("✅ Role selected: " + role);
+            } catch (Exception e) {
+                log.warn("⚠️ Role not found: " + role);
+            }
+        }
+        log.info("✅ Finished selecting roles");
+    }
+
+    public void clickSaveUserBack() {
+        saveUserBack.click();
+    }
+
+    public void clickSaveUserNew() {
+        saveUserNew.click();
+    }
+
+    public String getUserSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(addUserSuccessAlertMessage)).getText();
+    }
+
+    public boolean isUserSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(addUserSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isUpdateUserSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(updateUserSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getUpdatedUserSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(updateUserSuccessAlertMessage)).getText();
+    }
+
+    public void clickOnAlertPopupLP() {
+        wait.until(ExpectedConditions.visibilityOf(userAlertPopupLP)).click();
+    }
+}

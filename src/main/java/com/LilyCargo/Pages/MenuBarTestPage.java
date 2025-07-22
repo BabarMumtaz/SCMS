@@ -37,7 +37,7 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//div[@title='Administration']")
 	WebElement administrationMenu;
 
-	@FindBy(xpath = "//li[@title='Overview']")
+	@FindBy(xpath = "//div[@title='Administration']//li[@title='Overview']")
 	WebElement overviewAdmSubMenu;
 
 	@FindBy(xpath = "//li[@title='Booked Freight']")
