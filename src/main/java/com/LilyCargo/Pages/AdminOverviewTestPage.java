@@ -2,10 +2,7 @@ package com.LilyCargo.Pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class AdminOverviewTestPage {
     WebDriver driver;
@@ -84,17 +82,29 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//div[contains(@class, 'css-1rhbuit-multiValue')]//di[contains(text(),'\" + role + \"')]")
     WebElement userRolesDropDownOptions;
 
-    @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
-    WebElement countryDropDownValue;
+    @FindBy(id = "select-Gender")
+    WebElement userGenderDropDown;
+
+    @FindBy(xpath = "//div[@id='menu-gender']//li[contains(text(),'gender')]")
+    WebElement userGenderDropDownValue;
 
     @FindBy(xpath = "//input[@name='department']")
     WebElement userDepartment;
+
+    @FindBy(xpath = "//input[@name='designation']")
+    WebElement userDesignation;
 
     @FindBy(xpath = "//input[@name='tel']")
     WebElement userTelephoneNumber;
 
     @FindBy(xpath = "//input[@name='address']")
     WebElement userAddress;
+
+    @FindBy(id = "select-Status")
+    WebElement userStatusDropDown;
+
+    @FindBy(xpath = "//div[@id=\"menu-active\"]//li[contains(text(),'status')]\n")
+    WebElement userStatusDropDownValue;
 
     @FindBy(xpath = "//button[text()='Save & Back']")
     WebElement saveUserBack;
@@ -110,6 +120,24 @@ public class AdminOverviewTestPage {
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement userAlertPopupLP;
+
+/*    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
+    List<WebElement> userRows;*/
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
+    List<WebElement> userRows;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr[1]/td[1]")
+    WebElement userNameCellLV;
+
+    @FindBy(xpath = "//img[@alt='View']")
+    WebElement viewUserIcon;
+
+    @FindBy(xpath = "//img[@alt='Edit']")
+    WebElement editUserIcon;
+
+    @FindBy(xpath = "//p[text()='Edit']")
+    WebElement editUserBtn;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -146,6 +174,14 @@ public class AdminOverviewTestPage {
         return wait.until(ExpectedConditions.visibilityOf(userAddPageHeading)).isDisplayed();
     }
 
+    public String getUserUpdatePageHeading() {
+        return userAddPageHeading.getText();
+    }
+
+    public boolean isUserUpdatePageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(userAddPageHeading)).isDisplayed();
+    }
+
     public void addUserProfileImage(String filePath) {
         userProfileImage.sendKeys(filePath);
         log.info("Uploaded A file: " + filePath);
@@ -163,11 +199,11 @@ public class AdminOverviewTestPage {
         userAddress.sendKeys(text);
     }
 
-    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+/*    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-        dropdownValue.click();
-    }
+        wait.until(ExpectedConditions.visibilityOf(dropdownValue)).click();
+    }*/
 
     public void enterUserPassword(String text) {
         userPassword.sendKeys(text);
@@ -185,6 +221,10 @@ public class AdminOverviewTestPage {
         userDepartment.sendKeys(text);
     }
 
+    public void enterUserDesignation(String text) {
+        userDesignation.sendKeys(text);
+    }
+
     public void selectRolesByTyping(String... rolesToSelect) {
         // Click the Roles dropdown
         userRolesDropDown.click();
@@ -199,6 +239,35 @@ public class AdminOverviewTestPage {
             log.info("✅ Selected role: " + role);
         }
     }
+
+    public void selectDropdownOption(WebElement dropdown, String optionText) {
+        try {
+            // Click to open the dropdown
+            wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+            log.info("🔽 Opened dropdown");
+
+            // Build XPath dynamically based on visible text
+            String optionXPath = "//li[text()='" + optionText + "']";
+            WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXPath)));
+
+            // Click the desired option
+            optionElement.click();
+            log.info("✅ Selected option: " + optionText);
+        } catch (Exception e) {
+            log.warn("⚠️ Could not select option '" + optionText + "' from dropdown: " + e.getMessage());
+        }
+    }
+
+    // Method for Gender dropdown
+    public void selectGender(String gender) {
+        selectDropdownOption(userGenderDropDown, gender);
+    }
+
+    // Method for Status dropdown
+    public void selectStatus(String status) {
+        selectDropdownOption(userStatusDropDown, status);
+    }
+
 
     public void clickSaveUserBack() {
         saveUserBack.click();
@@ -226,5 +295,46 @@ public class AdminOverviewTestPage {
 
     public void clickOnAlertPopupLP() {
         wait.until(ExpectedConditions.visibilityOf(userAlertPopupLP)).click();
+    }
+
+    // Generic method to hover over a row and click the requested icon (view/edit)
+    public void hoverAndClickIconOnRow(int rowIndex, String action) {
+        WebElement row = userRows.get(rowIndex);
+        row.click();
+        actions.moveToElement(row).perform();
+        log.info("🖱️ Hovered on row index: " + rowIndex);
+
+        String iconTitle = action.equalsIgnoreCase("view") ? "View" : "Edit";
+        try {
+            //WebElement icon = row.findElement(By.cssSelector("button[title='" + iconTitle + "']"));
+            WebElement icon = row.findElement(By.xpath("//img[@alt='" + iconTitle + "']"));
+            wait.until(ExpectedConditions.elementToBeClickable(icon)).click();
+            log.info("✅ Clicked " + iconTitle + " icon on row index: " + rowIndex);
+        } catch (Exception e) {
+            log.error("❌ Failed to click '" + iconTitle + "' icon on row " + rowIndex, e);
+        }
+    }
+
+    public void hoverOnUser1stRow() {
+        wait.until(ExpectedConditions.visibilityOf(userNameCellLV));
+        userNameCellLV.click();
+        actions.moveToElement(userNameCellLV).perform();
+
+    }
+
+    public void clickOnViewUserIcon() {
+        wait.until(ExpectedConditions.visibilityOf(viewUserIcon)).click();
+    }
+
+    public void clickOnEditUserIcon() {
+        wait.until(ExpectedConditions.visibilityOf(editUserIcon)).click();
+    }
+
+    public void clickOnEditUserBtn() {
+        editUserBtn.click();
+    }
+
+    public boolean isUserViewPageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(editUserBtn)).isDisplayed();
     }
 }
