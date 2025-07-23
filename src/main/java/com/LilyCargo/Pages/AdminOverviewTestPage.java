@@ -185,20 +185,19 @@ public class AdminOverviewTestPage {
         userDepartment.sendKeys(text);
     }
 
-    public void selectRoles(String... rolesToSelect) {
+    public void selectRolesByTyping(String... rolesToSelect) {
         // Click the Roles dropdown
         userRolesDropDown.click();
         log.info("🔽 Opened Roles dropdown");
 
+
         for (String role : rolesToSelect) {
-            try {
-                wait.until(ExpectedConditions.visibilityOf(userRolesDropDownOptions)).click();
-                    log.info("✅ Role selected: " + role);
-            } catch (Exception e) {
-                log.warn("⚠️ Role not found: " + role);
-            }
+            WebElement inputBox = driver.switchTo().activeElement();
+            inputBox.sendKeys(role);
+            log.info("⌨️ Typed role: " + role);
+            inputBox.sendKeys(Keys.ENTER);
+            log.info("✅ Selected role: " + role);
         }
-        log.info("✅ Finished selecting roles");
     }
 
     public void clickSaveUserBack() {

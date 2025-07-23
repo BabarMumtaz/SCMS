@@ -1,31 +1,33 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
-import com.LilyCargo.Util.FakeDataUtil;
+import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserAddTest extends TestBeforeAndAfter {
+public class CreateUserAndLoginTest extends TestBeforeAndAfter {
 
     Logger log;
+    String userEmail;
+    String userPassword;
 
-    @Test(priority = 1,
-            description = "Add User",
-            groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Create a new user with random credentials", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add User successfully")
     @Epic("EP001")
     @Feature("Feature:004")
     @Story("As a user, I should be able to Add/Create User successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add User")
-    public void VerifyUserAddTestCase(){
+    public void createUserTest() {
 
-        String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\profileImage.png";
+        Faker faker = new Faker();
+        userEmail = faker.internet().emailAddress();
+        userPassword = "Test@123";
 
-        log = LogManager.getLogger(UserAddTest.class);
+        log = LogManager.getLogger(CreateUserAndLoginTest.class);
         log.info("Starting User Add Test from Administration.");
 
         pageObjectManager.getMenuBar().clickAdministrationMenu();
@@ -49,28 +51,18 @@ public class UserAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
         log.info("User Add Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserAddPageHeading());
 
-        pageObjectManager.getAdminOverviewTestPage().addUserProfileImage(filePath);
-
-        pageObjectManager.getAdminOverviewTestPage().enterUserName(faker.company().name());
+        pageObjectManager.getAdminOverviewTestPage().enterUserName(faker.name().fullName());
         log.info("Entered User Name");
 
-        pageObjectManager.getAdminOverviewTestPage().enterUserEmail1(faker.internet().emailAddress());
+        userEmail = faker.internet().emailAddress();
+        pageObjectManager.getAdminOverviewTestPage().enterUserEmail1(userEmail);
         log.info("Entered User Email");
 
-        pageObjectManager.getAdminOverviewTestPage().enterUserPassword("secret123");
+        pageObjectManager.getAdminOverviewTestPage().enterUserPassword(userPassword);
         log.info("Entered User Password");
 
-        pageObjectManager.getAdminOverviewTestPage().enterUserConfirmPassword("secret123");
+        pageObjectManager.getAdminOverviewTestPage().enterUserConfirmPassword(userPassword);
         log.info("Entered User Confirm Password");
-
-        pageObjectManager.getAdminOverviewTestPage().enterUserDepartment(faker.job().field());
-        log.info("Selected User Department");
-
-        pageObjectManager.getAdminOverviewTestPage().enterUserDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
-        log.info("Entered User Tel Number");
-
-        pageObjectManager.getAdminOverviewTestPage().enterUserAddress(faker.address().streetAddress());
-        log.info("Entered Address");
 
         pageObjectManager.getAdminOverviewTestPage().selectRolesByTyping("Admin", "Master Admin (Super Admin)", "Role for Bob");
         log.info("Selected All defined roles");
@@ -84,5 +76,16 @@ public class UserAddTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
+    }
+
+    @Test(priority = 2, dependsOnMethods = "createUserTest", description = "Login using the newly created user", groups = {"login", "smoke", "regression"})
+    public void loginWithNewUserTest() {
+
+        log.info("🔐 Attempting to log in with newly created user: " + userEmail);
+
+        pageObjectManager.getLoginPage().login(userEmail, userPassword);
+
+        Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "❌ Login failed with new user.");
+        log.info("✅ Logged in successfully with new user: " + userEmail);
     }
 }
