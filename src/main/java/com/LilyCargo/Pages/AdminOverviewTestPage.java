@@ -121,9 +121,6 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement userAlertPopupLP;
 
-/*    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
-    List<WebElement> userRows;*/
-
     @FindBy(xpath = "//table[@id='grid']/tbody/tr")
     List<WebElement> userRows;
 
@@ -138,6 +135,33 @@ public class AdminOverviewTestPage {
 
     @FindBy(xpath = "//p[text()='Edit']")
     WebElement editUserBtn;
+
+    @FindBy(xpath = "//img[@alt='Download']")
+    WebElement exportIcon;
+
+    @FindBy(xpath = "//img[@alt='filter']")
+    WebElement filterIcon;
+
+    @FindBy(xpath = "//div[text()='Apply filter']")
+    WebElement userFilterSidePanelHeading;
+
+    @FindBy(xpath = "//input[@name='Inactive']")
+    WebElement userInactiveCheckbox;
+
+    @FindBy(xpath = "//input[@name='blocked']")
+    WebElement userBlockedCheckbox;
+
+    @FindBy(xpath = "//button[text()='Apply']")
+    WebElement userFilterApplyBtn;
+
+    @FindBy(xpath = "//button[text()='Reset']")
+    WebElement userFilterResetBtn;
+
+    @FindBy(xpath = "//table//tr/td[last()]")
+    List<WebElement> statusColumnElements;
+
+    @FindBy(xpath = "//table//tr[1]/td[last()]")
+    WebElement statusColumnFirstRow;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -268,7 +292,6 @@ public class AdminOverviewTestPage {
         selectDropdownOption(userStatusDropDown, status);
     }
 
-
     public void clickSaveUserBack() {
         saveUserBack.click();
     }
@@ -336,5 +359,42 @@ public class AdminOverviewTestPage {
 
     public boolean isUserViewPageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(editUserBtn)).isDisplayed();
+    }
+
+    public String getUserFilterSidePanelHeading() {
+        return userFilterSidePanelHeading.getText();
+    }
+
+    public boolean isUserFilterSidePanelHeading() {
+        return wait.until(ExpectedConditions.visibilityOf(userFilterSidePanelHeading)).isDisplayed();
+    }
+
+    public void applyStatusFilter(String status) {
+        wait.until(ExpectedConditions.elementToBeClickable(filterIcon)).click();
+        WebElement statusOption = driver.findElement(By.xpath("//span[text()='Show "+status+" items']"));
+        wait.until(ExpectedConditions.elementToBeClickable(statusOption)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(userFilterApplyBtn)).click();
+
+        log.info("🔍 Applied filter for status: " + status);
+    }
+
+    /**
+     * Checks if all visible status entries match the expected filter status.
+     * @param expectedStatus The expected status: "Active", "Inactive", or "Blocked"
+     * @return true if all rows match the expected status
+     */
+    public boolean isAllRowsMatchingStatus(String expectedStatus) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfAllElements(statusColumnElements));
+        Thread.sleep(1000);
+        for (WebElement statusElement : statusColumnElements) {
+            String actualStatus = statusElement.getText().trim();
+            if (!actualStatus.equalsIgnoreCase(expectedStatus)) {
+                log.warn("❌ Status mismatch found: Expected = " + expectedStatus + ", Found = " + actualStatus);
+                return false;
+            }
+        }
+
+        log.info("✅ All listed records have status: " + expectedStatus);
+        return true;
     }
 }
