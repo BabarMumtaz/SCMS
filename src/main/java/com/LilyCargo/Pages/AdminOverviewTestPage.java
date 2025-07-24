@@ -43,14 +43,8 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//h2[text()='Users']")
     WebElement userPageHeading;
 
-    @FindBy(xpath = "//h2[text()='Roles']")
-    WebElement rolesPageHeading;
-
     @FindBy(xpath = "//button[text()='USERS']")
     WebElement userListingBtn;
-
-    @FindBy(xpath = "//button[text()='ROLES']")
-    WebElement rolesListingBtn;
 
     @FindBy(xpath = "//button[text()='Create User']")
     WebElement userCreateBtn;
@@ -60,6 +54,9 @@ public class AdminOverviewTestPage {
 
     @FindBy(xpath = "//h5[text()='User']")
     WebElement userAddPageHeading;
+
+    @FindBy(xpath = "//span[text()='Update ']")
+    WebElement userUpdatePageHeading;
 
     @FindBy(xpath = "//input[@name='avatar']")
     WebElement userProfileImage;
@@ -163,6 +160,36 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//table//tr[1]/td[last()]")
     WebElement statusColumnFirstRow;
 
+    @FindBy(xpath = "//h2[text()='Roles']")
+    WebElement rolesPageHeading;
+
+    @FindBy(xpath = "//button[text()='ROLES']")
+    WebElement rolesListingBtn;
+
+    @FindBy(xpath = "//button[text()='Create Role']")
+    WebElement rolesCreateBtn;
+
+    @FindBy(xpath = "//h5[text()='User']")
+    WebElement rolesAddPageHeading;
+
+    @FindBy(xpath = "//input[@name='name']")
+    WebElement rolesName;
+
+    @FindBy(xpath = "//input[@name='assignAll']")
+    WebElement rolesAssignAllCheckbox;
+
+    @FindBy(xpath = "//input[@name='data[1].check']")
+    WebElement rolesDashboardCheckbox;
+
+    @FindBy(xpath = "//span[text()='Update ']")
+    WebElement roleUpdatePageHeading;
+
+    @FindBy(xpath = "//div[contains(text(),'Role successfully created.')]")
+    WebElement addRoleSuccessAlertMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Role successfully updated.')]")
+    WebElement updateRoleSuccessAlertMessage;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Method to capture the page heading
@@ -199,11 +226,11 @@ public class AdminOverviewTestPage {
     }
 
     public String getUserUpdatePageHeading() {
-        return userAddPageHeading.getText();
+        return userUpdatePageHeading.getText();
     }
 
     public boolean isUserUpdatePageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(userAddPageHeading)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(userUpdatePageHeading)).isDisplayed();
     }
 
     public void addUserProfileImage(String filePath) {
@@ -397,4 +424,67 @@ public class AdminOverviewTestPage {
         log.info("✅ All listed records have status: " + expectedStatus);
         return true;
     }
+
+//	 ---------------------------------------ROLES---------------------------------------------------------------------------------------------------------
+
+    public void clickRoleListingBtn() {
+        rolesListingBtn.click();
+    }
+
+    public String getRolePageHeading() {
+        return rolesPageHeading.getText();
+    }
+
+    public boolean isRolePageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(rolesPageHeading)).isDisplayed();
+    }
+
+    public void clickAddRoleBtn() {
+        rolesCreateBtn.click();
+    }
+
+    public String getRoleAddPageHeading() {
+        return rolesAddPageHeading.getText();
+    }
+
+    public boolean isRoleAddPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(rolesAddPageHeading)).isDisplayed();
+    }
+
+    public void enterRoleName(String text) {
+        userName.sendKeys(text);
+    }
+
+    public void clickRoleAssignAllCheckbox() {
+        wait.until(ExpectedConditions.visibilityOf(rolesAssignAllCheckbox)).click();
+    }
+
+    public void clickRoleDashboardCheckbox() {
+        wait.until(ExpectedConditions.visibilityOf(rolesDashboardCheckbox)).click();
+    }
+
+    public String getRoleUpdatePageHeading() {
+        return roleUpdatePageHeading.getText();
+    }
+
+    public boolean isRoleUpdatePageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(roleUpdatePageHeading)).isDisplayed();
+    }
+
+    public String getRoleSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(addRoleSuccessAlertMessage)).getText();
+    }
+
+    public boolean isRoleSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(addRoleSuccessAlertMessage)).isDisplayed();
+    }
+
+    public boolean isUpdateRoleSuccessAlertMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(updateRoleSuccessAlertMessage)).isDisplayed();
+    }
+
+    public String getUpdatedRoleSuccessAlertMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(updateRoleSuccessAlertMessage)).getText();
+    }
+
 }
