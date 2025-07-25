@@ -452,6 +452,7 @@ public class AdminOverviewTestPage {
     }
 
     public void enterRoleName(String text) {
+        wait.until(ExpectedConditions.visibilityOf(rolesDashboardCheckbox));
         rolesName.sendKeys(text);
     }
 
