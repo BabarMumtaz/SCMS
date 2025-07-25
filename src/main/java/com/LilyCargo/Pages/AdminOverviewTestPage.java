@@ -169,7 +169,7 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//button[text()='Create Role']")
     WebElement rolesCreateBtn;
 
-    @FindBy(xpath = "//h5[text()='User']")
+    @FindBy(xpath = "//h5[text()='Role']")
     WebElement rolesAddPageHeading;
 
     @FindBy(xpath = "//input[@name='name']")
@@ -452,7 +452,7 @@ public class AdminOverviewTestPage {
     }
 
     public void enterRoleName(String text) {
-        userName.sendKeys(text);
+        rolesName.sendKeys(text);
     }
 
     public void clickRoleAssignAllCheckbox() {

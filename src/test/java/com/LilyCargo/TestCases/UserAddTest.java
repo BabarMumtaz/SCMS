@@ -32,7 +32,7 @@ public class UserAddTest extends TestBeforeAndAfter {
         log.info("Clicked Administration Menu");
 
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
-        log.info("Clicked User FR Sub Menu");
+        log.info("Clicked User Sub Menu");
 
         Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAdminOverviewPageHeadingDisplayed(), "Heading Not Displayed");
         log.info("Admin Overview Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getOverviewPageHeading());
