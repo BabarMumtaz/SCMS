@@ -30,7 +30,7 @@ public class FreightListingTestPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//button[@aria-label='Go to last page']//*[name()='svg']")
+	@FindBy(xpath = "//button[@aria-label='Go to last page']")
 	WebElement paginationLastPageIcon;
 
 	@FindBy(xpath = "//table[@id=\"grid\"]/tbody/tr")

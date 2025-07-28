@@ -23,65 +23,6 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(FreightPaginationTest.class);
         log.info("Starting Freight Add Test.");
 
-        pageObjectManager.getBookedFreights().clickCreateFreightBtn();
-        log.info("Clicked Create Freight Button");
-
-        pageObjectManager.getBookedFreights().enterFNO(faker.number().digits(8));
-
-        pageObjectManager.getBookedFreights().selectETDDate("26", "09", "2024");
-        log.info("Entered ETD DATE");
-
-        pageObjectManager.getBookedFreights().selectETADate("10", "010", "2024");
-        log.info("Entered ETA DATE");
-
-        pageObjectManager.getBookedFreights().enterBLNO("BL#84575487454");
-
-        pageObjectManager.getBookedFreights().selectClient();
-        log.info("Selected Client Dropdown Value");
-
-        pageObjectManager.getBookedFreights().selectServiceType();
-        log.info("Selected Service Type Dropdown Value");
-
-        pageObjectManager.getBookedFreights().selectShipper();
-        log.info("Selected Shipper Dropdown Value");
-
-        pageObjectManager.getBookedFreights().selectCOO();
-        log.info("Selected COO");
-
-        pageObjectManager.getBookedFreights().selectContainer();
-        log.info("Selected Container Type Dropdown Value");
-
-        pageObjectManager.getBookedFreights().enterContents("5,000");
-        log.info("Entered Contents");
-
-        pageObjectManager.getBookedFreights().enterWeights("12654");
-        log.info("Entered Weights");
-
-        pageObjectManager.getBookedFreights().enterMeasurements("85454.15");
-        log.info("Entered Measurements");
-
-        pageObjectManager.getBookedFreights().selectPortOfLoading();
-        log.info("Selected Port Of Loading Dropdown Value");
-
-        pageObjectManager.getBookedFreights().selectPortOfDischarge();
-        log.info("Selected Port Of Discharge Dropdown Value");
-
-        pageObjectManager.getBookedFreights().scrollToElement();
-        Thread.sleep(2000);
-
-        pageObjectManager.getBookedFreights().selectCarrierCompany();
-        log.info("Selected Carrier Company Value");
-
-        pageObjectManager.getBookedFreights().selectExportCompany();
-        log.info("Selected Export Company Value");
-
-        pageObjectManager.getBookedFreights().selectFreightWay();
-        log.info("Selected Freight Way Value");
-
-        pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
-        log.info("Clicked Save & Return Freight Button");
-        Thread.sleep(2000);
-
         pageObjectManager.getMenuBar().clickBookedFreightMenu();
         log.info("Clicked on Booked Freight Menu");
 
@@ -95,17 +36,16 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().hoverOverLastRecord();
         log.info("Hovered over the last record");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
+        System.out.println("After switching, active window: " + driver.getWindowHandle());
+        System.out.println("All open windows: " + driver.getWindowHandles());
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
-        log.info("Freight Edit wrapper displayed successfully.");
 
     }
 }
