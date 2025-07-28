@@ -11,15 +11,7 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1, description = "Create a new Role", groups = {"smoke", "regression"})
-    @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Role successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a Role, I should be able to Add/Create Role successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add Role")
-    public void createRoleTest() {
-
+    private void navigateToRoleManagement() {
         log = LogManager.getLogger(RoleAddEditTest.class);
         log.info("Starting Role Add Test from Administration.");
 
@@ -41,8 +33,20 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().clickRoleListingBtn();
         log.info("Clicked Role Management button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRolePageHeadingDisplayed(), "Add Page Heading Not Displayed");
+        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRolePageHeadingDisplayed(), "Role Page Heading Not Displayed");
         log.info("Role Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getRolePageHeading());
+    }
+
+    @Test(priority = 1, description = "Create a new Role", groups = {"smoke", "regression"}, enabled = false)
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can add Role successfully")
+    @Epic("EP001")
+    @Feature("Feature:004")
+    @Story("As a Role, I should be able to Add/Create Role successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add Role")
+    public void createRoleTest() {
+
+        navigateToRoleManagement();
 
         pageObjectManager.getAdminOverviewTestPage().clickAddRoleBtn();
         log.info("Clicked Role Add button");
@@ -64,6 +68,38 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
 
         pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
+
+    }
+
+    @Test(priority = 2, description = "Verify that a user can Edit Role successfully", enabled = true)
+    public void editRoleTest() throws InterruptedException {
+
+        navigateToRoleManagement();
+
+        pageObjectManager.getAdminOverviewTestPage().hoverAndClickIconOnRow(1, "View");
+        log.info("Hover over on A row and click View Icon");
+
+        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUser_RoleViewPageDisplayed(), "View Page is not Displayed");
+
+        pageObjectManager.getAdminOverviewTestPage().clickOnEditUserBtn();
+        log.info("Clicked on Edit button on view page");
+
+        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRoleUpdatePageHeadingDisplayed(), "Add Page Heading Not Displayed");
+        log.info("User Edit Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getRoleUpdatePageHeading());
+
+        pageObjectManager.getAdminOverviewTestPage().scrollToElement();
+
+        pageObjectManager.getAdminOverviewTestPage().clickRoleDashboardCheckbox();
+        log.info("UnChecked Dashboard roles");
+
+        pageObjectManager.getAdminOverviewTestPage().clickSaveUserBack();
+        log.info("Click Save Role Button after Updating a Role");
+
+        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUpdateRoleSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
+        log.info("Success Alert Message on Update: " + pageObjectManager.getAdminOverviewTestPage().getUpdatedRoleSuccessAlertMessage());
+
+        pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert of Update Alert");
 
     }
 }

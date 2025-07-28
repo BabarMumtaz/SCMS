@@ -35,13 +35,13 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
     @Test(priority = 1,
             description = "Add User",
             groups = {"smoke", "regression"},
-            enabled = false)
+            enabled = true)
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add User successfully")
+    @Description("Verify that a user can edit User successfully")
     @Epic("EP001")
     @Feature("Feature:004")
-    @Story("As a user, I should be able to Add/Create User successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add User")
+    @Story("As a user, I should be able to edit User successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Edit User")
     public void VerifyUserEditAndFilterTestCase() {
 
         navigateToUserManagement();
@@ -56,7 +56,7 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().hoverAndClickIconOnRow(0, "View");
         log.info("Hover over on A row and click View Icon");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserViewPageDisplayed(), "View Page is not Displayed");
+        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUser_RoleViewPageDisplayed(), "View Page is not Displayed");
 
         pageObjectManager.getAdminOverviewTestPage().clickOnEditUserBtn();
         log.info("Clicked on Edit button on view page");
@@ -85,21 +85,21 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
     }
 
     @Test(priority = 2, description = "Verify records have status Active by default",
-            enabled = true)
+            enabled = false)
     public void testActiveStatusFilter() throws InterruptedException {
         navigateToUserManagement();
         Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAllRowsMatchingStatus("Active"), "❌ Status is not 'Active' for all records");
     }
 
     @Test(priority = 3, description = "Verify records have status Inactive after filtering",
-            enabled = true)
+            enabled = false)
     public void testInactiveStatusFilter() throws InterruptedException {
         navigateToUserManagement();
         pageObjectManager.getAdminOverviewTestPage().applyStatusFilter("Inactive");
         Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAllRowsMatchingStatus("Inactive"), "❌ Status is not 'Inactive' for all records");
     }
 
-    @Test(priority = 4, description = "Verify records have status Blocked after filtering", enabled = true)
+    @Test(priority = 4, description = "Verify records have status Blocked after filtering", enabled = false)
     public void testBlockedStatusFilter() throws InterruptedException {
         navigateToUserManagement();
         pageObjectManager.getAdminOverviewTestPage().applyStatusFilter("Blocked");

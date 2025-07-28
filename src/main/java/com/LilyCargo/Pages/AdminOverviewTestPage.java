@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -384,7 +385,7 @@ public class AdminOverviewTestPage {
         editUserBtn.click();
     }
 
-    public boolean isUserViewPageDisplayed() {
+    public boolean isUser_RoleViewPageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(editUserBtn)).isDisplayed();
     }
 
@@ -424,6 +425,7 @@ public class AdminOverviewTestPage {
         log.info("✅ All listed records have status: " + expectedStatus);
         return true;
     }
+
 
 //	 ---------------------------------------ROLES---------------------------------------------------------------------------------------------------------
 
@@ -486,6 +488,10 @@ public class AdminOverviewTestPage {
 
     public String getUpdatedRoleSuccessAlertMessage() {
         return wait.until(ExpectedConditions.visibilityOf(updateRoleSuccessAlertMessage)).getText();
+    }
+
+    public void scrollToElement() {
+        executor.executeScript("arguments[0].scrollIntoView(true);", rolesDashboardCheckbox);
     }
 
 }
