@@ -29,7 +29,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(UploadCargoDataTest.class);
         log.info("Test setup completed.");
 
-        pageObjectManager.getFreightListing().clickOn2ndFreightID();
+        pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();

@@ -22,6 +22,14 @@ public class WaitUtil {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForElementToBeInVisible(WebElement element) {
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public void waitForStalenessOFElement(WebElement element) {
+        wait.until(ExpectedConditions.stalenessOf(element));
+    }
+
     // Wait for an element to be clickable
     public WebElement waitForElementToBeClickable(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));

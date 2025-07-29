@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.LilyCargo.Util.WaitUtil;
 
+import static com.LilyCargo.Base.TestBaseClass.log;
+
 public class FreightListingTestPage {
 	private WebDriver driver;
 	private JavascriptExecutor executor;
@@ -33,82 +35,54 @@ public class FreightListingTestPage {
 	@FindBy(xpath = "//button[@aria-label='Go to last page']")
 	WebElement paginationLastPageIcon;
 
-	@FindBy(xpath = "//table[@id=\"grid\"]/tbody/tr")
-	List<WebElement> freightListRecords;
-
-	@FindBy(xpath = "//table[@id=\"grid\"]/tbody/tr[1]/td[8]")
-	WebElement clientCellLV;
-
-	@FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr[1]/td[1]")
-	WebElement freightIDCellLV;
+	@FindBy(xpath = "//table//tr/td[1]")
+	List<WebElement> freightListFidCells ;
 
 	@FindBy(xpath = "//table//tbody/tr[1]/td[1]//div[@title='Open Freight']")
 	WebElement freightList1stRecord;
 
-	@FindBy(xpath = "//table//tbody/tr[2]/td[1]//div[@title='Open Freight']")
-	WebElement freightList2ndRecord;
-
-	@FindBy(xpath = "//img[@alt='View']")
-	WebElement viewFreightIcon;
-
-	@FindBy(xpath = "//img[@alt='Edit']")
-	WebElement editFreightIcon;
-
 	@FindBy(xpath = "//div[@class='_loading_overlay_overlay css-1mig4ck _loading-overlay-transition-enter-done']")
-	WebElement freightListingLoader;
-
+	WebElement freightListingLoaderArea;
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
 	// Click on pagination last page icon
-	public void clickOnPaginationLastPageIcon() {
-		waitUtil.waitForElementToBeVisible(freightListingLoader);
+	public void clickOnPaginationLastPageIcon() throws InterruptedException {
+		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
 		waitUtil.waitForElementToBeVisible(paginationLastPageIcon);
-		waitUtil.waitForElementToBeClickable(paginationLastPageIcon);
+		waitUtil.waitForElementToBeClickable(paginationLastPageIcon).click();
 	}
 
-	// Scroll to the bottom of the page
-	public void scrollToBottom() {
-		executor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	public void clickLastFIDFromLastPage() throws InterruptedException {
+
+		if (!freightListFidCells.isEmpty()) {
+			int index = freightListFidCells.size() - 1; // last index
+			WebElement lastFID = freightListFidCells.get(index);
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lastFID);
+			waitUtil.waitForElementToBeVisible(lastFID).click();
+			log.info("✅ Clicked on last FID: " + lastFID.getText().trim());
+		} else {
+			log.warn("⚠️ No FID rows found in table.");
+		}
 	}
 
-	public void hoverOn1stRowClient() {
-		waitUtil.waitForElementToBeVisible(freightIDCellLV);
-		//actions.moveToElement(freightIDCellLV).perform();
-	}
+	public void clickSpecificFID() throws InterruptedException {
+		int rowToClick = 70; // 0-based index for row 5
+		if (freightListFidCells.size() > rowToClick) {
+			WebElement fid = freightListFidCells.get(rowToClick);
+			//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", fid);
+			waitUtil.waitForElementToBeVisible(fid).click();
+			log.info("✅ Clicked on FID at row " + (rowToClick + 1) + ": " + fid.getText().trim());
+		} else {
+			log.warn("⚠️ Requested row " + (rowToClick + 1) + " does not exist. Only " + freightListFidCells.size() + " rows available.");
+		}
 
-	// Hover over the last record
-	public void hoverOverLastRecord() {
-		waitUtil.waitForElementToBeVisible(freightListingLoader);
-		scrollToBottom();
-		WebElement lastRecord = getLastRecordElement();
-		actions.moveToElement(lastRecord).perform();
 	}
-
-	// Get the last record element
-	public WebElement getLastRecordElement() {
-		WebElement lastRecord = freightListRecords.get(freightListRecords.size() - 1);
-		waitUtil.waitForElementToBeVisible(lastRecord);
-        return lastRecord;
-    }
 
 	// Click on Freight ID
 	public void clickOnFreightID() {
 		waitUtil.waitForElementToBeVisible(freightList1stRecord).click();
 	}
-
-	public void clickOn2ndFreightID() {
-		waitUtil.waitForElementToBeVisible(freightList2ndRecord).click();
-	}
-
-/*	public void clickFIDByRowIndex(int rowIndex) {
-		By fidLocator = By.xpath("(//td[@role='cell'][1]/a)[" + rowIndex + "]");
-		WebElement rowIndexBased = waitUtil.waitForElementToBeClickable(fidLocator);
-
-		System.out.println("Clicking FID at row index: " + rowIndex);
-		rowIndexBased.click();
-	}*/
-
 
 	// Switch to a new tab
 	public void switchToNewTab() {

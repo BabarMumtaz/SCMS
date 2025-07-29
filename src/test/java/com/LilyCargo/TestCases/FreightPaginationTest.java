@@ -28,16 +28,13 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
 
         Assert.assertTrue(pageObjectManager.getBookedFreights().getHeading().contains("Booked Freights"), "Heading not Matched");
 
+        pageObjectManager.getFreightListing().clickSpecificFID();
+/*
         // Click on the last page of freight listings
         pageObjectManager.getFreightListing().clickOnPaginationLastPageIcon();
         log.info("Clicked on Freight Pagination Last Icon");
 
-        // Hover over the last record
-        pageObjectManager.getFreightListing().hoverOverLastRecord();
-        log.info("Hovered over the last record");
-
-        pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the 1st row FreightID.");
+        pageObjectManager.getFreightListing().clickLastFIDFromLastPage();*/
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");

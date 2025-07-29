@@ -23,9 +23,6 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log = LogManager.getLogger(FreightEditFromDetailPageTest.class);
 		log.info("Starting Freight Edit Test from Detail Page.");
 
-		pageObjectManager.getFreightListing().hoverOn1stRowClient();
-		log.info("Hover over 1st Row");
-
 		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
 
