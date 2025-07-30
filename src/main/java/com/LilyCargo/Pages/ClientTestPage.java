@@ -7,6 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
+
+import static com.LilyCargo.Base.TestBaseClass.log;
 
 public class ClientTestPage {
 
@@ -105,6 +108,9 @@ public class ClientTestPage {
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveClientNew;
 
+    @FindBy(xpath = "//button[text()='Duplicate']")
+    WebElement duplicateClient;
+
     @FindBy(xpath = "//div[contains(text(),'Client successfully created.')]")
     WebElement addClientSuccessAlertMessage;
 
@@ -122,6 +128,12 @@ public class ClientTestPage {
 
     @FindBy(xpath = "//input[@name='billingEmails']")
     WebElement billingEmails;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
+    List<WebElement> clientRows;
+
+    @FindBy(xpath = "//h5[text()='Client']")
+    WebElement clientEditPageHeading;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -159,6 +171,11 @@ public class ClientTestPage {
         clientName.sendKeys(text);
     }
 
+    public void updatedClientName(String text) {
+        actions.click(clientName).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+        clientName.sendKeys(text);
+    }
+
     public void enterContactPerson(String text) {
         contactPerson.sendKeys(text);
     }
@@ -191,6 +208,9 @@ public class ClientTestPage {
         clientZipCity.sendKeys(text);
     }
 
+    public void enterVat(String text) {
+        clientVat.sendKeys(text);
+    }
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
@@ -282,6 +302,10 @@ public class ClientTestPage {
         saveClientNew.click();
     }
 
+    public void clickDuplicateBtn() {
+        duplicateClient.click();
+    }
+
     public String getClientSuccessAlertMessage() {
         return wait.until(ExpectedConditions.visibilityOf(addClientSuccessAlertMessage)).getText();
     }
@@ -300,5 +324,31 @@ public class ClientTestPage {
 
     public void clickOnAlertPopupLP() {
         wait.until(ExpectedConditions.visibilityOf(clientAlertPopupLP)).click();
+    }
+
+    // Generic method to hover over a row and click the requested icon (view/edit)
+    public void hoverAndClickIconOnRow(int rowIndex, String action) {
+        WebElement row = clientRows.get(rowIndex);
+        row.click();
+        actions.moveToElement(row).perform();
+        log.info("🖱️ Hovered on row index: " + rowIndex);
+
+        String iconTitle = action.equalsIgnoreCase("view") ? "View" : "Edit";
+        try {
+            //WebElement icon = row.findElement(By.cssSelector("button[title='" + iconTitle + "']"));
+            WebElement icon = row.findElement(By.xpath("//img[@alt='" + iconTitle + "']"));
+            wait.until(ExpectedConditions.elementToBeClickable(icon)).click();
+            log.info("✅ Clicked " + iconTitle + " icon on row index: " + rowIndex);
+        } catch (Exception e) {
+            log.error("❌ Failed to click '" + iconTitle + "' icon on row " + rowIndex, e);
+        }
+    }
+
+    public String getEditPageHeading() {
+        return clientEditPageHeading.getText();
+    }
+
+    public boolean isEditPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(clientEditPageHeading)).isDisplayed();
     }
 }

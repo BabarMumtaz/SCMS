@@ -45,7 +45,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
         log.info("Entered Clients Name");
 
         pageObjectManager.getClientPage().enterContactPerson(faker.company().name());
-        log.info("Entered Clients Name");
+        log.info("Entered Contact Person Name");
 
         pageObjectManager.getClientPage().enterClientAddress1(faker.address().streetAddress());
         log.info("Entered Address");
@@ -65,14 +65,17 @@ public class ClientAddTest extends TestBeforeAndAfter {
         pageObjectManager.getClientPage().enterClientDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Clients Tel Number");
 
-        pageObjectManager.getClientPage().enterClientZipCity(faker.address().zipCode());
-        log.info("Entered Zip City");
-
         pageObjectManager.getClientPage().selectRegion();
         log.info("Selected Region");
 
         pageObjectManager.getClientPage().selectCountry();
         log.info("Selected Country");
+
+        pageObjectManager.getClientPage().enterClientZipCity(faker.address().zipCode());
+        log.info("Entered Zip City");
+
+        pageObjectManager.getClientPage().enterVat(FakeDataUtil.getVatNo());
+        log.info("Entered VAT");
 
         pageObjectManager.getClientPage().selectLfr();
         log.info("Selected LFR");

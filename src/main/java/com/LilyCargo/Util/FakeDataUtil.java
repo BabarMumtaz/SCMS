@@ -163,4 +163,8 @@ public class FakeDataUtil {
         return fakerEN.bothify("INT###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
+    public static String getVatNo() {
+        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
 }

@@ -23,7 +23,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
     @Epic("EP001")
     @Feature("Feature:002")
     @Story("As a user, I should be able to edit carrier successfully")
-    @Step("Hit Site Url > Login with valid credentials > Detail Page of Carrier > Edit carrier")
+    @Step("Hit Site Url > Login with valid credentials > Freight Relations > Detail Page of Carrier > Edit carrier")
     public void VerifyCarrierEditTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(CarrierEditFromDetailViewTest.class);
