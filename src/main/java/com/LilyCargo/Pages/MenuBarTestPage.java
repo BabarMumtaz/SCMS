@@ -31,6 +31,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//div[@title='Dashboard']")
 	WebElement dashboardMenu;
 
+	@FindBy(xpath = "//div[@title='Dashboard']//li[@title='Overview']")
+	WebElement overviewDashboardSubMenu;
+
 	@FindBy(xpath = "//li[contains(@title,'Intrastats')]")
 	WebElement intrastatsDashSubMenu;
 
@@ -76,6 +79,10 @@ public class MenuBarTestPage {
 
 	public void clickDashboardMenu() {
 		dashboardMenu.click();
+	}
+
+	public void clickOverviewDashboardSubMenu() {
+		overviewDashboardSubMenu.click();
 	}
 
 	public void clickIntrastatsDashSubMenu() {
