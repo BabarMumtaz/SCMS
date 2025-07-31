@@ -47,6 +47,9 @@ public class DashboardOverviewTest extends TestBeforeAndAfter {
         // Print to console
         System.out.println(summary);
 
+        // ✅ Fetch and print card data
+        pageObjectManager.getDashboardOverviewTestPage().extractAndSaveAllStatsCardsData();
+
         // Close dashboard window
         driver.close();
         log.info("❌ Closed dashboard window");

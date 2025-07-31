@@ -1,0 +1,80 @@
+📥 Card #1 Data:
+MRN-Numbers: 13,648
+This Month: 1,348
+Last 3 Months: 5,803
+Last 6 Months: 13,648
+Last 9 Months: 18,099
+Last 12 Months: 20,765
+
+📥 Card #2 Data:
+Unique HS-Codes: 74,551
+This Month: 6,405
+Last 3 Months: 29,357
+Last 6 Months: 74,495
+Last 9 Months: 110,526
+Last 12 Months: 133,857
+
+📥 Card #3 Data:
+Manifest Lines: 310,311
+This Month: 32,113
+Last 3 Months: 130,153
+Last 6 Months: 309,941
+Last 9 Months: 439,806
+Last 12 Months: 521,583
+
+📥 Card #4 Data:
+Cartons/Packages: 9,249,511
+DE: 84.98% | 7,859,966
+FR: 0.00% | 0
+IT: 0.00% | 0
+ES: 0.00% | 0
+Others: 15.02% | 1,389,545
+
+📥 Card #5 Data:
+Gross Weight (KG): 104,101,886.00
+DE: 78.73% | 81,960,972.34
+FR: 0.00% | 0.00
+IT: 0.00% | 0.00
+ES: 0.00% | 0.00
+Others: 21.27% | 22,140,913.66
+
+📥 Card #6 Data:
+CBM/M3: 541,601.68
+DE: 76.22% | 412,819.18
+FR: 0.00% | 0.00
+IT: 0.00% | 0.00
+ES: 0.00% | 0.00
+Others: 23.78% | 128,782.50
+
+📥 Card #7 Data:
+Entries vs. ETA in Days: 0.53
+D2D / FOB2D: 1.67
+CIF2D: 0.99
+Clear: -0.05
+Clear+LFR: 0.69
+Others: -4.15
+
+📥 Card #8 Data:
+Releases vs. ETA in Days: 2.25
+D2D / FOB2D: 2.22
+CIF2D: 2.62
+Clear: 3.52
+Clear+LFR: 2.38
+Others: -1.10
+
+📥 Card #9 Data:
+Plato Numbers: 15
+Exam HS selection %: 0.141% | Top HS code selected
+R#: HS-Code
+HS%: 1
+7326909890: 2.70% | 2
+4202929890: 2.70% | 3
+9403208000: 0.00% | 4
+6307909899: 6.30% | 5
+9503001000: 0.00% | 6
+8528620000: 0.00% | 7
+9503004990: 0.00% | 8
+9405119090: 2.70% | 9
+7019900085: 7.00% | 10
+9403202000: 0.00%
+
