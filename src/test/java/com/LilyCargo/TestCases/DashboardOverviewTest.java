@@ -1,7 +1,6 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
-import com.LilyCargo.Util.FakeDataUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,10 +41,9 @@ public class DashboardOverviewTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getDashboardOverviewTestPage().isHeadingDisplayed(), "Heading Not Displayed");
         log.info("Dashboard Overview Page Heading: " + pageObjectManager.getDashboardOverviewTestPage().getPageHeading());
 
-        String summary = pageObjectManager.getDashboardOverviewTestPage().getCustomsEntriesSummary();
-
+/*        String summary = pageObjectManager.getDashboardOverviewTestPage().getCustomsEntriesSummary();
         // Print to console
-        System.out.println(summary);
+        System.out.println(summary);*/
 
         // ✅ Fetch and print card data
         pageObjectManager.getDashboardOverviewTestPage().extractAndSaveAllStatsCardsData();

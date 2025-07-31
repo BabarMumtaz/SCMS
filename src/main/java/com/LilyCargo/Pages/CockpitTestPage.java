@@ -1,30 +1,28 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 import static com.LilyCargo.Base.TestBaseClass.log;
 
-public class DashboardOverviewTestPage {
+public class CockpitTestPage {
 
-    private String parentWindowHandle;
     WebDriver driver;
     WebDriverWait wait;
 
     // Constructor that will be automatically called as soon as the object of the
     // class is created
-    public DashboardOverviewTestPage(WebDriver driver) {
+    public CockpitTestPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
@@ -32,8 +30,8 @@ public class DashboardOverviewTestPage {
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    @FindBy(xpath = "//h4[contains(text(),'Customs Entries - YR')]")
-    WebElement customsEntriesHeading;
+    @FindBy(xpath = "//span[contains(text(),'Customs Entries (DMS)')]")
+    WebElement customsEntriesTriggerHeading;
 
     @FindBy(xpath = "//h4[contains(text(),'Customs Entries - YR')]/following-sibling::div")
     List<WebElement> customsEntriesCards;
@@ -47,11 +45,11 @@ public class DashboardOverviewTestPage {
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String getPageHeading() {
-        return customsEntriesHeading.getText();
+        return customsEntriesTriggerHeading.getText();
     }
 
     public boolean isHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(customsEntriesHeading)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading)).isDisplayed();
     }
 
 /*    public String getCustomsEntriesSummary() {
@@ -126,24 +124,4 @@ public class DashboardOverviewTestPage {
         }
     }
 
-    // Call this BEFORE opening a new window
-    public void storeParentWindow() {
-        parentWindowHandle = driver.getWindowHandle();
-        log.info("📌 Stored parent window handle");
-    }
-
-    public void switchToNewTab() {
-        for (String handle : driver.getWindowHandles()) {
-            if (!handle.equals(parentWindowHandle)) {
-                driver.switchTo().window(handle);
-                log.info("🔁 Switched to new tab/window: " + handle);
-                break;
-            }
-        }
-    }
-
-    public void switchBackToOriginalTab() {
-        driver.switchTo().window(parentWindowHandle);
-        log.info("🔙 Switched back to original window: " + parentWindowHandle);
-    }
 }
