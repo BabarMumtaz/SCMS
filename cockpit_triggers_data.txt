@@ -1,4 +1,4 @@
-📥 Triggers #1 Data:
+📥 Triggers Data:
 Customs Entries (DMS)
 FIDS
 Adjusted MRN Beyond Today ETA 0

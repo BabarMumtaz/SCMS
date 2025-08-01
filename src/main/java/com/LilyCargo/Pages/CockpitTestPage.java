@@ -48,7 +48,7 @@ public class CockpitTestPage {
     WebElement cockpitPageHeading;
 
     @FindBy(xpath = "//div[@class='cockpit-side-content']")
-    List<WebElement> cockpitSideContent;
+    WebElement cockpitSideContent;
 
     @FindBy(xpath = "//td[text()='Cleared']")
     WebElement clearedTrigger;
@@ -107,27 +107,22 @@ public class CockpitTestPage {
     public void extractAndSaveAllCockpitTriggersData() {
         wait.until(ExpectedConditions.visibilityOfAllElements(customsEntriesTriggerHeading));
 
-        log.info("📊 Total Triggers found are: " + cockpitSideContent.size());
-
         // File path where data will be written
         String filePath = "cockpit_triggers_data.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 
-            for (int i = 0; i < cockpitSideContent.size(); i++) {
-                WebElement triggers = cockpitSideContent.get(i);
-                String triggersText = triggers.getText().trim();
+                String triggersText = cockpitSideContent.getText().trim();
 
-                String triggersLogs = "📥 Triggers #" + (i + 1) + " Data:\n" + triggersText + "\n";
+                String triggersLogs = "📥 Triggers" + " Data:\n" + triggersText + "\n";
 
                 log.info(triggersLogs);
                 writer.write(triggersLogs);
-            }
 
-            log.info("✅ Dashboard card data successfully written to: " + filePath);
+            log.info("✅ Cockpit triggers data successfully written to: " + filePath);
 
         } catch (IOException e) {
-            log.error("❌ Failed to write dashboard data to file: " + e.getMessage());
+            log.error("❌ Failed to write Cockpit triggers data to file: " + e.getMessage());
         }
     }
 
