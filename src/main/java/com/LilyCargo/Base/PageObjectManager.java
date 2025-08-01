@@ -12,6 +12,7 @@ public class PageObjectManager {
     private MenuBarTestPage menuBar;
     private DashboardOverviewTestPage dashboardOverviewTestPage;
     private AdminOverviewTestPage adminOverviewTestPage;
+    private CockpitTestPage cockpitPage;
     private IntrastatsTestPage intrastatsPage;
     private FreightTestPage bookedFreights;
     private FreightListingTestPage freightListing;
@@ -53,6 +54,10 @@ public class PageObjectManager {
 
     public AdminOverviewTestPage getAdminOverviewTestPage() {
         return (adminOverviewTestPage == null) ? adminOverviewTestPage = PageFactory.initElements(driver, AdminOverviewTestPage.class) : adminOverviewTestPage;
+    }
+
+    public CockpitTestPage getCockpitPage() {
+        return (cockpitPage == null) ? cockpitPage = PageFactory.initElements(driver, CockpitTestPage.class) : cockpitPage;
     }
 
     public IntrastatsTestPage getIntrastatsPage() {

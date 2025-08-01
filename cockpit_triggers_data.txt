@@ -1,0 +1,104 @@
+📥 Triggers #1 Data:
+Customs Entries (DMS)
+FIDS
+Adjusted MRN Beyond Today ETA 0
+Missing MRN thru Today ETA 93
+Customs Status
+FIDS
+No Status 471
+Cleared 577
+• LCL Fully Cleared 165
+• LCL Partial Cleared 26
+PreFyCo 0
+Released DOCO 32
+FyCo/DOCO 23
+NVWA Exam 0
+ILT/ROHS Exam 1
+Cleared Plus 21
+Cancel 1
+Total FIDS 1126
+Billing Center
+FIDS
+Unbilled Cleared 47
+• Pending X- or Y-Type INV 49
+Unbilled Delivered 27
+• Pending X- or Y-Type INV 28
+Saved Works Finance 1
+Customs SCM
+FIDS
+Unsent Customs Docs 404
+• Unsent Contains TC1 178
+Customs Docs Sent 699
+• VAT Missing VIES Validation 2
+Pending Cargo Data + Request 0
+Pending Duty Confirmation 147
+Undelivered Releases 58
+Timer Running 0
+Timer Expired 130
+New Booked Freights
+FIDS
+Today 0
+Yesterday 0
+Last 3 Days 0
+Last 7 Days 0
+Last 14 Days 1
+Arrivals (ETA)
+FIDS
+Today 14
+Tomorrow 45
+Next 3 Days 101
+Next 7 Days 260
+Next 14 Days 320
+Deliveries
+FIDS
+Last 3 Days 1
+Yesterday 0
+Today 0
+Tomorrow 0
+Next 3 Days 0
+30 Days Activities
+Jobs
+Matthijs Lalkens 5354
+Picco Chen 4758
+Ciano Huang 3485
+Jesper Csonka 3057
+Judy Wang 1719
+Lucy Chen 1398
+Chuwen Liu 1283
+Kevin Xue 1152
+Chubo Yang 1006
+Yuklun Lau 675
+Kitmen Lau 562
+Bob Huang 521
+Quinten Strating 510
+Leny Lau 436
+Bram den Hartog 409
+Sally Li 383
+Fiona Jiang 326
+Tianyu Qin (Terry) 323
+Jasper Boelens 317
+Celine Gao 317
+Lois van der Heide 223
+Emily Low 221
+Jefke Daems 219
+Youqi Chen 98
+Hamza Allali 74
+Wisely Xu 69
+Si Yun 64
+Sunny Wang 57
+Apple Xia 56
+Mehdi Ouazir 32
+Yimei Hu 24
+Falco Huang 7
+Sikandar Tariq 2
+Luc de Kerf 0
+Khadija Tariq 0
+Dock View 0
+Mark van Beek 0
+Iqra Mushahid 0
+Ben Mansour 0
+Mark@Appelit 0
+Zheng Siya 0
+Sam Carels 0
+Zhiyu Lan (Lanry) 0
+Kimi Zhang 0

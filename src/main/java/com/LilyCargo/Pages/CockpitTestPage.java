@@ -20,101 +20,108 @@ public class CockpitTestPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    // Constructor that will be automatically called as soon as the object of the
-    // class is created
+    // Constructor that will be automatically called as soon as the object of the class is created
     public CockpitTestPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
     }
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
+    @FindBy(xpath = "//span[contains(text(),'Mobile View ')]")
+    WebElement mobileView;
+
+    @FindBy(xpath = "(//canvas[@role='img'])[1]")
+    WebElement mobileViewGraphArea;
+
+    @FindBy(xpath = "//button[text()='Refresh'][1]")
+    WebElement mobileViewRefreshBtn;
+
+    @FindBy(xpath = "//img[@alt='icon']")
+    WebElement dashboardViewIcon;
+
     @FindBy(xpath = "//span[contains(text(),'Customs Entries (DMS)')]")
     WebElement customsEntriesTriggerHeading;
 
-    @FindBy(xpath = "//h4[contains(text(),'Customs Entries - YR')]/following-sibling::div")
-    List<WebElement> customsEntriesCards;
+    @FindBy(xpath = "//h2[text()='Cockpit']")
+    WebElement cockpitPageHeading;
 
-    @FindBy(xpath = "//div[@class='colmn-data']")
-    List<WebElement> statsFullCards;
+    @FindBy(xpath = "//div[@class='cockpit-side-content']")
+    List<WebElement> cockpitSideContent;
 
-    @FindBy(xpath = "(//div[@class='sm-yellow-txt'][//div='Last 12 Months'])[1]")
-    WebElement last12MonthsHeading;
+    @FindBy(xpath = "//td[text()='Cleared']")
+    WebElement clearedTrigger;
+
+    @FindBy(xpath = "//h3[1]")
+    WebElement cockpitTriggersDynamicAreaText;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr[1]/td[1]")
+    WebElement dynamicListingDateCell;
+
+    @FindBy(xpath = "//button[contains(text(),'Low Margin Projection')]")
+    WebElement lowMarginProjectionTabName;
+
+    @FindBy(xpath = "//button[contains(text(),'Latest Incident Registrations')]")
+    WebElement latestIncidentRegistrationsTabName;
+
+    @FindBy(xpath = "//button[contains(text(),'Daily Import Duty')]")
+    WebElement dailyImportDutyTabName;
+
+    @FindBy(xpath = "(//div[@class='cockpit-table-wrapper position-relative'])[1]/table/tbody/tr[1]/td[1]")
+    WebElement latestAddedPlatoListingDateCell;
+
+    @FindBy(xpath = "(//div[@class='cockpit-table-wrapper position-relative'])[2]/table/tbody/tr[1]/td[1]")
+    WebElement lowMarginProjectionListingDateCell;
+
+    @FindBy(xpath = "(//div[@class='cockpit-table-wrapper latest-incident-table position-relative'])[1]/table/tbody/tr[1]/td[1]")
+    WebElement latestIncidentListingDateCell;
+
+    @FindBy(xpath = "(//div[@class='cockpit-table-wrapper latest-incident-table position-relative'])[2]/table/tbody/tr[1]/td[1]")
+    WebElement dailyImportDutyListingDateCell;
+
+    @FindBy(xpath = "(//img[@alt='icon'])[3]")
+    WebElement dailyImportDutyListingFidExportIcon;
+
+
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String getPageHeading() {
-        return customsEntriesTriggerHeading.getText();
+        return cockpitPageHeading.getText();
     }
 
-    public boolean isHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading)).isDisplayed();
+    public boolean isPageHeadingDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cockpitPageHeading)).isDisplayed();
     }
 
-/*    public String getCustomsEntriesSummary() {
-        StringBuilder summary = new StringBuilder("📊 Customs Entries Cards Headings\n");
-        for (WebElement entry : customsEntriesCards) {
-            summary.append(entry.getText().trim()).append("\n");
-        }
-        return summary.toString();
-    }*/
+    public String getCockpitTriggersDynamicAreaText() {
+        wait.until(ExpectedConditions.visibilityOf(dynamicListingDateCell));
+        return cockpitTriggersDynamicAreaText.getText();
+    }
 
-    public void extractAndSaveAllStatsCardsData() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(last12MonthsHeading));
+    public boolean isCockpitTriggersDynamicAreaTextDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(cockpitTriggersDynamicAreaText)).isDisplayed();
+    }
 
-        log.info("📊 Total cards found are: " + statsFullCards.size());
+    public void extractAndSaveAllCockpitTriggersData() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(customsEntriesTriggerHeading));
+
+        log.info("📊 Total Triggers found are: " + cockpitSideContent.size());
 
         // File path where data will be written
-        String filePath = "dashboard_card_data.txt";
+        String filePath = "cockpit_triggers_data.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 
-/*            for (int i = 0; i < statsFullCards.size(); i++) {
-                WebElement card = statsFullCards.get(i);
-                String cardText = card.getText().trim();
+            for (int i = 0; i < cockpitSideContent.size(); i++) {
+                WebElement triggers = cockpitSideContent.get(i);
+                String triggersText = triggers.getText().trim();
 
-                String cardLogs = "📥 Card #" + (i + 1) + " Data:\n" + cardText + "\n";
+                String triggersLogs = "📥 Triggers #" + (i + 1) + " Data:\n" + triggersText + "\n";
 
-                log.info(cardLogs);
-                writer.write(cardLogs);
-            }*/
-
-            for (int i = 0; i < statsFullCards.size(); i++) {
-                WebElement card = statsFullCards.get(i);
-                String[] lines = card.getText().split("\\r?\\n");
-
-                StringBuilder formatted = new StringBuilder();
-                formatted.append("📥 Card #").append(i + 1).append(" Data:\n");
-
-                int lineIndex = 0;
-                while (lineIndex < lines.length) {
-                    String current = lines[lineIndex].trim();
-
-                    // Case: 3-line group (Label + % + Value)
-                    if (lineIndex + 2 < lines.length && lines[lineIndex + 1].contains("%")) {
-                        String label = current;
-                        String percent = lines[lineIndex + 1].trim();
-                        String value = lines[lineIndex + 2].trim();
-                        formatted.append(label).append(": ").append(percent).append(" | ").append(value).append("\n");
-                        lineIndex += 3;
-                    }
-                    // Case: 2-line pair (Label + Value)
-                    else if (lineIndex + 1 < lines.length) {
-                        String label = current;
-                        String value = lines[lineIndex + 1].trim();
-                        formatted.append(label).append(": ").append(value).append("\n");
-                        lineIndex += 2;
-                    }
-                    // Fallback for odd last line
-                    else {
-                        formatted.append(current).append("\n");
-                        break;
-                    }
-                }
-
-                log.info("\n" + formatted.toString().trim() + "\n");
-                writer.write(formatted.toString().trim() + "\n\n");
+                log.info(triggersLogs);
+                writer.write(triggersLogs);
             }
 
             log.info("✅ Dashboard card data successfully written to: " + filePath);
@@ -124,4 +131,32 @@ public class CockpitTestPage {
         }
     }
 
+    public void clickLowMarginProjectionTabName() {
+        lowMarginProjectionTabName.click();
+    }
+
+    public void clickLatestIncidentTabName() {
+        latestIncidentRegistrationsTabName.click();
+    }
+
+    public void clickDailyImportDutyTabName() {
+        dailyImportDutyTabName.click();
+    }
+
+    public void clickDailyImportDutyFidExportIcon() {
+        wait.until(ExpectedConditions.visibilityOf(dailyImportDutyListingFidExportIcon)).click();
+    }
+
+    public void clickMobileViewIcon() {
+        mobileView.click();
+    }
+
+    public void clickMobileViewRefreshBtn() {
+        wait.until(ExpectedConditions.visibilityOf(mobileViewGraphArea));
+        mobileViewRefreshBtn.click();
+    }
+
+    public void clickDashboardViewIcon() {
+        dashboardViewIcon.click();
+    }
 }
