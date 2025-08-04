@@ -1,5 +1,7 @@
 package com.LilyCargo.Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,20 +13,20 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
-
-import static com.LilyCargo.Base.TestBaseClass.log;
 
 public class CockpitTestPage {
 
     WebDriver driver;
     WebDriverWait wait;
-
+    Logger log;
     // Constructor that will be automatically called as soon as the object of the class is created
     public CockpitTestPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
+        LogManager.getLogger(CockpitTestPage.class);
     }
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -50,6 +52,9 @@ public class CockpitTestPage {
     @FindBy(xpath = "//div[@class='cockpit-side-content']")
     WebElement cockpitSideContent;
 
+    @FindBy(xpath = "//div[@class='cockpit-side-content']//table//tr[td and td[2]]")
+    List<WebElement> cockpitTriggers;
+
     @FindBy(xpath = "//td[text()='Cleared']")
     WebElement clearedTrigger;
 
@@ -58,6 +63,12 @@ public class CockpitTestPage {
 
     @FindBy(xpath = "//table[@id='grid']/tbody/tr[1]/td[1]")
     WebElement dynamicListingDateCell;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
+    List<WebElement> listingRows;
+
+    @FindBy(xpath = "//p[text()='No data found']")
+    WebElement dynamicListingNoDataText;
 
     @FindBy(xpath = "//button[contains(text(),'Low Margin Projection')]")
     WebElement lowMarginProjectionTabName;
@@ -99,6 +110,7 @@ public class CockpitTestPage {
         wait.until(ExpectedConditions.visibilityOf(dynamicListingDateCell));
         return cockpitTriggersDynamicAreaText.getText();
     }
+
 
     public boolean isCockpitTriggersDynamicAreaTextDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(cockpitTriggersDynamicAreaText)).isDisplayed();
@@ -154,4 +166,40 @@ public class CockpitTestPage {
     public void clickDashboardViewIcon() {
         dashboardViewIcon.click();
     }
+
+
+    public List<String> processCockpitTriggers(int max) {
+        List<String> results = new ArrayList<>();
+
+        for (int i = 0; i < Math.min(cockpitTriggers.size(), max); i++) {
+            WebElement trigger = cockpitTriggers.get(i);
+            String triggerText = trigger.getText().trim();
+
+            wait.until(ExpectedConditions.elementToBeClickable(trigger)).click();
+            log.info("🖱️ Clicked Trigger: " + triggerText);
+
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOf(dynamicListingNoDataText),
+                    ExpectedConditions.visibilityOf(dynamicListingDateCell),
+                    ExpectedConditions.textToBePresentInElement(cockpitTriggersDynamicAreaText, triggerText.split(" ")[0]) // rough match
+            ));
+
+            String headingText = cockpitTriggersDynamicAreaText.getText().trim();
+            String result;
+            if (!listingRows.isEmpty()) {
+                result = "✅ Data found (" + listingRows.size() + " rows)";
+            } else if (dynamicListingNoDataText.isDisplayed()) {
+                result = "ℹ️ No data found";
+            } else {
+                result = "⚠️ Unknown state";
+            }
+
+            String summary = "Trigger: " + triggerText + " ➤ Heading: " + headingText + " ➤ Result: " + result;
+            log.info(summary);
+            results.add(summary);
+        }
+
+        return results;
+    }
+
 }

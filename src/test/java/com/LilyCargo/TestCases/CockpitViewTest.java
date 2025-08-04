@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class CockpitViewTest extends TestBeforeAndAfter {
 
     Logger log;
@@ -35,8 +37,13 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getPageHeading());
 
         // ✅ Fetch and print card data
-        pageObjectManager.getCockpitPage().extractAndSaveAllCockpitTriggersData();
+        //pageObjectManager.getCockpitPage().extractAndSaveAllCockpitTriggersData();
 
+        List<String> summaries = pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 15 triggers
+
+        for (String s : summaries) {
+            System.out.println(s);
+        }
     }
 }
 
