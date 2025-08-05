@@ -7,23 +7,16 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CockpitViewTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1,
-            description = "Add User",
-            groups = {"smoke", "regression"})
-    @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a user, I should be able to view Cockpit Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
-    public void VerifyCockpitViewTestCase(){
-        
+    private void navigateToCockpit() {
+
         log = LogManager.getLogger(CockpitViewTest.class);
         log.info("Starting Test from Cockpit.");
 
@@ -36,14 +29,32 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getCockpitPage().isPageHeadingDisplayed(), "Heading Not Displayed");
         log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getPageHeading());
 
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isCustomsEntriesTriggerHeadingDisplayed(), "Trigger Heading Not Displayed");
+        log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());
+    }
+
+@Test(priority = 0,
+            description = "Add User",
+            groups = {"smoke", "regression"},
+            enabled = true)
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
+    @Epic("EP001")
+    @Feature("Feature:004")
+    @Story("As a user, I should be able to view Cockpit Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
+    public void VerifyCockpitViewTestCase(){
+
+        navigateToCockpit();
+
         // ✅ Fetch and print card data
         //pageObjectManager.getCockpitPage().extractAndSaveAllCockpitTriggersData();
 
-        List<String> summaries = pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 15 triggers
+        pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 15 triggers
 
-        for (String s : summaries) {
+/*        for (String s : summaries) {
             System.out.println(s);
-        }
+        }*/
     }
 }
 
