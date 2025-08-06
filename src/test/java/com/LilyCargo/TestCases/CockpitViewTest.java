@@ -7,10 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class CockpitViewTest extends TestBeforeAndAfter {
 
     Logger log;
@@ -33,7 +29,7 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());
     }
 
-@Test(priority = 0,
+    @Test(priority = 0,
             description = "Add User",
             groups = {"smoke", "regression"},
             enabled = true)
@@ -43,18 +39,30 @@ public class CockpitViewTest extends TestBeforeAndAfter {
     @Feature("Feature:004")
     @Story("As a user, I should be able to view Cockpit Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
-    public void VerifyCockpitViewTestCase(){
+    public void VerifyCockpitTriggersListTestCase(){
 
         navigateToCockpit();
 
-        // ✅ Fetch and print card data
-        //pageObjectManager.getCockpitPage().extractAndSaveAllCockpitTriggersData();
+        pageObjectManager.getCockpitPage().extractAndSaveAllCockpitTriggersData();
 
-        pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 15 triggers
+    }
 
-/*        for (String s : summaries) {
-            System.out.println(s);
-        }*/
+    @Test(priority = 1,
+            description = "Add User",
+            groups = {"smoke", "regression"},
+            enabled = false)
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
+    @Epic("EP001")
+    @Feature("Feature:004")
+    @Story("As a user, I should be able to view Cockpit Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
+    public void VerifyCockpitTriggersDynamicListingTestCase(){
+
+        navigateToCockpit();
+
+        pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 3 triggers
+
     }
 }
 

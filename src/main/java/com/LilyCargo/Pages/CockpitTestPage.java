@@ -9,11 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.NoSuchElementException;
 
 public class CockpitTestPage {
 
@@ -105,11 +107,6 @@ public class CockpitTestPage {
     @FindBy(xpath = "//button[@aria-label='Go to last page' and not(@disabled)]")
     WebElement paginationLastBtn;
 
-    // Dynamic section/trigger selectors
-    By sectionLocator = By.xpath("//div[contains(@class,'cockpit-side-content')]//tbody"); // Adjust if needed
-    By triggerLocator = By.xpath(".//tr[contains(@class, 'sidebar-item')]//td[1]");
-
-
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String getPageHeading() {
@@ -136,28 +133,6 @@ public class CockpitTestPage {
 
     public boolean isCockpitTriggersDynamicAreaTextDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(cockpitTriggersDynamicAreaText)).isDisplayed();
-    }
-
-    public void extractAndSaveAllCockpitTriggersData() {
-        wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading));
-
-        // File path where data will be written
-        String filePath = "cockpit_triggers_data.txt";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-
-                String triggersText = cockpitSideContent.getText().trim();
-
-                String triggersLogs = "📥 Triggers" + " Data:\n" + triggersText + "\n";
-
-                log.info(triggersLogs);
-                writer.write(triggersLogs);
-
-            log.info("✅ Cockpit triggers data successfully written to: " + filePath);
-
-        } catch (IOException e) {
-            log.error("❌ Failed to write Cockpit triggers data to file: " + e.getMessage());
-        }
     }
 
     public void clickLowMarginProjectionTabName() {
@@ -208,44 +183,56 @@ public class CockpitTestPage {
         dashboardViewIcon.click();
     }
 
-/*
-    public List<String> processCockpitTriggers(int max) {
+    public List<String> extractAndSaveAllCockpitTriggersData() {
         wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading));
-        List<String> results = new ArrayList<>();
 
-        for (int i = 0; i < Math.min(cockpitTriggers.size(), max); i++) {
-            WebElement trigger = cockpitTriggers.get(i);
-            String triggerText = trigger.getText().trim();
+        List<String> triggersData = new ArrayList<>();
+        String triggersText = cockpitSideContent.getText().trim();
 
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(trigger)).click();
-                log.info("🖱️ Clicked Trigger: " + triggerText);
+        String triggersLogs = "📥 Triggers" + " Data:\n" + triggersText + "\n";
 
-                wait.until(ExpectedConditions.or(
-                        ExpectedConditions.visibilityOf(dynamicListingNoDataText),
-                        ExpectedConditions.visibilityOf(dynamicListingDateCell),
-                        ExpectedConditions.textToBePresentInElement(cockpitTriggersDynamicAreaText, triggerText.split(" ")[0])
-                ));
+        log.info(triggersLogs);
 
-                String heading = cockpitTriggersDynamicAreaText.getText().trim();
-                String result = !listingRows.isEmpty()
-                        ? "✅ Data found (" + listingRows.size() + " rows)"
-                        : (dynamicListingNoDataText.isDisplayed() ? "ℹ️ No data found" : "⚠️ Unknown state");
+        saveListToFileWithTimestamp(triggersData, "cockpit_triggers_listData");
+        return triggersData;
+    }
 
-                String summary = "Trigger: " + triggerText + " ➤ Heading: " + heading + " ➤ Result: " + result;
-                log.info(summary);
-                results.add(summary);
+    public void saveListToFileWithTimestamp(List<String> data, String baseFileName) {
+        // Format: 2025-08-05_14-33-12
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
 
-            } catch (TimeoutException e) {
-                log.warn("⏳ Timeout waiting for trigger: " + triggerText);
-            } catch (Exception e) {
-                log.error("❌ Error processing trigger: " + triggerText + " | " + e.getMessage());
-            }
+        // Define the output directory path
+        String outputDirPath = System.getProperty("user.dir") + "/output";
+        File outputDir = new File(outputDirPath);
+        if (!outputDir.exists()) {
+            outputDir.mkdirs(); // create the /output/ folder if it doesn't exist
         }
 
-        return results;
+        // Construct full file path with timestamp
+        String filePath = outputDirPath + "/" + baseFileName + "_" + timestamp + ".txt";
+
+        // Write data to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : data) {
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("✅ Data saved to file: " + filePath);
+        } catch (IOException e) {
+            System.err.println("❌ Failed to write to file: " + e.getMessage());
+        }
     }
-*/
+
+/*    public void saveCockpitAllTriggersDataWithTimestamp() {
+        List<String> triggersListData = extractAndSaveAllCockpitTriggersData();
+        saveListToFileWithTimestamp(triggersListData, "cockpit_triggers_listData");
+    }
+
+    public void saveCockpitTriggerResultsWithTimestamp(int max) {
+        List<String> triggerListingResults = processCockpitTriggers(max);
+        saveListToFileWithTimestamp(triggerListingResults, "cockpit_triggers_listingResults");
+    }*/
+
 
     public List<String> processCockpitTriggers(int max) {
         wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading));
@@ -258,42 +245,41 @@ public class CockpitTestPage {
             String triggerText = trigger.getText().trim();
 
             try {
-                // Scroll to the element for safety
+                // Scroll to trigger and click
                 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", trigger);
-
-                // Wait for clickability and click
                 wait.until(ExpectedConditions.elementToBeClickable(trigger)).click();
                 log.info("🖱️ Clicked Trigger: " + triggerText);
 
-                // Wait until the heading reflects the correct section
+                // Wait until section heading is updated
                 wait.until(ExpectedConditions.textToBePresentInElement(
                         cockpitTriggersDynamicAreaText, triggerText.split(" ")[0]
                 ));
 
-                // Wait briefly for any data/no-data message to appear
-                try {
-                    wait.withTimeout(Duration.ofSeconds(2)); // Shorter timeout
-                    wait.until(ExpectedConditions.or(
-                            ExpectedConditions.visibilityOf(dynamicListingNoDataText),
-                            ExpectedConditions.visibilityOf(dynamicListingDateCell)
-                    ));
-                } catch (TimeoutException ignored) {
-                    // No data or rows found within quick timeout
-                } finally {
-                    // Reset timeout to default after custom wait
-                    wait.withTimeout(Duration.ofSeconds(10));
+                int totalRowCount = 0;
+                boolean hasNextPage = true;
+
+                while (hasNextPage) {
+                    // Wait for rows or no-data message
+                    waitShortForContentLoad();
+
+                    int currentPageRowCount = listingRows.size();
+                    totalRowCount += currentPageRowCount;
+
+                    log.debug("📄 Page Rows: " + currentPageRowCount + " | Total so far: " + totalRowCount);
+
+                    // Check if next button is enabled
+                    if (isPaginationNextEnabled()) {
+                        paginationNextBtn.click();
+                        waitUntilTableRefreshes(); // optional spinner wait
+                    } else {
+                        hasNextPage = false;
+                    }
                 }
 
                 String heading = cockpitTriggersDynamicAreaText.getText().trim();
-                String result;
-
-                if (!listingRows.isEmpty()) {
-                    result = "✅ Data found (" + listingRows.size() + " rows)";
-                } else if (isElementVisible(dynamicListingNoDataText)) {
-                    result = "ℹ️ No data found";
-                } else {
-                    result = "⚠️ Unknown state";
-                }
+                String result = (totalRowCount > 0)
+                        ? "✅ Data found (" + totalRowCount + " rows across pages)"
+                        : (isElementVisible(dynamicListingNoDataText) ? "ℹ️ No data found" : "⚠️ Unknown state");
 
                 String summary = "Trigger: " + triggerText + " ➤ Heading: " + heading + " ➤ Result: " + result;
                 log.info(summary);
@@ -306,6 +292,9 @@ public class CockpitTestPage {
             }
         }
 
+        // ✅ Save to timestamped file
+        saveListToFileWithTimestamp(results, "cockpit_triggers_listingResults");
+
         return results;
     }
 
@@ -317,5 +306,42 @@ public class CockpitTestPage {
             return false;
         }
     }
+
+
+    private void waitShortForContentLoad() {
+        try {
+            wait.withTimeout(Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfAllElements(listingRows),
+                    ExpectedConditions.visibilityOf(dynamicListingNoDataText)
+            ));
+        } catch (TimeoutException ignored) {
+            // Do nothing, no data visible yet
+        } finally {
+            wait.withTimeout(Duration.ofSeconds(10)); // reset to default
+        }
+    }
+
+
+    private boolean isPaginationNextEnabled() {
+        try {
+            return paginationNextBtn.isDisplayed() && paginationNextBtn.isEnabled() &&
+                    !paginationNextBtn.getAttribute("class").contains("disabled");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // Optional: if a spinner or loader appears while paginating
+    private void waitUntilTableRefreshes() {
+        try {
+            WebElement spinner = driver.findElement(By.cssSelector(".loading-spinner")); // adjust if needed
+            wait.until(ExpectedConditions.invisibilityOf(spinner));
+        } catch (Exception ignored) {
+            // No spinner, no problem
+        }
+    }
+
+
 
 }

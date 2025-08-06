@@ -8,8 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -41,7 +45,7 @@ public class DashboardOverviewTestPage {
     @FindBy(xpath = "//div[@class='colmn-data']")
     List<WebElement> statsFullCards;
 
-    @FindBy(xpath = "(//div[@class='sm-yellow-txt'][//div='Last 12 Months'])[1]")
+    @FindBy(xpath = "(//div[@class='sm-yellow-txt'][//div='Last 12 Months'])[5]")
     WebElement last12MonthsHeading;
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -66,9 +70,21 @@ public class DashboardOverviewTestPage {
         wait.until(ExpectedConditions.visibilityOfAllElements(last12MonthsHeading));
 
         log.info("📊 Total cards found are: " + statsFullCards.size());
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
 
+        // Define the output directory path
+        String outputDirPath = System.getProperty("user.dir") + "/output";
+        File outputDir = new File(outputDirPath);
+        if (!outputDir.exists()) {
+            outputDir.mkdirs(); // create the /output/ folder if it doesn't exist
+        }
+
+        // Construct full file path with timestamp
+        String filePath = outputDirPath + "/" + "dashboard_card_data" + "_" + timestamp + ".txt";
+
+/*
         // File path where data will be written
-        String filePath = "dashboard_card_data.txt";
+        String filePath = "dashboard_card_data.txt";*/
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 
