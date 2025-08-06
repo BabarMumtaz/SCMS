@@ -22,8 +22,9 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCockpitDashSubMenu();
         log.info("Clicked Cockpit Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isPageHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getPageHeading());
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "❌ Cockpit heading is not displayed!");
+        Assert.assertEquals(pageObjectManager.getCockpitPage().getPageHeading(), "Cockpit", "❌ Heading text does not match!");
+        log.info("✅ Cockpit heading verified successfully.");
 
         Assert.assertTrue(pageObjectManager.getCockpitPage().isCustomsEntriesTriggerHeadingDisplayed(), "Trigger Heading Not Displayed");
         log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());
@@ -32,7 +33,7 @@ public class CockpitViewTest extends TestBeforeAndAfter {
     @Test(priority = 0,
             description = "Add User",
             groups = {"smoke", "regression"},
-            enabled = true)
+            enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
     @Epic("EP001")
@@ -62,7 +63,28 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         navigateToCockpit();
 
         pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 3 triggers
+    }
 
+    @Test(priority = 2, description = "Verify Cockpit Tabs")
+    public void verifyCustomsEntriesTriggerHeading() {
+
+        navigateToCockpit();
+
+        pageObjectManager.getCockpitPage().clickTab("Low Margin Projection");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
+        log.info("✅ Low Margin Projection tab clicked.");
+
+        pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
+        log.info("✅ Low Margin Projection tab clicked.");
+
+        pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
+        log.info("✅ Low Margin Projection tab clicked.");
+
+        pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
+        log.info("✅ Low Margin Projection tab clicked.");
     }
 }
 

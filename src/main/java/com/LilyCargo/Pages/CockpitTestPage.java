@@ -71,6 +71,9 @@ public class CockpitTestPage {
     @FindBy(xpath = "//p[text()='No data found']")
     WebElement dynamicListingNoDataText;
 
+    @FindBy(xpath = "//button[contains(text(),'Latest added PLATO numbers')]")
+    WebElement latestAddedPlatoTabName;
+
     @FindBy(xpath = "//button[contains(text(),'Low Margin Projection')]")
     WebElement lowMarginProjectionTabName;
 
@@ -107,22 +110,30 @@ public class CockpitTestPage {
     @FindBy(xpath = "//button[@aria-label='Go to last page' and not(@disabled)]")
     WebElement paginationLastBtn;
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Methods ---------- */
 
     public String getPageHeading() {
         return cockpitPageHeading.getText();
     }
 
-    public boolean isPageHeadingDisplayed() {
+/*    public boolean isPageHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(cockpitPageHeading)).isDisplayed();
+    }*/
+
+    public boolean isCockpitHeadingDisplayed() {
+        return isElementDisplayed(cockpitPageHeading);
     }
 
     public String getCustomsEntriesTriggerHeading() {
         return customsEntriesTriggerHeading.getText();
     }
 
-    public boolean isCustomsEntriesTriggerHeadingDisplayed() {
+/*    public boolean isCustomsEntriesTriggerHeadingDisplayed() {
         return wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading)).isDisplayed();
+    }*/
+
+    public boolean isCustomsEntriesTriggerHeadingDisplayed() {
+        return isElementDisplayed(customsEntriesTriggerHeading);
     }
 
     public String getCockpitTriggersDynamicAreaText() {
@@ -130,9 +141,31 @@ public class CockpitTestPage {
         return cockpitTriggersDynamicAreaText.getText();
     }
 
-
     public boolean isCockpitTriggersDynamicAreaTextDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cockpitTriggersDynamicAreaText)).isDisplayed();
+        return isElementDisplayed(cockpitTriggersDynamicAreaText);
+    }
+
+    public void clickTab(String tabName) {
+        WebElement tabElement;
+        switch (tabName.toLowerCase()) {
+            case "latest added plato":
+                tabElement = latestAddedPlatoTabName;
+                break;
+            case "low margin projection":
+                tabElement = lowMarginProjectionTabName;
+                break;
+
+            case "latest incident registrations":
+                tabElement = latestIncidentRegistrationsTabName;
+                break;
+            case "daily import duty":
+                tabElement = dailyImportDutyTabName;
+                break;
+            default:
+                log.warn("⚠️ Invalid tab name: " + tabName);
+                return;
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
     }
 
     public void clickLowMarginProjectionTabName() {
@@ -147,24 +180,24 @@ public class CockpitTestPage {
         dailyImportDutyTabName.click();
     }
 
-    public void clickTab(String tabName) {
-        WebElement tabElement;
-        switch (tabName.toLowerCase()) {
-            case "low margin projection":
-                tabElement = lowMarginProjectionTabName;
-                break;
-            case "latest incident registrations":
-                tabElement = latestIncidentRegistrationsTabName;
-                break;
-            case "daily import duty":
-                tabElement = dailyImportDutyTabName;
-                break;
-            default:
-                log.warn("⚠️ Invalid tab name: " + tabName);
-                return;
-        }
-        wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
+    public boolean isLatestAddedPlatoListingDateCellDisplayed() {
+        return isElementDisplayed(latestAddedPlatoListingDateCell);
     }
+
+    public boolean isLowMarginProjectionListingDateCellDisplayed() {
+        return isElementDisplayed(lowMarginProjectionListingDateCell);
+    }
+
+    public boolean isLatestIncidentListingDateCellDisplayed() {
+        return isElementDisplayed(latestIncidentListingDateCell);
+    }
+
+    public boolean isDailyImportDutyListingDateCellDisplayed() {
+        return isElementDisplayed(dailyImportDutyListingDateCell);
+    }
+
+
+
 
     public void clickDailyImportDutyFidExportIcon() {
         wait.until(ExpectedConditions.visibilityOf(dailyImportDutyListingFidExportIcon)).click();
@@ -181,6 +214,17 @@ public class CockpitTestPage {
 
     public void clickDashboardViewIcon() {
         dashboardViewIcon.click();
+    }
+
+    /** ---------- Utility Methods ---------- */
+
+    private void scrollToAndClick(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    private boolean isElementDisplayed(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed();
     }
 
     public List<String> extractAndSaveAllCockpitTriggersData() {
@@ -223,17 +267,6 @@ public class CockpitTestPage {
         }
     }
 
-/*    public void saveCockpitAllTriggersDataWithTimestamp() {
-        List<String> triggersListData = extractAndSaveAllCockpitTriggersData();
-        saveListToFileWithTimestamp(triggersListData, "cockpit_triggers_listData");
-    }
-
-    public void saveCockpitTriggerResultsWithTimestamp(int max) {
-        List<String> triggerListingResults = processCockpitTriggers(max);
-        saveListToFileWithTimestamp(triggerListingResults, "cockpit_triggers_listingResults");
-    }*/
-
-
     public List<String> processCockpitTriggers(int max) {
         wait.until(ExpectedConditions.visibilityOf(customsEntriesTriggerHeading));
         List<String> results = new ArrayList<>();
@@ -246,8 +279,7 @@ public class CockpitTestPage {
 
             try {
                 // Scroll to trigger and click
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", trigger);
-                wait.until(ExpectedConditions.elementToBeClickable(trigger)).click();
+                scrollToAndClick(trigger);
                 log.info("🖱️ Clicked Trigger: " + triggerText);
 
                 // Wait until section heading is updated
@@ -322,7 +354,6 @@ public class CockpitTestPage {
         }
     }
 
-
     private boolean isPaginationNextEnabled() {
         try {
             return paginationNextBtn.isDisplayed() && paginationNextBtn.isEnabled() &&
@@ -341,7 +372,5 @@ public class CockpitTestPage {
             // No spinner, no problem
         }
     }
-
-
 
 }
