@@ -65,26 +65,30 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         pageObjectManager.getCockpitPage().processCockpitTriggers(3);  // Click first 3 triggers
     }
 
-    @Test(priority = 2, description = "Verify Cockpit Tabs")
-    public void verifyCustomsEntriesTriggerHeading() {
+    @Test(priority = 2, description = "Verify Cockpit Tabs",
+            enabled = true)
+    public void verifyCockpitTabs() {
 
         navigateToCockpit();
 
         pageObjectManager.getCockpitPage().clickTab("Low Margin Projection");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
         log.info("✅ Low Margin Projection tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Low Margin Projection Listing Cell not displayed!");
+
+        pageObjectManager.getCockpitPage().clickTab("Latest Incident Registrations");
+        log.info("✅ Latest Incident Registrations tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestIncidentListingDateCellDisplayed(), "❌ Latest Incident Registrations Listing Cell not displayed!");
 
         pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
-        log.info("✅ Low Margin Projection tab clicked.");
+        log.info("✅ Daily Import Duty tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isDailyImportDutyListingDateCellDisplayed(), "❌ Daily Import Duty Listing Cell not displayed!");
 
-        pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
-        log.info("✅ Low Margin Projection tab clicked.");
+        pageObjectManager.getCockpitPage().clickDailyImportDutyFidExportIcon();
+        log.info("✅ Daily Import Duty Download FID icon clicked.");
 
-        pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Customs Entries heading not displayed!");
-        log.info("✅ Low Margin Projection tab clicked.");
+        pageObjectManager.getCockpitPage().clickTab("Latest Added Plato");
+        log.info("✅ Latest Added Plato tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestAddedPlatoListingDateCellDisplayed(), "❌ Latest Added Plato Listing Cell not displayed!");
     }
 }
 

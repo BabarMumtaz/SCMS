@@ -196,9 +196,6 @@ public class CockpitTestPage {
         return isElementDisplayed(dailyImportDutyListingDateCell);
     }
 
-
-
-
     public void clickDailyImportDutyFidExportIcon() {
         wait.until(ExpectedConditions.visibilityOf(dailyImportDutyListingFidExportIcon)).click();
     }
