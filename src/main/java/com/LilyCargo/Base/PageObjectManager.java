@@ -27,6 +27,7 @@ public class PageObjectManager {
     private ShipperListingPage shipperListing;
     private ExportCompaniesTestPage exportCompaniesPage;
     private WarehousesTestPage warehousePage;
+    private FreightManagersTestPage freightManagersPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
@@ -114,6 +115,10 @@ public class PageObjectManager {
 
     public WarehousesTestPage getWarehousePage() {
         return (warehousePage == null) ? warehousePage = PageFactory.initElements(driver, WarehousesTestPage.class) : warehousePage;
+    }
+
+    public FreightManagersTestPage getFreightManagersPage() {
+        return (freightManagersPage == null) ? freightManagersPage = PageFactory.initElements(driver, FreightManagersTestPage.class) : freightManagersPage;
     }
 
     public RemarksTestPage getRemarksPage() {

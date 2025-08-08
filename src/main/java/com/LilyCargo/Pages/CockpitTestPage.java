@@ -30,7 +30,7 @@ public class CockpitTestPage {
         PageFactory.initElements(driver, this);
     }
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//span[contains(text(),'Mobile View ')]")
     WebElement mobileView;
