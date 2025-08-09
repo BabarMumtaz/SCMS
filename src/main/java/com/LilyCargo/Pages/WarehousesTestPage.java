@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WarehousesTestPage {
 
@@ -71,6 +72,9 @@ public class WarehousesTestPage {
 
     @FindBy(xpath = "//input[@name='agreement_notes']")
     WebElement warehouseAgreementNotes;
+
+    @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
+    List<WebElement> extraFieldCrossIcon;
 
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
     WebElement extraEmailFieldCross;
@@ -203,5 +207,18 @@ public class WarehousesTestPage {
 
     public void clickOnAlertPopupLP() {
         wait.until(ExpectedConditions.visibilityOf(warehouseAlertPopupLP)).click();
+    }
+
+    public void clickAllDynamicCrossIcons() {
+        for (int i = 0; i < 3; i++) {
+            if (extraFieldCrossIcon.size() > 10) {
+                extraFieldCrossIcon.get(10).click();
+
+                // Wait for DOM update
+                try { Thread.sleep(500); } catch (InterruptedException e) {}
+            } else {
+                break; // Safety break if index 10 doesn't exist
+            }
+        }
     }
 }

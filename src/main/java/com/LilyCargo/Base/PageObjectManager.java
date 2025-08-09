@@ -28,6 +28,7 @@ public class PageObjectManager {
     private ExportCompaniesTestPage exportCompaniesPage;
     private WarehousesTestPage warehousePage;
     private FreightManagersTestPage freightManagersPage;
+    private BrokersTestPage brokersTestPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
@@ -119,6 +120,10 @@ public class PageObjectManager {
 
     public FreightManagersTestPage getFreightManagersPage() {
         return (freightManagersPage == null) ? freightManagersPage = PageFactory.initElements(driver, FreightManagersTestPage.class) : freightManagersPage;
+    }
+
+    public BrokersTestPage getBrokersPage() {
+        return (brokersTestPage == null) ? brokersTestPage = PageFactory.initElements(driver, BrokersTestPage.class) : brokersTestPage;
     }
 
     public RemarksTestPage getRemarksPage() {

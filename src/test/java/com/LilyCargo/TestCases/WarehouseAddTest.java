@@ -65,14 +65,17 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getWarehousePage().enterWarehouseAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Warehouse Agreement Notes");
 
-        pageObjectManager.getWarehousePage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+//        pageObjectManager.getWarehousePage().clickExtraEmailFieldCross();
+//        log.info("Click Extra Email Field Cross");
+//
+//        pageObjectManager.getWarehousePage().clickExtraAddressFieldCross();
+//        log.info("Click Extra Address Field Cross");
+//
+//        pageObjectManager.getWarehousePage().clickExtraPhoneFieldCross();
+//        log.info("Click Extra Phone Field Cross");
 
-        pageObjectManager.getWarehousePage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        pageObjectManager.getWarehousePage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getWarehousePage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
         pageObjectManager.getWarehousePage().clickSaveWarehouseBack();
         log.info("Click Save Warehouse Button");

@@ -70,6 +70,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='Freight Managers']")
 	WebElement freightManagersFRSubMenu;
 
+	@FindBy(xpath = "//li[@title='Brokers']")
+	WebElement brokersFRSubMenu;
+
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
 
@@ -111,9 +114,7 @@ public class MenuBarTestPage {
 		bookedFreightMenu.click();
 	}
 
-	public void clickFreightRelationsMenu() {
-		freightRelationsMenu.click();
-	}
+	public void clickFreightRelationsMenu() { freightRelationsMenu.click();}
 
 	public void clickCarriersFRSubMenu() {
 		carriersFRSubMenu.click();
@@ -137,6 +138,10 @@ public class MenuBarTestPage {
 
 	public void clickFreightManagersFRSubMenu() {
 		freightManagersFRSubMenu.click();
+	}
+
+	public void clickBrokersFRSubMenu() {
+		brokersFRSubMenu.click();
 	}
 
 	public void clickFinanceMenu() {
