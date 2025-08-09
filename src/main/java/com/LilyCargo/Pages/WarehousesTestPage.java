@@ -19,8 +19,7 @@ public class WarehousesTestPage {
     Actions actions;
     WebDriverWait wait;
 
-    // Constructor that will be automatically called as soon as the object of the
-    // class is created
+    // Constructor that will be automatically called as soon as the object of the class is created
     public WarehousesTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
@@ -29,7 +28,7 @@ public class WarehousesTestPage {
         this.actions = new Actions(driver); 
     }
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//h2[text()='Warehouses']")
     WebElement warehousePageHeading;
@@ -97,7 +96,7 @@ public class WarehousesTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement warehouseAlertPopupLP;
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Methods ---------- */
 
     // Method to capture the page heading
     public String getPageHeading() {
