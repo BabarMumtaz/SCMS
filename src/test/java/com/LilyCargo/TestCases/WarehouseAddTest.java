@@ -65,25 +65,25 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getWarehousePage().enterWarehouseAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Warehouse Agreement Notes");
 
-//        pageObjectManager.getWarehousePage().clickExtraEmailFieldCross();
-//        log.info("Click Extra Email Field Cross");
-//
-//        pageObjectManager.getWarehousePage().clickExtraAddressFieldCross();
-//        log.info("Click Extra Address Field Cross");
-//
-//        pageObjectManager.getWarehousePage().clickExtraPhoneFieldCross();
-//        log.info("Click Extra Phone Field Cross");
+/*        pageObjectManager.getGlobalMethodsPage().clickExtraEmailFieldCross();
+        log.info("Click Extra Email Field Cross");
 
-        pageObjectManager.getWarehousePage().clickAllDynamicCrossIcons();
+        pageObjectManager.getGlobalMethodsPage().clickExtraAddressFieldCross();
+        log.info("Click Extra Address Field Cross");
+
+        pageObjectManager.getGlobalMethodsPage().clickExtraPhoneFieldCross();
+        log.info("Click Extra Phone Field Cross");*/
+
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
         log.info("Click Extra Field Cross");
 
-        pageObjectManager.getWarehousePage().clickSaveWarehouseBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Warehouse Button");
 
         Assert.assertTrue(pageObjectManager.getWarehousePage().isWarehouseSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getWarehousePage().getWarehouseSuccessAlertMessage());
 
-        pageObjectManager.getWarehousePage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }
