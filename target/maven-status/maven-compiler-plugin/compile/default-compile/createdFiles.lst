@@ -1,13 +1,16 @@
+com\LilyCargo\Pages\DashboardOverviewTestPage.class
 com\LilyCargo\Listeners\WebEventListener.class
 com\LilyCargo\Pages\CarriersTestPage.class
 com\LilyCargo\Pages\CarrierListingTestPage.class
 com\LilyCargo\Pages\ShipperTestPage.class
 com\LilyCargo\Util\FakeDataUtil.class
 com\LilyCargo\Util\TestUtilClass.class
+com\LilyCargo\Pages\WarehousesTestPage.class
 com\LilyCargo\Util\ScreenShotUtil.class
 com\LilyCargo\Pages\IncidentsRegistrationTestPage.class
 com\LilyCargo\Pages\SubmitMrnCustomsStatusPage.class
 com\LilyCargo\Pages\MenuBarTestPage.class
+com\LilyCargo\Pages\GlobalMethodsTestPage.class
 com\LilyCargo\Pages\FreightTestPage.class
 com\LilyCargo\Pages\ClientTestPage.class
 com\LilyCargo\Base\TestBaseClass.class
@@ -15,11 +18,13 @@ com\LilyCargo\Base\TestBeforeAndAfter.class
 com\LilyCargo\Base\PageObjectManager.class
 com\LilyCargo\Listeners\AllureReportListener.class
 com\LilyCargo\Pages\ExportCompaniesTestPage.class
+com\LilyCargo\Pages\FreightManagersTestPage.class
 com\LilyCargo\Pages\IntrastatsTestPage.class
 com\LilyCargo\Util\RetryAnalyzer.class
 com\LilyCargo\Pages\RemarksTestPage.class
 com\LilyCargo\Util\ExcelUtil.class
 com\LilyCargo\Pages\FreightListingTestPage.class
+com\LilyCargo\Pages\BrokersTestPage.class
 com\LilyCargo\Pages\FreightDetailTestPage.class
 com\LilyCargo\Pages\CargoDataTestPage.class
 com\LilyCargo\Pages\DockPlannerPage.class
@@ -28,4 +33,6 @@ com\LilyCargo\Pages\InternationalProductsPage.class
 com\LilyCargo\Pages\LoginTestPage.class
 com\LilyCargo\Pages\FycoDataTestPage.class
 com\LilyCargo\Pages\ShipperListingPage.class
+com\LilyCargo\Pages\AdminOverviewTestPage.class
+com\LilyCargo\Pages\CockpitTestPage.class
 com\LilyCargo\Pages\BillingCenterTestPage.class
