@@ -10,7 +10,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="TRACE">
+        <Root level="info">
             <AppenderRef ref="file"/>
             <AppenderRef ref="STDOUT"/>
         </Root>
