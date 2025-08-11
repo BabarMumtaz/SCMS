@@ -34,19 +34,15 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
 
         // Works for ANY page heading
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouses");
-        Assert.assertEquals("Warehouses", pageHeading);
-
-/*        Assert.assertTrue(pageObjectManager.getWarehousePage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Warehouse Page Heading: " + pageObjectManager.getWarehousePage().getPageHeading());*/
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Warehouses", "Page heading does not match expected value.");
 
         pageObjectManager.getWarehousePage().clickAddWarehouseBtn();
         log.info("Clicked Warehouse Add button");
 
-/*        Assert.assertTrue(pageObjectManager.getWarehousePage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Warehouse Add Page Heading: " + pageObjectManager.getWarehousePage().getAddPageHeading());*/
-
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouse");
-        Assert.assertEquals("Add Warehouse", addPageHeading);
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Warehouse", "Add Page heading does not match expected value.");
 
         pageObjectManager.getWarehousePage().enterWarehouseCompany(faker.company().name());
         log.info("Entered Warehouse Company Name");
@@ -78,12 +74,12 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Warehouse Button");
 
-        // Works for ANY success alert
-        Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isSuccessAlertDisplayed("Warehouse successfully created."));
-/*
-        Assert.assertTrue(pageObjectManager.getWarehousePage().isWarehouseSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getWarehousePage().getWarehouseSuccessAlertMessage());
-*/
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Warehouse successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Warehouse successfully created.", "Success Alert does not match expected value.");
+
+        //Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isSuccessAlertDisplayed("Warehouse successfully created."));
+
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 

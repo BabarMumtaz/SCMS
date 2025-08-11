@@ -181,14 +181,6 @@ public class WarehousesTestPage {
         wait.until(ExpectedConditions.visibilityOf(extraPhoneFieldCross)).click();
     }
 
-    public void clickSaveWarehouseBack() {
-        saveWarehouseBack.click();
-    }
-
-    public void clickSaveWarehouseNew() {
-        saveWarehouseNew.click();
-    }
-
     public String getWarehouseSuccessAlertMessage() {
         return wait.until(ExpectedConditions.visibilityOf(addWarehouseSuccessAlertMessage)).getText();
     }
@@ -205,20 +197,4 @@ public class WarehousesTestPage {
         return wait.until(ExpectedConditions.visibilityOf(updateWarehouseSuccessAlertMessage)).getText();
     }
 
-    public void clickOnAlertPopupLP() {
-        wait.until(ExpectedConditions.visibilityOf(warehouseAlertPopupLP)).click();
-    }
-
-    public void clickAllDynamicCrossIcons() {
-        for (int i = 0; i < 3; i++) {
-            if (extraFieldCrossIcon.size() > 10) {
-                extraFieldCrossIcon.get(10).click();
-
-                // Wait for DOM update
-                try { Thread.sleep(500); } catch (InterruptedException e) {}
-            } else {
-                break; // Safety break if index 10 doesn't exist
-            }
-        }
-    }
 }
