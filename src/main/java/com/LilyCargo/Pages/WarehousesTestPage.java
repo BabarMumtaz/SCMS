@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WarehousesTestPage {
 
@@ -19,8 +20,7 @@ public class WarehousesTestPage {
     Actions actions;
     WebDriverWait wait;
 
-    // Constructor that will be automatically called as soon as the object of the
-    // class is created
+    // Constructor that will be automatically called as soon as the object of the class is created
     public WarehousesTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
@@ -29,7 +29,7 @@ public class WarehousesTestPage {
         this.actions = new Actions(driver); 
     }
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//h2[text()='Warehouses']")
     WebElement warehousePageHeading;
@@ -73,6 +73,9 @@ public class WarehousesTestPage {
     @FindBy(xpath = "//input[@name='agreement_notes']")
     WebElement warehouseAgreementNotes;
 
+    @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
+    List<WebElement> extraFieldCrossIcon;
+
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
     WebElement extraEmailFieldCross;
 
@@ -97,7 +100,7 @@ public class WarehousesTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement warehouseAlertPopupLP;
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Methods ---------- */
 
     // Method to capture the page heading
     public String getPageHeading() {
@@ -204,5 +207,18 @@ public class WarehousesTestPage {
 
     public void clickOnAlertPopupLP() {
         wait.until(ExpectedConditions.visibilityOf(warehouseAlertPopupLP)).click();
+    }
+
+    public void clickAllDynamicCrossIcons() {
+        for (int i = 0; i < 3; i++) {
+            if (extraFieldCrossIcon.size() > 10) {
+                extraFieldCrossIcon.get(10).click();
+
+                // Wait for DOM update
+                try { Thread.sleep(500); } catch (InterruptedException e) {}
+            } else {
+                break; // Safety break if index 10 doesn't exist
+            }
+        }
     }
 }

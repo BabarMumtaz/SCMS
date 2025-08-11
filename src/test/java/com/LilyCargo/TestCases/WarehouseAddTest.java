@@ -32,14 +32,21 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickWarehousesFRSubMenu();
         log.info("Clicked Warehouse FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getWarehousePage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Warehouse Page Heading: " + pageObjectManager.getWarehousePage().getPageHeading());
+        // Works for ANY page heading
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouses");
+        Assert.assertEquals("Warehouses", pageHeading);
+
+/*        Assert.assertTrue(pageObjectManager.getWarehousePage().isHeadingDisplayed(), "Heading Not Displayed");
+        log.info("Warehouse Page Heading: " + pageObjectManager.getWarehousePage().getPageHeading());*/
 
         pageObjectManager.getWarehousePage().clickAddWarehouseBtn();
         log.info("Clicked Warehouse Add button");
 
-        Assert.assertTrue(pageObjectManager.getWarehousePage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Warehouse Add Page Heading: " + pageObjectManager.getWarehousePage().getAddPageHeading());
+/*        Assert.assertTrue(pageObjectManager.getWarehousePage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
+        log.info("Warehouse Add Page Heading: " + pageObjectManager.getWarehousePage().getAddPageHeading());*/
+
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouse");
+        Assert.assertEquals("Add Warehouse", addPageHeading);
 
         pageObjectManager.getWarehousePage().enterWarehouseCompany(faker.company().name());
         log.info("Entered Warehouse Company Name");
@@ -65,22 +72,19 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getWarehousePage().enterWarehouseAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Warehouse Agreement Notes");
 
-        pageObjectManager.getWarehousePage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
-        pageObjectManager.getWarehousePage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        pageObjectManager.getWarehousePage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
-
-        pageObjectManager.getWarehousePage().clickSaveWarehouseBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Warehouse Button");
 
+        // Works for ANY success alert
+        Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isSuccessAlertDisplayed("Warehouse successfully created."));
+/*
         Assert.assertTrue(pageObjectManager.getWarehousePage().isWarehouseSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getWarehousePage().getWarehouseSuccessAlertMessage());
-
-        pageObjectManager.getWarehousePage().clickOnAlertPopupLP();
+*/
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }
