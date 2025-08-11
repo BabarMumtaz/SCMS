@@ -30,10 +30,10 @@ public class FreightManagerAddTest extends TestBeforeAndAfter {
         log.info("Clicked Freight Relations Menu");
 
         pageObjectManager.getMenuBar().clickFreightManagersFRSubMenu();
-        log.info("Clicked FreightManager FR Sub Menu");
+        log.info("Clicked Freight Manager FR Sub Menu");
 
         Assert.assertTrue(pageObjectManager.getFreightManagersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("FreightManager Page Heading: " + pageObjectManager.getFreightManagersPage().getPageHeading());
+        log.info("Freight Manager Page Heading: " + pageObjectManager.getFreightManagersPage().getPageHeading());
 
         pageObjectManager.getFreightManagersPage().clickAddFreightManagerBtn();
         log.info("Clicked Freight Manager Add button");
@@ -48,7 +48,7 @@ public class FreightManagerAddTest extends TestBeforeAndAfter {
         log.info("Entered Freight Manager Email");
 
         pageObjectManager.getFreightManagersPage().enterFreightManagerDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
-        log.info("Entered Freight Manager Tel Number");
+        log.info("Entered Freight Manager Phone Number");
 
         pageObjectManager.getFreightManagersPage().clickExtraEmailFieldCross();
         log.info("Click Extra Email Field Cross");
