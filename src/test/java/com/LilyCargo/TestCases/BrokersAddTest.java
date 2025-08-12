@@ -32,14 +32,17 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickBrokersFRSubMenu();
         log.info("Clicked Brokers FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getBrokersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Brokers Page Heading: " + pageObjectManager.getBrokersPage().getPageHeading());
+        // Works for ANY page heading
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Brokers");
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Brokers", "Page heading does not match expected value.");
 
         pageObjectManager.getBrokersPage().clickAddBrokersBtn();
         log.info("Clicked Brokers Add button");
 
-        Assert.assertTrue(pageObjectManager.getBrokersPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Brokers Add Page Heading: " + pageObjectManager.getBrokersPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Broker", "Add Page heading does not match expected value.");
 
         pageObjectManager.getBrokersPage().enterBrokersName(faker.company().name());
         log.info("Entered Brokers Company Name");
@@ -47,40 +50,35 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBrokersPage().enterContactPerson(faker.company().name());
         log.info("Entered Brokers Contact Person");
 
-        pageObjectManager.getBrokersPage().enterBrokersAddress1(faker.address().streetAddress());
-        log.info("Entered Address");
-
-        pageObjectManager.getBrokersPage().enterBrokersZipCity(faker.address().zipCode());
-        log.info("Entered Zip City");
-
-        pageObjectManager.getBrokersPage().selectCountry();
-        log.info("Selected Country");
-
         pageObjectManager.getBrokersPage().enterBrokersDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Brokers Tel Number");
 
         pageObjectManager.getBrokersPage().enterBrokersEmail(faker.internet().emailAddress());
         log.info("Entered Brokers Email");
 
-        pageObjectManager.getBrokersPage().enterBrokersVat(FakeDataUtil.getRemarks());
+        pageObjectManager.getBrokersPage().enterBrokersAddress1(faker.address().streetAddress());
+        log.info("Entered Address");
+
+        pageObjectManager.getBrokersPage().enterBrokersZipCity(faker.address().zipCode());
+        log.info("Entered Zip City");
+
+        pageObjectManager.getGlobalMethodsPage().selectCountry();
+        log.info("Selected Country");
+
+        pageObjectManager.getBrokersPage().enterBrokersVat(FakeDataUtil.getVatNo());
         log.info("Entered Brokers Vat");
 
-        pageObjectManager.getBrokersPage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
-        pageObjectManager.getBrokersPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        pageObjectManager.getBrokersPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
-
-        pageObjectManager.getBrokersPage().clickSaveBrokersBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Brokers Button");
 
-        Assert.assertTrue(pageObjectManager.getBrokersPage().isBrokersSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getBrokersPage().getBrokersSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Broker successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Broker successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getBrokersPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

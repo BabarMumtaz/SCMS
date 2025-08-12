@@ -1,6 +1,5 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,23 +14,18 @@ import java.time.Duration;
 public class BrokersTestPage {
 
     WebDriver driver;
-    JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
 
     // Constructor that will be automatically called as soon as the object of the class is created
     public BrokersTestPage(WebDriver driver) {
         this.driver = driver;
-        this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver);
     }
 
     /** ---------- Locators ---------- */
-
-    @FindBy(xpath = "//h2[text()='Brokers']")
-    WebElement brokersPageHeading;
 
     @FindBy(xpath = "//button[text()='Add Broker']")
     WebElement addBrokersBtn;
@@ -60,7 +54,7 @@ public class BrokersTestPage {
     @FindBy(xpath = "//input[@name='address2']")
     WebElement brokersAddress2;
 
-    @FindBy(xpath = "//input[@name='zip_city']")
+    @FindBy(xpath = "//input[@name='zipCity']")
     WebElement brokersZipCity;
 
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
@@ -72,40 +66,7 @@ public class BrokersTestPage {
     @FindBy(xpath = "//input[@name='vat']")
     WebElement brokersVat;
 
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraEmailFieldCross;
-
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraAddressFieldCross;
-
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraPhoneFieldCross;
-
-    @FindBy(xpath = "//button[text()='Save & Back']")
-    WebElement saveBrokersBack;
-
-    @FindBy(xpath = "//button[text()='Save & New']")
-    WebElement saveBrokersNew;
-
-    @FindBy(xpath = "//div[contains(text(),'Broker successfully created.')]")
-    WebElement addBrokersSuccessAlertMessage;
-
-    @FindBy(xpath = "//div[contains(text(),'Broker successfully updated.')]")
-    WebElement updateBrokersSuccessAlertMessage;
-
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement brokersAlertPopupLP;
-
     /** ---------- Methods ---------- */
-
-    // Method to capture the page heading
-    public String getPageHeading() {
-        return brokersPageHeading.getText();
-    }
-
-    public boolean isHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(brokersPageHeading)).isDisplayed();
-    }
 
     public void clickAddBrokersBtn() {
         addBrokersBtn.click();
@@ -148,63 +109,12 @@ public class BrokersTestPage {
         brokersAddress2.sendKeys(text);
     }
 
-    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-        dropdown.click();
-        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-        dropdownValue.click();
-    }
-
     public void enterBrokersZipCity(String text) {
         brokersZipCity.sendKeys(text);
-    }
-
-    public void selectCountry() {
-        selectDropdownValue(countryDropDown, countryDropDownValue);
     }
 
     public void enterBrokersVat(String text) {
         brokersVat.sendKeys(text);
     }
-
-    public void clickExtraEmailFieldCross() {
-        extraEmailFieldCross.click();
-    }
-
-    public void clickExtraAddressFieldCross() {
-        wait.until(ExpectedConditions.visibilityOf(extraAddressFieldCross)).click();
-    }
-
-    public void clickExtraPhoneFieldCross() {
-        wait.until(ExpectedConditions.visibilityOf(extraPhoneFieldCross)).click();
-    }
-
-    public void clickSaveBrokersBack() {
-        saveBrokersBack.click();
-    }
-
-    public void clickSaveBrokersNew() {
-        saveBrokersNew.click();
-    }
-
-    public String getBrokersSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(addBrokersSuccessAlertMessage)).getText();
-    }
-
-    public boolean isBrokersSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(addBrokersSuccessAlertMessage)).isDisplayed();
-    }
-
-    public boolean isUpdateBrokersSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(updateBrokersSuccessAlertMessage)).isDisplayed();
-    }
-
-    public String getUpdatedBrokersSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(updateBrokersSuccessAlertMessage)).getText();
-    }
-
-    public void clickOnAlertPopupLP() {
-        wait.until(ExpectedConditions.visibilityOf(brokersAlertPopupLP)).click();
-    }
-
 
 }

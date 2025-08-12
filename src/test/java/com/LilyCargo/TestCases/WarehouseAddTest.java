@@ -40,7 +40,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getWarehousePage().clickAddWarehouseBtn();
         log.info("Clicked Warehouse Add button");
 
-        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouse");
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Warehouse", "Add Page heading does not match expected value.");
 

@@ -1,6 +1,5 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,14 +12,12 @@ import java.time.Duration;
 public class WarehousesTestPage {
 
     WebDriver driver;
-    JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
 
     // Constructor that will be automatically called as soon as the object of the class is created
     public WarehousesTestPage(WebDriver driver) {
         this.driver = driver;
-        this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver); 
@@ -31,7 +28,6 @@ public class WarehousesTestPage {
 
     @FindBy(xpath = "//button[text()='Add Warehouse']")
     WebElement addWarehouseBtn;
-
 
     @FindBy(xpath = "//input[@name='company']")
     WebElement warehouseCompany;
@@ -85,12 +81,6 @@ public class WarehousesTestPage {
     public void enterWarehouseAddress2(String text) {
         actions.click(warehouseAddress2).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
         warehouseAddress2.sendKeys(text);
-    }
-
-    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-        dropdown.click();
-        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-        dropdownValue.click();
     }
 
     public void enterWarehouseZipCity(String text) {

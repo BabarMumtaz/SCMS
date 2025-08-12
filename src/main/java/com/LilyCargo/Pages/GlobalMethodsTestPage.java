@@ -29,6 +29,9 @@ public class GlobalMethodsTestPage {
 
     /** ---------- Locators ---------- */
 
+    @FindBy(xpath = "//h5[1]")
+    WebElement addPageHeading;
+
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement countryDropDown;
 
@@ -69,7 +72,7 @@ public class GlobalMethodsTestPage {
      * @return The heading WebElement.
      */
     private WebElement getPageHeading(String headingText) {
-        String headingXpath = String.format("//h2[text()='%s'] | //h5[text()='%s']", headingText, headingText);
+        String headingXpath = String.format("//h2[text()='%s']", headingText);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(headingXpath)));
     }
 
@@ -80,6 +83,10 @@ public class GlobalMethodsTestPage {
      */
     public String getPageHeadingText(String headingText) {
         return getPageHeading(headingText).getText();
+    }
+
+    public String getAddPageHeading() {
+        return addPageHeading.getText();
     }
 
     // ===== 2. Generic Success Alert Method ===== Finds a success alert message containing the given text.
@@ -134,7 +141,6 @@ public class GlobalMethodsTestPage {
     public void selectStatus(String status) {
         selectDropdownOption(userStatusDropDown, status);
     }
-
 
     public void clickExtraEmailFieldCross() {
         extraEmailFieldCross.click();
