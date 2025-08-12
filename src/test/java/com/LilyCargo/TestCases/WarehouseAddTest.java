@@ -56,7 +56,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getWarehousePage().enterWarehouseZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getWarehousePage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
         pageObjectManager.getWarehousePage().enterWarehouseDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number

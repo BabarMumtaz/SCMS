@@ -7,11 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.List;
 
 public class WarehousesTestPage {
 
@@ -31,14 +28,10 @@ public class WarehousesTestPage {
 
     /** ---------- Locators ---------- */
 
-    @FindBy(xpath = "//h2[text()='Warehouses']")
-    WebElement warehousePageHeading;
 
     @FindBy(xpath = "//button[text()='Add Warehouse']")
     WebElement addWarehouseBtn;
 
-    @FindBy(xpath = "//h5[text()='Warehouse']")
-    WebElement warehouseAddPageHeading;
 
     @FindBy(xpath = "//input[@name='company']")
     WebElement warehouseCompany;
@@ -55,12 +48,6 @@ public class WarehousesTestPage {
     @FindBy(xpath = "//input[@name='address2']")
     WebElement warehouseAddress2;
 
-    @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
-    WebElement countryDropDown;
-
-    @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
-    WebElement countryDropDownValue;
-
     @FindBy(xpath = "//input[@name='zip_city']")
     WebElement warehouseZipCity;
 
@@ -73,54 +60,10 @@ public class WarehousesTestPage {
     @FindBy(xpath = "//input[@name='agreement_notes']")
     WebElement warehouseAgreementNotes;
 
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
-    List<WebElement> extraFieldCrossIcon;
-
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraEmailFieldCross;
-
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraAddressFieldCross;
-
-    @FindBy(xpath = "(//*[name()='svg'][@role='img'])[11]")
-    WebElement extraPhoneFieldCross;
-
-    @FindBy(xpath = "//button[text()='Save & Back']")
-    WebElement saveWarehouseBack;
-
-    @FindBy(xpath = "//button[text()='Save & New']")
-    WebElement saveWarehouseNew;
-
-    @FindBy(xpath = "//div[contains(text(),'Warehouse successfully created.')]")
-    WebElement addWarehouseSuccessAlertMessage;
-
-    @FindBy(xpath = "//div[contains(text(),'Warehouse successfully updated.')]")
-    WebElement updateWarehouseSuccessAlertMessage;
-
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement warehouseAlertPopupLP;
-
     /** ---------- Methods ---------- */
-
-    // Method to capture the page heading
-    public String getPageHeading() {
-        return warehousePageHeading.getText();
-    }
-
-    public boolean isHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(warehousePageHeading)).isDisplayed();
-    }
 
     public void clickAddWarehouseBtn() {
         addWarehouseBtn.click();
-    }
-
-    public String getAddPageHeading() {
-        return warehouseAddPageHeading.getText();
-    }
-
-    public boolean isAddPageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(warehouseAddPageHeading)).isDisplayed();
     }
 
     public void enterWarehouseCompany(String text) {
@@ -150,10 +93,6 @@ public class WarehousesTestPage {
         dropdownValue.click();
     }
 
-    public void selectCountry() {
-        selectDropdownValue(countryDropDown, countryDropDownValue);
-    }
-
     public void enterWarehouseZipCity(String text) {
         warehouseZipCity.sendKeys(text);
     }
@@ -167,34 +106,6 @@ public class WarehousesTestPage {
 
     public void enterWarehouseAgreementNotes(String text) {
         warehouseAgreementNotes.sendKeys(text);
-    }
-
-    public void clickExtraEmailFieldCross() {
-        extraEmailFieldCross.click();
-    }
-
-    public void clickExtraAddressFieldCross() {
-        wait.until(ExpectedConditions.visibilityOf(extraAddressFieldCross)).click();
-    }
-
-    public void clickExtraPhoneFieldCross() {
-        wait.until(ExpectedConditions.visibilityOf(extraPhoneFieldCross)).click();
-    }
-
-    public String getWarehouseSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(addWarehouseSuccessAlertMessage)).getText();
-    }
-
-    public boolean isWarehouseSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(addWarehouseSuccessAlertMessage)).isDisplayed();
-    }
-
-    public boolean isUpdateWarehouseSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(updateWarehouseSuccessAlertMessage)).isDisplayed();
-    }
-
-    public String getUpdatedWarehouseSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(updateWarehouseSuccessAlertMessage)).getText();
     }
 
 }

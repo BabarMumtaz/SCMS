@@ -1,5 +1,7 @@
 package com.LilyCargo.Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,7 @@ public class GlobalMethodsTestPage {
     WebDriver driver;
     JavascriptExecutor executor;
     WebDriverWait wait;
+    Logger log = LogManager.getLogger(GlobalMethodsTestPage.class);
 
     // Constructor that will be automatically called as soon as the object of the class is created
     public GlobalMethodsTestPage(WebDriver driver) {
@@ -25,6 +28,15 @@ public class GlobalMethodsTestPage {
     }
 
     /** ---------- Locators ---------- */
+
+    @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
+    WebElement countryDropDown;
+
+    @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
+    WebElement countryDropDownValue;
+
+    @FindBy(id = "select-Status")
+    WebElement userStatusDropDown;
 
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
     List<WebElement> extraFieldCrossIcon;
@@ -95,6 +107,34 @@ public class GlobalMethodsTestPage {
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
         dropdownValue.click();
     }
+
+    public void selectCountry() {
+        selectDropdownValue(countryDropDown, countryDropDownValue);
+    }
+
+    public void selectDropdownOption(WebElement dropdown, String optionText) {
+        try {
+            // Click to open the dropdown
+            wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+            log.info("🔽 Opened dropdown");
+
+            // Build XPath dynamically based on visible text
+            String optionXPath = "//li[text()='" + optionText + "']";
+            WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXPath)));
+
+            // Click the desired option
+            optionElement.click();
+            log.info("✅ Selected option: " + optionText);
+        } catch (Exception e) {
+            log.warn("⚠️ Could not select option '" + optionText + "' from dropdown: " + e.getMessage());
+        }
+    }
+
+    // Method for Status dropdown
+    public void selectStatus(String status) {
+        selectDropdownOption(userStatusDropDown, status);
+    }
+
 
     public void clickExtraEmailFieldCross() {
         extraEmailFieldCross.click();
