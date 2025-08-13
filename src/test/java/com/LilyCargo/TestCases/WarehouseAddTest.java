@@ -18,7 +18,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Warehouse successfully")
     @Epic("Freight Relations")
-    @Feature("Feature:05")
+    @Feature("Feature:05_Warehouses")
     @Story("As a user, I should be able to Add/Create Warehouse successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Warehouses Relation  > Add Warehouse")
     public void VerifyWarehouseAddTestCase(){

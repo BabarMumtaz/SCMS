@@ -17,13 +17,15 @@ public class GlobalMethodsTestPage {
     WebDriver driver;
     JavascriptExecutor executor;
     WebDriverWait wait;
+    Actions actions;
     Logger log = LogManager.getLogger(GlobalMethodsTestPage.class);
 
-    // Constructor that will be automatically called as soon as the object of the class is created
+    /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
     public GlobalMethodsTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -31,6 +33,53 @@ public class GlobalMethodsTestPage {
 
     @FindBy(xpath = "//h5[1]")
     WebElement addPageHeading;
+
+    @FindBy(id = "select-Gender")
+    WebElement userGenderDropDown;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr")
+    List<WebElement> listingRows;
+
+    @FindBy(xpath = "//table[@id='grid']/tbody/tr[1]/td[1]")
+    WebElement firstCellLV;
+
+    @FindBy(xpath = "//img[@alt='View']")
+    WebElement viewIcon;
+
+    @FindBy(xpath = "//img[@alt='Edit']")
+    WebElement editIcon;
+
+    @FindBy(xpath = "//p[text()='Edit']")
+    WebElement editBtn;
+
+    @FindBy(xpath = "//img[@alt='Download']")
+    WebElement exportIcon;
+
+    @FindBy(xpath = "//img[@alt='filter']")
+    WebElement filterIcon;
+
+    @FindBy(xpath = "//div[text()='Apply filter']")
+    WebElement filterSidePanelHeading;
+
+    @FindBy(xpath = "//input[@name='Inactive']")
+    WebElement inactiveCheckbox;
+
+    @FindBy(xpath = "//input[@name='blocked']")
+    WebElement blockedCheckbox;
+
+    @FindBy(xpath = "//button[text()='Apply']")
+    WebElement filterApplyBtn;
+
+    @FindBy(xpath = "//button[text()='Reset']")
+    WebElement filterResetBtn;
+
+    @FindBy(xpath = "//table//tr/td[last()]")
+    List<WebElement> statusColumnElements;
+
+    @FindBy(xpath = "//table//tr[1]/td[last()]")
+    WebElement statusColumnFirstRow;
+
+
 
     @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
     WebElement countryDropDown;
@@ -89,6 +138,89 @@ public class GlobalMethodsTestPage {
         return addPageHeading.getText();
     }
 
+
+
+    // Generic method to hover over a row and click the requested icon (view/edit)
+    public void hoverAndClickIconOnRow(int rowIndex, String action) {
+        WebElement row = listingRows.get(rowIndex);
+        row.click();
+        actions.moveToElement(row).perform();
+        log.info("🖱️ Hovered on row index: " + rowIndex);
+
+        String iconTitle = action.equalsIgnoreCase("view") ? "View" : "Edit";
+        try {
+            //WebElement icon = row.findElement(By.cssSelector("button[title='" + iconTitle + "']"));
+            WebElement icon = row.findElement(By.xpath("//img[@alt='" + iconTitle + "']"));
+            wait.until(ExpectedConditions.elementToBeClickable(icon)).click();
+            log.info("✅ Clicked " + iconTitle + " icon on row index: " + rowIndex);
+        } catch (Exception e) {
+            log.error("❌ Failed to click '" + iconTitle + "' icon on row " + rowIndex, e);
+        }
+    }
+
+    public void hoverOnListing1stRow() {
+        wait.until(ExpectedConditions.visibilityOf(firstCellLV));
+        firstCellLV.click();
+        actions.moveToElement(firstCellLV).perform();
+
+    }
+
+    public void clickOnViewIcon() {
+        wait.until(ExpectedConditions.visibilityOf(viewIcon)).click();
+    }
+
+    public void clickOnEditIcon() {
+        wait.until(ExpectedConditions.visibilityOf(editIcon)).click();
+    }
+
+    public void clickOnEditBtn() {
+        editBtn.click();
+    }
+
+    public boolean isViewPageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(editBtn)).isDisplayed();
+    }
+
+    public String getFilterSidePanelHeading() {
+        return filterSidePanelHeading.getText();
+    }
+
+    public boolean isFilterSidePanelHeading() {
+        return wait.until(ExpectedConditions.visibilityOf(filterSidePanelHeading)).isDisplayed();
+    }
+
+    public void applyStatusFilter(String status) {
+        wait.until(ExpectedConditions.elementToBeClickable(filterIcon)).click();
+        WebElement statusOption = driver.findElement(By.xpath("//span[text()='Show "+status+" items']"));
+        wait.until(ExpectedConditions.elementToBeClickable(statusOption)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(filterApplyBtn)).click();
+
+        log.info("🔍 Applied filter for status: " + status);
+    }
+
+    /**
+     * Checks if all visible status entries match the expected filter status.
+     * @param expectedStatus The expected status: "Active", "Inactive", or "Blocked"
+     * @return true if all rows match the expected status
+     */
+    public boolean isAllRowsMatchingStatus(String expectedStatus) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfAllElements(statusColumnElements));
+        Thread.sleep(1000);
+        for (WebElement statusElement : statusColumnElements) {
+            String actualStatus = statusElement.getText().trim();
+            if (!actualStatus.equalsIgnoreCase(expectedStatus)) {
+                log.warn("❌ Status mismatch found: Expected = " + expectedStatus + ", Found = " + actualStatus);
+                return false;
+            }
+        }
+
+        log.info("✅ All listed records have status: " + expectedStatus);
+        return true;
+    }
+
+
+
+
     // ===== 2. Generic Success Alert Method ===== Finds a success alert message containing the given text.
     public WebElement getSuccessAlertElement(String alertText) {
         String alertXpath = String.format("//div[contains(text(),'%s')]", alertText);
@@ -140,6 +272,10 @@ public class GlobalMethodsTestPage {
     // Method for Status dropdown
     public void selectStatus(String status) {
         selectDropdownOption(userStatusDropDown, status);
+    }
+
+    public void selectGender(String gender) {
+        selectDropdownOption(userGenderDropDown, gender);
     }
 
     public void clickExtraEmailFieldCross() {

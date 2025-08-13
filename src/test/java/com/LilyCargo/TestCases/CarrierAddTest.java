@@ -78,7 +78,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Click Extra Field Cross");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
-        log.info("Click Save Warehouse Button");
+        log.info("Click Save Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Carrier successfully created.");
         log.info("Success Alert is: " + successAlert);

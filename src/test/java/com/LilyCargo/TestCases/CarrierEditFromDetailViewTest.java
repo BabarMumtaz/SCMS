@@ -20,10 +20,10 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can edit carrier successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can edit Carrier successfully from the Carrier view page")
-    @Epic("EP001")
-    @Feature("Feature:002")
+    @Epic("Freight Relations")
+    @Feature("Feature:01.1")
     @Story("As a user, I should be able to edit carrier successfully")
-    @Step("Hit Site Url > Login with valid credentials > Freight Relations > Detail Page of Carrier > Edit carrier")
+    @Step("Hit Site Url > Login with valid credentials > Freight Relations > Carriers Relation > Detail Page of Carrier > Edit carrier")
     public void VerifyCarrierEditTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(CarrierEditFromDetailViewTest.class);
@@ -35,8 +35,9 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCarriersFRSubMenu();
         log.info("Clicked Carriers FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getCarriersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Carriers");
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
         pageObjectManager.getCarrierListing().hoverOnCarrier1stRow();
         log.info("Hover over 1st Row");
@@ -58,17 +59,15 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().enterAddress2(faker.address().streetAddress());
         log.info("Entered Address 2");
 
-        pageObjectManager.getCarriersPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross icon");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
-        pageObjectManager.getCarriersPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save Button");
 
-        pageObjectManager.getCarriersPage().clickSaveCarrierBack();
-        log.info("Click Save Carrier Button");
-
-        Assert.assertTrue(pageObjectManager.getCarrierListing().isUpdateCarrierSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getCarrierListing().getUpdatedCarrierSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Carrier successfully updated.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Carrier successfully updated.", "Success Alert does not match expected value.");
 
         pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
         log.info("Clicked Cross icon of Alert");
