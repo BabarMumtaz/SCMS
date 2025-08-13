@@ -17,10 +17,10 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Warehouse successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations")
+    @Feature("Feature:05")
     @Story("As a user, I should be able to Add/Create Warehouse successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Warehouse")
+    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Warehouses Relation  > Add Warehouse")
     public void VerifyWarehouseAddTestCase(){
 
         log = LogManager.getLogger(WarehouseAddTest.class);

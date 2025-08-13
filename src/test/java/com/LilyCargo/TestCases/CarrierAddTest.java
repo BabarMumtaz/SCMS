@@ -21,11 +21,11 @@ public class CarrierAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add carrier successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add carrier successfully")
-    @Epic("EP001")
-    @Feature("Feature:003")
+    @Epic("Freight Relations")
+    @Feature("Feature:01")
     @Story("As a user, I should be able to add carrier successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
-    public void VerifyCarrierAddTestCase() throws InterruptedException {
+    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Carriers Relation > Add Carrier")
+    public void VerifyCarrierAddTestCase() {
 
         log = LogManager.getLogger(CarrierAddTest.class);
         log.info("Starting Carrier Add Test from Freight Relations.");
@@ -36,11 +36,16 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCarriersFRSubMenu();
         log.info("Clicked Carriers FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getCarriersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getCarriersPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Carriers");
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
         pageObjectManager.getCarriersPage().clickAddCarrierBtn();
         log.info("Clicked Carriers Add button");
+
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Carrier", "Add Page heading does not match expected value.");
 
         pageObjectManager.getCarriersPage().enterTicker(faker.company().name());
         log.info("Entered Ticker Name");
@@ -60,32 +65,27 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getCarriersPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getCarriersPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
-        pageObjectManager.getCarriersPage().enterExtraEmailLabel("Extra Email");
+/*        pageObjectManager.getCarriersPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
         pageObjectManager.getCarriersPage().enterExtraEmailValue(faker.internet().emailAddress());
-        log.info("Entered Extra Email Value");
+        log.info("Entered Extra Email Value");*/
 
-        pageObjectManager.getCarriersPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
-        pageObjectManager.getCarriersPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save Warehouse Button");
 
-        pageObjectManager.getCarriersPage().clickSaveCarrierBack();
-        log.info("Click Save Carrier Button");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Carrier successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Carrier successfully created.", "Success Alert does not match expected value.");
 
-        Assert.assertTrue(pageObjectManager.getCarrierListing().isCarrierSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getCarrierListing().getCarrierSuccessAlertMessage());
-
-        pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
-/*        // Log out after the test
-        pageObjectManager.getLoginPage().logout();
-        log.info("Logged out successfully.");*/
     }
 }

@@ -16,11 +16,11 @@ public class BrokersAddTest extends TestBeforeAndAfter {
             description = "Add Brokers",
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Brokers successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a user, I should be able to Add/Create Brokers successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Brokers")
+    @Description("Verify that a user can add Broker successfully")
+    @Epic("Freight Relations")
+    @Feature("Feature:07")
+    @Story("As a user, I should be able to Add/Create Broker successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Brokers Relation > Add Broker")
     public void VerifyBrokersAddTestCase(){
 
         log = LogManager.getLogger(BrokersAddTest.class);

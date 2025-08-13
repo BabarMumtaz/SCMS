@@ -67,7 +67,7 @@ public class GlobalMethodsTestPage {
     // ===== 2. Generic Dynamic Heading Method =====
     /**
      * Get the heading text for a given page.
-     * Supports both h2 and h5 tag headings.
+     * Supports both h2 tag heading.
      * @param headingText Visible heading text on the page.
      * @return The heading WebElement.
      */
