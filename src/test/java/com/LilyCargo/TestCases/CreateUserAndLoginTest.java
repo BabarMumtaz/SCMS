@@ -17,10 +17,10 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Create a new user with random credentials", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add User successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Administration")
+    @Feature("Feature:01.2_Overview_User Management_Create User and Login")
     @Story("As a user, I should be able to Add/Create User successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add User")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Users > Add User")
     public void createUserTest() {
 
         Faker faker = new Faker();
@@ -36,20 +36,23 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
         log.info("Clicked User FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAdminOverviewPageHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Admin Overview Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getOverviewPageHeading());
+        String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
+        log.info("Main Page Heading is: " + mainPageHeading);
+        Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickAddUserBtn();
         log.info("Clicked User Add button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Add Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().enterUserName(faker.name().fullName());
         log.info("Entered User Name");
@@ -67,13 +70,14 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().selectRolesByTyping("Admin", "Master Admin (Super Admin)", "Role for Bob");
         log.info("Selected All defined roles");
 
-        pageObjectManager.getAdminOverviewTestPage().clickSaveUserBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save User Button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getAdminOverviewTestPage().getUserSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

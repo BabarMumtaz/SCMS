@@ -21,29 +21,32 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
         log.info("Clicked Role Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAdminOverviewPageHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Admin Overview Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getOverviewPageHeading());
+        String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
+        log.info("Main Page Heading is: " + mainPageHeading);
+        Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickRoleListingBtn();
         log.info("Clicked Role Management button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRolePageHeadingDisplayed(), "Role Page Heading Not Displayed");
-        log.info("Role Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getRolePageHeading());
+        String rolePageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Roles");
+        log.info("Page Heading is: " + rolePageHeading);
+        Assert.assertEquals(rolePageHeading, "Roles", "Page heading does not match expected value.");
     }
 
     @Test(priority = 1, description = "Create a new Role", groups = {"smoke", "regression"}, enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Role successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Administration")
+    @Feature("Feature:01.2_Overview_User Management_Create Role and Edit")
     @Story("As a Role, I should be able to Add/Create Role successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Add Role")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Roles > Add Role")
     public void createRoleTest() {
 
         navigateToRoleManagement();
@@ -51,8 +54,9 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().clickAddRoleBtn();
         log.info("Clicked Role Add button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRoleAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Role Add Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getRoleAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().enterRoleName(faker.name().fullName());
         log.info("Entered Role Name");
@@ -60,14 +64,16 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().clickRoleAssignAllCheckbox();
         log.info("Checked All roles");
 
-        pageObjectManager.getAdminOverviewTestPage().clickSaveUserBack();
-        log.info("Click Save Role Button");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save User Button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRoleSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getAdminOverviewTestPage().getRoleSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
+
 
     }
 
@@ -76,12 +82,12 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
 
         navigateToRoleManagement();
 
-        pageObjectManager.getAdminOverviewTestPage().hoverAndClickIconOnRow(1, "View");
+        pageObjectManager.getGlobalMethodsPage().hoverAndClickIconOnRow(1, "View");
         log.info("Hover over on A row and click View Icon");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUser_RoleViewPageDisplayed(), "View Page is not Displayed");
+        Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isViewPageDisplayed(), "View Page is not Displayed");
 
-        pageObjectManager.getAdminOverviewTestPage().clickOnEditUserBtn();
+        pageObjectManager.getGlobalMethodsPage().clickOnEditBtn();
         log.info("Clicked on Edit button on view page");
 
         Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRoleUpdatePageHeadingDisplayed(), "Add Page Heading Not Displayed");
@@ -92,14 +98,15 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getAdminOverviewTestPage().clickRoleDashboardCheckbox();
         log.info("UnChecked Dashboard roles");
 
-        pageObjectManager.getAdminOverviewTestPage().clickSaveUserBack();
-        log.info("Click Save Role Button after Updating a Role");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save User Button");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUpdateRoleSuccessAlertMessageDisplayed(), "Update Success Alert Message Not Displayed");
-        log.info("Success Alert Message on Update: " + pageObjectManager.getAdminOverviewTestPage().getUpdatedRoleSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getAdminOverviewTestPage().clickOnAlertPopupLP();
-        log.info("Clicked Cross icon of Alert of Update Alert");
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
 
     }
 }

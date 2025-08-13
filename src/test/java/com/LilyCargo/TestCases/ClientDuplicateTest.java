@@ -33,7 +33,7 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
         log.info("Client Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
 
-        pageObjectManager.getAdminOverviewTestPage().hoverAndClickIconOnRow(0, "Edit");
+        pageObjectManager.getGlobalMethodsPage().hoverAndClickIconOnRow(0, "Edit");
         log.info("Hover over on A row and click Edit Icon");
 
         Assert.assertTrue(pageObjectManager.getClientPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");

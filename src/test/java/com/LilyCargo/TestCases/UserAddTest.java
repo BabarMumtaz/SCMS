@@ -34,40 +34,23 @@ public class UserAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
         log.info("Clicked User Sub Menu");
 
-/*
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isAdminOverviewPageHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Admin Overview Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getOverviewPageHeading());
-*/
-
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
         log.info("Main Page Heading is: " + mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
-
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
-
-/*
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserPageHeading());
-*/
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
-
         pageObjectManager.getAdminOverviewTestPage().clickAddUserBtn();
         log.info("Clicked User Add button");
 
-/*
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Add Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getUserAddPageHeading());
-*/
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
-
 
         pageObjectManager.getAdminOverviewTestPage().addUserProfileImage(filePath);
 
@@ -97,11 +80,6 @@ public class UserAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save User Button");
-
-/*
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isUserSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getAdminOverviewTestPage().getUserSuccessAlertMessage());
-*/
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
         log.info("Success Alert is: " + successAlert);

@@ -41,7 +41,7 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can edit User successfully")
     @Epic("Administration")
-    @Feature("Feature:01.2_Overview_User Management_User Edit")
+    @Feature("Feature:01.3_Overview_User Management_User Edit")
     @Story("As a user, I should be able to edit User successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Users > Edit User")
     public void VerifyUserEditAndFilterTestCase() {
