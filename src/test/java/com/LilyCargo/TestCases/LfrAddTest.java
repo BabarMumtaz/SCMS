@@ -57,7 +57,7 @@ public class LfrAddTest extends TestBeforeAndAfter {
         log.info("Entered Lfr Tel Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
-        log.info("Entered Address");
+        log.info("Entered Address 1");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");

@@ -77,10 +77,16 @@ public class MenuBarTestPage {
 	WebElement lfrFRSubMenu;
 
 	@FindBy(xpath = "//li[@title='Notify Parties']")
-	WebElement notifyPartyFRSubMenu;
+	WebElement notifyPartiesFRSubMenu;
+
+	@FindBy(xpath = "//li[@title='Logistics']")
+	WebElement logisticsFRSubMenu;
 
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
+
+	@FindBy(xpath = "//li[@title='Additional Parties']")
+	WebElement additionalPartiesFRSubMenu;
 
 	@FindBy(xpath = "//li[@title='International Products']")
 	WebElement internationalProductsFinanceSubMenu;
@@ -154,8 +160,16 @@ public class MenuBarTestPage {
 		lfrFRSubMenu.click();
 	}
 
-	public void clickNotifyPartyFRSubMenu() {
-		notifyPartyFRSubMenu.click();
+	public void clickNotifyPartiesFRSubMenu() {
+		notifyPartiesFRSubMenu.click();
+	}
+
+	public void clickLogisticsFRSubMenu() {
+		logisticsFRSubMenu.click();
+	}
+
+	public void clickAdditionalPartiesFRSubMenu() {
+		additionalPartiesFRSubMenu.click();
 	}
 
 	public void clickFinanceMenu() {

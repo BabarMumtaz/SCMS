@@ -29,10 +29,9 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
 
-        pageObjectManager.getMenuBar().clickNotifyPartyFRSubMenu();
-        log.info("Clicked Notify Party FR Sub Menu");
+        pageObjectManager.getMenuBar().clickNotifyPartiesFRSubMenu();
+        log.info("Clicked Notify Parties FR Sub Menu");
 
-        // Works for ANY page heading
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Notify Parties");
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Notify Parties", "Page heading does not match expected value.");

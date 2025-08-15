@@ -32,6 +32,9 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[starts-with(text(), 'Company')]/following::input[1]")
     WebElement companyNameField;
 
+    @FindBy(xpath = "//label[starts-with(text(), 'Short')]/following::input[1]")
+    WebElement shortNameField;
+
     @FindBy(xpath = "//label[text()='Entity Name']/following::input[1]")
     WebElement entityNameField;
 
@@ -92,6 +95,10 @@ public class RelationsAllFieldsTestPage {
         nameField.sendKeys(text);
     }
 
+    public void enterShortName(String text) {
+        shortNameField.sendKeys(text);
+    }
+
     public void enterCompanyName(String text) {
         companyNameField.sendKeys(text);
     }
@@ -102,10 +109,6 @@ public class RelationsAllFieldsTestPage {
 
     public void enterContactPerson(String text) {
         contactPersonField.sendKeys(text);
-    }
-
-    public void enterEori(String text) {
-        eoriNumberField.sendKeys(text);
     }
 
     public void enterTelephoneNumber(String phoneNumber) {
