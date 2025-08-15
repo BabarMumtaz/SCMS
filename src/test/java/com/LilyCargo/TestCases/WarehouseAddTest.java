@@ -44,28 +44,28 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Warehouse", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getWarehousePage().enterWarehouseCompany(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterCompanyName(faker.company().name());
         log.info("Entered Warehouse Company Name");
 
-        pageObjectManager.getWarehousePage().enterContactPerson(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.company().name());
         log.info("Entered Warehouse Contact Person");
 
-        pageObjectManager.getWarehousePage().enterWarehouseAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getWarehousePage().enterWarehouseZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
         pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
-        pageObjectManager.getWarehousePage().enterWarehouseDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Warehouse Tel Number");
 
-        pageObjectManager.getWarehousePage().enterWarehouseEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Warehouse Email");
 
-        pageObjectManager.getWarehousePage().enterWarehouseAgreementNotes(FakeDataUtil.getRemarks());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Warehouse Agreement Notes");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

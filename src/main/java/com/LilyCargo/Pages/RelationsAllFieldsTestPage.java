@@ -92,6 +92,10 @@ public class RelationsAllFieldsTestPage {
         nameField.sendKeys(text);
     }
 
+    public void enterCompanyName(String text) {
+        companyNameField.sendKeys(text);
+    }
+
     public void enterEntityName(String text) {
         entityNameField.sendKeys(text);
     }

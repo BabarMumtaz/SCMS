@@ -73,6 +73,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='Brokers']")
 	WebElement brokersFRSubMenu;
 
+	@FindBy(xpath = "//li[@title='LFR']")
+	WebElement lfrFRSubMenu;
+
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
 
@@ -142,6 +145,10 @@ public class MenuBarTestPage {
 
 	public void clickBrokersFRSubMenu() {
 		brokersFRSubMenu.click();
+	}
+
+	public void clickLfrFRSubMenu() {
+		lfrFRSubMenu.click();
 	}
 
 	public void clickFinanceMenu() {
