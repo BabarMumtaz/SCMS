@@ -8,78 +8,75 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LfrAddTest extends TestBeforeAndAfter {
+public class NotifyPartiesAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
     @Test(priority = 1,
-            description = "Add Lfr",
+            description = "Add Notify Party",
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add Lfr successfully")
+    @Description("Verify that a user can add Notify Party successfully")
     @Epic("Freight Relations")
-    @Feature("Feature:08_LFRs")
-    @Story("As a user, I should be able to Add/Create Lfr successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Lfr Relation > Add Lfr")
-    public void VerifyLfrAddTestCase(){
+    @Feature("Feature:09_NotifyParties")
+    @Story("As a user, I should be able to Add/Create Notify Party successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Notify Parties Relation > Add Notify Party")
+    public void VerifyNotifyPartiesAddTestCase(){
 
-        log = LogManager.getLogger(LfrAddTest.class);
-        log.info("Starting Lfr Add Test from Freight Relations.");
+        log = LogManager.getLogger(NotifyPartiesAddTest.class);
+        log.info("Starting Notify Party Add Test from Freight Relations.");
 
         pageObjectManager.getMenuBar().clickFreightRelationsMenu();
         log.info("Clicked Freight Relations Menu");
 
-        pageObjectManager.getMenuBar().clickLfrFRSubMenu();
-        log.info("Clicked Lfr FR Sub Menu");
+        pageObjectManager.getMenuBar().clickNotifyPartyFRSubMenu();
+        log.info("Clicked Notify Party FR Sub Menu");
 
         // Works for ANY page heading
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("LFRs");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Notify Parties");
         log.info("Page Heading is: " + pageHeading);
-        Assert.assertEquals(pageHeading, "LFRs", "Page heading does not match expected value.");
+        Assert.assertEquals(pageHeading, "Notify Parties", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
-        log.info("Clicked Lfr Add button");
+        log.info("Clicked Notify Party Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
-        Assert.assertEquals(addPageHeading, "Add LFR", "Add Page heading does not match expected value.");
+        Assert.assertEquals(addPageHeading, "Add Notify Party", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.company().name());
-        log.info("Entered Lfr  Name");
-
-        pageObjectManager.getRelationsAllFieldsTestPage().enterEntityName(faker.company().name());
-        log.info("Entered Lfr Entity Name");
+        log.info("Entered Notify Party  Name");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.company().name());
-        log.info("Entered Lfr Contact Person");
+        log.info("Entered Notify Party Contact Person");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
-        log.info("Entered Lfr Tel Number");
+        log.info("Entered Notify Party Tel Number");
+
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
+        log.info("Entered Notify Party Email");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
-        log.info("Entered Address");
+        log.info("Entered Address 1");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
-
-        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
-        log.info("Entered Lfr Email");
 
         pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
-        log.info("Entered Lfr Vat");
+        log.info("Entered Notify Party Vat No");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
         log.info("Click Extra Field Cross");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
-        log.info("Click Save Lfr Button");
+        log.info("Click Save Notify Party Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("LFR successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Notify Party successfully created.");
         log.info("Success Alert is: " + successAlert);
-        Assert.assertEquals(successAlert, "LFR successfully created.", "Success Alert does not match expected value.");
+        Assert.assertEquals(successAlert, "Notify Party successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");

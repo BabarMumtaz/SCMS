@@ -18,7 +18,7 @@ public class BrokersAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Broker successfully")
     @Epic("Freight Relations")
-    @Feature("Feature:07")
+    @Feature("Feature:07_Brokers")
     @Story("As a user, I should be able to Add/Create Broker successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Brokers Relation > Add Broker")
     public void VerifyBrokersAddTestCase(){
