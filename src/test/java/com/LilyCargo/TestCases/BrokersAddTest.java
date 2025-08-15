@@ -37,35 +37,35 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Brokers", "Page heading does not match expected value.");
 
-        pageObjectManager.getBrokersPage().clickAddBrokersBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Brokers Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Broker", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getBrokersPage().enterBrokersName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.company().name());
         log.info("Entered Brokers Company Name");
 
-        pageObjectManager.getBrokersPage().enterContactPerson(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.company().name());
         log.info("Entered Brokers Contact Person");
 
-        pageObjectManager.getBrokersPage().enterBrokersDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Brokers Tel Number");
 
-        pageObjectManager.getBrokersPage().enterBrokersEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Brokers Email");
 
-        pageObjectManager.getBrokersPage().enterBrokersAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getBrokersPage().enterBrokersZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
         pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
-        pageObjectManager.getBrokersPage().enterBrokersVat(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
         log.info("Entered Brokers Vat");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

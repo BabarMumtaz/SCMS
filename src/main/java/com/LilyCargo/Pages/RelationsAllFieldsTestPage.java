@@ -26,64 +26,64 @@ public class RelationsAllFieldsTestPage {
 
     /** ---------- Locators ---------- */
 
-    @FindBy(xpath = "(//label[text()='Name'])[1]")
+    @FindBy(xpath = "//label[text()='Name']/following::input[1]")
     WebElement nameField;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Company')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Company')]/following::input[1]")
     WebElement companyNameField;
 
-    @FindBy(xpath = "(//label[text()='Entity Name'])[1]")
+    @FindBy(xpath = "//label[text()='Entity Name']/following::input[1]")
     WebElement entityNameField;
 
-    @FindBy(xpath = "(//label[text()='Contact Person'])[1]")
+    @FindBy(xpath = "//label[text()='Contact Person']/following::input[1]")
     WebElement contactPersonField;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Telephone')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Telephone')]/following::input[1]")
     WebElement telephoneNumber1Field;
 
-    @FindBy(xpath = "(//label[text()='Telephone Number 2'])[1]")
+    @FindBy(xpath = "//label[text()='Telephone Number 2']/following::input[1]")
     WebElement telephoneNumber2Field;
 
-    @FindBy(xpath = "(//label[text()='Telephone Number 3'])[1]")
+    @FindBy(xpath = "//label[text()='Telephone Number 3']/following::input[1]")
     WebElement telephoneNumber3Field;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Email')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Email')]/following::input[1]")
     WebElement emailField;
 
-    @FindBy(xpath = "(//label[text()='Email 2'])[1]")
+    @FindBy(xpath = "//label[text()='Email 2']/following::input[1]")
     WebElement email2Field;
 
-    @FindBy(xpath = "(//label[text()='Email 3'])[1]")
+    @FindBy(xpath = "//label[text()='Email 3']/following::input[1]")
     WebElement email3Field;
 
-    @FindBy(xpath = "(//label[text()='Address'])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Address')]/following::input[1]")
     WebElement address1Field;
 
-    @FindBy(xpath = "(//label[text()='Address 2'])[1]")
+    @FindBy(xpath = "//label[text()='Address 2']/following::input[1]")
     WebElement address2Field;
 
-    @FindBy(xpath = "(//label[text()='Agreement Notes'])[1]")
+    @FindBy(xpath = "//label[text()='Agreement Notes']/following::input[1]")
     WebElement agreementNotesField;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Note')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Note')]/following::input[1]")
     WebElement noteField;
 
-    @FindBy(xpath = "(//label[text()='Note 2'])[1]")
+    @FindBy(xpath = "//label[text()='Note 2']/following::input[1]")
     WebElement note2Field;
 
-    @FindBy(xpath = "(//label[text()='Zip City'])[1]")
+    @FindBy(xpath = "//label[text()='Zip City']/following::input[1]")
     WebElement zipCityField;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Eori')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Eori')]/following::input[1]")
     WebElement eoriNumberField;
 
-    @FindBy(xpath = "(//label[starts-with(text(), 'Vat')])[1]")
+    @FindBy(xpath = "//label[starts-with(text(), 'Vat')]/following::input[1]")
     WebElement vatNumberField;
 
-    @FindBy(xpath = "(//label[text()='WeChat 1'])[1]")
+    @FindBy(xpath = "//label[text()='WeChat 1']/following::input[1]")
     WebElement weChatField;
 
-    @FindBy(xpath = "(//label[text()='WeChat 2'])[1]")
+    @FindBy(xpath = "//label[text()='WeChat 2']/following::input[1]")
     WebElement weChat2Field;
 
     /** ---------- Methods ---------- */

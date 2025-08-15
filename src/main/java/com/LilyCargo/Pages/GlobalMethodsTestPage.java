@@ -146,7 +146,6 @@ public class GlobalMethodsTestPage {
     }
 
 
-
     // Generic method to hover over a row and click the requested icon (view/edit)
     public void hoverAndClickIconOnRow(int rowIndex, String action) {
         WebElement row = listingRows.get(rowIndex);

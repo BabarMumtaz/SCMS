@@ -20,6 +20,7 @@ public class PageObjectManager {
     private FreightDetailTestPage freightDetail;
     private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
     private DockPlannerPage dockPlanner;
+    private RelationsAllFieldsTestPage relationsAllFieldsPage;
     private CarriersTestPage carriersPage;
     private InternationalProductsPage internationalProductsPage;
     private CarrierListingTestPage carrierListing;
@@ -29,7 +30,6 @@ public class PageObjectManager {
     private ExportCompaniesTestPage exportCompaniesPage;
     private WarehousesTestPage warehousePage;
     private FreightManagersTestPage freightManagersPage;
-    private BrokersTestPage brokersTestPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
@@ -91,6 +91,10 @@ public class PageObjectManager {
         return (dockPlanner == null) ? dockPlanner = PageFactory.initElements(driver, DockPlannerPage.class) : dockPlanner;
     }
 
+    public RelationsAllFieldsTestPage getRelationsAllFieldsTestPage() {
+        return (relationsAllFieldsPage == null) ? relationsAllFieldsPage = PageFactory.initElements(driver, RelationsAllFieldsTestPage.class) : relationsAllFieldsPage;
+    }
+
     public InternationalProductsPage getInternationalProductsPage() {
         return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
     }
@@ -125,10 +129,6 @@ public class PageObjectManager {
 
     public FreightManagersTestPage getFreightManagersPage() {
         return (freightManagersPage == null) ? freightManagersPage = PageFactory.initElements(driver, FreightManagersTestPage.class) : freightManagersPage;
-    }
-
-    public BrokersTestPage getBrokersPage() {
-        return (brokersTestPage == null) ? brokersTestPage = PageFactory.initElements(driver, BrokersTestPage.class) : brokersTestPage;
     }
 
     public RemarksTestPage getRemarksPage() {
