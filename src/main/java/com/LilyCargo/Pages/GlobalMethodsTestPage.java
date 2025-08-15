@@ -34,6 +34,9 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//h5[1]")
     WebElement addPageHeading;
 
+    @FindBy(xpath = "//button[starts-with(text(), 'Add')]")
+    WebElement addButtonXpath;
+
     @FindBy(id = "select-Gender")
     WebElement userGenderDropDown;
 
@@ -112,6 +115,10 @@ public class GlobalMethodsTestPage {
     WebElement alertPopupListingPage;
 
     /** ---------- Methods ---------- */
+
+    public void clickAddButton() {
+        wait.until(ExpectedConditions.visibilityOf(addButtonXpath)).click();
+    }
 
     // ===== 2. Generic Dynamic Heading Method =====
     /**
