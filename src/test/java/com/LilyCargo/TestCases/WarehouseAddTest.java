@@ -32,7 +32,6 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickWarehousesFRSubMenu();
         log.info("Clicked Warehouse FR Sub Menu");
 
-        // Works for ANY page heading
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouses");
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Warehouses", "Page heading does not match expected value.");
