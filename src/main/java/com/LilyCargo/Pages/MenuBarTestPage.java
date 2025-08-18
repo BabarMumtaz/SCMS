@@ -40,6 +40,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[contains(@title,'Intrastats')]")
 	WebElement intrastatsDashSubMenu;
 
+	@FindBy(xpath = "//li[contains(@title,'HS Triggers')]")
+	WebElement hsTriggersAdminSubMenu;
+
 	@FindBy(xpath = "//div[@title='Administration']")
 	WebElement administrationMenu;
 
@@ -112,6 +115,10 @@ public class MenuBarTestPage {
 
 	public void clickIntrastatsDashSubMenu() {
 		intrastatsDashSubMenu.click();
+	}
+
+	public void clickHsTriggersAdminSubMenu() {
+		hsTriggersAdminSubMenu.click();
 	}
 
 	public void clickAdministrationMenu() {

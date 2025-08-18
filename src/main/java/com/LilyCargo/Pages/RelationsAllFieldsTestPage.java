@@ -26,7 +26,7 @@ public class RelationsAllFieldsTestPage {
 
     /** ---------- Locators ---------- */
 
-    @FindBy(xpath = "//label[text()='Name']/following::input[1]")
+    @FindBy(xpath = "//label[contains(text(), 'Name')]/following::input[1]")
     WebElement nameField;
 
     @FindBy(xpath = "//label[starts-with(text(), 'Company')]/following::input[1]")
@@ -88,6 +88,34 @@ public class RelationsAllFieldsTestPage {
 
     @FindBy(xpath = "//label[text()='WeChat 2']/following::input[1]")
     WebElement weChat2Field;
+
+    @FindBy(xpath = "//label[contains(text(), 'Code')]/following::input[1]")
+    WebElement codeField;
+
+    @FindBy(xpath = "//label[contains(text(), 'Abbreviation')]/following::input[1]")
+    WebElement abbreviationField;
+
+    @FindBy(xpath = "//label[text()='Organization']/following::input[1]")
+    WebElement organizationField;
+
+    @FindBy(xpath = "//label[text()='Branch']/following::input[1]")
+    WebElement branchField;
+
+    @FindBy(xpath = "//label[text()='Cell']/following::input[1]")
+    WebElement cellField;
+
+    @FindBy(xpath = "//label[text()='Position']/following::input[1]")
+    WebElement positionField;
+
+    @FindBy(xpath = "//input[@name='office_access_start']")
+    WebElement officeAccessStartDate;
+
+    @FindBy(xpath = "//input[@name='office_access_end']")
+    WebElement officeAccessEndDate;
+
+    @FindBy(xpath = "//label[text()='Appointment With']/following::input[1]")
+    WebElement appointmentWithField;
+
 
     /** ---------- Methods ---------- */
 
@@ -162,6 +190,25 @@ public class RelationsAllFieldsTestPage {
 
     public void enterNote2(String text) {
         note2Field.sendKeys(text);
+    }
+    public void enterCode(String text) {
+        codeField.sendKeys(text);
+    }
+
+    public void enterAbbreviation(String text) {
+        abbreviationField.sendKeys(text);
+    }
+
+    public void enterOrganization(String text) {
+        organizationField.sendKeys(text);
+    }
+
+    public void enterBranch(String text) {
+        branchField.sendKeys(text);
+    }
+
+    public void enterCell(String text) {
+        cellField.sendKeys(text);
     }
 
 }

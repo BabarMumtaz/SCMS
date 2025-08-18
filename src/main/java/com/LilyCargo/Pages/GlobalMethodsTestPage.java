@@ -31,6 +31,9 @@ public class GlobalMethodsTestPage {
 
     /** ---------- Locators ---------- */
 
+    @FindBy(css = ".d-inline.main-title")
+    WebElement mainPageHeading;
+
     @FindBy(xpath = "//h5[1]")
     WebElement addPageHeading;
 
@@ -114,7 +117,15 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement alertPopupListingPage;
 
+    @FindBy(xpath = "//div[contains(text(),'successfully ')]")
+    WebElement alertPopupText;
+
+
     /** ---------- Methods ---------- */
+
+    public String getMainPageHeadingTextNew() {
+        return wait.until(ExpectedConditions.visibilityOf(mainPageHeading)).getText().trim();
+    }
 
     public void clickAddButton() {
         wait.until(ExpectedConditions.visibilityOf(addButtonXpath)).click();
@@ -242,6 +253,30 @@ public class GlobalMethodsTestPage {
     public boolean isSuccessAlertDisplayed(String alertText) {
         try {
             return getSuccessAlertElement(alertText).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
+    // ===== Generic Success Alert Method =====
+// Finds the first visible success alert automatically.
+    public WebElement getSuccessAlertElementNew() {
+        String alertXpath = "//div[contains(@class,'alert') and contains(@class,'success')]";
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(alertXpath)));
+    }
+
+    // Gets the text of the success alert automatically.
+    public String getSuccessAlertTextNew() {
+        wait.until(ExpectedConditions.textToBePresentInElement(alertPopupText, "successfully"));
+        return alertPopupText.getText().trim();
+    }
+
+
+    // Checks if a success alert is displayed.
+    public boolean isSuccessAlertDisplayedNew() {
+        try {
+            return getSuccessAlertElementNew().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }

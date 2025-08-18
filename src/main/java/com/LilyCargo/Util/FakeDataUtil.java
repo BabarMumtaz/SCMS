@@ -105,7 +105,7 @@ public class FakeDataUtil {
     }
 
     public static String getRemarks() {
-        return fakerEN.lorem().sentence(15); // Generates ~15 words
+        return fakerEN.lorem().sentence(5); // Generates ~15 words
     }
 
     public static String getIncidentsRegProblemSolution() {
@@ -159,6 +159,7 @@ public class FakeDataUtil {
         int amount = fakerEN.number().numberBetween(1, 10);
         return String.valueOf(amount);
     }
+
     public static String getPidNo() {
         return fakerEN.bothify("INT###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
@@ -167,4 +168,21 @@ public class FakeDataUtil {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
+    public static String getHsCode(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("HS Code length must be greater than 0");
+        }
+        String pattern = "#".repeat(length); // e.g., length=4 -> "####"
+        return fakerEN.numerify(pattern);    // generates numeric code of given length
+    }
+
+    public static String getRandomCooDecimalValues() {
+        double amount = fakerEN.number().randomDouble(2, 0, 10000); // 2 decimal places, range 10–100
+        return String.format("%.2f", amount); // ensures two decimal places
+    }
+
+    public static String getRandomDecimalValues() {
+        double amount = fakerEN.number().randomDouble(2, 0, 20); // 2 decimal places, range 10–100
+        return String.format("%.2f", amount); // ensures two decimal places
+    }
 }

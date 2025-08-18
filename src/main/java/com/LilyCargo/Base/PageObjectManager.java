@@ -11,10 +11,11 @@ public class PageObjectManager {
     private LoginTestPage loginPage;
     private MenuBarTestPage menuBar;
     private GlobalMethodsTestPage globalMethodsPage;
-    private DashboardOverviewTestPage dashboardOverviewTestPage;
-    private AdminOverviewTestPage adminOverviewTestPage;
+    private DashboardOverviewTestPage dashboardOverviewPage;
+    private AdminOverviewTestPage adminOverviewPage;
     private CockpitTestPage cockpitPage;
     private IntrastatsTestPage intrastatsPage;
+    private HsTriggersTestPage hsTriggersPage;
     private FreightTestPage bookedFreights;
     private FreightListingTestPage freightListing;
     private FreightDetailTestPage freightDetail;
@@ -55,11 +56,11 @@ public class PageObjectManager {
     }
 
     public DashboardOverviewTestPage getDashboardOverviewTestPage() {
-        return (dashboardOverviewTestPage == null) ? dashboardOverviewTestPage = PageFactory.initElements(driver, DashboardOverviewTestPage.class) : dashboardOverviewTestPage;
+        return (dashboardOverviewPage == null) ? dashboardOverviewPage = PageFactory.initElements(driver, DashboardOverviewTestPage.class) : dashboardOverviewPage;
     }
 
     public AdminOverviewTestPage getAdminOverviewTestPage() {
-        return (adminOverviewTestPage == null) ? adminOverviewTestPage = PageFactory.initElements(driver, AdminOverviewTestPage.class) : adminOverviewTestPage;
+        return (adminOverviewPage == null) ? adminOverviewPage = PageFactory.initElements(driver, AdminOverviewTestPage.class) : adminOverviewPage;
     }
 
     public CockpitTestPage getCockpitPage() {
@@ -68,6 +69,10 @@ public class PageObjectManager {
 
     public IntrastatsTestPage getIntrastatsPage() {
         return (intrastatsPage == null) ? intrastatsPage = PageFactory.initElements(driver, IntrastatsTestPage.class) : intrastatsPage;
+    }
+
+    public HsTriggersTestPage getHsTriggersPage() {
+        return (hsTriggersPage == null) ? hsTriggersPage = PageFactory.initElements(driver, HsTriggersTestPage.class) : hsTriggersPage;
     }
 
     public FreightTestPage getBookedFreights() {
