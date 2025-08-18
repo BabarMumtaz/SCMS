@@ -17,8 +17,8 @@ public class LogisticsAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Logistic successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:10_Logistics")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.10_Logistics")
     @Story("As a user, I should be able to Add/Create Logistic successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Logistic Relation > Add Logistic")
     public void VerifyLogisticsAddTestCase(){
@@ -32,8 +32,7 @@ public class LogisticsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickLogisticsFRSubMenu();
         log.info("Clicked Logistic FR Sub Menu");
 
-        // Works for ANY page heading
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Logistics");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Logistics", "Page heading does not match expected value.");
 
@@ -78,7 +77,7 @@ public class LogisticsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Logistic Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Logistic successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Logistic successfully created.", "Success Alert does not match expected value.");
 

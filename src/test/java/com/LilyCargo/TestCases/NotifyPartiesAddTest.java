@@ -17,8 +17,8 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Notify Party successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:09_NotifyParties")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.09_NotifyParties")
     @Story("As a user, I should be able to Add/Create Notify Party successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Notify Parties Relation > Add Notify Party")
     public void VerifyNotifyPartiesAddTestCase(){
@@ -32,7 +32,7 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickNotifyPartiesFRSubMenu();
         log.info("Clicked Notify Parties FR Sub Menu");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Notify Parties");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Notify Parties", "Page heading does not match expected value.");
 
@@ -73,7 +73,7 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Notify Party Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Notify Party successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Notify Party successfully created.", "Success Alert does not match expected value.");
 

@@ -123,12 +123,16 @@ public class GlobalMethodsTestPage {
 
     /** ---------- Methods ---------- */
 
-    public String getMainPageHeadingTextNew() {
+    public String getMainPageHeadingText() {
         return wait.until(ExpectedConditions.visibilityOf(mainPageHeading)).getText().trim();
     }
 
     public void clickAddButton() {
         wait.until(ExpectedConditions.visibilityOf(addButtonXpath)).click();
+    }
+
+    public String getAddPageHeading() {
+        return addPageHeading.getText();
     }
 
     // ===== 2. Generic Dynamic Heading Method =====
@@ -152,9 +156,7 @@ public class GlobalMethodsTestPage {
         return getPageHeading(headingText).getText();
     }
 
-    public String getAddPageHeading() {
-        return addPageHeading.getText();
-    }
+
 
 
     // Generic method to hover over a row and click the requested icon (view/edit)
@@ -267,9 +269,11 @@ public class GlobalMethodsTestPage {
     }
 
     // Gets the text of the success alert automatically.
-    public String getSuccessAlertTextNew() {
-        wait.until(ExpectedConditions.textToBePresentInElement(alertPopupText, "successfully"));
-        return alertPopupText.getText().trim();
+    public String getAlertPopupText() {
+/*        wait.until(ExpectedConditions.textToBePresentInElement(alertPopupText, "successfully"));
+        return alertPopupText.getText().trim();*/
+        return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
+
     }
 
 

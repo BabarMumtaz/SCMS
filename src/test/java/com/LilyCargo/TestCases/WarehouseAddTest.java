@@ -17,8 +17,8 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Warehouse successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:05_Warehouses")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.05_Warehouses")
     @Story("As a user, I should be able to Add/Create Warehouse successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Warehouses Relation  > Add Warehouse")
     public void VerifyWarehouseAddTestCase(){
@@ -32,7 +32,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickWarehousesFRSubMenu();
         log.info("Clicked Warehouse FR Sub Menu");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Warehouses");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Warehouses", "Page heading does not match expected value.");
 
@@ -58,7 +58,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().selectCountry();
         log.info("Selected Country");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber());
         log.info("Entered Warehouse Tel Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
@@ -73,7 +73,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Warehouse Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Warehouse successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Warehouse successfully created.", "Success Alert does not match expected value.");
 

@@ -17,8 +17,8 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Additional Party successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:13_AdditionalParties")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.13_AdditionalParties")
     @Story("As a user, I should be able to Add/Create Additional Party successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Additional Parties Relation > Add Additional Party")
     public void VerifyAdditionalPartiesAddTestCase(){
@@ -32,7 +32,7 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickAdditionalPartiesFRSubMenu();
         log.info("Clicked Additional Party FR Sub Menu");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Additional Parties");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Additional Parties", "Page heading does not match expected value.");
 
@@ -76,7 +76,7 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Additional Party Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Additional Party successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Additional Party successfully created.", "Success Alert does not match expected value.");
 

@@ -17,8 +17,8 @@ public class BrokersAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Broker successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:07_Brokers")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.07_Brokers")
     @Story("As a user, I should be able to Add/Create Broker successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Brokers Relation > Add Broker")
     public void VerifyBrokersAddTestCase(){
@@ -32,8 +32,7 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickBrokersFRSubMenu();
         log.info("Clicked Brokers FR Sub Menu");
 
-        // Works for ANY page heading
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Brokers");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Brokers", "Page heading does not match expected value.");
 
@@ -74,7 +73,7 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Brokers Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Broker successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Broker successfully created.", "Success Alert does not match expected value.");
 

@@ -15,8 +15,8 @@ public class ShipperAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add SHIPPER successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add SHIPPER successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.04_Shippers")
     @Story("As a user, I should be able to add SHIPPER successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add SHIPPER")
     public void VerifyShipperAddTestCase() throws InterruptedException {
@@ -30,14 +30,16 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickShippersFRSubMenu();
         log.info("Clicked Shipper FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getShippersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Heading: " + pageObjectManager.getShippersPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Shippers", "Page heading does not match expected value.");
 
         pageObjectManager.getShippersPage().clickAddShipperBtn();
         log.info("Clicked Shipper Add button");
 
-        Assert.assertTrue(pageObjectManager.getShippersPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Shipper Add Page Heading: " + pageObjectManager.getShippersPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Shipper", "Add Page heading does not match expected value.");
 
         pageObjectManager.getShippersPage().enterShipperStore(faker.company().name());
         log.info("Entered Shipper Store Name");
@@ -63,28 +65,26 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getShippersPage().enterShipperDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Shipper's Tel Number");
 
-        pageObjectManager.getShippersPage().enterExtraEmailLabel("Extra Email");
+/*        pageObjectManager.getShippersPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
         pageObjectManager.getShippersPage().enterExtraEmailValue(faker.internet().emailAddress());
-        log.info("Entered Extra Email Value");
+        log.info("Entered Extra Email Value");*/
 
-        pageObjectManager.getShippersPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        pageObjectManager.getShippersPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
         pageObjectManager.getShippersPage().enterShipperSCMEmail(faker.internet().emailAddress());
         log.info("Entered Shipper's SCM Email");
 
-        pageObjectManager.getShippersPage().clickSaveShipperBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Shipper Button");
 
-        Assert.assertTrue(pageObjectManager.getShipperListing().isShipperSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getShipperListing().getShipperSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Shipper successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getShipperListing().clickOnAlertPopupDP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

@@ -21,8 +21,8 @@ public class CarrierAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add carrier successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add carrier successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:01")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.01_Carriers")
     @Story("As a user, I should be able to add carrier successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Carriers Relation > Add Carrier")
     public void VerifyCarrierAddTestCase() {
@@ -36,7 +36,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCarriersFRSubMenu();
         log.info("Clicked Carriers FR Sub Menu");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Carriers");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
@@ -80,7 +80,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Carrier successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Carrier successfully created.", "Success Alert does not match expected value.");
 

@@ -21,10 +21,10 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can edit Carrier successfully from the Carrier view page")
     @Epic("Freight Relations")
-    @Feature("Feature:01.1")
+    @Feature("Feature:04.01.02_Carriers")
     @Story("As a user, I should be able to edit carrier successfully")
     @Step("Hit Site Url > Login with valid credentials > Freight Relations > Carriers Relation > Detail Page of Carrier > Edit carrier")
-    public void VerifyCarrierEditTestCase() throws InterruptedException {
+    public void VerifyCarrierEditTestCase(){
 
         log = LogManager.getLogger(CarrierEditFromDetailViewTest.class);
         log.info("Starting Carrier Edit Test from Freight Relations.");
@@ -35,7 +35,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCarriersFRSubMenu();
         log.info("Clicked Carriers FR Sub Menu");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Carriers");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
@@ -65,7 +65,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("Carrier successfully updated.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Carrier successfully updated.", "Success Alert does not match expected value.");
 

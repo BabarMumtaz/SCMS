@@ -17,8 +17,8 @@ public class LfrAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Lfr successfully")
-    @Epic("Freight Relations")
-    @Feature("Feature:08_LFRs")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.08_LFRs")
     @Story("As a user, I should be able to Add/Create Lfr successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Lfr Relation > Add Lfr")
     public void VerifyLfrAddTestCase(){
@@ -32,8 +32,7 @@ public class LfrAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickLfrFRSubMenu();
         log.info("Clicked Lfr FR Sub Menu");
 
-        // Works for ANY page heading
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("LFRs");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "LFRs", "Page heading does not match expected value.");
 
@@ -77,7 +76,7 @@ public class LfrAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Lfr Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("LFR successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "LFR successfully created.", "Success Alert does not match expected value.");
 
