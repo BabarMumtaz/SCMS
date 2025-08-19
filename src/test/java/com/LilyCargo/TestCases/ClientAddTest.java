@@ -17,8 +17,8 @@ public class ClientAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Client successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.02_Client")
     @Story("As a user, I should be able to Add/Create Client successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Client")
     public void VerifyClientAddTestCase(){
@@ -32,79 +32,76 @@ public class ClientAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickClientFRSubMenu();
         log.info("Clicked Client FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Client Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
-        pageObjectManager.getClientPage().clickAddClientBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Client Add button");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Client Add Page Heading: " + pageObjectManager.getClientPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Client", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getClientPage().enterClientName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
         log.info("Entered Clients Name");
 
-        pageObjectManager.getClientPage().enterContactPerson(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.name().name());
         log.info("Entered Contact Person Name");
 
-        pageObjectManager.getClientPage().enterClientAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getClientPage().enterClientEmail1(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Clients Email");
 
-        pageObjectManager.getClientPage().enterClientFinancialEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterFinanceEmail(faker.internet().emailAddress());
         log.info("Entered Clients Financial Email");
 
-        pageObjectManager.getClientPage().enterClientFiscalMattersEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterFiscalMattersEmail(faker.internet().emailAddress());
         log.info("Entered Clients Fiscal Matters Email");
 
-        pageObjectManager.getClientPage().enterClientCeoEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterCeoEmail(faker.internet().emailAddress());
         log.info("Entered Client Ceo Email");
 
-        pageObjectManager.getClientPage().enterClientDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Clients Tel Number");
 
-        pageObjectManager.getClientPage().selectRegion();
+        pageObjectManager.getGlobalMethodsPage().selectRegion("eu");
         log.info("Selected Region");
 
-        pageObjectManager.getClientPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-        pageObjectManager.getClientPage().enterClientZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getClientPage().enterVat(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
         log.info("Entered VAT");
 
-        pageObjectManager.getClientPage().selectLfr();
+        pageObjectManager.getGlobalMethodsPage().selectLfr("NL LMLOG Fiscal");
         log.info("Selected LFR");
 
-        pageObjectManager.getClientPage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Field Cross");
 
-        pageObjectManager.getClientPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
-
-        pageObjectManager.getClientPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
-
-        pageObjectManager.getClientPage().enterScmEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterScmEmails(FakeDataUtil.getFakeEmails(3).split(";"));
         log.info("Entered Clients SCM Email");
 
-        pageObjectManager.getClientPage().enterCustomsReleaseEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterCustomsReleaseEmails(FakeDataUtil.getFakeEmails(3).split(";"));
         log.info("Entered Clients Customs Release Email");
 
-        pageObjectManager.getClientPage().enterBillingEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterBillingEmails(FakeDataUtil.getFakeEmails(3).split(";"));
         log.info("Entered Clients Billing Email");
 
-        pageObjectManager.getClientPage().clickSaveClientBack();
-        log.info("Click Save Client Button");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save Button");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Client successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getClientPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

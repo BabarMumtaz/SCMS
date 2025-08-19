@@ -92,6 +92,12 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
     WebElement countryDropDown;
 
+    @FindBy(xpath = "//label[text()='Region']/following::div[@role='button']")
+    WebElement regionDropDown;
+
+    @FindBy(xpath = "//label[text()='LFR']/following::div[@role='button']")
+    WebElement lfrDropDown;
+
     @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
     WebElement countryDropDownValue;
 
@@ -312,8 +318,16 @@ public class GlobalMethodsTestPage {
         selectDropdownOption(countryDropDown, country);
     }
 
+    public void selectRegion(String region) {
+        selectDropdownOption(regionDropDown, region);
+    }
+
     public void selectExportCompany(String exportCompany) {
         selectDropdownOption(exportCompanyDropDown, exportCompany);
+    }
+
+    public void selectLfr(String lfr) {
+        selectDropdownOption(lfrDropDown, lfr);
     }
 
     public void clickExtraEmailFieldCross() {

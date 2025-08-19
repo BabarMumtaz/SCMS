@@ -62,6 +62,15 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[text()='Email 3']/following::input[1]")
     WebElement email3Field;
 
+    @FindBy(xpath = "//label[text()='Finance Email']/following::input[1]")
+    WebElement financeEmailField;
+
+    @FindBy(xpath = "//label[text()='Fiscal Matters Email']/following::input[1]")
+    WebElement fiscalMattersField;
+
+    @FindBy(xpath = "//label[text()='Ceo Email']/following::input[1]")
+    WebElement ceoEmailField;
+
     @FindBy(xpath = "//label[starts-with(text(), 'Address')]/following::input[1]")
     WebElement address1Field;
 
@@ -171,6 +180,18 @@ public class RelationsAllFieldsTestPage {
 
     public void enterEmail2(String text) {
         email2Field.sendKeys(text);
+    }
+
+    public void enterFinanceEmail(String text) {
+        financeEmailField.sendKeys(text);
+    }
+
+    public void enterFiscalMattersEmail(String text) {
+        fiscalMattersField.sendKeys(text);
+    }
+
+    public void enterCeoEmail(String text) {
+        ceoEmailField.sendKeys(text);
     }
 
     public void enterAddress1(String text) {
