@@ -86,8 +86,10 @@ public class GlobalMethodsTestPage {
     WebElement statusColumnFirstRow;
 
 
+    @FindBy(xpath = "//label[text()='Export Company']/following::div[@role='button']")
+    WebElement exportCompanyDropDown;
 
-    @FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
+    @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
     WebElement countryDropDown;
 
     @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
@@ -155,9 +157,6 @@ public class GlobalMethodsTestPage {
     public String getPageHeadingText(String headingText) {
         return getPageHeading(headingText).getText();
     }
-
-
-
 
     // Generic method to hover over a row and click the requested icon (view/edit)
     public void hoverAndClickIconOnRow(int rowIndex, String action) {
@@ -237,9 +236,6 @@ public class GlobalMethodsTestPage {
         return true;
     }
 
-
-
-
     // ===== 2. Generic Success Alert Method ===== Finds a success alert message containing the given text.
     public WebElement getSuccessAlertElement(String alertText) {
         String alertXpath = String.format("//div[contains(text(),'%s')]", alertText);
@@ -260,41 +256,28 @@ public class GlobalMethodsTestPage {
         }
     }
 
-
-    // ===== Generic Success Alert Method =====
-// Finds the first visible success alert automatically.
-    public WebElement getSuccessAlertElementNew() {
-        String alertXpath = "//div[contains(@class,'alert') and contains(@class,'success')]";
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(alertXpath)));
-    }
-
-    // Gets the text of the success alert automatically.
+    // ===== Generic Success Alert Method ===== Gets the text of the success alert automatically.
     public String getAlertPopupText() {
 /*        wait.until(ExpectedConditions.textToBePresentInElement(alertPopupText, "successfully"));
         return alertPopupText.getText().trim();*/
         return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
-
     }
-
 
     // Checks if a success alert is displayed.
     public boolean isSuccessAlertDisplayedNew() {
         try {
-            return getSuccessAlertElementNew().isDisplayed();
+            return alertPopupText.isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
+/*    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
         dropdown.click();
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
         dropdownValue.click();
-    }
+    }*/
 
-    public void selectCountry() {
-        selectDropdownValue(countryDropDown, countryDropDownValue);
-    }
 
     public void selectDropdownOption(WebElement dropdown, String optionText) {
         try {
@@ -302,9 +285,11 @@ public class GlobalMethodsTestPage {
             wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
             log.info("🔽 Opened dropdown");
 
-            // Build XPath dynamically based on visible text
-            String optionXPath = "//li[text()='" + optionText + "']";
+            // Build XPath dynamically based on visible text  String optionXPath = "//li[text()='" + optionText + "']";
+            String optionXPath = "//li[contains(text(),'" + optionText + "')]";
             WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXPath)));
+
+            executor.executeScript("arguments[0].scrollIntoView(true);", optionElement);
 
             // Click the desired option
             optionElement.click();
@@ -321,6 +306,14 @@ public class GlobalMethodsTestPage {
 
     public void selectGender(String gender) {
         selectDropdownOption(userGenderDropDown, gender);
+    }
+
+    public void selectCountryName(String country) {
+        selectDropdownOption(countryDropDown, country);
+    }
+
+    public void selectExportCompany(String exportCompany) {
+        selectDropdownOption(exportCompanyDropDown, exportCompany);
     }
 
     public void clickExtraEmailFieldCross() {

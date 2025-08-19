@@ -19,7 +19,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
     @Feature("Feature:04.04_Shippers")
     @Story("As a user, I should be able to add SHIPPER successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add SHIPPER")
-    public void VerifyShipperAddTestCase() throws InterruptedException {
+    public void VerifyShipperAddTestCase(){
 
         log = LogManager.getLogger(ShipperAddTest.class);
         log.info("Starting Shipper Add Test from Freight Relations Tab.");
@@ -34,35 +34,35 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Shippers", "Page heading does not match expected value.");
 
-        pageObjectManager.getShippersPage().clickAddShipperBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Shipper Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Shipper", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getShippersPage().enterShipperStore(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterStoreFront(faker.company().name());
         log.info("Entered Shipper Store Name");
 
-        pageObjectManager.getShippersPage().selectExportCompany();
+        pageObjectManager.getGlobalMethodsPage().selectExportCompany("Shenzhen Jiufang");
         log.info("Selected Export Company");
 
-        pageObjectManager.getShippersPage().enterShipperName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.company().name());
         log.info("Entered Shippers Name");
 
-        pageObjectManager.getShippersPage().enterShipperAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getShippersPage().enterShipperZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getShippersPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-        pageObjectManager.getShippersPage().enterShipperEmail1(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Shipper's Email");
 
-        pageObjectManager.getShippersPage().enterShipperDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Shipper's Tel Number");
 
 /*        pageObjectManager.getShippersPage().enterExtraEmailLabel("Extra Email");
@@ -74,8 +74,8 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
         log.info("Click Extra Field Cross");
 
-        pageObjectManager.getShippersPage().enterShipperSCMEmail(faker.internet().emailAddress());
-        log.info("Entered Shipper's SCM Email");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterScmEmails(FakeDataUtil.getFakeEmails(2).split(";"));
+        log.info("Entered Shipper's SCM Emails");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Shipper Button");

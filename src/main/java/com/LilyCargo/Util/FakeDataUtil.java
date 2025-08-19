@@ -6,12 +6,21 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class FakeDataUtil {
 
     private static final Faker fakerNL = new Faker(new Locale("nl"));  // Netherlands
     private static final Faker fakerCN = new Faker(new Locale("zh-CN"));  // China
     private static final Faker fakerEN = new Faker(new Locale("en")); // Default for other fields
+
+    // Generate multiple fake emails (joined with ;)
+    public static String getFakeEmails(int count) {
+        return IntStream.range(0, count)
+                .mapToObj(i -> fakerEN.internet().emailAddress())
+                .collect(Collectors.joining(";"));
+    }
 
     public static String getFNO() {
         return fakerEN.number().digits(8);  // Example: "37281945"

@@ -116,6 +116,17 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[text()='Appointment With']/following::input[1]")
     WebElement appointmentWithField;
 
+    @FindBy(xpath = "//label[text()='SCM Emails']/following::input[1]")
+    WebElement scmEmails;
+
+    @FindBy(xpath = "//label[text()='Customs Release Emails']/following::input[1]")
+    WebElement customsReleaseEmails;
+
+    @FindBy(xpath = "//label[text()='Billing Emails']/following::input[1]")
+    WebElement billingEmails;
+
+    @FindBy(xpath = "//label[text()='Store Front']/following::input[1]")
+    WebElement storeFrontField;
 
     /** ---------- Methods ---------- */
 
@@ -209,6 +220,29 @@ public class RelationsAllFieldsTestPage {
 
     public void enterCell(String text) {
         cellField.sendKeys(text);
+    }
+
+    public void enterStoreFront(String text) {
+        storeFrontField.sendKeys(text);
+    }
+
+    public void enterMultipleEmails(WebElement emailField, String... emails) {
+        String joinedEmails = String.join(";", emails);
+        emailField.clear();
+        emailField.sendKeys(joinedEmails);
+    }
+
+    // Convenience methods for each field
+    public void enterScmEmails(String... emails) {
+        enterMultipleEmails(scmEmails, emails);
+    }
+
+    public void enterCustomsReleaseEmails(String... emails) {
+        enterMultipleEmails(customsReleaseEmails, emails);
+    }
+
+    public void enterBillingEmails(String... emails) {
+        enterMultipleEmails(billingEmails, emails);
     }
 
 }
