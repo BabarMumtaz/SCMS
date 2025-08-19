@@ -30,16 +30,18 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickClientFRSubMenu();
         log.info("Clicked Client FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Client Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().hoverAndClickIconOnRow(0, "Edit");
         log.info("Hover over on A row and click Edit Icon");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Client Edit Page Heading: " + pageObjectManager.getClientPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Update Client", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getClientPage().clickDuplicateBtn();
+        pageObjectManager.getRelationsAllFieldsTestPage().clickDuplicateBtn();
         log.info("Click Duplicate Client Button");
 
         pageObjectManager.getClientPage().updatedClientName(faker.company().name());
@@ -48,22 +50,17 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
         pageObjectManager.getClientPage().enterVat(FakeDataUtil.getVatNo());
         log.info("Update VAT");
 
-        pageObjectManager.getClientPage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Fields Cross");
 
-        pageObjectManager.getClientPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save Button");
 
-        pageObjectManager.getClientPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Client successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getClientPage().clickSaveClientBack();
-        log.info("Click Save Client Button");
-
-        Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
-
-        pageObjectManager.getClientPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

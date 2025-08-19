@@ -83,7 +83,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
         log.info("Selected LFR");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
-        log.info("Click Extra Field Cross");
+        log.info("Click Extra Fields Cross");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterScmEmails(FakeDataUtil.getFakeEmails(3).split(";"));
         log.info("Entered Clients SCM Email");

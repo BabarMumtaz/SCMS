@@ -32,8 +32,8 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Add/Create Client successfully by entering data in required fields Using Excel File")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.02.02_Client")
     @Story("As a user, I should be able to Add/Create Client successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Create Client")
     public void AddClientTestUsingExcelFile(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
@@ -49,10 +49,11 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickClientFRSubMenu();
         log.info("Clicked Client FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
-        pageObjectManager.getClientPage().clickAddClientBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Client Add button");
 
         // Log the dropdown selections for clarity
@@ -62,10 +63,11 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         pageObjectManager.getClientPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
                 TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
 
-        Assert.assertTrue(pageObjectManager.getClientPage().isClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getClientPage().getClientSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Client successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getClientPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }
