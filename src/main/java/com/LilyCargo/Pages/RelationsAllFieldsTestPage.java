@@ -26,6 +26,9 @@ public class RelationsAllFieldsTestPage {
 
     /** ---------- Locators ---------- */
 
+    @FindBy(xpath = "//label[text()='Ticker']/following::input[1]")
+    WebElement tickerField;
+
     @FindBy(xpath = "//label[contains(text(), 'Name')]/following::input[1]")
     WebElement nameField;
 
@@ -130,6 +133,10 @@ public class RelationsAllFieldsTestPage {
 
     /** ---------- Methods ---------- */
 
+    public void enterTicker(String text) {
+        tickerField.sendKeys(text);
+    }
+
     public void enterName(String text) {
         nameField.sendKeys(text);
     }
@@ -152,6 +159,10 @@ public class RelationsAllFieldsTestPage {
 
     public void enterTelephoneNumber(String phoneNumber) {
         telephoneNumber1Field.sendKeys(phoneNumber);
+    }
+
+    public void enterTelephoneNumber2(String phoneNumber) {
+        telephoneNumber2Field.sendKeys(phoneNumber);
     }
 
     public void enterEmail(String text) {

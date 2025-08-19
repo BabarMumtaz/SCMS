@@ -47,7 +47,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().selectExportCompany("Shenzhen Jiufang");
         log.info("Selected Export Company");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
         log.info("Entered Shippers Name");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());

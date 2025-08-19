@@ -61,7 +61,7 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getGlobalMethodsPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());

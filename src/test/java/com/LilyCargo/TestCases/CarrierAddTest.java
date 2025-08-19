@@ -40,38 +40,38 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
-        pageObjectManager.getCarriersPage().clickAddCarrierBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Carriers Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Carrier", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getCarriersPage().enterTicker(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTicker(faker.company().name());
         log.info("Entered Ticker Name");
 
-        pageObjectManager.getCarriersPage().enterCarrierName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
         log.info("Entered Carrier's Name");
 
-        pageObjectManager.getCarriersPage().enterCarrierEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Carrier's Email");
 
-        pageObjectManager.getCarriersPage().enterCarrierDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Carrier's Tel Number");
 
-        pageObjectManager.getCarriersPage().enterAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getCarriersPage().enterZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getGlobalMethodsPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-/*        pageObjectManager.getCarriersPage().enterExtraEmailLabel("Extra Email");
+/*        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
-        pageObjectManager.getCarriersPage().enterExtraEmailValue(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailValue(faker.internet().emailAddress());
         log.info("Entered Extra Email Value");*/
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

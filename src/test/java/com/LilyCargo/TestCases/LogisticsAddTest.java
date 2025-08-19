@@ -43,13 +43,13 @@ public class LogisticsAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Logistic", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterShortName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterShortName(faker.name().name());
         log.info("Entered Logistic  Name");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterCompanyName(faker.company().name());
         log.info("Entered Logistic Company Name");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.name().name());
         log.info("Entered Logistic Contact Person");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
@@ -58,9 +58,8 @@ public class LogisticsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        //Xpath is different in logistics
-/*        pageObjectManager.getGlobalMethodsPage().selectCountry();
-        log.info("Selected Country");*/
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
+        log.info("Selected Country");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
         log.info("Entered Logistic Vat");

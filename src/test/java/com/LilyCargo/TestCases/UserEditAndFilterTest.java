@@ -49,7 +49,7 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         navigateToUserManagement();
 
 /*      This works too...
-        pageObjectManager.getGlobalMethodsPage().hoverOnUser1stRow();
+        pageObjectManager.getGlobalMethodsPage().hoverOnListing1stRow();
         log.info("Hover over 1st Row");
 
         pageObjectManager.getGlobalMethodsPage().clickOnViewIcon();

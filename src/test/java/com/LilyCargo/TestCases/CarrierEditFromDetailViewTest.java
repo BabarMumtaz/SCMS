@@ -39,24 +39,24 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
-        pageObjectManager.getCarrierListing().hoverOnCarrier1stRow();
+        pageObjectManager.getGlobalMethodsPage().hoverOnListing1stRow();
         log.info("Hover over 1st Row");
 
-        pageObjectManager.getCarrierListing().clickOnViewCarrierIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnViewIcon();
         log.info("Hover over View Icon and click");
 
-        Assert.assertTrue(pageObjectManager.getCarrierListing().isViewPageDisplayed(), "View Page is not Displayed");
+        Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isViewPageDisplayed(), "View Page is not Displayed");
 
-        pageObjectManager.getCarrierListing().clickOnEditCarrierIconFromDetail();
+        pageObjectManager.getGlobalMethodsPage().clickOnEditBtn();
         log.info("Clicked on Edit button on view page");
 
-        pageObjectManager.getCarriersPage().enterCarrierEmail2(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail2(faker.internet().emailAddress());
         log.info("Entered Carrier's Email 2");
 
-        pageObjectManager.getCarriersPage().enterCarrierDutchPhoneNumber2(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber2(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Carrier's Tel 2 Number");
 
-        pageObjectManager.getCarriersPage().enterAddress2(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress2(faker.address().streetAddress());
         log.info("Entered Address 2");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
