@@ -98,9 +98,6 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//label[text()='LFR']/following::div[@role='button']")
     WebElement lfrDropDown;
 
-    @FindBy(xpath = "//li[contains(.,'MARSHAL ISLANDS')]")
-    WebElement countryDropDownValue;
-
     @FindBy(id = "select-Status")
     WebElement userStatusDropDown;
 
@@ -291,14 +288,19 @@ public class GlobalMethodsTestPage {
             wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
             log.info("🔽 Opened dropdown");
 
-            // Build XPath dynamically based on visible text  String optionXPath = "//li[text()='" + optionText + "']";
+/*            // Build XPath dynamically based on visible text  String optionXPath = "//li[text()='" + optionText + "']";
             String optionXPath = "//li[contains(text(),'" + optionText + "')]";
             WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXPath)));
 
             executor.executeScript("arguments[0].scrollIntoView(true);", optionElement);
 
             // Click the desired option
-            optionElement.click();
+            optionElement.click();*/
+
+            WebElement dropdownOption = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
+            executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+            dropdownOption.click();
+
             log.info("✅ Selected option: " + optionText);
         } catch (Exception e) {
             log.warn("⚠️ Could not select option '" + optionText + "' from dropdown: " + e.getMessage());

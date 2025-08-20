@@ -1,11 +1,10 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -15,6 +14,7 @@ public class RelationsAllFieldsTestPage {
     WebDriver driver;
     Actions actions;
     WebDriverWait wait;
+    JavascriptExecutor executor;
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
     public RelationsAllFieldsTestPage(WebDriver driver) {
@@ -22,6 +22,7 @@ public class RelationsAllFieldsTestPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver);
+        this.executor = (JavascriptExecutor) this.driver;
     }
 
     /** ---------- Locators ---------- */
@@ -143,6 +144,21 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//button[text()='Duplicate']")
     WebElement duplicateButton;
 
+    @FindBy(xpath = "//label[text()='Export Company']/following::div[@role='button']")
+    WebElement exportCompanyDropDown;
+
+    @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
+    WebElement countryDropDown;
+
+    @FindBy(xpath = "//label[text()='Region']/following::div[@role='button']")
+    WebElement regionDropDown;
+
+    @FindBy(xpath = "//label[text()='LFR']/following::div[@role='button']")
+    WebElement lfrDropDown;
+
+    @FindBy(id = "select-Status")
+    WebElement userStatusDropDown;
+
     /** ---------- Methods ---------- */
 
     public void enterTicker(String text) {
@@ -150,6 +166,11 @@ public class RelationsAllFieldsTestPage {
     }
 
     public void enterName(String text) {
+        nameField.sendKeys(text);
+    }
+
+    public void updateName(String text) {
+        actions.click(nameField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
         nameField.sendKeys(text);
     }
 
@@ -218,6 +239,11 @@ public class RelationsAllFieldsTestPage {
         vatNumberField.sendKeys(text);
     }
 
+    public void updateVatNumber(String text) {
+        actions.click(vatNumberField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+        vatNumberField.sendKeys(text);
+    }
+
     public void enterWeChat(String text) {
         weChatField.sendKeys(text);
     }
@@ -280,8 +306,35 @@ public class RelationsAllFieldsTestPage {
         enterMultipleEmails(billingEmails, emails);
     }
 
-    public void clickDuplicateBtn() {
-        duplicateButton.click();
+    public void clickDuplicateBtn() { duplicateButton.click(); }
+
+    public void addClientData(String Name, String ContactPerson, String Address1, String Email1, String FinancialEmail,
+                              String FiscalMattersEmail1, String CeoEmail1, String TelephoneNumber1, String RegionDropDown,
+                              String CountryDropDown, String ZipCity, String Vat, String LfrDropDown, String ScmEmails, String CustomsReleaseEmails, String BillingEmails) {
+        nameField.sendKeys(Name);
+        contactPersonField.sendKeys(ContactPerson);
+        address1Field.sendKeys(Address1);
+        emailField.sendKeys(Email1);
+        financeEmailField.sendKeys(FinancialEmail);
+        fiscalMattersField.sendKeys(FiscalMattersEmail1);
+        ceoEmailField.sendKeys(CeoEmail1);
+        telephoneNumber1Field.sendKeys(TelephoneNumber1);
+        selectDropdownByText(regionDropDown, RegionDropDown);
+        selectDropdownByText(countryDropDown, CountryDropDown);
+        zipCityField.sendKeys(ZipCity);
+        vatNumberField.sendKeys(Vat);
+        selectDropdownByText(lfrDropDown, LfrDropDown);
+        scmEmails.sendKeys(ScmEmails);
+        customsReleaseEmails.sendKeys(CustomsReleaseEmails);
+        billingEmails.sendKeys(BillingEmails);
     }
 
+    // Method to select a dropdown value by visible text
+    public void selectDropdownByText(WebElement dropdownElement, String value) {
+        dropdownElement.click(); // open the dropdown
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + value + "')]"))));
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+        dropdownOption.click();
+    }
 }

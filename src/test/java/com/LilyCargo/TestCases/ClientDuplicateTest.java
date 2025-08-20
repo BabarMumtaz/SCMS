@@ -15,11 +15,11 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can Duplicate Client successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Duplicate Client successfully from the listing 1st page")
-    @Epic("EP001")
-    @Feature("Feature:002")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.02.03_Client")
     @Story("As a user, I should be able to Duplicate Client successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Client Listing > Edit Client > Duplicate Client")
-    public void VerifyClientDuplicateTestCase() throws InterruptedException {
+    public void VerifyClientDuplicateTestCase(){
 
         log = LogManager.getLogger(ClientDuplicateTest.class);
         log.info("Starting Client Edit Test from Listing Page.");
@@ -44,10 +44,10 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().clickDuplicateBtn();
         log.info("Click Duplicate Client Button");
 
-        pageObjectManager.getClientPage().updatedClientName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().updateName(faker.name().name());
         log.info("Update Clients Name");
 
-        pageObjectManager.getClientPage().enterVat(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().updateVatNumber(FakeDataUtil.getVatNo());
         log.info("Update VAT");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

@@ -1,6 +1,7 @@
 package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
+import com.LilyCargo.Util.FakeDataUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -56,12 +57,33 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Client Add button");
 
-        // Log the dropdown selections for clarity
-        log.info("Adding client data: Region - " + RegionDropDown + ", Country - " + CountryDropDown + ", LFR - "
-                + LfrDropDown);
-
-        pageObjectManager.getClientPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
+        pageObjectManager.getRelationsAllFieldsTestPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
                 TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
+
+        log.info("Adding client data: " +
+                "Name - " + Name + ", " +
+                "Contact Person - " + ContactPerson + ", " +
+                "Address 1 - " + Address1 + ", " +
+                "Email 1 - " + Email1 + ", " +
+                "Financial Email - " + FinancialEmail + ", " +
+                "Fiscal Matters Email 1 - " + FiscalMattersEmail1 + ", " +
+                "CEO Email 1 - " + CeoEmail1 + ", " +
+                "Telephone Number 1 - " + TelephoneNumber1 + ", " +
+                "Region - " + RegionDropDown + ", " +
+                "Country - " + CountryDropDown + ", " +
+                "Zip City - " + ZipCity + ", " +
+                "VAT - " + Vat + ", " +
+                "LFR - " + LfrDropDown + ", " +
+                "SCM Emails - " + ScmEmails + ", " +
+                "Customs Release Emails - " + CustomsReleaseEmails + ", " +
+                "Billing Emails - " + BillingEmails
+        );
+
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Click Extra Fields Cross");
+
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+        log.info("Click Save Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
