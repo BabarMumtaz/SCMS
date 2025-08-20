@@ -20,11 +20,11 @@ public class ClientEditFromListingViewTest extends TestBeforeAndAfter {
 	@Test(priority = 1, description = "Verify that a user can edit Client successfully", groups = {"regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can edit Client successfully from the listing 1st page")
-	@Epic("EP001")
-	@Feature("Feature:002")
+	@Epic("Freight Relations 04")
+	@Feature("Feature:04.02.04_Client")
 	@Story("As a user, I should be able to edit Client successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Client Listing > Edit Client")
-	public void VerifyClientEditTestCase() throws InterruptedException {
+	public void VerifyClientEditTestCase(){
 
 		log = LogManager.getLogger(ClientEditFromListingViewTest.class);
 		log.info("Starting Client Edit Test from Listing Page.");
@@ -35,34 +35,31 @@ public class ClientEditFromListingViewTest extends TestBeforeAndAfter {
 		pageObjectManager.getMenuBar().clickClientFRSubMenu();
 		log.info("Clicked Client FR Sub Menu");
 
-		Assert.assertTrue(pageObjectManager.getClientPage().isHeadingDisplayed(), "Heading Not Displayed");
-		log.info("Client Page Heading: " + pageObjectManager.getClientPage().getPageHeading());
+		String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+		log.info("Page Heading is: " + pageHeading);
+		Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
 		pageObjectManager.getGlobalMethodsPage().hoverAndClickIconOnRow(0, "Edit");
 		log.info("Hover over on A row and click Edit Icon");
 
-		Assert.assertTrue(pageObjectManager.getClientPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-		log.info("Client Edit Page Heading: " + pageObjectManager.getClientPage().getAddPageHeading());
+		String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+		log.info("Add Page Heading is: " + addPageHeading);
+		Assert.assertEquals(addPageHeading, "Update Client", "Edit Page heading does not match expected value.");
 
-		pageObjectManager.getClientPage().enterClientAddress2(faker.address().streetAddress());
+		pageObjectManager.getRelationsAllFieldsTestPage().enterAddress2(faker.address().streetAddress());
 		log.info("Entered Address 2");
 
-		pageObjectManager.getClientPage().clickExtraEmailFieldCross();
-		log.info("Click Extra Email Field Cross");
+		pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+		log.info("Click Extra Fields Cross");
 
-		pageObjectManager.getClientPage().clickExtraAddressFieldCross();
-		log.info("Click Extra Address Field Cross");
+		pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
+		log.info("Click Save Button");
 
-		pageObjectManager.getClientPage().clickExtraPhoneFieldCross();
-		log.info("Click Extra Phone Field Cross");
+		String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+		log.info("Success Alert is: " + successAlert);
+		Assert.assertEquals(successAlert, "Client successfully updated.", "Success Alert does not match expected value.");
 
-		pageObjectManager.getClientPage().clickSaveClientBack();
-		log.info("Click Save Client Button");
-
-		Assert.assertTrue(pageObjectManager.getClientPage().isUpdateClientSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-		log.info("Success Alert Message: " + pageObjectManager.getClientPage().getUpdatedClientSuccessAlertMessage());
-
-		pageObjectManager.getClientPage().clickOnAlertPopupLP();
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
 		log.info("Clicked Cross icon of Alert");
 
 	}

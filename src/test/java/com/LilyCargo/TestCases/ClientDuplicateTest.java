@@ -39,7 +39,7 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
-        Assert.assertEquals(addPageHeading, "Update Client", "Add Page heading does not match expected value.");
+        Assert.assertEquals(addPageHeading, "Update Client", "Edit Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().clickDuplicateBtn();
         log.info("Click Duplicate Client Button");
