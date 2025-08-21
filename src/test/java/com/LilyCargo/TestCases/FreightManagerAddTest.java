@@ -44,7 +44,7 @@ public class FreightManagerAddTest extends TestBeforeAndAfter {
         Assert.assertEquals(addPageHeading, "Add Freight Manager", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
-        log.info("Entered Freight Manager Company Name");
+        log.info("Entered Freight Manager Name");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Freight Manager Email");

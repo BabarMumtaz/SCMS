@@ -24,13 +24,11 @@ public class PageObjectManager {
     private DockPlannerPage dockPlanner;
     private RelationsAllFieldsTestPage relationsAllFieldsPage;
     private InternationalProductsPage internationalProductsPage;
-    private FreightManagersTestPage freightManagersPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
     private BillingCenterTestPage billingCenterPage;
     private CargoDataTestPage cargoDataPage;
-
 
     /** ---------- Constructor initializes WebDriver ---------- */
 
@@ -97,10 +95,6 @@ public class PageObjectManager {
 
     public InternationalProductsPage getInternationalProductsPage() {
         return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
-    }
-
-    public FreightManagersTestPage getFreightManagersPage() {
-        return (freightManagersPage == null) ? freightManagersPage = PageFactory.initElements(driver, FreightManagersTestPage.class) : freightManagersPage;
     }
 
     public RemarksTestPage getRemarksPage() {
