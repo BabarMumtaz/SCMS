@@ -159,6 +159,12 @@ public class RelationsAllFieldsTestPage {
     @FindBy(id = "select-Status")
     WebElement userStatusDropDown;
 
+    @FindBy(xpath = "//input[@name='emails[0].label']")
+    WebElement extraEmailLabel;
+
+    @FindBy(xpath = "//input[@name='emails[0].value']")
+    WebElement extraEmailValue;
+
     /** ---------- Methods ---------- */
 
     public void enterTicker(String text) {
@@ -337,4 +343,13 @@ public class RelationsAllFieldsTestPage {
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
         dropdownOption.click();
     }
+
+    public void enterExtraEmailLabel(String text) {
+        extraEmailLabel.sendKeys(text);
+    }
+
+    public void enterExtraEmailValue(String text) {
+        extraEmailValue.sendKeys(text);
+    }
+
 }

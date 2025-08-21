@@ -7,7 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 public class PageObjectManager {
     private WebDriver driver;
 
-    // Declare all page objects
+    /** ---------- Declare all page objects ---------- */
+
     private LoginTestPage loginPage;
     private MenuBarTestPage menuBar;
     private GlobalMethodsTestPage globalMethodsPage;
@@ -22,12 +23,8 @@ public class PageObjectManager {
     private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
     private DockPlannerPage dockPlanner;
     private RelationsAllFieldsTestPage relationsAllFieldsPage;
-    private CarriersTestPage carriersPage;
     private InternationalProductsPage internationalProductsPage;
-    private CarrierListingTestPage carrierListing;
     private ClientTestPage clientPage;
-    private ShipperTestPage shippersPage;
-    private ShipperListingPage shipperListing;
     private ExportCompaniesTestPage exportCompaniesPage;
     private FreightManagersTestPage freightManagersPage;
     private RemarksTestPage remarksPage;
@@ -37,7 +34,8 @@ public class PageObjectManager {
     private CargoDataTestPage cargoDataPage;
 
 
-    // Constructor initializes WebDriver
+    /** ---------- Constructor initializes WebDriver ---------- */
+
     public PageObjectManager(WebDriver driver) {
         this.driver = driver;
     }
@@ -103,24 +101,8 @@ public class PageObjectManager {
         return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
     }
 
-    public CarriersTestPage getCarriersPage() {
-        return (carriersPage == null) ? carriersPage = PageFactory.initElements(driver, CarriersTestPage.class) : carriersPage;
-    }
-
-    public CarrierListingTestPage getCarrierListing() {
-        return (carrierListing == null) ? carrierListing = PageFactory.initElements(driver, CarrierListingTestPage.class) : carrierListing;
-    }
-
     public ClientTestPage getClientPage() {
         return (clientPage == null) ? clientPage = PageFactory.initElements(driver, ClientTestPage.class) : clientPage;
-    }
-
-    public ShipperTestPage getShippersPage() {
-        return (shippersPage == null) ? shippersPage = PageFactory.initElements(driver, ShipperTestPage.class) : shippersPage;
-    }
-
-    public ShipperListingPage getShipperListing() {
-        return (shipperListing == null) ? shipperListing = PageFactory.initElements(driver, ShipperListingPage.class) : shipperListing;
     }
 
     public ExportCompaniesTestPage getExportCompanyPage() {

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 public class GlobalMethodsTestPage {
 
@@ -365,6 +366,19 @@ public class GlobalMethodsTestPage {
                 try { Thread.sleep(500); } catch (InterruptedException e) {}
             } else {
                 break; // Safety break if index 10 doesn't exist
+            }
+        }
+    }
+
+    // Switch to a new tab
+    public void switchToNewTab() {
+        String originalWindow = driver.getWindowHandle();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.numberOfWindowsToBe(2));
+        Set<String> windowHandles = driver.getWindowHandles();
+        for (String handle : windowHandles) {
+            if (!handle.equals(originalWindow)) {
+                driver.switchTo().window(handle);
+                break;
             }
         }
     }

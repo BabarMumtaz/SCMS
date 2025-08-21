@@ -68,11 +68,11 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-/*        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailValue(faker.internet().emailAddress());
-        log.info("Entered Extra Email Value");*/
+        log.info("Entered Extra Email Value");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
         log.info("Click Extra Field Cross");

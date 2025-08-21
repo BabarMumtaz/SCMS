@@ -69,7 +69,7 @@ public class CarrierEditFromDetailViewTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Carrier successfully updated.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getCarrierListing().clickOnAlertPopupDP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }
