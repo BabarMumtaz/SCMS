@@ -123,6 +123,9 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[text()='Position']/following::input[1]")
     WebElement positionField;
 
+    @FindBy(xpath = "//input[@name='payroll_ends']")
+    WebElement payrollEndsDate;
+
     @FindBy(xpath = "//input[@name='office_access_start']")
     WebElement officeAccessStartDate;
 
@@ -304,6 +307,10 @@ public class RelationsAllFieldsTestPage {
         cellField.sendKeys(text);
     }
 
+    public void enterPosition(String text) {
+        positionField.sendKeys(text);
+    }
+
     // Date picker helper
     private void selectDate(WebElement element, String day, String month, String year) {
         actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
@@ -311,6 +318,18 @@ public class RelationsAllFieldsTestPage {
 
     public void selectVisitorsDate(String day, String month, String year) {
         selectDate(dateField, day, month, year);
+    }
+
+    public void selectPayrollEndsDate(String day, String month, String year) {
+        selectDate(payrollEndsDate, day, month, year);
+    }
+
+    public void selectOfficeAccessStartDate(String day, String month, String year) {
+        selectDate(officeAccessStartDate, day, month, year);
+    }
+
+    public void selectOfficeAccessEndDate(String day, String month, String year) {
+        selectDate(officeAccessEndDate, day, month, year);
     }
 
     public void enterAppointmentWith(String text) {

@@ -63,7 +63,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Entered Shipper's Email");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
-        log.info("Entered Shipper's Tel Number");
+        log.info("Entered Shipper's Telephone Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
         log.info("Entered Extra Email");
