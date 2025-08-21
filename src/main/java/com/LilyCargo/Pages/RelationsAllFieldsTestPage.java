@@ -1,5 +1,7 @@
 package com.LilyCargo.Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,7 @@ public class RelationsAllFieldsTestPage {
     Actions actions;
     WebDriverWait wait;
     JavascriptExecutor executor;
+    Logger log = LogManager.getLogger(RelationsAllFieldsTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
     public RelationsAllFieldsTestPage(WebDriver driver) {
@@ -125,6 +128,15 @@ public class RelationsAllFieldsTestPage {
 
     @FindBy(xpath = "//input[@name='office_access_end']")
     WebElement officeAccessEndDate;
+
+    @FindBy(xpath = "//input[@name='date']")
+    WebElement dateField;
+
+    @FindBy(xpath = "//input[@name='timeEntrance']")
+    WebElement timeEntranceField;
+
+    @FindBy(xpath = "//label[text()='Location']/following::div[@role='button']")
+    WebElement locationDropdown;
 
     @FindBy(xpath = "//label[text()='Appointment With']/following::input[1]")
     WebElement appointmentWithField;
@@ -292,6 +304,19 @@ public class RelationsAllFieldsTestPage {
         cellField.sendKeys(text);
     }
 
+    // Date picker helper
+    private void selectDate(WebElement element, String day, String month, String year) {
+        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
+    }
+
+    public void selectVisitorsDate(String day, String month, String year) {
+        selectDate(dateField, day, month, year);
+    }
+
+    public void enterAppointmentWith(String text) {
+        appointmentWithField.sendKeys(text);
+    }
+
     public void enterStoreFront(String text) {
         storeFrontField.sendKeys(text);
     }
@@ -339,12 +364,18 @@ public class RelationsAllFieldsTestPage {
     }
 
     // Method to select a dropdown value by visible text
-    public void selectDropdownByText(WebElement dropdownElement, String value) {
+    public void selectDropdownByText(WebElement dropdownElement, String optionText) {
         dropdownElement.click(); // open the dropdown
+        log.info("🔽 Opened dropdown");
         WebElement dropdownOption = wait.until(ExpectedConditions
-                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + value + "')]"))));
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
         dropdownOption.click();
+        log.info("✅ Selected option: " + optionText);
+    }
+
+    public void selectLocation(String location) {
+        selectDropdownByText(locationDropdown, location);
     }
 
     public void enterExtraEmailLabel(String text) {
@@ -354,5 +385,7 @@ public class RelationsAllFieldsTestPage {
     public void enterExtraEmailValue(String text) {
         extraEmailValue.sendKeys(text);
     }
+
+
 
 }
