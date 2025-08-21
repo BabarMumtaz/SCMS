@@ -165,6 +165,8 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//input[@name='emails[0].value']")
     WebElement extraEmailValue;
 
+
+
     /** ---------- Methods ---------- */
 
     public void enterTicker(String text) {
@@ -269,6 +271,7 @@ public class RelationsAllFieldsTestPage {
     public void enterNote2(String text) {
         note2Field.sendKeys(text);
     }
+
     public void enterCode(String text) {
         codeField.sendKeys(text);
     }

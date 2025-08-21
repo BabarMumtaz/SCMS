@@ -13,12 +13,12 @@ public class FreightManagerAddTest extends TestBeforeAndAfter {
     Logger log;
 
     @Test(priority = 1,
-            description = "Add FreightManager",
+            description = "Add Freight Manager",
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Freight Manager successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.06_FreightManagers")
     @Story("As a user, I should be able to Add/Create Freight Manager successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Freight Manager")
     public void VerifyFreightManagerAddTestCase(){
@@ -32,40 +32,43 @@ public class FreightManagerAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickFreightManagersFRSubMenu();
         log.info("Clicked Freight Manager FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getFreightManagersPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Freight Manager Page Heading: " + pageObjectManager.getFreightManagersPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Freight Managers", "Page heading does not match expected value.");
 
-        pageObjectManager.getFreightManagersPage().clickAddFreightManagerBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Freight Manager Add button");
 
-        Assert.assertTrue(pageObjectManager.getFreightManagersPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Freight Manager Add Page Heading: " + pageObjectManager.getFreightManagersPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Freight Manager", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getFreightManagersPage().enterFreightManagerName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
         log.info("Entered Freight Manager Company Name");
 
-        pageObjectManager.getFreightManagersPage().enterFreightManagerEmail(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Freight Manager Email");
 
-        pageObjectManager.getFreightManagersPage().enterFreightManagerDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Freight Manager Phone Number");
 
-        pageObjectManager.getFreightManagersPage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
+        log.info("Entered Extra Email");
 
-        pageObjectManager.getFreightManagersPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailValue(faker.internet().emailAddress());
+        log.info("Entered Extra Email Value");
 
-        pageObjectManager.getFreightManagersPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Clicked ALl Extra Fields Cross");
 
-        pageObjectManager.getFreightManagersPage().clickSaveFreightManagerBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Freight Manager Button");
 
-        Assert.assertTrue(pageObjectManager.getFreightManagersPage().isFreightManagerSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getFreightManagersPage().getFreightManagerSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Freight Manager successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getFreightManagersPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

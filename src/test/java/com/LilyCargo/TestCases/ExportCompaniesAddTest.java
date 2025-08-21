@@ -17,8 +17,8 @@ public class ExportCompaniesAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Export Company successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Freight Relations 04")
+    @Feature("Feature:04.03_Shippers")
     @Story("As a user, I should be able to Add/Create Export Company successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add Export Company")
     public void VerifyExportCompaniesAddTestCase(){
@@ -32,55 +32,58 @@ public class ExportCompaniesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickExportCompaniesFRSubMenu();
         log.info("Clicked Export Company FR Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getExportCompanyPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Export Company Page Heading: " + pageObjectManager.getExportCompanyPage().getPageHeading());
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Export Companies", "Page heading does not match expected value.");
 
-        pageObjectManager.getExportCompanyPage().clickAddExportCompanyBtn();
+        pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Export Company Add button");
 
-        Assert.assertTrue(pageObjectManager.getExportCompanyPage().isAddPageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("Export Company Add Page Heading: " + pageObjectManager.getExportCompanyPage().getAddPageHeading());
+        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Add Export Company", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyName(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.name().name());
         log.info("Entered Export Company Name");
 
-        pageObjectManager.getExportCompanyPage().enterContactPerson(faker.company().name());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.name().name());
         log.info("Entered Export Company Name");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyEmail1(faker.internet().emailAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Export Company Email");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyAddress1(faker.address().streetAddress());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAddress1(faker.address().streetAddress());
         log.info("Entered Address");
 
-        pageObjectManager.getExportCompanyPage().selectCountry();
+        pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyZipCity(faker.address().zipCode());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyDutchPhoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Export Company Tel Number");
 
-        pageObjectManager.getExportCompanyPage().enterExportCompanyAgreementNotes(FakeDataUtil.getRemarks());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterAgreementNotes(FakeDataUtil.getRemarks());
         log.info("Entered Export Company Agreement Notes");
 
-        pageObjectManager.getExportCompanyPage().clickExtraEmailFieldCross();
-        log.info("Click Extra Email Field Cross");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailLabel("Extra Email");
+        log.info("Entered Extra Email");
 
-        pageObjectManager.getExportCompanyPage().clickExtraAddressFieldCross();
-        log.info("Click Extra Address Field Cross");
+        pageObjectManager.getRelationsAllFieldsTestPage().enterExtraEmailValue(faker.internet().emailAddress());
+        log.info("Entered Extra Email Value");
 
-        pageObjectManager.getExportCompanyPage().clickExtraPhoneFieldCross();
-        log.info("Click Extra Phone Field Cross");
+        pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
+        log.info("Clicked ALl Extra Fields Cross");
 
-        pageObjectManager.getExportCompanyPage().clickSaveExportCompanyBack();
+        pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Export Company Button");
 
-        Assert.assertTrue(pageObjectManager.getExportCompanyPage().isExportCompanySuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getExportCompanyPage().getExportCompanySuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Export Company successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getExportCompanyPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }

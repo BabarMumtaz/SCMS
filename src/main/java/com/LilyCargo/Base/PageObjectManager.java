@@ -24,8 +24,6 @@ public class PageObjectManager {
     private DockPlannerPage dockPlanner;
     private RelationsAllFieldsTestPage relationsAllFieldsPage;
     private InternationalProductsPage internationalProductsPage;
-    private ClientTestPage clientPage;
-    private ExportCompaniesTestPage exportCompaniesPage;
     private FreightManagersTestPage freightManagersPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
@@ -99,14 +97,6 @@ public class PageObjectManager {
 
     public InternationalProductsPage getInternationalProductsPage() {
         return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
-    }
-
-    public ClientTestPage getClientPage() {
-        return (clientPage == null) ? clientPage = PageFactory.initElements(driver, ClientTestPage.class) : clientPage;
-    }
-
-    public ExportCompaniesTestPage getExportCompanyPage() {
-        return (exportCompaniesPage == null) ? exportCompaniesPage = PageFactory.initElements(driver, ExportCompaniesTestPage.class) : exportCompaniesPage;
     }
 
     public FreightManagersTestPage getFreightManagersPage() {

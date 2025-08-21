@@ -72,7 +72,7 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         log.info("Entered Extra Email Value");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
-        log.info("Click Extra Field Cross");
+        log.info("Clicked ALl Extra Fields Cross");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterScmEmails(FakeDataUtil.getFakeEmails(2).split(";"));
         log.info("Entered Shipper's SCM Emails");
