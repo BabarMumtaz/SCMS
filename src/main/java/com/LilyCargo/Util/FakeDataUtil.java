@@ -3,9 +3,12 @@ package com.LilyCargo.Util;
 import com.github.javafaker.Faker;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,6 +17,8 @@ public class FakeDataUtil {
     private static final Faker fakerNL = new Faker(new Locale("nl"));  // Netherlands
     private static final Faker fakerCN = new Faker(new Locale("zh-CN"));  // China
     private static final Faker fakerEN = new Faker(new Locale("en")); // Default for other fields
+    private static final Random random = new Random();
+
 
     // Generate multiple fake emails (joined with ;)
     public static String getFakeEmails(int count) {
@@ -194,4 +199,69 @@ public class FakeDataUtil {
         double amount = fakerEN.number().randomDouble(2, 0, 20); // 2 decimal places, range 10–100
         return String.format("%.2f", amount); // ensures two decimal places
     }
+
+
+    // 🌊 List of major Sea Ports
+    private static final List<String> SEA_PORTS = Arrays.asList(
+            "Port of Shanghai",
+            "Port of Singapore",
+            "Port of Rotterdam",
+            "Port of Antwerp",
+            "Port of Hamburg",
+            "Port of Los Angeles",
+            "Port of Long Beach",
+            "Port of Dubai (Jebel Ali)",
+            "Port of Busan",
+            "Port of Hong Kong"
+    );
+
+    // ✈️ List of major Air Ports
+    private static final List<String> AIR_PORTS = Arrays.asList(
+            "Hartsfield–Jackson Atlanta International Airport",
+            "Beijing Capital International Airport",
+            "Los Angeles International Airport (LAX)",
+            "Dubai International Airport (DXB)",
+            "Tokyo Haneda Airport (HND)",
+            "London Heathrow Airport (LHR)",
+            "Paris Charles de Gaulle Airport (CDG)",
+            "Hong Kong International Airport (HKG)",
+            "Singapore Changi Airport (SIN)",
+            "Frankfurt Airport (FRA)"
+    );
+
+    // ✅ Get random Seaport Name
+    public static String getRandomSeaPort() {
+        return SEA_PORTS.get(random.nextInt(SEA_PORTS.size()));
+    }
+
+    // ✅ Get random Airport Name
+    public static String getRandomAirPort() {
+        return AIR_PORTS.get(random.nextInt(AIR_PORTS.size()));
+    }
+
+    // ✅ Generate a random Port Code (5-letter uppercase like "ADALV")
+    public static String getRandomPortCode() {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder code = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            code.append(letters.charAt(random.nextInt(letters.length())));
+        }
+        return code.toString();
+    }
+
+    // ✅ Generate abbreviation from Port Name (first letters of each word, max 5 chars)
+    public static String getAbbreviation(String portName) {
+        String[] words = portName.split(" ");
+        StringBuilder abbr = new StringBuilder();
+
+        for (String word : words) {
+            abbr.append(word.charAt(0));
+        }
+
+        // Ensure abbreviation is max 5 chars
+        return abbr.toString().toUpperCase().substring(0, Math.min(5, abbr.length()));
+    }
+
+
+
 }

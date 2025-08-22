@@ -108,6 +108,9 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[contains(text(), 'Code')]/following::input[1]")
     WebElement codeField;
 
+    @FindBy(xpath = "//label[contains(text(), 'Country')]/following::input[1]")
+    WebElement countryNameDropdown;
+
     @FindBy(xpath = "//label[contains(text(), 'Abbreviation')]/following::input[1]")
     WebElement abbreviationField;
 
@@ -299,17 +302,11 @@ public class RelationsAllFieldsTestPage {
         organizationField.sendKeys(text);
     }
 
-    public void enterBranch(String text) {
-        branchField.sendKeys(text);
-    }
+    public void enterBranch(String text) { branchField.sendKeys(text); }
 
-    public void enterCell(String text) {
-        cellField.sendKeys(text);
-    }
+    public void enterCell(String text) { cellField.sendKeys(text); }
 
-    public void enterPosition(String text) {
-        positionField.sendKeys(text);
-    }
+    public void enterPosition(String text) { positionField.sendKeys(text); }
 
     // Date picker helper
     private void selectDate(WebElement element, String day, String month, String year) {
@@ -396,6 +393,11 @@ public class RelationsAllFieldsTestPage {
     public void selectLocation(String location) {
         selectDropdownByText(locationDropdown, location);
     }
+
+    public void searchAndSelectCountry(String countryName) {
+        selectDropdownByText(countryNameDropdown, countryName);
+    }
+
 
     public void enterExtraEmailLabel(String text) {
         extraEmailLabel.sendKeys(text);

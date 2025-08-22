@@ -91,11 +91,18 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='LM Team']")
 	WebElement lmTeamFRSubMenu;
 
+	@FindBy(xpath = "//li[@title='Additional Parties']")
+	WebElement additionalPartiesFRSubMenu;
+
+	@FindBy(xpath = "//li[@title='LM Team']")
+	WebElement specialContactsFRSubMenu;
+
+	@FindBy(xpath = "//li[@title='Ports List']")
+	WebElement portsFRSubMenu;
+
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
 
-	@FindBy(xpath = "//li[@title='Additional Parties']")
-	WebElement additionalPartiesFRSubMenu;
 
 	@FindBy(xpath = "//li[@title='International Products']")
 	WebElement internationalProductsFinanceSubMenu;
@@ -191,6 +198,14 @@ public class MenuBarTestPage {
 
 	public void clickAdditionalPartiesFRSubMenu() {
 		additionalPartiesFRSubMenu.click();
+	}
+
+	public void clickSpecialContactsFRSubMenu() {
+		specialContactsFRSubMenu.click();
+	}
+
+	public void clickPortsFRSubMenu() {
+		portsFRSubMenu.click();
 	}
 
 	public void clickFinanceMenu() {

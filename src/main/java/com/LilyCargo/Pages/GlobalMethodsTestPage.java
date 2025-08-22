@@ -90,7 +90,10 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//label[text()='Export Company']/following::div[@role='button']")
     WebElement exportCompanyDropDown;
 
-    @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
+/*    @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
+    WebElement countryDropDown;*/
+
+    @FindBy(xpath = "//label[contains(text(), 'Country')]/following::div[@role='button']")
     WebElement countryDropDown;
 
     @FindBy(xpath = "//label[text()='Region']/following::div[@role='button']")
@@ -101,6 +104,9 @@ public class GlobalMethodsTestPage {
 
     @FindBy(id = "select-Status")
     WebElement userStatusDropDown;
+
+    @FindBy(xpath = "//label[text()='Port Type']/following::div[@role='button']")
+    WebElement portDropDown;
 
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
     List<WebElement> extraFieldCrossIcon;
@@ -331,6 +337,10 @@ public class GlobalMethodsTestPage {
 
     public void selectLfr(String lfr) {
         selectDropdownOption(lfrDropDown, lfr);
+    }
+
+    public void selectPortType(String portType) {
+        selectDropdownOption(portDropDown, portType);
     }
 
     public void clickExtraEmailFieldCross() {
