@@ -262,6 +262,19 @@ public class FakeDataUtil {
         return abbr.toString().toUpperCase().substring(0, Math.min(5, abbr.length()));
     }
 
+    // ✅ Get random country name
+    public static String getRandomCountry() {
+        String[] isoCountries = Locale.getISOCountries();
+        String randomCode = isoCountries[random.nextInt(isoCountries.length)];
+        Locale locale = new Locale("", randomCode);
+        return locale.getDisplayCountry(); // e.g. "Germany", "Canada"
+    }
+
+    // ✅ Get random ISO Country Code (2 letters)
+    public static String getRandomCountryCode() {
+        String[] isoCountries = Locale.getISOCountries();
+        return isoCountries[random.nextInt(isoCountries.length)]; // e.g. "DE", "US"
+    }
 
 
 }

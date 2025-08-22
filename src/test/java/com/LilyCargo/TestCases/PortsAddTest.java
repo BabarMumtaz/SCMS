@@ -43,10 +43,10 @@ public class PortsAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Port", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterName(FakeDataUtil.getRandomAirPort());// New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterName(FakeDataUtil.getRandomAirPort());
         log.info("Entered Port Name");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterCode(FakeDataUtil.getRandomPortCode()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterCode(FakeDataUtil.getRandomPortCode());
         log.info("Entered Port Code");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterAbbreviation(FakeDataUtil.getAbbreviation(FakeDataUtil.getRandomAirPort()));

@@ -49,7 +49,7 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterContactPerson(faker.company().name());
         log.info("Entered Notify Party Contact Person");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber());
         log.info("Entered Notify Party Tel Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
