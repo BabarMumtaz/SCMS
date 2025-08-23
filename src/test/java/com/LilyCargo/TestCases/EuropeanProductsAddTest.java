@@ -8,40 +8,40 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class InternationalProductsAddTest extends TestBeforeAndAfter {
+public class EuropeanProductsAddTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1, description = "Verify that a user can add International Products successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can add European Products successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can add International Products successfully")
+    @Description("Verify that a user can add European Products successfully")
     @Epic("Finance 05")
-    @Feature("Feature:05.01_International Product")
-    @Story("As a user, I should be able to add International Products successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Finance > Add International Products")
-    public void VerifyInternationalProductCase(){
+    @Feature("Feature:05.02_European Product")
+    @Story("As a user, I should be able to add European Products successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Finance > Add European Products")
+    public void VerifyEuropeanProductsAddTestCase(){
 
-        log = LogManager.getLogger(InternationalProductsAddTest.class);
-        log.info("Starting International Products Add Test from Finance.");
+        log = LogManager.getLogger(EuropeanProductsAddTest.class);
+        log.info("Starting European Products Add Test from Finance.");
 
         pageObjectManager.getMenuBar().clickFinanceMenu();
         log.info("Clicked Freight Relations Menu");
 
-        pageObjectManager.getMenuBar().clickInternationalProductsSubMenu();
-        log.info("Clicked International Products Sub Menu");
+        pageObjectManager.getMenuBar().clickEuropeanProductsSubMenu();
+        log.info("Clicked European Products Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
-        Assert.assertEquals(pageHeading, "International Products", "Page heading does not match expected value.");
+        Assert.assertEquals(pageHeading, "European Products", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
-        log.info("Clicked International Products Add button");
+        log.info("Clicked European Products Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
         log.info("Add Page Heading is: " + addPageHeading);
-        Assert.assertEquals(addPageHeading, "Add International Product Service", "Add Page heading does not match expected value.");
+        Assert.assertEquals(addPageHeading, "Add European Product Service", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getFinanceAllFieldsTestPage().enterPid(FakeDataUtil.getIntlPidNo());
+        pageObjectManager.getFinanceAllFieldsTestPage().enterPid(FakeDataUtil.getEuPidNo());
         log.info("Entered PID");
 
         pageObjectManager.getFinanceAllFieldsTestPage().enterLmgbrIn(FakeDataUtil.getContents());

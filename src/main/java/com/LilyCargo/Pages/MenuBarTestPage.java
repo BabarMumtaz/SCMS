@@ -110,6 +110,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='International Products']")
 	WebElement internationalProductsFinanceSubMenu;
 
+	@FindBy(xpath = "//li[@title='European Products']")
+	WebElement europeanProductsFinanceSubMenu;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to click on Logout button
@@ -221,5 +224,9 @@ public class MenuBarTestPage {
 
 	public void clickInternationalProductsSubMenu() {
 		wait.until(ExpectedConditions.visibilityOf(internationalProductsFinanceSubMenu)).click();
+	}
+
+	public void clickEuropeanProductsSubMenu() {
+		wait.until(ExpectedConditions.visibilityOf(europeanProductsFinanceSubMenu)).click();
 	}
 }

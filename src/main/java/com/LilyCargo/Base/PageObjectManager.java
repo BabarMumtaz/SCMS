@@ -23,7 +23,7 @@ public class PageObjectManager {
     private SubmitMrnCustomsStatusPage submitMrnCustomsStatus;
     private DockPlannerPage dockPlanner;
     private RelationsAllFieldsTestPage relationsAllFieldsPage;
-    private InternationalProductsPage internationalProductsPage;
+    private FinanceAllFieldsTestPage financeAllFieldsTestPage;
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
@@ -93,8 +93,8 @@ public class PageObjectManager {
         return (relationsAllFieldsPage == null) ? relationsAllFieldsPage = PageFactory.initElements(driver, RelationsAllFieldsTestPage.class) : relationsAllFieldsPage;
     }
 
-    public InternationalProductsPage getInternationalProductsPage() {
-        return (internationalProductsPage == null) ? internationalProductsPage = PageFactory.initElements(driver, InternationalProductsPage.class) : internationalProductsPage;
+    public FinanceAllFieldsTestPage getFinanceAllFieldsTestPage() {
+        return (financeAllFieldsTestPage == null) ? financeAllFieldsTestPage = PageFactory.initElements(driver, FinanceAllFieldsTestPage.class) : financeAllFieldsTestPage;
     }
 
     public RemarksTestPage getRemarksPage() {

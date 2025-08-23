@@ -108,6 +108,12 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//label[text()='Port Type']/following::div[@role='button']")
     WebElement portDropDown;
 
+    @FindBy(xpath = "//label[contains(text(), 'Vat')]/following::div[@role='button']")
+    WebElement vatCodeDropDown;
+
+    @FindBy(xpath = "//label[contains(text(), 'Debit')]/following::div[@role='button']")
+    WebElement debitCreditDropDown;
+
     @FindBy(xpath = "(//*[name()='svg'][@role='img'])")
     List<WebElement> extraFieldCrossIcon;
 
@@ -131,7 +137,6 @@ public class GlobalMethodsTestPage {
 
     @FindBy(xpath = "//div[contains(text(),'successfully ')]")
     WebElement alertPopupText;
-
 
     /** ---------- Methods ---------- */
 
@@ -295,15 +300,6 @@ public class GlobalMethodsTestPage {
             wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
             log.info("🔽 Opened dropdown");
 
-/*            // Build XPath dynamically based on visible text  String optionXPath = "//li[text()='" + optionText + "']";
-            String optionXPath = "//li[contains(text(),'" + optionText + "')]";
-            WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXPath)));
-
-            executor.executeScript("arguments[0].scrollIntoView(true);", optionElement);
-
-            // Click the desired option
-            optionElement.click();*/
-
             WebElement dropdownOption = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
             executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
             dropdownOption.click();
@@ -341,6 +337,14 @@ public class GlobalMethodsTestPage {
 
     public void selectPortType(String portType) {
         selectDropdownOption(portDropDown, portType);
+    }
+
+    public void selectVatCode(String vatCode) {
+        selectDropdownOption(vatCodeDropDown, vatCode);
+    }
+
+    public void selectDebitCredit(String debitCredit) {
+        selectDropdownOption(debitCreditDropDown, debitCredit);
     }
 
     public void clickExtraEmailFieldCross() {

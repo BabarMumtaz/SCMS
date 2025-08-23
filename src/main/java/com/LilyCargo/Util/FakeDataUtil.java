@@ -174,8 +174,12 @@ public class FakeDataUtil {
         return String.valueOf(amount);
     }
 
-    public static String getPidNo() {
+    public static String getIntlPidNo() {
         return fakerEN.bothify("INT###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }
+
+    public static String getEuPidNo() {
+        return fakerEN.bothify("EU###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
     public static String getVatNo() {
