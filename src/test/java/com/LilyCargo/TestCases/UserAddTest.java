@@ -18,7 +18,7 @@ public class UserAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add User successfully")
     @Epic("Administration")
-    @Feature("Feature:01_Overview_User Management")
+    @Feature("Feature:01.01_Overview_User Management")
     @Story("As a user, I should be able to Add/Create User successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Users > Add User")
     public void VerifyUserAddTestCase(){
@@ -34,14 +34,14 @@ public class UserAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
         log.info("Clicked User Sub Menu");
 
-        String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
+        String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Main Page Heading is: " + mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
-        String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
@@ -81,7 +81,7 @@ public class UserAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save User Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 

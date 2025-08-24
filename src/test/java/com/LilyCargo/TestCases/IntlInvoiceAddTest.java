@@ -48,8 +48,14 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
         log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
-        pageObjectManager.getBillingCenterPage().selectClient();
-        log.info("Selected Amazon EU SARL, Dutch Branch Client");
+/*        pageObjectManager.getBillingCenterPage().selectClient();
+        log.info("Selected Amazon EU SARL, Dutch Branch Client");*/
+
+        //STANDARD, TAX INV, Z-TYPE INV, CREDIT INV, Y-TYPE INV
+        pageObjectManager.getBillingCenterPage().selectInvoiceType("Z-TYPE INV");
+        log.info("Selected 'Z-TYPE INV' Invoice Type");
+
+        Thread.sleep(1000);
 
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
@@ -59,14 +65,14 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Entered Intl Invoice DATE");
 
         // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");
+/*        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
+        log.info("Entered Invoice Number");*/
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
         List<String> productNames = Arrays.asList(
-                "80210 - 2% Disbursement Fee",
+/*                "80210 - 2% Disbursement Fee",
                 "80210 - Additional Customs Line",
                 "80210 - Additional HS Code Charge",
                 "80299 - Administration fee",
@@ -83,7 +89,11 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
                 "80200 - DDP Service 40 FT Container",
                 "80200 - DDP Service 45 FT Container",
                 "23013 - Delivery / DPD Express Parcels (Value)",
-                "23011 - Delivery / Logistics payable (Value)"
+                "23011 - Delivery / Logistics payable (Value)"*/
+
+                "80200 - DDP Service 20 FT Container",
+                "80200 - DDP Service 40 FT Container",
+                "80200 - DDP Service 45 FT Container"
         );
 
         List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3);

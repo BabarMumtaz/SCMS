@@ -86,12 +86,8 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//table//tr[1]/td[last()]")
     WebElement statusColumnFirstRow;
 
-
     @FindBy(xpath = "//label[text()='Export Company']/following::div[@role='button']")
     WebElement exportCompanyDropDown;
-
-/*    @FindBy(xpath = "//label[text()='Country']/following::div[@role='button']")
-    WebElement countryDropDown;*/
 
     @FindBy(xpath = "//label[contains(text(), 'Country')]/following::div[@role='button']")
     WebElement countryDropDown;
@@ -132,10 +128,16 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveAndNewBtn;
 
+    @FindBy(xpath = "//button[contains(text(),'Update')]")
+    WebElement updateBtn;
+
+    @FindBy(xpath = "//button[contains(text(),'Cancel')]")
+    WebElement cancelBtn;
+
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement alertPopupListingPage;
 
-    @FindBy(xpath = "//div[contains(text(),'successfully ')]")
+    @FindBy(xpath = "//div[contains(text(),'success') or contains(text(),'Success')]")
     WebElement alertPopupText;
 
     /** ---------- Methods ---------- */
@@ -365,6 +367,14 @@ public class GlobalMethodsTestPage {
 
     public void clickSaveAndNewBtn() {
         saveAndNewBtn.click();
+    }
+
+    public void clickUpdateBtn() {
+        updateBtn.click();
+    }
+
+    public void clickCancelBtn() {
+        cancelBtn.click();
     }
 
     public void clickOnAlertPopupLP() {

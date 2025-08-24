@@ -100,6 +100,12 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//div[contains(text(),'Role successfully updated.')]")
     WebElement updateRoleSuccessAlertMessage;
 
+    @FindBy(xpath = "(//button[contains(text(),'Edit Details')])[1]")
+    WebElement personalInfoEditDetailsBtn;
+
+    @FindBy(xpath = "(//button[contains(text(),'Edit Details')])[2]")
+    WebElement accountInfoEditDetailsBtn;
+
     /** ---------- Methods ---------- */
 
     public void clickUserManagementBtn() {
@@ -227,6 +233,19 @@ public class AdminOverviewTestPage {
 
     public void scrollToElement() {
         executor.executeScript("arguments[0].scrollIntoView(true);", rolesDashboardCheckbox);
+    }
+
+
+    public void clickMyProfileBtn() {
+        myProfileBtn.click();
+    }
+
+    public void clickPersonalInfoEditDetailsBtn() {
+        personalInfoEditDetailsBtn.click();
+    }
+
+    public void clickAccountInfoEditDetailsBtn() {
+        accountInfoEditDetailsBtn.click();
     }
 
 }

@@ -392,6 +392,18 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(dropdownValue)).click();
     }
 
+    // Method to select a dropdown value by visible text
+    public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+        dropdownElement.click(); // open the dropdown
+        log.info("🔽 Opened dropdown");
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+        dropdownOption.click();
+        log.info("✅ Selected option: " + optionText);
+    }
+
+
     public void selectClient() throws InterruptedException {
         //selectDropdownValue(clientDropdown, clientDropdownValue);
         clientDropdown.click(); // Click to activate input
@@ -407,6 +419,10 @@ public class BillingCenterTestPage {
 
     public void selectAmazonDutyInvoiceType() {
         selectDropdownValue(invoiceTypeDropdown, invoiceAmzDutyTypeDropdownValue);
+    }
+
+    public void selectInvoiceType(String invoiceType) {
+        selectDropdownByText(invoiceTypeDropdown, invoiceType);
     }
 
     public void enterRemarks(String text) {
