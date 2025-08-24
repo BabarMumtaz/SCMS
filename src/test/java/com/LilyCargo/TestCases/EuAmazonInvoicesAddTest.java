@@ -69,9 +69,9 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered EU Invoice DATE");
 
-        // Enter the invoice number
+/*        // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");
+        log.info("Entered Invoice Number");*/
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("21");
         log.info("Entered Grace Days");

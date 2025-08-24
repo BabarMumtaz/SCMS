@@ -19,8 +19,8 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add INTL Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add INTL Invoice successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freights 03")
+    @Feature("Feature:03.08_Billing Center")
     @Story("As a user, I should be able to add INTL Invoice successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add INTL Invoice")
     public void VerifyIntlInvoiceCreation() throws InterruptedException {
