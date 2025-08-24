@@ -45,6 +45,16 @@ public class FinanceAllFieldsTestPage {
     @FindBy(xpath = "//input[@name='price']")
     WebElement priceField;
 
+    @FindBy(xpath = "//input[@name='ledger']")
+    WebElement ledgerField;
+
+    @FindBy(xpath = "//input[@name='type']")
+    WebElement typeField;
+
+    @FindBy(xpath = "//input[@name='bs_profit_loss']")
+    WebElement bsProfitLossField;
+
+
     /** ---------- Methods ---------- */
 
     public void enterPid(String text) {
@@ -74,6 +84,18 @@ public class FinanceAllFieldsTestPage {
 
     public void enterPrice(String text) {
         priceField.sendKeys(text);
+    }
+
+    public void enterLedger(String text) {
+        ledgerField.sendKeys(text);
+    }
+
+    public void enterType(String text) {
+        typeField.sendKeys(text);
+    }
+
+    public void enterBsProfitLoss(String text) {
+        bsProfitLossField.sendKeys(text);
     }
 
  }

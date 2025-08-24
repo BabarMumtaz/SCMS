@@ -113,6 +113,9 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[@title='European Products']")
 	WebElement europeanProductsFinanceSubMenu;
 
+	@FindBy(xpath = "//li[@title='Manage GL Accounts']")
+	WebElement glAccountFinanceSubMenu;
+
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Method to click on Logout button
@@ -228,5 +231,9 @@ public class MenuBarTestPage {
 
 	public void clickEuropeanProductsSubMenu() {
 		wait.until(ExpectedConditions.visibilityOf(europeanProductsFinanceSubMenu)).click();
+	}
+
+	public void clickManageGlAccountsSubMenu() {
+		wait.until(ExpectedConditions.visibilityOf(glAccountFinanceSubMenu)).click();
 	}
 }

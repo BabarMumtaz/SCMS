@@ -119,7 +119,7 @@ public class FakeDataUtil {
     }
 
     public static String getRemarks() {
-        return fakerEN.lorem().sentence(5); // Generates ~15 words
+        return fakerEN.lorem().sentence(7); // Generates ~15 words
     }
 
     public static String getIncidentsRegProblemSolution() {
@@ -129,6 +129,11 @@ public class FakeDataUtil {
     public static String getRemarksInCharacters() {
         return fakerEN.lorem().characters(40); // Generates ~15 words
     }
+
+    public static String getDescription() {
+        return fakerEN.lorem().sentence(3);// Generates ~15 words
+    }
+
 
     // Returns current date split into day, month, and year for Invoice field
     public static String[] getCurrentInvoiceDate() {

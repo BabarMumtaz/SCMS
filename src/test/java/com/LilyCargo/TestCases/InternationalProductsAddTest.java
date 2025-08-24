@@ -19,13 +19,13 @@ public class InternationalProductsAddTest extends TestBeforeAndAfter {
     @Feature("Feature:05.01_International Product")
     @Story("As a user, I should be able to add International Products successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Finance > Add International Products")
-    public void VerifyInternationalProductCase(){
+    public void VerifyInternationalProductAddTestCase(){
 
         log = LogManager.getLogger(InternationalProductsAddTest.class);
         log.info("Starting International Products Add Test from Finance.");
 
         pageObjectManager.getMenuBar().clickFinanceMenu();
-        log.info("Clicked Freight Relations Menu");
+        log.info("Clicked Finance Menu");
 
         pageObjectManager.getMenuBar().clickInternationalProductsSubMenu();
         log.info("Clicked International Products Sub Menu");

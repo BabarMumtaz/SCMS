@@ -25,7 +25,7 @@ public class EuropeanProductsAddTest extends TestBeforeAndAfter {
         log.info("Starting European Products Add Test from Finance.");
 
         pageObjectManager.getMenuBar().clickFinanceMenu();
-        log.info("Clicked Freight Relations Menu");
+        log.info("Clicked Finance Menu");
 
         pageObjectManager.getMenuBar().clickEuropeanProductsSubMenu();
         log.info("Clicked European Products Sub Menu");
