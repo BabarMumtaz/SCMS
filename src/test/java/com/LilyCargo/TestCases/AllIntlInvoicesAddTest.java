@@ -28,6 +28,45 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(AllIntlInvoicesAddTest.class);
         log.info("Starting INTL INV Add Test from Billing Center Tab.");
 
+        // Navigate to Billing Center Tab
+        pageObjectManager.getFreightListing().clickOnFreightID();
+        pageObjectManager.getFreightListing().switchToNewTab();
+        Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+        pageObjectManager.getFreightDetail().clickBillingCenterTab();
+
+        Thread.sleep(500);
+
+        // Setup shared data
+        List<String> productNames = Arrays.asList(
+                "80200 - DDP Service 20 FT Container",
+                "80200 - DDP Service 40 FT Container"
+        );
+        WebElement scrollContainer = pageObjectManager.getBillingCenterPage().getProductListContainer();
+
+        // Add INTL Invoice
+        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
+        pageObjectManager.getBillingCenterPage().addInvoice("STANDARD", "14", productNames, scrollContainer);
+
+        // Add Other Invoice Types
+        List<String> invoiceTypes = Arrays.asList("TAX INV", "Z-TYPE INV", "CREDIT INV", "Y-TYPE INV");
+        for (String type : invoiceTypes) {
+            pageObjectManager.getBillingCenterPage().addInvoice(type, "7", productNames, scrollContainer);
+        }
+
+        // Special case: TAX INV with Amazon Client
+        pageObjectManager.getBillingCenterPage().selectClient(); // Amazon
+        pageObjectManager.getBillingCenterPage().addInvoice("TAX INV", "7", productNames, scrollContainer);
+    }
+
+
+
+
+
+/*    public void VerifyAllIntlInvoicesAddTestCase() throws InterruptedException {
+
+        log = LogManager.getLogger(AllIntlInvoicesAddTest.class);
+        log.info("Starting INTL INV Add Test from Billing Center Tab.");
+
         // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
@@ -53,9 +92,6 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
 
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered Intl Invoice DATE");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
@@ -85,16 +121,12 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        /** ---------- TAX INV ---------- */
+        *//** ---------- TAX INV ---------- *//*
 
         //STANDARD, TAX INV, Z-TYPE INV, CREDIT INV, Y-TYPE INV
         pageObjectManager.getBillingCenterPage().selectInvoiceType("TAX INV");
         log.info("Selected 'TAX INV' Invoice Type");
 
-        String[] invoiceDate1 = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate1[0], invoiceDate1[1], invoiceDate1[2]);
-        log.info("Entered Intl Invoice DATE");
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Grace Days");
 
@@ -116,16 +148,12 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        /** ----------  Z-TYPE INV  --------- */
+        *//** ----------  Z-TYPE INV  --------- *//*
 
         //STANDARD, TAX INV, Z-TYPE INV, CREDIT INV, Y-TYPE INV
         pageObjectManager.getBillingCenterPage().selectInvoiceType("Z-TYPE INV");
         log.info("Selected 'Z-TYPE INV' Invoice Type");
 
-        String[] invoiceDate2 = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate2[0], invoiceDate2[1], invoiceDate2[2]);
-        log.info("Entered Intl Invoice DATE");
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Grace Days");
 
@@ -147,16 +175,12 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        /** ----------  CREDIT INV  --------- */
+        *//** ----------  CREDIT INV  --------- *//*
 
         //STANDARD, TAX INV, Z-TYPE INV, CREDIT INV, Y-TYPE INV
         pageObjectManager.getBillingCenterPage().selectInvoiceType("CREDIT INV");
         log.info("Selected 'CREDIT INV' Invoice Type");
 
-        String[] invoiceDate3 = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate3[0], invoiceDate3[1], invoiceDate3[2]);
-        log.info("Entered Intl Invoice DATE");
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Grace Days");
 
@@ -178,16 +202,12 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        /** ----------  Y-TYPE INV  --------- */
+        *//** ----------  Y-TYPE INV  --------- *//*
 
         //STANDARD, TAX INV, Z-TYPE INV, CREDIT INV, Y-TYPE INV
         pageObjectManager.getBillingCenterPage().selectInvoiceType("Y-TYPE INV");
         log.info("Selected 'Y-TYPE INV' Invoice Type");
 
-        String[] invoiceDate4 = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate4[0], invoiceDate4[1], invoiceDate4[2]);
-        log.info("Entered Intl Invoice DATE");
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Grace Days");
 
@@ -209,7 +229,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
-        /** ----------  TAX INV with AMAZON CLIENT  --------- */
+        *//** ----------  TAX INV with AMAZON CLIENT  --------- *//*
 
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
@@ -218,10 +238,6 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectInvoiceType("TAX INV");
         log.info("Selected 'TAX INV' Invoice Type");
 
-        String[] invoiceDate5 = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate5[0], invoiceDate5[1], invoiceDate5[2]);
-        log.info("Entered Intl Invoice DATE");
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Grace Days");
 
@@ -242,5 +258,5 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
-    }
+    }*/
 }
