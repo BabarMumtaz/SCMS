@@ -882,12 +882,12 @@ public class BillingCenterTestPage {
         return wait.until(ExpectedConditions.visibilityOf(errorAlertMessage)).isDisplayed();
     }
 
-    public void addInvoice(String invoiceType, String graceDays, List<String> productNames, WebElement scrollContainer) throws InterruptedException {
+    public void addInvoice(String invoiceType, List<String> productNames, WebElement scrollContainer) throws InterruptedException {
         if (invoiceType != null && !invoiceType.isEmpty()) {
             selectInvoiceType(invoiceType);
         }
 
-        enterGraceDays(graceDays);
+        //enterGraceDays(graceDays);
 
         for (int i = 1; i <= productNames.size(); i++) {
             String product = productNames.get(i - 1);
@@ -900,6 +900,23 @@ public class BillingCenterTestPage {
 
         Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + getSuccessAlertMessage());
+
+        clickOnAlertPopupCrossIcon();
+    }
+
+    public void addAmazonInvoice(String invoiceType) throws InterruptedException {
+        if (invoiceType != null && !invoiceType.isEmpty()) {
+            selectInvoiceType(invoiceType);
+        }
+
+        //enterGraceDays(graceDays);
+
+        scrollToFinishButton();
+        Thread.sleep(1000);
+        clickFinishINVButton();
+
+        Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Amazon Invoices Success Alert Message: " + getSuccessAlertMessage());
 
         clickOnAlertPopupCrossIcon();
     }

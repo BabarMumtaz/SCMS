@@ -19,8 +19,8 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
     @Test(priority = 0, description = "Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type", groups = {"smoke", "regression",}, enabled = true)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freights 03")
+    @Feature("Feature:03.08.04_Billing Center")
     @Story("As a user, I should be able to add EU Invoice successfully using Amazon Brokerage INV Type")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
     public void VerifyEUAmazonBrokerageInvoiceCreation() throws InterruptedException {

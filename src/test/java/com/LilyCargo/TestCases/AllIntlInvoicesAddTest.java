@@ -28,10 +28,17 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(AllIntlInvoicesAddTest.class);
         log.info("Starting INTL INV Add Test from Billing Center Tab.");
 
-        // Navigate to Billing Center Tab
         pageObjectManager.getFreightListing().clickOnFreightID();
+        log.info("Clicked on the 1st row FreightID.");
+
         pageObjectManager.getFreightListing().switchToNewTab();
+        log.info("Switched to the new tab");
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
+
+        pageObjectManager.getFreightDetail().selectLastSubFID();
+        Thread.sleep(500);
+
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
 
         Thread.sleep(500);
@@ -45,17 +52,34 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
 
         // Add INTL Invoice
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
-        pageObjectManager.getBillingCenterPage().addInvoice("STANDARD", "14", productNames, scrollContainer);
+        //pageObjectManager.getBillingCenterPage().addInvoice("STANDARD", "14", productNames, scrollContainer);
 
         // Add Other Invoice Types
-        List<String> invoiceTypes = Arrays.asList("TAX INV", "Z-TYPE INV", "CREDIT INV", "Y-TYPE INV");
-        for (String type : invoiceTypes) {
-            pageObjectManager.getBillingCenterPage().addInvoice(type, "7", productNames, scrollContainer);
+        List<String> inltInvoiceTypes = Arrays.asList("STANDARD", "TAX INV", "Z-TYPE INV", "CREDIT INV", "Y-TYPE INV");
+        for (String type : inltInvoiceTypes) {
+            pageObjectManager.getBillingCenterPage().addInvoice(type, productNames, scrollContainer);
         }
 
+
+        // Invoice types for Amazon client
+        List<String> amazonIntlInvoiceTypes = Arrays.asList("STANDARD", "TAX INV", "CREDIT INV");
+
+        // Loop through all invoice types
+        for (String type : amazonIntlInvoiceTypes) {
+            // Select Amazon Client before each invoice type
+            pageObjectManager.getBillingCenterPage().selectClient();
+            log.info("Selected Amazon EU SARL, Dutch Branch Client");
+
+            // Add invoice for the current type
+            pageObjectManager.getBillingCenterPage().addInvoice(type, productNames, scrollContainer);
+            log.info("Added Intl Invoice Type: " + type + " for Amazon Client");
+        }
+
+
         // Special case: TAX INV with Amazon Client
-        pageObjectManager.getBillingCenterPage().selectClient(); // Amazon
+    /*    pageObjectManager.getBillingCenterPage().selectClient(); // Amazon
         pageObjectManager.getBillingCenterPage().addInvoice("TAX INV", "7", productNames, scrollContainer);
+   */
     }
 
 
