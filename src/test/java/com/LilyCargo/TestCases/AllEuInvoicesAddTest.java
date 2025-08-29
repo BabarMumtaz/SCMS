@@ -26,7 +26,7 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
     public void VerifyAllEuInvoicesAddTestCase() throws InterruptedException {
 
         log = LogManager.getLogger(AllEuInvoicesAddTest.class);
-        log.info("Starting EU INV Add Test from Billing Center Tab.");
+        log.info("Starting EU All INV Add Test from Billing Center Tab.");
 
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");

@@ -20,7 +20,7 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add EU Invoice successfully using Amazon Brokerage INV Type")
     @Epic("Booked Freights 03")
-    @Feature("Feature:03.08.04_Billing Center")
+    @Feature("Feature:03.08.05_Billing Center")
     @Story("As a user, I should be able to add EU Invoice successfully using Amazon Brokerage INV Type")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
     public void VerifyEUAmazonBrokerageInvoiceCreation() throws InterruptedException {
@@ -28,15 +28,12 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
         log.info("Starting EUAmazonBrokerage INV Add Test from Billing Center Tab");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
@@ -64,14 +61,6 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
-
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered EU Invoice DATE");
-
-/*        // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");*/
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("21");
         log.info("Entered Grace Days");
@@ -130,15 +119,12 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
         log.info("Starting EuAmazon Duty Invoice Add Test from Billing Center Tab");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID 2nd Time");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab 2nd Time");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Heading 2nd Time: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
@@ -166,14 +152,6 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text for Amazon Duty INV Type");
-
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered EU Invoice DATE for Amazon Duty INV Type");
-
-        // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number for Amazon Duty INV Type");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("21");
         log.info("Entered Grace Days for Amazon Duty INV Type");

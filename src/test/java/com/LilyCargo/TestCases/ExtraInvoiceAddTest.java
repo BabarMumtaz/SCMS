@@ -19,8 +19,8 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add Extra Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Extra Invoice successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freights 03")
+    @Feature("Feature:03.08.07_Billing Center")
     @Story("As a user, I should be able to add Extra Invoice successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Extra Invoice")
     public void VerifyExtraInvoiceCreation() throws InterruptedException {
@@ -28,15 +28,12 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(ExtraInvoiceAddTest.class);
         log.info("Starting EXTRA INV Add Test from Billing Center Tab");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
@@ -57,13 +54,8 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectExtraInvClient();
         log.info("Selected 'A.I. Trading GmbH' Client");
 
-        // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");
-
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterExtraInvoiceDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered Extra Invoice DATE");
+/*        pageObjectManager.getBillingCenterPage().enterExtraInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
+        log.info("Entered Invoice Number");*/
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("7");
         log.info("Entered Invoice Period/Grace Days");
@@ -100,7 +92,6 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
             String randomAmount = FakeDataUtil.getAmountEur();
             pageObjectManager.getBillingCenterPage().enterAmountEInvoiceByRowIndex(i, randomAmount, scrollContainer);
 
-            // Enter random Sale amount using Faker
             String randomSaleAmount = FakeDataUtil.getRandomSaleAmount();
             pageObjectManager.getBillingCenterPage().enterSaleAmountByRowIndex(i, randomSaleAmount, scrollContainer);
 
@@ -111,8 +102,6 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBillingCenterPage().clickSubmitINVButton();
         log.info("Clicked Submit INV Button");
-
-        //Thread.sleep(2000);
 
         //Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
 

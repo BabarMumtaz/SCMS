@@ -28,15 +28,12 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(IntlInvoiceAddTest.class);
         log.info("Starting INTL INV Add Test from Billing Center Tab.");
 
-        // Click on the freight ID
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        // Switch to the new tab
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
@@ -64,15 +61,11 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
         log.info("Entered Intl Invoice DATE");
 
-        // Enter the invoice number
-/*        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");*/
-
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
 
         List<String> productNames = Arrays.asList(
-/*                "80210 - 2% Disbursement Fee",
+                "80210 - 2% Disbursement Fee",
                 "80210 - Additional Customs Line",
                 "80210 - Additional HS Code Charge",
                 "80299 - Administration fee",
@@ -89,11 +82,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
                 "80200 - DDP Service 40 FT Container",
                 "80200 - DDP Service 45 FT Container",
                 "23013 - Delivery / DPD Express Parcels (Value)",
-                "23011 - Delivery / Logistics payable (Value)"*/
-
-                "80200 - DDP Service 20 FT Container",
-                "80200 - DDP Service 40 FT Container",
-                "80200 - DDP Service 45 FT Container"
+                "23011 - Delivery / Logistics payable (Value)"
         );
 
         List<Integer> vatApplicableIndexes = Arrays.asList(1, 2, 3);

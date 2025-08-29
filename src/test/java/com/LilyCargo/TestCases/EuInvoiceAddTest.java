@@ -21,8 +21,8 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully using Standard INV Type", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add EU Invoice successfully using Standard INV Type")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freights 03")
+    @Feature("Feature:03.08.04_Billing Center")
     @Story("As a user, I should be able to add EU Invoice successfully using Standard INV Type")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > EU Invoice")
     public void VerifyEUInvoiceCreation() throws InterruptedException {
@@ -56,19 +56,8 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");
 
-/*        pageObjectManager.getBillingCenterPage().selectInvoiceType();
-        log.info("Selected 'Amazon Brokerage'  Invoice Type");*/
-
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
-
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered EU Invoice DATE");
-
-        // Enter the invoice number
-        pageObjectManager.getBillingCenterPage().enterInvoiceNumber(FakeDataUtil.generateInvoiceNumber());
-        log.info("Entered Invoice Number");
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("60");
         log.info("Entered Grace Days");

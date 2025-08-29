@@ -21,8 +21,8 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add Purchase Entry successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Purchase Entry successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freights 03")
+    @Feature("Feature:03.08.06_Billing Center")
     @Story("As a user, I should be able to add Purchase Entry successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Purchase Entry")
     public void VerifyPurchaseEntryCreation() throws InterruptedException {
@@ -36,7 +36,6 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        // Check if the edit wrapper is displayed
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
         log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
@@ -57,13 +56,8 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().selectPurchaseEntryShipper();
         log.info("Selected 'BTT Multimodal Container Solutions B.V.' Shipper");
 
-        // Enter the invoice number
         pageObjectManager.getBillingCenterPage().enterPurchaseEntryNumber(FakeDataUtil.generateInvoiceNumber());
         log.info("Entered Purchase Entry Invoice Number");
-
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
-        pageObjectManager.getBillingCenterPage().enterPurchaseEntryDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered Purchase Entry DATE");
 
         pageObjectManager.getBillingCenterPage().enterPurchaseEntryTotalAmount(FakeDataUtil.getRandomSaleAmount());
         log.info("Entered Total Amount");
