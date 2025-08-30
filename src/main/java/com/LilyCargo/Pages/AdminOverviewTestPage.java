@@ -49,6 +49,13 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//input[@name='email']")
     WebElement userEmail;
 
+    @FindBy(xpath = "//button[contains(text(),'Change Password')]")
+    WebElement changePasswordBtn;
+
+
+    @FindBy(xpath = "//input[@name='current_password']")
+    WebElement userCurrentPassword;
+
     @FindBy(xpath = "//input[@name='password']")
     WebElement userPassword;
 
@@ -133,12 +140,20 @@ public class AdminOverviewTestPage {
         userAddress.sendKeys(text);
     }
 
+    public void enterUserCurrentPassword(String text) {
+        userCurrentPassword.sendKeys(text);
+    }
+
     public void enterUserPassword(String text) {
         userPassword.sendKeys(text);
     }
 
     public void enterUserConfirmPassword(String text) {
         userConfirmPassword.sendKeys(text);
+    }
+
+    public void clickChangePasswordBtn() {
+        changePasswordBtn.click();
     }
 
     public void enterUserDutchPhoneNumber(String phoneNumber) {

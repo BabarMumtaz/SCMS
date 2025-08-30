@@ -35,6 +35,9 @@ public class GlobalMethodsTestPage {
     @FindBy(css = ".d-inline.main-title")
     WebElement mainPageHeading;
 
+    @FindBy(css = ".lc-header-title.text-capitalize.modal-title.h4")
+    WebElement popupHeading;
+
     @FindBy(xpath = "//h5[1]")
     WebElement addPageHeading;
 
@@ -144,6 +147,10 @@ public class GlobalMethodsTestPage {
 
     public String getMainPageHeadingText() {
         return wait.until(ExpectedConditions.visibilityOf(mainPageHeading)).getText().trim();
+    }
+
+    public String getPopupHeadingText() {
+        return wait.until(ExpectedConditions.visibilityOf(popupHeading)).getText().trim();
     }
 
     public void clickAddButton() {
