@@ -45,10 +45,6 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
         log.info("Clicked Personal Info Edit button");
 
- /*       String addPageHeading = pageObjectManager.getGlobalMethodsPage().getEditPageHeading();
-        log.info("Edit Page Heading is: " + addPageHeading);
-        Assert.assertEquals(addPageHeading, "Edit My Profile", "Edit Page heading does not match expected value.");
-*/
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
         log.info("Click Update My Profile Button");
 

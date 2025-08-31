@@ -301,7 +301,7 @@ public class BillingCenterTestPage {
     WebElement invoiceEditIcon;
 
     @FindBy(xpath = "(//span[@title='download-invoice'])[1]")
-    WebElement downloadInvoiceIcon;
+    WebElement downloadInvoicePdfIcon;
 
     @FindBy(xpath = "(//span[@title='push-invoice'])[1]")
     WebElement pushToExactIcon;
@@ -457,6 +457,12 @@ public class BillingCenterTestPage {
         actions.click(graceDays).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
                 .perform();
         graceDays.sendKeys(text);
+    }
+
+    public void updateRemarks(String text) {
+        actions.click(remarksField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        remarksField.sendKeys(text);
     }
 
     public String getProductSectionColHeading() {
@@ -919,6 +925,22 @@ public class BillingCenterTestPage {
         log.info("Amazon Invoices Success Alert Message: " + getSuccessAlertMessage());
 
         clickOnAlertPopupCrossIcon();
+    }
+
+    public void clickDownloadInvoicePdfIcon() {
+        wait.until(ExpectedConditions.elementToBeClickable(downloadInvoicePdfIcon)).click();
+    }
+
+    public void clickPushToExactIcon() {
+        wait.until(ExpectedConditions.elementToBeClickable(pushToExactIcon)).click();
+    }
+
+    public void clickPushToAmazonIcon() {
+        wait.until(ExpectedConditions.elementToBeClickable(pushToAmazonIcon)).click();
+    }
+
+    public void clickEditInvoiceIcon() {
+        wait.until(ExpectedConditions.elementToBeClickable(invoiceEditIcon)).click();
     }
 
 }

@@ -57,9 +57,9 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
         log.info("Entered Invoice Remarks Text");
 
-        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
+/*        String[] invoiceDate = FakeDataUtil.getInvoiceDayMonthYear();
         pageObjectManager.getBillingCenterPage().enterIntlEuInvDate(invoiceDate[0], invoiceDate[1], invoiceDate[2]);
-        log.info("Entered Intl Invoice DATE");
+        log.info("Entered Intl Invoice DATE");*/
 
         pageObjectManager.getBillingCenterPage().enterGraceDays("14");
         log.info("Entered Grace Days");
@@ -108,11 +108,54 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickFinishINVButton();
         log.info("Clicked Finish INV Button");
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Add Invoice Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
+
+        pageObjectManager.getBillingCenterPage().clickOnBilledInvoicesTab();
+        log.info("Clicked on Billed Invoices Tab");
+
+        pageObjectManager.getBillingCenterPage().clickDownloadInvoicePdfIcon();
+        log.info("Clicked on Download Invoice Pdf Icon");
+
+        String successAlert02 = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: " + successAlert02);
+        Assert.assertEquals(successAlert02, "Invoice Created Successfully", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
+
+        pageObjectManager.getBillingCenterPage().clickEditInvoiceIcon();
+        log.info("Clicked on Invoice Edit Icon");
+
+        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
+        log.info("Clicked Edit Btn");
+
+        pageObjectManager.getBillingCenterPage().updateRemarks(FakeDataUtil.getRemarks());
+        log.info("Updated Invoice Remarks Text");
+
+        pageObjectManager.getBillingCenterPage().clickFinishINVButton();
+        log.info("Clicked Finish INV Button");
+
+        String successAlert03 = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: " + successAlert03);
+        Assert.assertEquals(successAlert03, "PDF Downloaded", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
+
+        pageObjectManager.getBillingCenterPage().clickPushToExactIcon();
+        log.info("Clicked on Invoice Push To Exact Icon");
+
+        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: " + pushInvoiceSuccessAlert);
+        Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
 
     }
 }

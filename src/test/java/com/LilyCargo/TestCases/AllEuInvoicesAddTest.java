@@ -93,5 +93,40 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
             pageObjectManager.getBillingCenterPage().addAmazonInvoice(type);
             log.info("Added Amazon Invoice Type: " + type + " for Amazon Client");
         }
+
+        pageObjectManager.getBillingCenterPage().clickOnBilledInvoicesTab();
+        log.info("Clicked on Billed Invoices Tab");
+
+        pageObjectManager.getBillingCenterPage().clickDownloadInvoicePdfIcon();
+        log.info("Clicked on Download Invoice Pdf Icon");
+
+        pageObjectManager.getBillingCenterPage().clickEditInvoiceIcon();
+        log.info("Clicked on Invoice Edit Icon");
+
+        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
+        log.info("Clicked Edit Btn");
+
+        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
+        log.info("Entered Invoice Remarks Text");
+
+        pageObjectManager.getBillingCenterPage().clickFinishINVButton();
+        log.info("Clicked Finish INV Button");
+
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: " + successAlert);
+        Assert.assertEquals(successAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
+
+        pageObjectManager.getBillingCenterPage().clickPushToExactIcon();
+        log.info("Clicked on Invoice Push To Exact Icon");
+
+        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: " + pushInvoiceSuccessAlert);
+        Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        log.info("Clicked Cross icon of Alert");
     }
 }

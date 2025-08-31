@@ -22,7 +22,7 @@ public class BrokersAddTestWithShowTestData extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Broker successfully")
     @Epic("Freight Relations 04")
-    @Feature("Feature:04.07_Brokers")
+    @Feature("Feature:04.07.02_Brokers")
     @Story("As a user, I should be able to Add/Create Broker successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Brokers Relation > Add Broker")
     public void VerifyBrokersAddTestWithShowTestData(){
@@ -49,6 +49,7 @@ public class BrokersAddTestWithShowTestData extends TestBeforeAndAfter {
 
         // ---- Collect all fake data in one place ----
         Map<String, String> brokerData = new LinkedHashMap<>();
+
         brokerData.put("Company Name", faker.company().name());
         brokerData.put("Contact Person", faker.company().name());
         brokerData.put("Telephone Number", FakeDataUtil.getDutchPhoneNumber());

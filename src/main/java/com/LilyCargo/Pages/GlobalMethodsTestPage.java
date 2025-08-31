@@ -150,6 +150,9 @@ public class GlobalMethodsTestPage {
     WebElement alertPopupListingPage;
 
     @FindBy(xpath = "//div[contains(text(),'success') or contains(text(),'Success')]")
+    WebElement alertPopupTextOldXpath;
+
+    @FindBy(className = "Toastify__toast-body")
     WebElement alertPopupText;
 
     /** ---------- Methods ---------- */
