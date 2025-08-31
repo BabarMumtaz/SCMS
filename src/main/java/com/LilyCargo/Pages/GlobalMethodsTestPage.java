@@ -140,7 +140,6 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
     WebElement submitBtn;
 
-
     @FindBy(xpath = "(//button[contains(text(),'Edit')])[1]")
     WebElement personalInfoEditDetailsBtn;
 

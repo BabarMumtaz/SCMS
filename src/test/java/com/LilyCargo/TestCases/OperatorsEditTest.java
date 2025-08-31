@@ -43,8 +43,8 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Popup Heading is: " + operator01PopupHeading);
         Assert.assertEquals(operator01PopupHeading, "Update Operator: LMAAS", "Popup heading does not match expected value.");
 
-        pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
-        log.info("Entered Dump Duty HS Code");
+        pageObjectManager.getAdminOverviewTestPage().updateOperatorName("LMAAS 01");
+        log.info("Entered LMAAS Name");
 
         pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");
@@ -58,15 +58,15 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
 
         /** ---------- Operator 02 ---------- */
 
-        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
+        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn02();
         log.info("Clicked Edit Btn of LMLOG Operator");
 
         String operator02PopupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
         log.info("Popup Heading is: " + operator02PopupHeading);
         Assert.assertEquals(operator02PopupHeading, "Update Operator: LMLOG", "Popup heading does not match expected value.");
 
-        pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
-        log.info("Entered Dump Duty HS Code");
+        pageObjectManager.getAdminOverviewTestPage().updateOperatorName("LMLOG 02");
+        log.info("Entered LMLOG name");
 
         pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");

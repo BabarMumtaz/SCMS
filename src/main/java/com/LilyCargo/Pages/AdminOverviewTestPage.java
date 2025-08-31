@@ -3,6 +3,7 @@ package com.LilyCargo.Pages;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,7 @@ public class AdminOverviewTestPage {
     WebDriver driver;
     JavascriptExecutor executor;
     WebDriverWait wait;
+    Actions actions;
     Logger log = LogManager.getLogger(AdminOverviewTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
@@ -20,6 +22,7 @@ public class AdminOverviewTestPage {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -248,5 +251,12 @@ public class AdminOverviewTestPage {
     public void clickMyProfileBtn() {
         myProfileBtn.click();
     }
+
+    public void updateOperatorName(String text) {
+        actions.click(userName).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        userName.sendKeys(text);
+    }
+
 
 }
