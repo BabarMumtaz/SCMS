@@ -40,14 +40,17 @@ public class MenuBarTestPage {
 	@FindBy(xpath = "//li[contains(@title,'Intrastats')]")
 	WebElement intrastatsDashSubMenu;
 
-	@FindBy(xpath = "//li[contains(@title,'HS Triggers')]")
-	WebElement hsTriggersAdminSubMenu;
-
 	@FindBy(xpath = "//div[@title='Administration']")
 	WebElement administrationMenu;
 
 	@FindBy(xpath = "//div[@title='Administration']//li[@title='Overview']")
 	WebElement overviewAdmSubMenu;
+
+	@FindBy(xpath = "//li[contains(@title,'HS Triggers')]")
+	WebElement hsTriggersAdminSubMenu;
+
+	@FindBy(xpath = "//li[contains(@title,'Operators')]")
+	WebElement operatorsAdminSubMenu;
 
 	@FindBy(xpath = "//li[@title='Booked Freight']")
 	WebElement bookedFreightMenu;
@@ -139,16 +142,20 @@ public class MenuBarTestPage {
 		intrastatsDashSubMenu.click();
 	}
 
-	public void clickHsTriggersAdminSubMenu() {
-		hsTriggersAdminSubMenu.click();
-	}
-
 	public void clickAdministrationMenu() {
 		administrationMenu.click();
 	}
 
 	public void clickOverviewAdmSubMenu() {
 		overviewAdmSubMenu.click();
+	}
+
+	public void clickHsTriggersAdminSubMenu() {
+		hsTriggersAdminSubMenu.click();
+	}
+
+	public void clickOperatorsAdminSubMenu() {
+		operatorsAdminSubMenu.click();
 	}
 
 	public void clickBookedFreightMenu() {

@@ -42,7 +42,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Page Heading is: " + pageHeading);
         Assert.assertEquals(pageHeading, "My Profile", "Page heading does not match expected value.");
 
-        pageObjectManager.getAdminOverviewTestPage().clickPersonalInfoEditDetailsBtn();
+        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
         log.info("Clicked Personal Info Edit button");
 
  /*       String addPageHeading = pageObjectManager.getGlobalMethodsPage().getEditPageHeading();
@@ -64,7 +64,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
 
         /** ---------- AccountInfo Section ---------- */
 
-        pageObjectManager.getAdminOverviewTestPage().clickAccountInfoEditDetailsBtn();
+        pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn02();
         log.info("Clicked Account Info Edit button");
 
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();

@@ -35,7 +35,7 @@ public class GlobalMethodsTestPage {
     @FindBy(css = ".d-inline.main-title")
     WebElement mainPageHeading;
 
-    @FindBy(css = ".lc-header-title.text-capitalize.modal-title.h4")
+    @FindBy(css = ".lc-header-title.modal-title.h4")
     WebElement popupHeading;
 
     @FindBy(xpath = "//h5[1]")
@@ -136,6 +136,16 @@ public class GlobalMethodsTestPage {
 
     @FindBy(xpath = "//button[contains(text(),'Cancel')]")
     WebElement cancelBtn;
+
+    @FindBy(xpath = "//button[contains(text(),'Submit')]")
+    WebElement submitBtn;
+
+
+    @FindBy(xpath = "(//button[contains(text(),'Edit')])[1]")
+    WebElement personalInfoEditDetailsBtn;
+
+    @FindBy(xpath = "(//button[contains(text(),'Edit Details')])[2]")
+    WebElement accountInfoEditDetailsBtn;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement alertPopupListingPage;
@@ -380,8 +390,14 @@ public class GlobalMethodsTestPage {
         updateBtn.click();
     }
 
-    public void clickCancelBtn() {
-        cancelBtn.click();
+    public void clickCancelBtn() { cancelBtn.click(); }
+
+    public void clickSubmitBtn() { submitBtn.click(); }
+
+    public void clickEditDetailsBtn() { personalInfoEditDetailsBtn.click(); }
+
+    public void clickEditDetailsBtn02() {
+        accountInfoEditDetailsBtn.click();
     }
 
     public void clickOnAlertPopupLP() {
