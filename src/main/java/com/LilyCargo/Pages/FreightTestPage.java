@@ -2,10 +2,9 @@ package com.LilyCargo.Pages;
 
 import java.time.Duration;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,9 +17,10 @@ public class FreightTestPage {
 	JavascriptExecutor executor;
 	Actions actions;
 	WebDriverWait wait;
+	Logger log = LogManager.getLogger(FreightTestPage.class);
 
-	// Constructor that will be automatically called as soon as the object of the
-	// class is created
+	/** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
 	public FreightTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
@@ -29,7 +29,7 @@ public class FreightTestPage {
 		this.actions = new Actions(driver);
 	}
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+	/** ---------- Locators ---------- */
 
 	@FindBy(xpath = "//h2[text()='Booked Freights']")
 	WebElement heading;
@@ -52,35 +52,35 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='houseBLNo']")
 	WebElement hBLNO;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[1]")
-	WebElement clientDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Client')]//following::input[1]")
+	WebElement clientDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")
-	WebElement clientDropValue;
+	WebElement clientDropDownValue;
 
-	@FindBy(xpath = "(//div[@id='select-[object Object]'])]")
-	WebElement serviceTypeDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Service Type')]//following::input[1]")
+	WebElement serviceTypeDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'Clear')]")
-	WebElement serviceDropValue;
+	WebElement serviceDropDownValue;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[2]")
-	WebElement shipperDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Shipper')]//following::input[1]")
+	WebElement shipperDropDown;
 
 	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
-	WebElement shipperDropValue;
+	WebElement shipperDropDownValue;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[3]")
-	WebElement cOODrop;
+	@FindBy(xpath = "//label[contains(text(), 'COO')]//following::input[1]")
+	WebElement cOODropDown;
 
 	@FindBy(xpath = "//li[text()='BELGIUM - BE']")
-	WebElement cOODropValue;
+	WebElement cOODropDownValue;
 
-	@FindBy(xpath = "(//div[@id='select-[object Object]'])[2]")
-	WebElement containerDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Container Type')]//following::input[1]")
+	WebElement containerDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'45HQ')]")
-	WebElement containerDropValue;
+	WebElement containerDropDownValue;
 
 	@FindBy(xpath = "//input[@name='Contents']")
 	WebElement contents;
@@ -91,35 +91,44 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='volume']")
 	WebElement measurements;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[4]")
-	WebElement portOfLoadingDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Port Of Loading')]//following::input[1]")
+	WebElement portOfLoadingDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'Brandenburg international / DE BER')]")
-	WebElement portOfLoadingDropValue;
+	WebElement portOfLoadingDropDownValue;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[5]")
-	WebElement portOfDischargeDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Port Of Discharge')]//following::input[1]")
+	WebElement portOfDischargeDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'Noibai International Airport / VNHAN')]")
-	WebElement portOfDischargeDropValue;
+	WebElement portOfDischargeDropDownValue;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[6]")
-	WebElement carrierCompanyDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Carrier Company')]//following::input[1]")
+	WebElement carrierCompanyDropDown;
 
 	@FindBy(xpath = "//li[text()='China Eastern Airlines']")
-	WebElement carrierCompanyDropValue;
+	WebElement carrierCompanyDropDownValue;
 
-	@FindBy(xpath = "(//input[@id='selectable-[object Object]'])[7]")
-	WebElement exportCompanyDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Export Company')]//following::input[1]")
+	WebElement exportCompanyDropDown;
 
 	@FindBy(xpath = "//li[contains(.,'CREATIVE LABS PTE LTD C/O Chin')]")
-	WebElement exportCompanyDropValue;
+	WebElement exportCompanyDropDownValue;
 
-	@FindBy(xpath = "(//div[@id='select-[object Object]'])[3]")
-	WebElement freightWayDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]//following::input[1]")
+	WebElement freightWayDropDown;
 
 	@FindBy(xpath = "//li[text()='Air']")
-	WebElement freightWayDropValue;
+	WebElement freightWayDropDownValue;
+
+	@FindBy(xpath = "//label[contains(text(), 'VesselFlag')]//following::input[1]")
+	WebElement vesselFlagDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Airline Flag')]//following::input[1]")
+	WebElement airlineFlagDropDown;
+
+	@FindBy(xpath = "//input[@name='Delivery']")
+	WebElement deliveryField;
 
 	@FindBy(xpath = "//input[@name='BondedLocation']")
 	WebElement bondedLocation;
@@ -130,14 +139,98 @@ public class FreightTestPage {
 	@FindBy(xpath = "//button[text()='Save & Next']")
 	WebElement saveNextFreight;
 
+	@FindBy(xpath = "//label[text()='Vessel Name']")
+	WebElement vesselNameField;
+
+	@FindBy(xpath = "//input[@name='Serv_Voyage']")
+	WebElement servVoyageField;
+
+	@FindBy(xpath = "//input[@name='IMO_No']")
+	WebElement imoNoField;
+
+	@FindBy(xpath = "//input[@name='Airflight_No']")
+	WebElement airFlightNoField;
+
+	@FindBy(xpath = "//input[@name='Cut_Off_Date']")
+	WebElement cutOffDateField;
+
+	@FindBy(xpath = "//input[@name='Cut_Off_Time']")
+	WebElement cutOffTimeField;
+
+	@FindBy(xpath = "//label[contains(text(), 'Logistics Type')]//following::input[1]")
+	WebElement logisticsTypeDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Warehouse Name')]//following::input[1]")
+	WebElement warehouseNameDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Notify Party')]//following::input[1]")
+	WebElement notifyPartyDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Broker')]//following::input[1]")
+	WebElement brokerDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'LFR')]//following::input[1]")
+	WebElement lfrDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Freight Manager')]//following::input[1]")
+	WebElement freightManagerDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Logistics')]//following::input[1]")
+	WebElement logisticsDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Customs')]//following::input[1]")
+	WebElement customsDropDown;
+
+	@FindBy(xpath = "//input[@name='PreviousDocumentNumber']")
+	WebElement previousDocumentNumberField;
+
+	@FindBy(xpath = "//input[@name='InvoiceNo']")
+	WebElement invoiceNoField;
+
+	@FindBy(xpath = "//input[@name='ValueinEUR']")
+	WebElement invoiceValueInEURField;
+
+	@FindBy(xpath = "//label[contains(text(), 'Vat Procedure')]//following::input[1]")
+	WebElement vatProcedureDropDown;
+
+	@FindBy(xpath = "//input[@name='thc_inv_imp']")
+	WebElement thcInvImpDateField;
+
+	@FindBy(xpath = "//input[@name='pin_code']")
+	WebElement pinCodeField;
+
+	@FindBy(xpath = "//input[@name='pin_expire']")
+	WebElement pinExpireDateField;
+
+	@FindBy(xpath = "//input[@name='trucking_date']")
+	WebElement truckingDateField;
+
+	@FindBy(xpath = "//input[@name='InvoiceDate']")
+	WebElement invoiceDateField;
+
+	@FindBy(xpath = "//label[contains(text(), 'Trucking Co')]//following::input[1]")
+	WebElement truckingCoDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Freight Book')]//following::input[1]")
+	WebElement freightBookDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Additional Party')]//following::input[1]")
+	WebElement additionalPartyDropDown;
+
+	@FindBy(xpath = "//label[contains(text(), 'Adjust Operator')]//following::input[1]")
+	WebElement adjustOperatorDropDown;
+
 	@FindBy(css = ".custom-status")
 	WebElement customDocStatusBtn;
 
-	@FindBy(xpath = "//div[@id='select-Custom Doc Status']")
-	WebElement customDocStatusDrop;
+	@FindBy(xpath = "//label[contains(text(), 'Custom Doc Status')]//following::input[1]")
+	WebElement customDocStatusDropDown;
 
 	@FindBy(xpath = "//li[text()='sent']")
-	WebElement customDocStatusDropValue;
+	WebElement customDocStatusDropDownValue;
+
+	@FindBy(xpath = "//label[contains(text(), 'Customs Clearance Services')]//following::input[1]")
+	WebElement customsClearanceDropDown;
 
 	@FindBy(css = ".purchase-stage")
 	WebElement purchaseStepBtn;
@@ -145,16 +238,40 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='AdminFee']")
 	WebElement administrationFee;
 
+	@FindBy(xpath = "//input[@name='AirportHandlingFee']")
+	WebElement airportHandlingFee;
+
+	@FindBy(xpath = "//input[@name='ArrivalStorageFee']")
+	WebElement arrivalStorageFee;
+
+	@FindBy(xpath = "//input[@name='GasMeasurementCharge']")
+	WebElement gasMeasurementCharge;
+
+	@FindBy(xpath = "//input[@name='freight_purchase_usd']")
+	WebElement freightPurchaseUsdFee;
+
 	@FindBy(css = ".sale-stage")
 	WebElement saleStepBtn;
 
+	@FindBy(xpath = "//input[@name='LogisticsCharges']")
+	WebElement deliveryCharges;
+
 	@FindBy(xpath = "//input[@name='DutyEUR']")
 	WebElement duty;
+
+	@FindBy(xpath = "//input[@name='VatEur']")
+	WebElement vatEurFee;
+
+	@FindBy(xpath = "//input[@name='FreightCharge']")
+	WebElement freightCharge;
+
+	@FindBy(xpath = "//input[@name='freight_sale_usd']")
+	WebElement freightSaleUsdFee;
 	
 	@FindBy(css = "div[class='createFlight-title'] p")
 	WebElement editPageID;
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+	/** ---------- Methods ---------- */
 
 	// Method to capture the page heading
 	public String getHeading() {
@@ -198,24 +315,33 @@ public class FreightTestPage {
 		dropdownValue.click();
 	}
 
+	public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+		dropdownElement.click(); // open the dropdown
+		log.info("🔽 Opened dropdown");
+		WebElement dropdownOption = wait.until(ExpectedConditions
+				.visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
+		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+		dropdownOption.click();
+		log.info("✅ Selected option: " + optionText);
+	}
 	public void selectClient() {
-		selectDropdownValue(clientDrop, clientDropValue);
+		selectDropdownValue(clientDropDown, clientDropDownValue);
 	}
 
 	public void selectServiceType() {
-		selectDropdownValue(serviceTypeDrop, serviceDropValue);
+		selectDropdownValue(serviceTypeDropDown, serviceDropDownValue);
 	}
 
 	public void selectShipper() {
-		selectDropdownValue(shipperDrop, shipperDropValue);
+		selectDropdownValue(shipperDropDown, shipperDropDownValue);
 	}
 
 	public void selectCOO() {
-		selectDropdownValue(cOODrop, cOODropValue);
+		selectDropdownValue(cOODropDown, cOODropDownValue);
 	}
 
 	public void selectContainer() {
-		selectDropdownValue(containerDrop, containerDropValue);
+		selectDropdownValue(containerDropDown, containerDropDownValue);
 	}
 
 	public void enterContents(String text) {
@@ -231,27 +357,27 @@ public class FreightTestPage {
 	}
 
 	public void selectPortOfLoading() {
-		selectDropdownValue(portOfLoadingDrop, portOfLoadingDropValue);
+		selectDropdownValue(portOfLoadingDropDown, portOfLoadingDropDownValue);
 	}
 
 	public void selectPortOfDischarge() {
-		selectDropdownValue(portOfDischargeDrop, portOfDischargeDropValue);
+		selectDropdownValue(portOfDischargeDropDown, portOfDischargeDropDownValue);
 	}
 
 	public void scrollToElement() {
-		executor.executeScript("arguments[0].scrollIntoView(true);", carrierCompanyDrop);
+		executor.executeScript("arguments[0].scrollIntoView(true);", carrierCompanyDropDown);
 	}
 
 	public void selectCarrierCompany() {
-		selectDropdownValue(carrierCompanyDrop, carrierCompanyDropValue);
+		selectDropdownValue(carrierCompanyDropDown, carrierCompanyDropDownValue);
 	}
 
 	public void selectExportCompany() {
-		selectDropdownValue(exportCompanyDrop, exportCompanyDropValue);
+		selectDropdownValue(exportCompanyDropDown, exportCompanyDropDownValue);
 	}
 
 	public void selectFreightWay() {
-		selectDropdownValue(freightWayDrop, freightWayDropValue);
+		selectDropdownValue(freightWayDropDown, freightWayDropDownValue);
 	}
 
 	public void enterBondedLocation(String text) {
@@ -278,7 +404,7 @@ public class FreightTestPage {
 	}
 
 	public void selectCustomDocStatus() {
-		selectDropdownValue(customDocStatusDrop, customDocStatusDropValue);
+		selectDropdownValue(customDocStatusDropDown, customDocStatusDropDownValue);
 	}
 
 	public void clickPurchaseStepBtn() {
