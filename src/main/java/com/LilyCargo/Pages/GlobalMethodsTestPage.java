@@ -143,7 +143,7 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "(//button[contains(text(),'Edit')])[1]")
     WebElement personalInfoEditDetailsBtn;
 
-    @FindBy(xpath = "(//button[contains(text(),'Edit Details')])[2]")
+    @FindBy(xpath = "(//button[contains(text(),'Edit')])[2]")
     WebElement accountInfoEditDetailsBtn;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")

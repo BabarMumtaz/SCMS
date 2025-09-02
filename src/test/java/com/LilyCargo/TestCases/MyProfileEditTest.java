@@ -45,6 +45,10 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
         log.info("Clicked Personal Info Edit button");
 
+        String profileSectionHeading = pageObjectManager.getAdminOverviewTestPage().getProfileSectionsHeadingText();
+        log.info("Profile 1st Section Heading is: " + profileSectionHeading);
+        Assert.assertEquals(profileSectionHeading, "Personal Information", "Page heading does not match expected value.");
+
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
         log.info("Click Update My Profile Button");
 
@@ -62,6 +66,10 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
 
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn02();
         log.info("Clicked Account Info Edit button");
+
+        String profileSection02Heading = pageObjectManager.getAdminOverviewTestPage().getProfileSectionsHeadingText();
+        log.info("Profile 2nd Section Heading is: " + profileSection02Heading);
+        Assert.assertEquals(profileSection02Heading, "Account Information", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
         log.info("Click Update My Profile Button");

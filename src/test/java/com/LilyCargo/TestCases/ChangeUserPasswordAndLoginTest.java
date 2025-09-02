@@ -7,9 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserChangePasswordAndLoginTest extends TestBeforeAndAfter {
+public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
 
-    Logger log;
+    Logger log = LogManager.getLogger(ChangeUserPasswordAndLoginTest.class);
     String userEmail;
     String userPassword;
 
@@ -26,9 +26,6 @@ public class UserChangePasswordAndLoginTest extends TestBeforeAndAfter {
 
         userEmail = "appelitpublicate@gmail.com";
         userPassword = "Test@123";
-
-        log = LogManager.getLogger(UserChangePasswordAndLoginTest.class);
-        log.info("Starting Change Password Test from Administration.");
 
         pageObjectManager.getMenuBar().clickAdministrationMenu();
         log.info("Clicked Administration Menu");
@@ -54,7 +51,7 @@ public class UserChangePasswordAndLoginTest extends TestBeforeAndAfter {
         log.info("Popup Heading is: " + popupHeading);
         Assert.assertEquals(popupHeading, "Change Password", "Popup heading does not match expected value.");
 
-        pageObjectManager.getAdminOverviewTestPage().enterUserPassword("secret123");
+        pageObjectManager.getAdminOverviewTestPage().enterUserCurrentPassword("secret123");
         log.info("Entered Current Password");
 
         pageObjectManager.getAdminOverviewTestPage().enterUserPassword(userPassword);
@@ -68,21 +65,21 @@ public class UserChangePasswordAndLoginTest extends TestBeforeAndAfter {
 
         String personalInfoSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + personalInfoSuccessAlert);
-        Assert.assertEquals(personalInfoSuccessAlert, "Profile Updated successfully", "Success Alert does not match expected value.");
+        Assert.assertEquals(personalInfoSuccessAlert, "Password changed successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Cross icon of Alert");
 
     }
 
-    @Test(priority = 2, dependsOnMethods = "VerifyChangePasswordTestCase", description = "Login using the a changed password user", groups = {"login", "smoke", "regression"})
+    @Test(dependsOnMethods = "VerifyChangePasswordTestCase", description = "Login using the a changed password user", groups = {"login", "smoke", "regression"})
     public void loginWithChangedPasswordTest() {
 
-        log.info("🔐 Attempting to log in with a changed password user: " + userEmail);
+        log.info("🔐 Attempting to log in with a changed password user: " + userEmail + userPassword);
 
         pageObjectManager.getLoginPage().login(userEmail, userPassword);
 
         Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "❌ Login failed with a changed password user.");
-        log.info("✅ Logged in successfully with a changed password user: " + userEmail);
+        log.info("✅ Logged in successfully with a changed password user: " + userEmail + userPassword);
     }
 }

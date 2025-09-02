@@ -43,6 +43,9 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//button[text()='Email All Active']")
     WebElement userEmailAllBtn;
 
+    @FindBy(xpath = "//h4")
+    WebElement profileSectionsHeading;
+
     @FindBy(xpath = "//input[@name='avatar']")
     WebElement userProfileImage;
 
@@ -54,7 +57,6 @@ public class AdminOverviewTestPage {
 
     @FindBy(xpath = "//button[contains(text(),'Change Password')]")
     WebElement changePasswordBtn;
-
 
     @FindBy(xpath = "//input[@name='current_password']")
     WebElement userCurrentPassword;
@@ -118,6 +120,10 @@ public class AdminOverviewTestPage {
 
     public void clickAddUserBtn() {
         userCreateBtn.click();
+    }
+
+    public String getProfileSectionsHeadingText() {
+        return wait.until(ExpectedConditions.visibilityOf(profileSectionsHeading)).getText().trim();
     }
 
     public void addUserProfileImage(String filePath) {
