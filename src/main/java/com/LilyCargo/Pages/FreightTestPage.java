@@ -55,32 +55,17 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Client')]//following::input[1]")
 	WebElement clientDropDown;
 
-	@FindBy(xpath = "//li[contains(.,'Amazon EU SARL, Dutch Branch')]")
-	WebElement clientDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Service Type')]//following::input[1]")
 	WebElement serviceTypeDropDown;
-
-	@FindBy(xpath = "//li[contains(.,'Clear')]")
-	WebElement serviceDropDownValue;
 
 	@FindBy(xpath = "//label[contains(text(), 'Shipper')]//following::input[1]")
 	WebElement shipperDropDown;
 
-	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
-	WebElement shipperDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'COO')]//following::input[1]")
 	WebElement cOODropDown;
 
-	@FindBy(xpath = "//li[text()='BELGIUM - BE']")
-	WebElement cOODropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Container Type')]//following::input[1]")
 	WebElement containerDropDown;
-
-	@FindBy(xpath = "//li[contains(.,'45HQ')]")
-	WebElement containerDropDownValue;
 
 	@FindBy(xpath = "//input[@name='Contents']")
 	WebElement contents;
@@ -94,32 +79,17 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Port Of Loading')]//following::input[1]")
 	WebElement portOfLoadingDropDown;
 
-	@FindBy(xpath = "//li[contains(.,'Brandenburg international / DE BER')]")
-	WebElement portOfLoadingDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Port Of Discharge')]//following::input[1]")
 	WebElement portOfDischargeDropDown;
-
-	@FindBy(xpath = "//li[contains(.,'Noibai International Airport / VNHAN')]")
-	WebElement portOfDischargeDropDownValue;
 
 	@FindBy(xpath = "//label[contains(text(), 'Carrier Company')]//following::input[1]")
 	WebElement carrierCompanyDropDown;
 
-	@FindBy(xpath = "//li[text()='China Eastern Airlines']")
-	WebElement carrierCompanyDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Export Company')]//following::input[1]")
 	WebElement exportCompanyDropDown;
 
-	@FindBy(xpath = "//li[contains(.,'CREATIVE LABS PTE LTD C/O Chin')]")
-	WebElement exportCompanyDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]//following::input[1]")
 	WebElement freightWayDropDown;
-
-	@FindBy(xpath = "//li[text()='Air']")
-	WebElement freightWayDropDownValue;
 
 	@FindBy(xpath = "//label[contains(text(), 'VesselFlag')]//following::input[1]")
 	WebElement vesselFlagDropDown;
@@ -226,9 +196,6 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Custom Doc Status')]//following::input[1]")
 	WebElement customDocStatusDropDown;
 
-	@FindBy(xpath = "//li[text()='sent']")
-	WebElement customDocStatusDropDownValue;
-
 	@FindBy(xpath = "//label[contains(text(), 'Customs Clearance Services')]//following::input[1]")
 	WebElement customsClearanceDropDown;
 
@@ -324,25 +291,115 @@ public class FreightTestPage {
 		dropdownOption.click();
 		log.info("✅ Selected option: " + optionText);
 	}
-	public void selectClient() {
-		selectDropdownValue(clientDropDown, clientDropDownValue);
+
+	public void selectClient(String client) {
+		selectDropdownByText(clientDropDown, client);
 	}
 
-	public void selectServiceType() {
-		selectDropdownValue(serviceTypeDropDown, serviceDropDownValue);
+	public void selectServiceType(String serviceType) {
+		selectDropdownByText(serviceTypeDropDown, serviceType);
 	}
 
-	public void selectShipper() {
-		selectDropdownValue(shipperDropDown, shipperDropDownValue);
+	public void selectShipper(String shipper) {
+		selectDropdownByText(shipperDropDown, shipper);
 	}
 
-	public void selectCOO() {
-		selectDropdownValue(cOODropDown, cOODropDownValue);
+	public void selectCOO(String coo) {
+		selectDropdownByText(cOODropDown, coo);
 	}
 
-	public void selectContainer() {
-		selectDropdownValue(containerDropDown, containerDropDownValue);
+	public void selectContainerType(String containerType) {
+		selectDropdownByText(containerDropDown, containerType);
 	}
+
+	public void selectPortOfLoading(String portOfLoading) {
+		selectDropdownByText(portOfLoadingDropDown, portOfLoading);
+	}
+
+	public void selectPortOfDischarge(String portOfDischarge) {
+		selectDropdownByText(portOfDischargeDropDown, portOfDischarge);
+	}
+
+	public void selectCarrierCompany(String carrierCompany) {
+		selectDropdownByText(carrierCompanyDropDown, carrierCompany);
+	}
+
+	public void selectExportCompany(String exportCompany) {
+		selectDropdownByText(exportCompanyDropDown, exportCompany);
+	}
+
+	public void selectFreightWay(String freightWay) {
+		selectDropdownByText(freightWayDropDown, freightWay);
+	}
+
+	public void selectVesselFlag(String vesselFlag) {
+		selectDropdownByText(vesselFlagDropDown, vesselFlag);
+	}
+
+	public void selectAirlineFlag(String airlineFlag) {
+		selectDropdownByText(airlineFlagDropDown, airlineFlag);
+	}
+
+	public void selectLogisticsType(String logisticsType) {
+		selectDropdownByText(logisticsTypeDropDown, logisticsType);
+	}
+
+	public void selectWarehouseName(String warehouseName) {
+		selectDropdownByText(warehouseNameDropDown, warehouseName);
+	}
+
+	public void selectNotifyParty(String notifyParty) {
+		selectDropdownByText(notifyPartyDropDown, notifyParty);
+	}
+
+	public void selectBroker(String broker) {
+		selectDropdownByText(brokerDropDown, broker);
+	}
+
+	public void selectLFR(String lfr) {
+		selectDropdownByText(lfrDropDown, lfr);
+	}
+
+	public void selectFreightManager(String freightManager) {
+		selectDropdownByText(freightManagerDropDown, freightManager);
+	}
+
+	public void selectLogistics(String logistics) {
+		selectDropdownByText(logisticsDropDown, logistics);
+	}
+
+	public void selectCustoms(String customs) {
+		selectDropdownByText(customsDropDown, customs);
+	}
+
+	public void selectVatProcedure(String vatProcedure) {
+		selectDropdownByText(vatProcedureDropDown, vatProcedure);
+	}
+
+	public void selectTruckingCo(String truckingCo) {
+		selectDropdownByText(truckingCoDropDown, truckingCo);
+	}
+
+	public void selectFreightBook(String freightBook) {
+		selectDropdownByText(freightBookDropDown, freightBook);
+	}
+
+	public void selectAdditionalParty(String additionalParty) {
+		selectDropdownByText(additionalPartyDropDown, additionalParty);
+	}
+
+	public void selectAdjustOperator(String adjustOperator) {
+		selectDropdownByText(adjustOperatorDropDown, adjustOperator);
+	}
+
+	public void selectCustomDocStatus(String customDocStatus) {
+		selectDropdownByText(customDocStatusDropDown, customDocStatus);
+	}
+
+	public void selectCustomsClearanceServices(String customsClearance) {
+		selectDropdownByText(customsClearanceDropDown, customsClearance);
+	}
+
 
 	public void enterContents(String text) {
 		contents.sendKeys(text);
@@ -356,28 +413,10 @@ public class FreightTestPage {
 		measurements.sendKeys(text);
 	}
 
-	public void selectPortOfLoading() {
-		selectDropdownValue(portOfLoadingDropDown, portOfLoadingDropDownValue);
-	}
 
-	public void selectPortOfDischarge() {
-		selectDropdownValue(portOfDischargeDropDown, portOfDischargeDropDownValue);
-	}
 
 	public void scrollToElement() {
 		executor.executeScript("arguments[0].scrollIntoView(true);", carrierCompanyDropDown);
-	}
-
-	public void selectCarrierCompany() {
-		selectDropdownValue(carrierCompanyDropDown, carrierCompanyDropDownValue);
-	}
-
-	public void selectExportCompany() {
-		selectDropdownValue(exportCompanyDropDown, exportCompanyDropDownValue);
-	}
-
-	public void selectFreightWay() {
-		selectDropdownValue(freightWayDropDown, freightWayDropDownValue);
 	}
 
 	public void enterBondedLocation(String text) {
@@ -389,6 +428,74 @@ public class FreightTestPage {
 	public void clearBondedLocation() {
 		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
 				.perform();
+	}
+
+	public void enterDelivery(String text) {
+		deliveryField.sendKeys(text);
+	}
+
+	public void enterVesselName(String text) {
+		vesselNameField.sendKeys(text);
+	}
+
+	public void enterServVoyage(String text) {
+		servVoyageField.sendKeys(text);
+	}
+
+	public void enterIMONo(String text) {
+		imoNoField.sendKeys(text);
+	}
+
+	public void enterAirFlightNo(String text) {
+		airFlightNoField.sendKeys(text);
+	}
+
+	public void enterPreviousDocumentNumber(String text) {
+		previousDocumentNumberField.sendKeys(text);
+	}
+
+	public void enterInvoiceNo(String text) {
+		invoiceNoField.sendKeys(text);
+	}
+
+	public void enterInvoiceValueInEUR(String text) {
+		invoiceValueInEURField.sendKeys(text);
+	}
+
+	public void enterPinCode(String text) {
+		pinCodeField.sendKeys(text);
+	}
+
+	public void enterAirportHandlingFee(String text) {
+		airportHandlingFee.sendKeys(text);
+	}
+
+	public void enterArrivalStorageFee(String text) {
+		arrivalStorageFee.sendKeys(text);
+	}
+
+	public void enterGasMeasurementCharge(String text) {
+		gasMeasurementCharge.sendKeys(text);
+	}
+
+	public void enterFreightPurchaseUsdFee(String text) {
+		freightPurchaseUsdFee.sendKeys(text);
+	}
+
+	public void enterDeliveryCharges(String text) {
+		deliveryCharges.sendKeys(text);
+	}
+
+	public void enterVatEurFee(String text) {
+		vatEurFee.sendKeys(text);
+	}
+
+	public void enterFreightCharge(String text) {
+		freightCharge.sendKeys(text);
+	}
+
+	public void enterFreightSaleUsdFee(String text) {
+		freightSaleUsdFee.sendKeys(text);
 	}
 
 	public void clickSaveReturnFreightBtn() {
@@ -403,9 +510,6 @@ public class FreightTestPage {
 		wait.until(ExpectedConditions.visibilityOf(customDocStatusBtn)).click();
 	}
 
-	public void selectCustomDocStatus() {
-		selectDropdownValue(customDocStatusDropDown, customDocStatusDropDownValue);
-	}
 
 	public void clickPurchaseStepBtn() {
 		wait.until(ExpectedConditions.visibilityOf(purchaseStepBtn)).click();

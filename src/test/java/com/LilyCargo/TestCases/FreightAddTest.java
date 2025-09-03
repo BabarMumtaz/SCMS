@@ -60,7 +60,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectCOO();
         log.info("Selected COO");
 
-        pageObjectManager.getBookedFreights().selectContainer();
+        pageObjectManager.getBookedFreights().selectContainerType();
         log.info("Selected Container Type Dropdown Value");
 
         pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getContents());
