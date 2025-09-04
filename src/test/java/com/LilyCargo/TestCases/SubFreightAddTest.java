@@ -24,6 +24,10 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(SubFreightAddTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");
 
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
@@ -55,10 +59,10 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().selectSubFidNoTc();
         log.info("Selected SubFid NoTC");
 
-        pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getHouseBLNo());
+        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
         log.info("Entered SubFid House BL No");
 
-        pageObjectManager.getFreightDetail().enterSubFidClientRef(FakeDataUtil.getHouseBLNo());
+        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getHouseBLNo());
         log.info("Entered SubFid Client Ref");
 
         pageObjectManager.getFreightDetail().clickSubmitSubFidButton();

@@ -32,7 +32,10 @@ public class FreightTestPage {
 	/** ---------- Locators ---------- */
 
 	@FindBy(xpath = "//h2[text()='Booked Freights']")
-	WebElement heading;
+	WebElement pageHeading;
+
+	@FindBy(className = "createFlight-title")
+	WebElement addPageHeading;
 
 	@FindBy(xpath = "//button[text()='Create Freight']")
 	WebElement createFreight;
@@ -46,16 +49,22 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='Arrival']")
 	WebElement etaDatePicker;
 
+	@FindBy(xpath = "//input[@name='ContainerNo']")
+	WebElement containerNo;
+
 	@FindBy(xpath = "//input[@name='BLNo']")
 	WebElement bLNO;
 
 	@FindBy(xpath = "//input[@name='houseBLNo']")
-	WebElement hBLNO;
+	WebElement hblNo;
 
 	@FindBy(xpath = "//label[contains(text(), 'Client')]//following::input[1]")
 	WebElement clientDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Service Type')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Client Reference')]/following::div[1]")
+	WebElement clientReference;
+
+	@FindBy(xpath = "//label[contains(text(), 'Service Type')]/following::div[@role='button'][1]")
 	WebElement serviceTypeDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'Shipper')]//following::input[1]")
@@ -64,7 +73,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'COO')]//following::input[1]")
 	WebElement cOODropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Container Type')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Container Type')]/following::div[@role='button'][1]")
 	WebElement containerDropDown;
 
 	@FindBy(xpath = "//input[@name='Contents']")
@@ -88,7 +97,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Export Company')]//following::input[1]")
 	WebElement exportCompanyDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]/following::div[@role='button'][1]")
 	WebElement freightWayDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'VesselFlag')]//following::input[1]")
@@ -127,7 +136,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='Cut_Off_Time']")
 	WebElement cutOffTimeField;
 
-	@FindBy(xpath = "//label[contains(text(), 'Logistics Type')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Logistics Type')]/following::div[@role='button'][1]")
 	WebElement logisticsTypeDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'Warehouse Name')]//following::input[1]")
@@ -148,7 +157,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Logistics')]//following::input[1]")
 	WebElement logisticsDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Customs')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Customs')]/following::div[@role='button'][1]")
 	WebElement customsDropDown;
 
 	@FindBy(xpath = "//input[@name='PreviousDocumentNumber']")
@@ -160,7 +169,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='ValueinEUR']")
 	WebElement invoiceValueInEURField;
 
-	@FindBy(xpath = "//label[contains(text(), 'Vat Procedure')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Vat Procedure')]/following::div[@role='button'][1]")
 	WebElement vatProcedureDropDown;
 
 	@FindBy(xpath = "//input[@name='thc_inv_imp']")
@@ -187,16 +196,16 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Additional Party')]//following::input[1]")
 	WebElement additionalPartyDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Adjust Operator')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Adjust Operator')]/following::div[@role='button']")
 	WebElement adjustOperatorDropDown;
 
 	@FindBy(css = ".custom-status")
 	WebElement customDocStatusBtn;
 
-	@FindBy(xpath = "//label[contains(text(), 'Custom Doc Status')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Custom Doc Status')]/following::div[@role='button'][1]")
 	WebElement customDocStatusDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Customs Clearance Services')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Customs Clearance')]/following::div[@role='button']")
 	WebElement customsClearanceDropDown;
 
 	@FindBy(css = ".purchase-stage")
@@ -242,7 +251,11 @@ public class FreightTestPage {
 
 	// Method to capture the page heading
 	public String getHeading() {
-		return heading.getText();
+		return pageHeading.getText();
+	}
+
+	public String getAddPageHeading() {
+		return addPageHeading.getText();
 	}
 
 	public void clickCreateFreightBtn() {
@@ -266,14 +279,47 @@ public class FreightTestPage {
         selectDate(etaDatePicker, day, month, year);
     }
 
+	public void selectCutOffDate(String day, String month, String year) {
+		selectDate(cutOffDateField, day, month, year);
+	}
+
+	public void selectCutOffTime(String time) {
+		cutOffTimeField.clear();
+		cutOffTimeField.sendKeys(time);
+	}
+
+	public void selectDeliveryDate(String day, String month, String year) {
+		selectDate(deliveryField, day, month, year);
+	}
+
+	public void selectTHCInvImpDate(String day, String month, String year) {
+		selectDate(thcInvImpDateField, day, month, year);
+	}
+
+	public void selectPinExpireDate(String day, String month, String year) {
+		selectDate(pinExpireDateField, day, month, year);
+	}
+
+	public void selectTruckingDate(String day, String month, String year) {
+		selectDate(truckingDateField, day, month, year);
+	}
+
+	public void selectInvoiceDate(String day, String month, String year) {
+		selectDate(invoiceDateField, day, month, year);
+	}
+
 	public void enterBLNO(String text) {
 		bLNO.sendKeys(text);
 	}
 
 	public void enterHouseBLNO(String text) {
-		actions.click(hBLNO).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+		actions.click(hblNo).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
 		.perform();
-		hBLNO.sendKeys(text);
+		hblNo.sendKeys(text);
+	}
+
+	public void enterClientReference(String text) {
+		clientReference.sendKeys(text);
 	}
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
@@ -283,7 +329,7 @@ public class FreightTestPage {
 	}
 
 	public void selectDropdownByText(WebElement dropdownElement, String optionText) {
-		dropdownElement.click(); // open the dropdown
+		wait.until(ExpectedConditions.elementToBeClickable(dropdownElement)).click(); // open the dropdown
 		log.info("🔽 Opened dropdown");
 		WebElement dropdownOption = wait.until(ExpectedConditions
 				.visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));

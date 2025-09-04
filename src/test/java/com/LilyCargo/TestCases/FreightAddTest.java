@@ -31,8 +31,16 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(FreightAddTest.class);
         log.info("Starting Freight Add Test.");
 
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: " + pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
         pageObjectManager.getBookedFreights().clickCreateFreightBtn();
         log.info("Clicked Create Freight Button");
+
+        String addPageHeading = pageObjectManager.getBookedFreights().getAddPageHeading();
+        log.info("Add Page Heading is: " + addPageHeading);
+        Assert.assertEquals(addPageHeading, "Create New Freight", "Add Page heading does not match expected value.");
 
         pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getFNO());
         log.info("Entered FNO");
@@ -60,7 +68,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectCOO("CHINA");
         log.info("Selected COO");
 
-        pageObjectManager.getBookedFreights().selectContainerType("");
+        pageObjectManager.getBookedFreights().selectContainerType("40RFT");
         log.info("Selected Container Type Dropdown Value");
 
         pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getContents());
