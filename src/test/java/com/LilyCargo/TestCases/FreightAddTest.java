@@ -48,19 +48,19 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().enterBLNO(FakeDataUtil.getBLNo());
         log.info("Entered BLNo");
 
-        pageObjectManager.getBookedFreights().selectClient();
+        pageObjectManager.getBookedFreights().selectClient("Amazon EU SARL, Dutch Branch");
         log.info("Selected Client Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectServiceType();
+        pageObjectManager.getBookedFreights().selectServiceType("Clear");
         log.info("Selected Service Type Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectShipper();
+        pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
         log.info("Selected Shipper Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectCOO();
+        pageObjectManager.getBookedFreights().selectCOO("CHINA");
         log.info("Selected COO");
 
-        pageObjectManager.getBookedFreights().selectContainerType();
+        pageObjectManager.getBookedFreights().selectContainerType("");
         log.info("Selected Container Type Dropdown Value");
 
         pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getContents());
@@ -72,31 +72,37 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().enterMeasurements(FakeDataUtil.getMeasurements());
         log.info("Entered Measurements");
 
-        pageObjectManager.getBookedFreights().selectPortOfLoading();
+        pageObjectManager.getBookedFreights().selectPortOfLoading("Yantian");
         log.info("Selected Port Of Loading Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectPortOfDischarge();
+        pageObjectManager.getBookedFreights().selectPortOfDischarge("Rotterdam");
         log.info("Selected Port Of Discharge Dropdown Value");
 
         pageObjectManager.getBookedFreights().scrollToElement();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
-        pageObjectManager.getBookedFreights().selectCarrierCompany();
+        pageObjectManager.getBookedFreights().selectCarrierCompany("Cathy Pacific");
         log.info("Selected Carrier Company Value");
 
-        pageObjectManager.getBookedFreights().selectExportCompany();
+        pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
         log.info("Selected Export Company Value");
 
-        pageObjectManager.getBookedFreights().selectFreightWay();
+        pageObjectManager.getBookedFreights().selectFreightWay("Air");
         log.info("Selected Freight Way Value");
 
         pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
         log.info("Clicked Save & Return Freight Button");
 
+/*
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
+*/
 
-        pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
+        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + pushInvoiceSuccessAlert);
+        Assert.assertEquals(pushInvoiceSuccessAlert, "Freight successfully created.", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Alert Popup ");
 
     }

@@ -38,10 +38,18 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickSubFidAddIcon();
         log.info("Clicked SubFid Add Icon");
 
+/*
         Assert.assertTrue(pageObjectManager.getFreightDetail().isCreateSubFidPopupHeadingDisplayed(), "SubFid popup Not Displayed");
         log.info("Popup Heading: " + pageObjectManager.getFreightDetail().getCreateSubFidPopupHeading());
+*/
+        String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
+        log.info("Popup Heading is: " + popupHeading);
+        Assert.assertEquals(popupHeading, "Create Sub Freight", "Popup heading does not match expected value.");
 
-        pageObjectManager.getFreightDetail().selectSubFidShipper();
+        pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
+        log.info("Selected SubFid Export Company");
+
+        pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
         log.info("Selected SubFid Shipper");
 
         pageObjectManager.getFreightDetail().selectSubFidNoTc();
@@ -56,8 +64,14 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
         log.info("Clicked Submit Button");
 
+/*
         Assert.assertTrue(pageObjectManager.getFreightDetail().isSubFidAddSuccessAlertMessageDisplayed(), "Sub FID Creation Success Alert Message Not Displayed");
         log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getSubFidAddSuccessAlertMessage());
+*/
+
+        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + pushInvoiceSuccessAlert);
+        Assert.assertEquals(pushInvoiceSuccessAlert, "Subfreight created successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
