@@ -15,11 +15,11 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can Create SubFreight successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Create SubFreight successfully")
-    @Epic("EP001")
-    @Feature("Feature:003")
+    @Epic("Booked Freight 03")
+    @Feature("Feature:03.03_Create Sub Freight")
     @Story("As a user, I should be able to Create SubFreight successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
-    public void VerifySubFreightCreation() throws InterruptedException {
+    public void VerifySubFreightCreation(){
 
         log = LogManager.getLogger(SubFreightAddTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");

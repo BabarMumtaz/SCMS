@@ -14,8 +14,8 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 	@Test(priority = 1, description = "Verify that a user can edit freight successfully", groups = {"regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can edit freight successfully from the Freight Detail page")
-	@Epic("EP001")
-	@Feature("Feature:002")
+	@Epic("Booked Freight 03")
+	@Feature("Feature:03.02_Edit Freight")
 	@Story("As a user, I should be able to edit freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Edit freight")
 	public void EditFreightTestFromDetailPage() throws InterruptedException {
@@ -46,8 +46,12 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 
-		pageObjectManager.getFreightDetail().clickOnBFAlertPopupCrossIcon();
-		log.info("Clicked Cross icon of Alert");
+		String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+		log.info("Success Alert is: " + pushInvoiceSuccessAlert);
+		Assert.assertEquals(pushInvoiceSuccessAlert, "Freight successfully updated.", "Success Alert does not match expected value.");
+
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+		log.info("Clicked Alert Popup ");
 
 	}
 }

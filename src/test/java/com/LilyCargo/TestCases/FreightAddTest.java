@@ -22,8 +22,8 @@ public class FreightAddTest extends TestBeforeAndAfter {
 	@Test(priority = 1, description = "Verify that a user can Add/Create freight successfully", groups = {"smoke", "regression"})
 	@Severity(SeverityLevel.BLOCKER)
 	@Description("Verify that a user can Add/Create freight successfully by entering data in required fields")
-	@Epic("EP001")
-	@Feature("Feature:002")
+	@Epic("Booked Freight 03")
+	@Feature("Feature:03_Create Freight")
 	@Story("As a user, I should be able to Add/Create freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
 	public void VerifyFreightCreation() throws InterruptedException {
@@ -106,11 +106,6 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
         log.info("Clicked Save & Return Freight Button");
-
-/*
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isBFSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getBFSuccessAlertMessage());
-*/
 
         String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: " + pushInvoiceSuccessAlert);
