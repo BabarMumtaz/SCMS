@@ -53,6 +53,12 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectETADate(eta[0], eta[1], eta[2]);
         log.info("Entered ETA DATE");
 
+        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getHouseBLNo());
+        log.info("Entered Client Ref");
+
+        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
+        log.info("Entered SubFid House BL No");
+
         pageObjectManager.getBookedFreights().enterBLNO(FakeDataUtil.getBLNo());
         log.info("Entered BLNo");
 

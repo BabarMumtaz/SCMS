@@ -61,13 +61,13 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Client')]//following::input[1]")
 	WebElement clientDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Client Reference')]/following::div[1]")
+	@FindBy(xpath = "//label[text()='Client Reference']/following-sibling::div//input")
 	WebElement clientReference;
 
 	@FindBy(xpath = "//label[contains(text(), 'Service Type')]/following::div[@role='button'][1]")
 	WebElement serviceTypeDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Shipper')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(normalize-space(.), 'Shipper')]/following-sibling::div//input")
 	WebElement shipperDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'COO')]//following::input[1]")
@@ -94,7 +94,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Carrier Company')]//following::input[1]")
 	WebElement carrierCompanyDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Export Company')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(normalize-space(.), 'Export Company')]/following-sibling::div//input")
 	WebElement exportCompanyDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]/following::div[@role='button'][1]")
@@ -319,6 +319,8 @@ public class FreightTestPage {
 	}
 
 	public void enterClientReference(String text) {
+		actions.click(clientReference).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		clientReference.sendKeys(text);
 	}
 
