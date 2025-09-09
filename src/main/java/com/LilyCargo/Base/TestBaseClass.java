@@ -3,10 +3,7 @@ package com.LilyCargo.Base;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Locale;
 import java.util.Properties;
-import java.util.List;
-import java.util.Arrays;
 
 import com.LilyCargo.Pages.*;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +12,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,7 +32,7 @@ public class TestBaseClass {
 	public static Faker faker;
 	private static WebDriverWait wait;
 
-	public static PageObjectManager pageObjectManager; // New Page Object Manager
+	public static PageObjectManager pageObjectManager;
 
 	public TestBaseClass() {
 		if (prop == null) {
@@ -61,17 +57,21 @@ public class TestBaseClass {
 		log.info("Initializing WebDriver...");
 		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
 
+		// Force WebDriverManager to work offline (cached drivers only)
+		System.setProperty("wdm.offline", "true");
+		System.setProperty("wdm.forceCache", "true");
+
 		switch (browserName) {
 			case "chrome":
-				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
+				driver = WebDriverManager.chromedriver().create();
 				log.info("Chrome Driver initiated.");
 				break;
+
 			case "firefox":
-				WebDriverManager.firefoxdriver().setup();
-				driver = new FirefoxDriver();
+				driver = WebDriverManager.firefoxdriver().create();
 				log.info("Firefox Driver initiated.");
 				break;
+
 			default:
 				log.error("Unsupported browser: " + browserName);
 				throw new IllegalArgumentException("Unsupported browser: " + browserName);
@@ -85,13 +85,12 @@ public class TestBaseClass {
 
 		log.info("Browser initialized.");
 
+		// Event listener for WebDriver logs
 		eventListener = new WebEventListener();
 		driver = new EventFiringDecorator<>(eventListener).decorate(driver);
 
 		js = (JavascriptExecutor) driver;
 		faker = new Faker();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-
 	}
 }

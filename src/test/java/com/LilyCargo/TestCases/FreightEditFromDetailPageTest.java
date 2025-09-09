@@ -23,6 +23,10 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log = LogManager.getLogger(FreightEditFromDetailPageTest.class);
 		log.info("Starting Freight Edit Test from Detail Page.");
 
+		String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+		log.info("Page Heading is: " + pageHeading);
+		Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
 		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
 
@@ -37,10 +41,15 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getFreightDetail().clickOnEditFreightIconDP();
 		log.info("Clicked on Booked Freight Edit Icon");
 
+		String editPageHeading = pageObjectManager.getBookedFreights().getAddPageHeading();
+		log.info("Edit Page Heading is: " + editPageHeading);
+		// Assert that heading starts with "Edit ID:" ""editPageHeading.startsWith("Edit ID:"), OR Contains
+		Assert.assertTrue(editPageHeading.contains("Edit ID:"), "Edit Page heading does not contain 'Edit ID:'. Found: " + editPageHeading);
+
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Save & Next Freight Button");
 
-		pageObjectManager.getBookedFreights().enterBondedLocation("Kerkstraat 132, 1311 13 Amsterdam, Netherlands");
+		pageObjectManager.getBookedFreights().enterBondedLocation(faker.address().fullAddress());
 		log.info("Entered Bonded Location");
 
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
