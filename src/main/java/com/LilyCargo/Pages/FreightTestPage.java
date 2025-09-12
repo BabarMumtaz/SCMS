@@ -118,7 +118,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//button[text()='Save & Next']")
 	WebElement saveNextFreight;
 
-	@FindBy(xpath = "//label[text()='Vessel Name']")
+	@FindBy(xpath = "//label[contains(text(), 'Vessel Name')]//following::input[1]")
 	WebElement vesselNameField;
 
 	@FindBy(xpath = "//input[@name='Serv_Voyage']")
@@ -308,6 +308,10 @@ public class FreightTestPage {
 		selectDate(invoiceDateField, day, month, year);
 	}
 
+	public void enterContainerNumber(String text) {
+		containerNo.sendKeys(text);
+	}
+
 	public void enterBLNO(String text) {
 		bLNO.sendKeys(text);
 	}
@@ -490,7 +494,7 @@ public class FreightTestPage {
 		servVoyageField.sendKeys(text);
 	}
 
-	public void enterIMONo(String text) {
+	public void enterImoNo(String text) {
 		imoNoField.sendKeys(text);
 	}
 

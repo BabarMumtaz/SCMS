@@ -27,7 +27,7 @@ public class FakeDataUtil {
                 .collect(Collectors.joining(";"));
     }
 
-    public static String getFNO() {
+    public static String getRandomNumber() {
         return fakerEN.number().digits(8);  // Example: "37281945"
     }
 
@@ -66,11 +66,15 @@ public class FakeDataUtil {
 
     //--------------------------------------------------------------- Generate Date PART ------------------------
 
-    public static String getHouseBLNo() {
+/*    public static String getHouseBLNo() {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
     public static String getBLNo() {
+        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
+    }*/
+
+    public static String getString() {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 

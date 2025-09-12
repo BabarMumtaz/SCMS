@@ -42,7 +42,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Create New Freight", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getFNO());
+        pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getRandomNumber());
         log.info("Entered FNO");
 
         String[] etd = FakeDataUtil.getETDDayMonthYear();
@@ -53,14 +53,17 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectETADate(eta[0], eta[1], eta[2]);
         log.info("Entered ETA DATE");
 
-        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getHouseBLNo());
+        pageObjectManager.getBookedFreights().enterContainerNumber(FakeDataUtil.getString());
+        log.info("Entered Container Number");
+
+        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getString());
         log.info("Entered Client Ref");
 
-        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
-        log.info("Entered SubFid House BL No");
-
-        pageObjectManager.getBookedFreights().enterBLNO(FakeDataUtil.getBLNo());
+        pageObjectManager.getBookedFreights().enterBLNO(FakeDataUtil.getString());
         log.info("Entered BLNo");
+
+        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
+        log.info("Entered SubFid House BL No");
 
         pageObjectManager.getBookedFreights().selectClient("Amazon EU SARL, Dutch Branch");
         log.info("Selected Client Dropdown Value");
@@ -71,7 +74,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
         log.info("Selected Shipper Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectCOO("CHINA");
+        pageObjectManager.getBookedFreights().selectCOO("TURKEY");
         log.info("Selected COO");
 
         pageObjectManager.getBookedFreights().selectContainerType("40RFT");
@@ -103,6 +106,24 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBookedFreights().selectFreightWay("Air");
         log.info("Selected Freight Way Value");
+
+        pageObjectManager.getBookedFreights().enterVesselName(FakeDataUtil.getRandomCountry());
+        log.info("Entered Vessel Name");
+
+        pageObjectManager.getBookedFreights().enterServVoyage(FakeDataUtil.getString());
+        log.info("Entered Serv. Voyage");
+
+        pageObjectManager.getBookedFreights().enterImoNo(FakeDataUtil.getRandomNumber());
+        log.info("Entered IMO No");
+
+        pageObjectManager.getBookedFreights().selectVesselFlag("TURKEY");
+        log.info("Selected Vessel Flag");
+
+        pageObjectManager.getBookedFreights().enterAirFlightNo(FakeDataUtil.getRandomNumber());
+        log.info("Entered Airflight No");
+
+        pageObjectManager.getBookedFreights().selectAirlineFlag("TURKEY");
+        log.info("Selected Airline Flag");
 
         pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
         log.info("Clicked Save & Return Freight Button");

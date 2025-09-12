@@ -55,10 +55,10 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().selectSubFidNoTc();
         log.info("Selected SubFid NoTC");
 
-        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getHouseBLNo());
+        pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
         log.info("Entered SubFid House BL No");
 
-        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getHouseBLNo());
+        pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getString());
         log.info("Entered SubFid Client Ref");
 
         pageObjectManager.getFreightDetail().clickSubmitSubFidButton();

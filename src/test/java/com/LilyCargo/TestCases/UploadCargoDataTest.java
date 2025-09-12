@@ -78,10 +78,10 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 /*            pageObjectManager.getFreightDetail().selectSubFidNoTc();
             log.info("Selected SubFid NoTC");*/
 
-            pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getHouseBLNo());
+            pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getString());
             log.info("Entered SubFid House BL No");
 
-            pageObjectManager.getFreightDetail().enterSubFidClientRef(FakeDataUtil.getHouseBLNo());
+            pageObjectManager.getFreightDetail().enterSubFidClientRef(FakeDataUtil.getString());
             log.info("Entered SubFid Client Ref");
 
             pageObjectManager.getFreightDetail().clickSubmitSubFidButton();

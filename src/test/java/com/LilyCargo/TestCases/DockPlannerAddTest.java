@@ -52,19 +52,19 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         pageObjectManager.getDockPlannerPage().selectDockPlannerJob();
         log.info("Selected Job");
 
-        pageObjectManager.getDockPlannerPage().enterStorage(FakeDataUtil.getBLNo());
+        pageObjectManager.getDockPlannerPage().enterStorage(FakeDataUtil.getString());
         log.info("Entered Storage");
 
         pageObjectManager.getDockPlannerPage().selectDockPlannerDockNo();
         log.info("Selected Dock No");
 
-        pageObjectManager.getDockPlannerPage().enterTruckNo(FakeDataUtil.getBLNo());
+        pageObjectManager.getDockPlannerPage().enterTruckNo(FakeDataUtil.getString());
         log.info("Entered Truck No");
 
-        pageObjectManager.getDockPlannerPage().enterTrailerNo(FakeDataUtil.getBLNo());
+        pageObjectManager.getDockPlannerPage().enterTrailerNo(FakeDataUtil.getString());
         log.info("Entered Trailer No");
 
-        pageObjectManager.getDockPlannerPage().enterRemarks(FakeDataUtil.getBLNo());
+        pageObjectManager.getDockPlannerPage().enterRemarks(FakeDataUtil.getString());
         log.info("Entered Remarks");
 
         pageObjectManager.getDockPlannerPage().clickDockPlannerCreateButton();
