@@ -45,9 +45,8 @@ public class VisitorsAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Visitor", "Add Page heading does not match expected value.");
 
-        String[] visitorsDate = FakeDataUtil.getETDDayMonthYear();
-        pageObjectManager.getRelationsAllFieldsTestPage().selectVisitorsDate(visitorsDate[0], visitorsDate[1], visitorsDate[2]);
-        log.info("Entered Visitor DATE: " + Arrays.toString(visitorsDate));
+        pageObjectManager.getRelationsAllFieldsTestPage().selectVisitorsDate();
+        log.info("Entered Visitor DATE: 3 Days from Current Date");
 
         pageObjectManager.getRelationsAllFieldsTestPage().selectLocation("Amsterdam");
         log.info("Selected Location");

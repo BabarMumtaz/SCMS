@@ -263,10 +263,6 @@ public class FreightTestPage {
 		return addPageHeading.getText();
 	}
 
-/*	public String getFidNumberText() {
-		return wait.until(ExpectedConditions.visibilityOf(fidNumber)).getAttribute("placeholder");
-	}*/
-
 	public String getFidNumberText() {
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(fidNumber));
 		String fidNumberText = element.getAttribute("value");
@@ -299,56 +295,37 @@ public class FreightTestPage {
 	}
 
 	public void selectETADate() {
-		selectDate(etaDatePicker, LocalDate.now().plusDays(7));
+		selectDate(etaDatePicker, LocalDate.now().plusDays(10));
 	}
 
 	public void selectCutOffDate() {
 		selectDate(cutOffDateField, LocalDate.now());
 	}
 
-	//------------------------------
-
-	// Date picker helper
-/*    private void selectDate(WebElement element, String day, String month, String year) {
-        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
-    }*/
-
-/*    public void selectETDDate(String day, String month, String year) {
-        selectDate(etdDatePicker, day, month, year);
-    }
-
-    public void selectETADate(String day, String month, String year) {
-        selectDate(etaDatePicker, day, month, year);
-    }
-
-	public void selectCutOffDate(String day, String month, String year) {
-		selectDate(cutOffDateField, day, month, year);
-	}*/
-
 	public void selectCutOffTime(String time) {
 		cutOffTimeField.clear();
 		cutOffTimeField.sendKeys(time);
 	}
 
-/*	public void selectDeliveryDate(String day, String month, String year) {
-		selectDate(deliveryField, day, month, year);
+	public void selectDeliveryDate() {
+		selectDate(deliveryField, LocalDate.now().plusDays(30));
 	}
 
-	public void selectTHCInvImpDate(String day, String month, String year) {
-		selectDate(thcInvImpDateField, day, month, year);
+	public void selectTHCInvImpDate() {
+		selectDate(thcInvImpDateField, LocalDate.now());
 	}
 
-	public void selectPinExpireDate(String day, String month, String year) {
-		selectDate(pinExpireDateField, day, month, year);
+	public void selectPinExpireDate() {
+		selectDate(pinExpireDateField, LocalDate.now());
 	}
 
-	public void selectTruckingDate(String day, String month, String year) {
-		selectDate(truckingDateField, day, month, year);
+	public void selectTruckingDate() {
+		selectDate(truckingDateField, LocalDate.now());
 	}
 
-	public void selectInvoiceDate(String day, String month, String year) {
-		selectDate(invoiceDateField, day, month, year);
-	}*/
+	public void selectInvoiceDate() {
+		selectDate(invoiceDateField, LocalDate.now());
+	}
 
 	public void enterContainerNumber(String text) {
 		containerNo.sendKeys(text);
@@ -494,7 +471,6 @@ public class FreightTestPage {
 		selectDropdownByText(customsClearanceDropDown, customsClearance);
 	}
 
-
 	public void enterContents(String text) {
 		contents.sendKeys(text);
 	}
@@ -507,8 +483,6 @@ public class FreightTestPage {
 		measurements.sendKeys(text);
 	}
 
-
-
 	public void scrollToElement() {
 		executor.executeScript("arguments[0].scrollIntoView(true);", carrierCompanyDropDown);
 	}
@@ -517,15 +491,6 @@ public class FreightTestPage {
 		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
 		.perform();
 		bondedLocation.sendKeys(text);
-	}
-
-	public void clearBondedLocation() {
-		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
-				.perform();
-	}
-
-	public void enterDelivery(String text) {
-		deliveryField.sendKeys(text);
 	}
 
 	public void enterVesselName(String text) {
@@ -603,7 +568,6 @@ public class FreightTestPage {
 	public void clickCustomDocStatusBtn() {
 		wait.until(ExpectedConditions.visibilityOf(customDocStatusBtn)).click();
 	}
-
 
 	public void clickPurchaseStepBtn() {
 		wait.until(ExpectedConditions.visibilityOf(purchaseStepBtn)).click();

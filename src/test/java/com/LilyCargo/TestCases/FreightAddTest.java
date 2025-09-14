@@ -46,10 +46,10 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Entered FNO");
 
         pageObjectManager.getBookedFreights().selectETDDate();
-        log.info("Entered ETD DATE");
+        log.info("Entered ETD DATE: Current Date");
 
         pageObjectManager.getBookedFreights().selectETADate();
-        log.info("Entered ETA DATE");
+        log.info("Entered ETA DATE: Current Date: 10 DAys in Future from Current Date");
 
         pageObjectManager.getBookedFreights().enterContainerNumber(FakeDataUtil.getString());
         log.info("Entered Container Number");
@@ -91,7 +91,10 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Selected Port Of Loading Dropdown Value");
 
         pageObjectManager.getBookedFreights().selectCutOffDate();
-        log.info("Entered Cut OFf Date");
+        log.info("Entered Cut OFf Date: Current Date");
+
+        pageObjectManager.getBookedFreights().selectCutOffTime("18:40");
+        log.info("Entered Cut OFf Time");
 
         pageObjectManager.getBookedFreights().selectPortOfDischarge("Hong Kong");
         log.info("Selected Port Of Discharge Dropdown Value");

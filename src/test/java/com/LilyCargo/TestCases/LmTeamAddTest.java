@@ -51,23 +51,20 @@ public class LmTeamAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterPosition(faker.company().profession());
         log.info("Entered Lm Team Position");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
+        pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber());
         log.info("Entered Lm Team Telephone Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Lm Team Email");
 
-        String[] payRollDate = FakeDataUtil.getETADayMonthYear();
-        pageObjectManager.getRelationsAllFieldsTestPage().selectPayrollEndsDate(payRollDate[0], payRollDate[1], payRollDate[2]);
-        log.info("Entered Lm Team Pay Roll Date: " + Arrays.toString(payRollDate));
+        pageObjectManager.getRelationsAllFieldsTestPage().selectPayrollEndsDate();
+        log.info("Entered Lm Team Pay Roll Date: Current Date");
 
-        String[] startDate = FakeDataUtil.getETADayMonthYear();
-        pageObjectManager.getRelationsAllFieldsTestPage().selectOfficeAccessStartDate(startDate[0], startDate[1], startDate[2]);
-        log.info("Entered Lm Team Start DATE: " + Arrays.toString(startDate));
+        pageObjectManager.getRelationsAllFieldsTestPage().selectOfficeAccessStartDate();
+        log.info("Entered Lm Team Start DATE: Current Date");
 
-        String[] endDate = FakeDataUtil.getETDDayMonthYear();
-        pageObjectManager.getRelationsAllFieldsTestPage().selectOfficeAccessEndDate(endDate[0], endDate[1], endDate[2]);
-        log.info("Entered Lm Team End DATE: " + Arrays.toString(endDate));
+        pageObjectManager.getRelationsAllFieldsTestPage().selectOfficeAccessEndDate();
+        log.info("Entered Lm Team End DATE: 1 year from now");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
         log.info("Clicked ALl Extra Fields Cross");

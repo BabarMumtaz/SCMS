@@ -31,7 +31,8 @@ public class FakeDataUtil {
         return fakerEN.number().digits(8);  // Example: "37281945"
     }
 
-    //--------------------------------------------------------------- Generate Date PART ------------------------
+    /*--------------------------------------------------------------- Generate Date PART ------------------------
+
     public static String[] getFutureETDDate(int daysFromToday) {
         LocalDate etd = LocalDate.now().plusDays(daysFromToday);
         return splitDate(etd);
@@ -46,13 +47,6 @@ public class FakeDataUtil {
     public static String getFormattedDate(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
-
-/*    private static String[] splitDate(LocalDate date) {
-        String day = String.format("%02d", date.getDayOfMonth());
-        String month = String.format("%02d", date.getMonthValue());
-        String year = String.valueOf(date.getYear());
-        return new String[]{day, month, year};
-    }*/
 
     private static String[] splitDate(LocalDate date) {
         String day = String.valueOf(date.getDayOfMonth());
@@ -76,16 +70,8 @@ public class FakeDataUtil {
         return splitDate(today);
     }
 
-    //--------------------------------------------------------------- Generate Date PART ------------------------
-
-/*    public static String getHouseBLNo() {
-        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
-    }
-
-    public static String getBLNo() {
-        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
-    }*/
-
+    --------------------------------------------------------------- Generate Date PART ------------------------
+*/
     public static String getString() {
         return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
@@ -150,7 +136,7 @@ public class FakeDataUtil {
         return fakerEN.lorem().sentence(3);// Generates ~15 words
     }
 
-
+/*
     // Returns current date split into day, month, and year for Invoice field
     public static String[] getCurrentInvoiceDate() {
         LocalDate today = LocalDate.now();
@@ -159,7 +145,7 @@ public class FakeDataUtil {
 
     public static String[] getInvoiceDayMonthYear() {
         return getCurrentInvoiceDate(); // You can change 10 to any default offset
-    }
+    }*/
 
     // Method to generate invoice number
     public static String generateInvoiceNumber() {

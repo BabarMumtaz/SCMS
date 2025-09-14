@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class RelationsAllFieldsTestPage {
 
@@ -306,25 +308,27 @@ public class RelationsAllFieldsTestPage {
 
     public void enterPosition(String text) { positionField.sendKeys(text); }
 
-    // Date picker helper
-    private void selectDate(WebElement element, String day, String month, String year) {
-        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
+    // For <input type="date">
+    private void selectDate(WebElement element, LocalDate date) {
+        String dateValue = date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")); // required format
+        element.clear();
+        element.sendKeys(dateValue);
     }
 
-    public void selectVisitorsDate(String day, String month, String year) {
-        selectDate(dateField, day, month, year);
+    public void selectVisitorsDate() {
+        selectDate(dateField, LocalDate.now().plusDays(3));
     }
 
-    public void selectPayrollEndsDate(String day, String month, String year) {
-        selectDate(payrollEndsDate, day, month, year);
+    public void selectPayrollEndsDate() {
+        selectDate(payrollEndsDate, LocalDate.now());
     }
 
-    public void selectOfficeAccessStartDate(String day, String month, String year) {
-        selectDate(officeAccessStartDate, day, month, year);
+    public void selectOfficeAccessStartDate() {
+        selectDate(officeAccessStartDate, LocalDate.now());
     }
 
-    public void selectOfficeAccessEndDate(String day, String month, String year) {
-        selectDate(officeAccessEndDate, day, month, year);
+    public void selectOfficeAccessEndDate() {
+        selectDate(officeAccessEndDate, LocalDate.now().plusYears(1));;
     }
 
     public void enterAppointmentWith(String text) {
@@ -396,7 +400,6 @@ public class RelationsAllFieldsTestPage {
         selectDropdownByText(countryNameDropdown, countryName);
     }
 
-
     public void enterExtraEmailLabel(String text) {
         extraEmailLabel.sendKeys(text);
     }
@@ -404,7 +407,5 @@ public class RelationsAllFieldsTestPage {
     public void enterExtraEmailValue(String text) {
         extraEmailValue.sendKeys(text);
     }
-
-
 
 }
