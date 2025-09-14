@@ -45,12 +45,10 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getRandomNumber());
         log.info("Entered FNO");
 
-        String[] etd = FakeDataUtil.getETDDayMonthYear();
-        pageObjectManager.getBookedFreights().selectETDDate(etd[0], etd[1], etd[2]);
+        pageObjectManager.getBookedFreights().selectETDDate();
         log.info("Entered ETD DATE");
 
-        String[] eta = FakeDataUtil.getETADayMonthYear();
-        pageObjectManager.getBookedFreights().selectETADate(eta[0], eta[1], eta[2]);
+        pageObjectManager.getBookedFreights().selectETADate();
         log.info("Entered ETA DATE");
 
         pageObjectManager.getBookedFreights().enterContainerNumber(FakeDataUtil.getString());
@@ -89,10 +87,13 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().enterMeasurements(FakeDataUtil.getMeasurements());
         log.info("Entered Measurements");
 
-        pageObjectManager.getBookedFreights().selectPortOfLoading("Yantian");
+        pageObjectManager.getBookedFreights().selectPortOfLoading("Shantou Port");
         log.info("Selected Port Of Loading Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectPortOfDischarge("Rotterdam");
+        pageObjectManager.getBookedFreights().selectCutOffDate();
+        log.info("Entered Cut OFf Date");
+
+        pageObjectManager.getBookedFreights().selectPortOfDischarge("Hong Kong");
         log.info("Selected Port Of Discharge Dropdown Value");
 
         pageObjectManager.getBookedFreights().scrollToElement();
@@ -134,6 +135,9 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
         log.info("Clicked Alert Popup ");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Fid Number is: " + fidNumber);
 
     }
 }

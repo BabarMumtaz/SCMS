@@ -1,6 +1,8 @@
 package com.LilyCargo.Pages;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -100,7 +102,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Freight Way')]/following::div[@role='button'][1]")
 	WebElement freightWayDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'VesselFlag')]//following::input[1]")
+	@FindBy(xpath = "//label[contains(text(), 'Vessel Flag')]//following::input[1]")
 	WebElement vesselFlagDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'Airline Flag')]//following::input[1]")
@@ -247,6 +249,9 @@ public class FreightTestPage {
 	@FindBy(css = "div[class='createFlight-title'] p")
 	WebElement editPageID;
 
+	@FindBy(xpath = "//input[@type='number']")
+	WebElement fidNumber;
+
 	/** ---------- Methods ---------- */
 
 	// Method to capture the page heading
@@ -258,6 +263,22 @@ public class FreightTestPage {
 		return addPageHeading.getText();
 	}
 
+/*	public String getFidNumberText() {
+		return wait.until(ExpectedConditions.visibilityOf(fidNumber)).getAttribute("placeholder");
+	}*/
+
+	public String getFidNumberText() {
+		WebElement element = wait.until(ExpectedConditions.visibilityOf(fidNumber));
+		String fidNumberText = element.getAttribute("value");
+
+		// fallback to placeholder if value is empty
+		if (fidNumberText == null || fidNumberText.isEmpty()) {
+			fidNumberText = element.getAttribute("placeholder");
+		}
+		return fidNumberText;
+	}
+
+
 	public void clickCreateFreightBtn() {
 		createFreight.click();
 	}
@@ -266,12 +287,33 @@ public class FreightTestPage {
 		fNO.sendKeys(text);
 	}
 
-    // Date picker helper
-    private void selectDate(WebElement element, String day, String month, String year) {
-        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
-    }
+	// For <input type="date">
+	private void selectDate(WebElement element, LocalDate date) {
+		String dateValue = date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")); // required format
+		element.clear();
+		element.sendKeys(dateValue);
+	}
 
-    public void selectETDDate(String day, String month, String year) {
+	public void selectETDDate() {
+		selectDate(etdDatePicker, LocalDate.now());
+	}
+
+	public void selectETADate() {
+		selectDate(etaDatePicker, LocalDate.now().plusDays(7));
+	}
+
+	public void selectCutOffDate() {
+		selectDate(cutOffDateField, LocalDate.now());
+	}
+
+	//------------------------------
+
+	// Date picker helper
+/*    private void selectDate(WebElement element, String day, String month, String year) {
+        actions.click(element).sendKeys(day).sendKeys(month).sendKeys(Keys.TAB).sendKeys(year).perform();
+    }*/
+
+/*    public void selectETDDate(String day, String month, String year) {
         selectDate(etdDatePicker, day, month, year);
     }
 
@@ -281,14 +323,14 @@ public class FreightTestPage {
 
 	public void selectCutOffDate(String day, String month, String year) {
 		selectDate(cutOffDateField, day, month, year);
-	}
+	}*/
 
 	public void selectCutOffTime(String time) {
 		cutOffTimeField.clear();
 		cutOffTimeField.sendKeys(time);
 	}
 
-	public void selectDeliveryDate(String day, String month, String year) {
+/*	public void selectDeliveryDate(String day, String month, String year) {
 		selectDate(deliveryField, day, month, year);
 	}
 
@@ -306,7 +348,7 @@ public class FreightTestPage {
 
 	public void selectInvoiceDate(String day, String month, String year) {
 		selectDate(invoiceDateField, day, month, year);
-	}
+	}*/
 
 	public void enterContainerNumber(String text) {
 		containerNo.sendKeys(text);

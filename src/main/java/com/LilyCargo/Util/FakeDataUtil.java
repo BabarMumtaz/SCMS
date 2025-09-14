@@ -47,21 +47,33 @@ public class FakeDataUtil {
         return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
-    private static String[] splitDate(LocalDate date) {
+/*    private static String[] splitDate(LocalDate date) {
         String day = String.format("%02d", date.getDayOfMonth());
         String month = String.format("%02d", date.getMonthValue());
+        String year = String.valueOf(date.getYear());
+        return new String[]{day, month, year};
+    }*/
+
+    private static String[] splitDate(LocalDate date) {
+        String day = String.valueOf(date.getDayOfMonth());
+        String month = String.valueOf(date.getMonthValue());
         String year = String.valueOf(date.getYear());
         return new String[]{day, month, year};
     }
 
     // If you prefer direct day/month/year for ETD
     public static String[] getETDDayMonthYear() {
-        return getFutureETDDate(10); // You can change 10 to any default offset
+        return getFutureETDDate(5); // You can change 10 to any default offset
     }
 
     // And for ETA
     public static String[] getETADayMonthYear() {
-        return getFutureETADate(10, 14);
+        return getFutureETADate(5, 10);
+    }
+
+    public static String[] getCurrentDate() {
+        LocalDate today = LocalDate.now();
+        return splitDate(today);
     }
 
     //--------------------------------------------------------------- Generate Date PART ------------------------
