@@ -37,6 +37,9 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Fid Number is: " + fidNumber);
+
         //----------------------------------SubFId----------------------------------
 
         pageObjectManager.getFreightDetail().clickSubFidAddIcon();

@@ -1,5 +1,7 @@
 package com.LilyCargo.TestCases;
 
+import com.LilyCargo.Util.FakeDataUtil;
+import com.LilyCargo.Util.FileUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -18,7 +20,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 	@Feature("Feature:03.02_Edit Freight")
 	@Story("As a user, I should be able to edit freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Edit freight")
-	public void EditFreightTestFromDetailPage() throws InterruptedException {
+	public void EditFreightTestFromDetailPage(){
 
 		log = LogManager.getLogger(FreightEditFromDetailPageTest.class);
 		log.info("Starting Freight Edit Test from Detail Page.");
@@ -26,6 +28,11 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
 		log.info("Page Heading is: " + pageHeading);
 		Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
+		String fidToSearch = FileUtil.getData("FreightID");
+		pageObjectManager.getFreightListing().searchFid(fidToSearch);
+		String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
+		Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
 
 		pageObjectManager.getFreightListing().clickOnFreightID();
 		log.info("Clicked on the 1st row FreightID.");
@@ -38,6 +45,9 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 
 		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
+		String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+		log.info("Fid Number is: " + fidNumber);
+
 		pageObjectManager.getFreightDetail().clickOnEditFreightIconDP();
 		log.info("Clicked on Booked Freight Edit Icon");
 
@@ -49,8 +59,71 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Save & Next Freight Button");
 
+		pageObjectManager.getBookedFreights().selectLogisticsType("FTL");
+		log.info("Selected Logistics Type From Dropdown");
+/*
+		pageObjectManager.getBookedFreights().selectWarehouseName("DE - DTM2 - Amazon");
+		log.info("Selected Warehouse Name From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectNotifyParty("LILY MAAS LOGISTICS");
+		log.info("Selected Notify Party From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectBroker("NL DKM (LMAAS)");
+		log.info("Selected Broker From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectLFR("NL LMBV B02 (IMPORT)");
+		log.info("Selected LFR From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectFreightManager("Ciano Huang");
+		log.info("Selected Freight Manager From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectLogistics("DGF HAM ICC");
+		log.info("Selected Logistics From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectCustoms("DECO");
+		log.info("Selected Customs From Dropdown");
+
+		pageObjectManager.getBookedFreights().enterPreviousDocumentNumber(FakeDataUtil.getString());
+		log.info("Entered Previous Document Number");
+
 		pageObjectManager.getBookedFreights().enterBondedLocation(faker.address().fullAddress());
 		log.info("Entered Bonded Location");
+
+		pageObjectManager.getBookedFreights().enterInvoiceNo(FakeDataUtil.generateInvoiceNumber());
+		log.info("Entered Invoice No");
+
+		pageObjectManager.getBookedFreights().enterInvoiceValueInEUR(FakeDataUtil.getWeights());
+		log.info("Entered Invoice Value EUR");
+
+		pageObjectManager.getBookedFreights().selectVatProcedure("Paid");
+		log.info("Selected VAT Procedure From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectTHCInvImpDate();
+		log.info("Entered THC Inv Imp DATE: 1 Month in Future from Current Date");
+
+		pageObjectManager.getBookedFreights().enterInvoiceNo("1234");
+		log.info("Entered Pin Code");
+
+		pageObjectManager.getBookedFreights().selectPinExpireDate();
+		log.info("Entered Pin Expire DATE: 1 Year in Future from Current Date");
+
+		pageObjectManager.getBookedFreights().selectTruckingCo("DFDS WAREHOUSING");
+		log.info("Selected Trucking Co From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectTruckingDate();
+		log.info("Entered Trucking DATE: 1 Month in Future from Current Date");
+
+		pageObjectManager.getBookedFreights().selectFreightBook("Douane Nederland");
+		log.info("Selected Freight Book From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectInvoiceDate();
+		log.info("Entered Invoice DATE: Current Date");
+
+		pageObjectManager.getBookedFreights().selectAdditionalParty("Schavemaker");
+		log.info("Selected Additional Party From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectAdjustOperator("LMLOG 02");
+		log.info("Selected Adjust Operator From Dropdown");*/
 
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");

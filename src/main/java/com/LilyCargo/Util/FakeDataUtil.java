@@ -136,16 +136,22 @@ public class FakeDataUtil {
         return fakerEN.lorem().sentence(3);// Generates ~15 words
     }
 
-/*
+    private static String[] splitDate(LocalDate date) {
+        String day = String.valueOf(date.getDayOfMonth());
+        String month = String.valueOf(date.getMonthValue());
+        String year = String.valueOf(date.getYear());
+        return new String[]{day, month, year};
+    }
+
     // Returns current date split into day, month, and year for Invoice field
-    public static String[] getCurrentInvoiceDate() {
+    public static String[] getCurrentDate() {
         LocalDate today = LocalDate.now();
         return splitDate(today);
     }
 
-    public static String[] getInvoiceDayMonthYear() {
-        return getCurrentInvoiceDate(); // You can change 10 to any default offset
-    }*/
+    public static String[] getDayMonthYear() {
+        return getCurrentDate(); // You can change 10 to any default offset
+    }
 
     // Method to generate invoice number
     public static String generateInvoiceNumber() {

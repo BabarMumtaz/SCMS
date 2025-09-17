@@ -134,12 +134,12 @@ public class RemarksTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(cancelRemarksButton)).click();
     }
 
-    private void selectDate(WebElement element, String day, String month, String year) {
+    private void selectDateUsingKeys(WebElement element, String day, String month, String year) {
         actions.click(element).sendKeys(day).sendKeys(month).sendKeys(year).perform();
     }
 
     public void selectCustomsRemarksDateDate(String day, String month, String year) {
-        selectDate(customsRemarksDateField, day, month, year);
+        selectDateUsingKeys(customsRemarksDateField, day, month, year);
     }
 
     public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {

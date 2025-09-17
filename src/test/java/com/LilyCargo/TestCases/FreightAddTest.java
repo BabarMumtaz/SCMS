@@ -1,5 +1,6 @@
 package com.LilyCargo.TestCases;
 
+import com.LilyCargo.Util.FileUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -26,7 +27,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
 	@Feature("Feature:03_Create Freight")
 	@Story("As a user, I should be able to Add/Create freight successfully")
 	@Step("Hit Site Url -> Login with valid credentials -> Create freight")
-	public void VerifyFreightCreation() throws InterruptedException {
+	public void VerifyFreightCreation(){
 
         log = LogManager.getLogger(FreightAddTest.class);
         log.info("Starting Freight Add Test.");
@@ -45,11 +46,11 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getRandomNumber());
         log.info("Entered FNO");
 
-        pageObjectManager.getBookedFreights().selectETDDate();
+        pageObjectManager.getBookedFreights().selectEtdDate();
         log.info("Entered ETD DATE: Current Date");
 
-        pageObjectManager.getBookedFreights().selectETADate();
-        log.info("Entered ETA DATE: Current Date: 10 DAys in Future from Current Date");
+        pageObjectManager.getBookedFreights().selectEtaDate();
+        log.info("Entered ETA DATE: 10 Days in Future from Current Date");
 
         pageObjectManager.getBookedFreights().enterContainerNumber(FakeDataUtil.getString());
         log.info("Entered Container Number");
@@ -99,9 +100,6 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectPortOfDischarge("Hong Kong");
         log.info("Selected Port Of Discharge Dropdown Value");
 
-        pageObjectManager.getBookedFreights().scrollToElement();
-        Thread.sleep(1000);
-
         pageObjectManager.getBookedFreights().selectCarrierCompany("Cathy Pacific");
         log.info("Selected Carrier Company Value");
 
@@ -129,6 +127,9 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectAirlineFlag("TURKEY");
         log.info("Selected Airline Flag");
 
+        pageObjectManager.getBookedFreights().selectAtaDate();
+        log.info("Entered ATA DATE: 10 Days in Future from Current Date");
+
         pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
         log.info("Clicked Save & Return Freight Button");
 
@@ -140,7 +141,8 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Clicked Alert Popup ");
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: " + fidNumber);
+        FileUtil.saveData("FreightID", fidNumber);
+        log.info("Stored Fid Number for reuse: " + fidNumber);
 
     }
 }

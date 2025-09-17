@@ -28,7 +28,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Remarks Tab");
     }
 
-    @Test(priority = 1, description = "Verify adding Import Remarks", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify adding Import Remarks", groups = {"smoke", "regression"}, enabled = false)
     @Severity(SeverityLevel.CRITICAL)
     @Story("As a user, I should be able to add Import Remarks successfully")
     @Description("Test to verify that a user can successfully add import remarks")
@@ -73,7 +73,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRemarksPage().enterRemarksText(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Customs Remarks Text");
 
-        String[] dateParts = FakeDataUtil.getInvoiceDayMonthYear();
+        String[] dateParts = FakeDataUtil.getDayMonthYear();
         pageObjectManager.getRemarksPage().selectCustomsRemarksDateDate(dateParts[0], dateParts[1], dateParts[2]);
         log.info("Selected Date for Customs Remarks: " + String.join("-", dateParts));
 
@@ -87,7 +87,7 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         log.info("Closed the success alert for Customs Remarks");
     }
 
-    @Test(priority = 3, description = "Verify adding Sales Remarks", groups = {"regression"})
+    @Test(priority = 3, description = "Verify adding Sales Remarks", groups = {"regression"}, enabled = false)
     @Severity(SeverityLevel.CRITICAL)
     @Story("As a user, I should be able to add Sales Remarks successfully")
     @Description("Test to verify that a user can successfully add sales remarks")

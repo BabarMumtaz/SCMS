@@ -44,6 +44,23 @@ public class FreightListingTestPage {
 	@FindBy(xpath = "//div[@class='_loading_overlay_overlay css-1mig4ck _loading-overlay-transition-enter-done']")
 	WebElement freightListingLoaderArea;
 
+	// Search field (adjust XPath if needed)
+	@FindBy(xpath = "//input[@placeholder='FID Search']")
+	WebElement searchFidInput;
+
+	@FindBy(xpath = "//button[contains(text(), 'GO')]")
+	WebElement searchButton;
+
+	@FindBy(xpath = "//input[@placeholder='Global Search']")
+	WebElement globalSearchInput;
+
+	@FindBy(xpath = "//img[@alt='Search']")
+	WebElement globalSearchButton;
+
+	// First row result Fid column (adjust XPath if table structure differs)
+	@FindBy(xpath = "//table//tbody/tr[1]/td[1]")
+	WebElement firstResultFid;
+
 //------------------------------------------------------------------------------------------------------------------------------------
 
 	// Click on pagination last page icon
@@ -96,4 +113,20 @@ public class FreightListingTestPage {
 			}
 		}
 	}
+
+	// Search Freight by Fid
+	public void searchFid(String fid) {
+		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
+		globalSearchInput.clear();
+		globalSearchInput.sendKeys(fid);
+		globalSearchButton.click();
+	}
+
+	// Get FId from first row of search results
+	public String getSearchResultFid() {
+		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
+		waitUtil.waitForElementToBeVisible(firstResultFid);
+		return firstResultFid.getText().trim();
+	}
+
 }

@@ -138,6 +138,9 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@name='Cut_Off_Time']")
 	WebElement cutOffTimeField;
 
+	@FindBy(xpath = "//input[@name='ATA']")
+	WebElement ataDatePicker;
+
 	@FindBy(xpath = "//label[contains(text(), 'Logistics Type')]/following::div[@role='button'][1]")
 	WebElement logisticsTypeDropDown;
 
@@ -274,7 +277,6 @@ public class FreightTestPage {
 		return fidNumberText;
 	}
 
-
 	public void clickCreateFreightBtn() {
 		createFreight.click();
 	}
@@ -285,16 +287,20 @@ public class FreightTestPage {
 
 	// For <input type="date">
 	private void selectDate(WebElement element, LocalDate date) {
-		String dateValue = date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")); // required format
+		String dateValue = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); // required format
 		element.clear();
 		element.sendKeys(dateValue);
 	}
 
-	public void selectETDDate() {
+	private void selectDateUsingKeys(WebElement element, String day, String month, String year) {
+		actions.click(element).sendKeys(day).sendKeys(month).sendKeys(year).perform();
+	}
+
+	public void selectEtdDate() {
 		selectDate(etdDatePicker, LocalDate.now());
 	}
 
-	public void selectETADate() {
+	public void selectEtaDate() {
 		selectDate(etaDatePicker, LocalDate.now().plusDays(10));
 	}
 
@@ -307,25 +313,55 @@ public class FreightTestPage {
 		cutOffTimeField.sendKeys(time);
 	}
 
+	public void selectAtaDate() {
+		selectDate(ataDatePicker, LocalDate.now().plusDays(10));
+	}
+
 	public void selectDeliveryDate() {
 		selectDate(deliveryField, LocalDate.now().plusDays(30));
 	}
 
 	public void selectTHCInvImpDate() {
-		selectDate(thcInvImpDateField, LocalDate.now());
+		selectDate(thcInvImpDateField, LocalDate.now().plusMonths(1));
 	}
 
 	public void selectPinExpireDate() {
-		selectDate(pinExpireDateField, LocalDate.now());
+		selectDate(pinExpireDateField, LocalDate.now().plusYears(1));
 	}
 
 	public void selectTruckingDate() {
-		selectDate(truckingDateField, LocalDate.now());
+		selectDate(truckingDateField, LocalDate.now().plusMonths(1));
 	}
 
 	public void selectInvoiceDate() {
 		selectDate(invoiceDateField, LocalDate.now());
 	}
+
+/*	This approach works fine in all date formats like dd/mm/yyyy or dd----yyyy
+
+	public void selectCutOffDate(String day, String month, String year) {
+		selectDateUsingKeys(cutOffDateField, day, month, year);
+	}
+
+	public void selectDeliveryDate(String day, String month, String year) {
+		selectDateUsingKeys(deliveryField, day, month, year);
+	}
+
+	public void selectTHCInvImpDate(String day, String month, String year) {
+		selectDateUsingKeys(thcInvImpDateField, day, month, year);
+	}
+
+	public void selectPinExpireDate(String day, String month, String year) {
+		selectDateUsingKeys(pinExpireDateField, day, month, year);
+	}
+
+	public void selectTruckingDate(String day, String month, String year) {
+		selectDateUsingKeys(truckingDateField, day, month, year);
+	}
+
+	public void selectInvoiceDate(String day, String month, String year) {
+		selectDateUsingKeys(invoiceDateField, day, month, year);
+	}*/
 
 	public void enterContainerNumber(String text) {
 		containerNo.sendKeys(text);
