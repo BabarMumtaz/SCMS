@@ -159,7 +159,7 @@ public class FreightTestPage {
 	@FindBy(xpath = "//label[contains(text(), 'Freight Manager')]//following::input[1]")
 	WebElement freightManagerDropDown;
 
-	@FindBy(xpath = "//label[contains(text(), 'Logistics')]//following::input[1]")
+	@FindBy(xpath = "//div[@name='logistic_id']")
 	WebElement logisticsDropDown;
 
 	@FindBy(xpath = "//label[contains(text(), 'Customs')]/following::div[@role='button'][1]")
@@ -546,30 +546,44 @@ public class FreightTestPage {
 	}
 
 	public void enterPreviousDocumentNumber(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		previousDocumentNumberField.sendKeys(text);
 	}
 
 	public void enterInvoiceNo(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		invoiceNoField.sendKeys(text);
 	}
 
 	public void enterInvoiceValueInEUR(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		invoiceValueInEURField.sendKeys(text);
 	}
 
 	public void enterPinCode(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		pinCodeField.sendKeys(text);
 	}
 
 	public void enterAirportHandlingFee(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		airportHandlingFee.sendKeys(text);
 	}
 
 	public void enterArrivalStorageFee(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		arrivalStorageFee.sendKeys(text);
 	}
 
 	public void enterGasMeasurementCharge(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		gasMeasurementCharge.sendKeys(text);
 	}
 
@@ -578,14 +592,20 @@ public class FreightTestPage {
 	}
 
 	public void enterDeliveryCharges(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		deliveryCharges.sendKeys(text);
 	}
 
 	public void enterVatEurFee(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		vatEurFee.sendKeys(text);
 	}
 
 	public void enterFreightCharge(String text) {
+		actions.click(bondedLocation).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+				.perform();
 		freightCharge.sendKeys(text);
 	}
 

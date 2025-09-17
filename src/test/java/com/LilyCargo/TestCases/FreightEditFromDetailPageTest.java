@@ -61,7 +61,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 
 		pageObjectManager.getBookedFreights().selectLogisticsType("FTL");
 		log.info("Selected Logistics Type From Dropdown");
-/*
+
 		pageObjectManager.getBookedFreights().selectWarehouseName("DE - DTM2 - Amazon");
 		log.info("Selected Warehouse Name From Dropdown");
 
@@ -92,7 +92,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().enterInvoiceNo(FakeDataUtil.generateInvoiceNumber());
 		log.info("Entered Invoice No");
 
-		pageObjectManager.getBookedFreights().enterInvoiceValueInEUR(FakeDataUtil.getWeights());
+		pageObjectManager.getBookedFreights().enterInvoiceValueInEUR(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Invoice Value EUR");
 
 		pageObjectManager.getBookedFreights().selectVatProcedure("Paid");
@@ -101,7 +101,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().selectTHCInvImpDate();
 		log.info("Entered THC Inv Imp DATE: 1 Month in Future from Current Date");
 
-		pageObjectManager.getBookedFreights().enterInvoiceNo("1234");
+		pageObjectManager.getBookedFreights().enterPinCode("1234");
 		log.info("Entered Pin Code");
 
 		pageObjectManager.getBookedFreights().selectPinExpireDate();
@@ -123,7 +123,52 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log.info("Selected Additional Party From Dropdown");
 
 		pageObjectManager.getBookedFreights().selectAdjustOperator("LMLOG 02");
-		log.info("Selected Adjust Operator From Dropdown");*/
+		log.info("Selected Adjust Operator From Dropdown");
+
+		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
+		log.info("Clicked Customs Status Button");
+
+		pageObjectManager.getBookedFreights().selectCustomDocStatus("unsent");
+		log.info("Selected Custom Doc Status From Dropdown");
+
+		pageObjectManager.getBookedFreights().selectCustomsClearanceServices("Incomplete");
+		log.info("Selected Customs Clearance Services From Dropdown");
+
+		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
+		log.info("Clicked Purchase Step Button");
+
+		pageObjectManager.getBookedFreights().enterAdminFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Admin Fee");
+
+		pageObjectManager.getBookedFreights().enterAirportHandlingFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Airport Handling Fee");
+
+		pageObjectManager.getBookedFreights().enterArrivalStorageFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Arrival Storage Fee");
+
+		pageObjectManager.getBookedFreights().enterGasMeasurementCharge(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Gas Measurement Charge");
+
+		pageObjectManager.getBookedFreights().enterFreightPurchaseUsdFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Freight Purchase Usd Fee");
+
+		pageObjectManager.getBookedFreights().clickSaleStepBtn();
+		log.info("Clicked Sales Step Button");
+
+		pageObjectManager.getBookedFreights().enterDeliveryCharges(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Delivery Charges");
+
+		pageObjectManager.getBookedFreights().enterDuty(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Duty");
+
+		pageObjectManager.getBookedFreights().enterVatEurFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Vat Eur Fee");
+
+		pageObjectManager.getBookedFreights().enterFreightCharge(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Freight Charge");
+
+		pageObjectManager.getBookedFreights().enterFreightSaleUsdFee(FakeDataUtil.getNumberWith2Decimal());
+		log.info("Entered Freight Sale Usd Fee");
 
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");

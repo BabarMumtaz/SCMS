@@ -80,9 +80,14 @@ public class FakeDataUtil {
         return fakerEN.bothify("??###?##??##??#").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
-    public static String getContents() {
+    public static String getNumberWithoutDecimal() {
         int amount = 1000 + fakerEN.number().numberBetween(100, 9000);
         return String.valueOf(amount);
+    }
+
+    public static String getNumberWith2Decimal() {
+        double weight = fakerEN.number().randomDouble(2, 1000, 20000);
+        return String.format("%.2f", weight);
     }
 
     public static String getWeights() {

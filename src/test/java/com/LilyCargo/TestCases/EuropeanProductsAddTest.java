@@ -44,10 +44,10 @@ public class EuropeanProductsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFinanceAllFieldsTestPage().enterPid(FakeDataUtil.getEuPidNo());
         log.info("Entered PID");
 
-        pageObjectManager.getFinanceAllFieldsTestPage().enterLmgbrIn(FakeDataUtil.getContents());
+        pageObjectManager.getFinanceAllFieldsTestPage().enterLmgbrIn(FakeDataUtil.getNumberWithoutDecimal());
         log.info("Entered Lmgbr In");
 
-        pageObjectManager.getFinanceAllFieldsTestPage().enterLmgbrOut(FakeDataUtil.getContents());
+        pageObjectManager.getFinanceAllFieldsTestPage().enterLmgbrOut(FakeDataUtil.getNumberWithoutDecimal());
         log.info("Entered Lmgbr Out");
 
         pageObjectManager.getGlobalMethodsPage().selectVatCode("2/21/21%");
@@ -59,7 +59,7 @@ public class EuropeanProductsAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFinanceAllFieldsTestPage().enterSort(FakeDataUtil.getRemarks());
         log.info("Entered Sort");
 
-        pageObjectManager.getFinanceAllFieldsTestPage().enterPrice(FakeDataUtil.getContents());
+        pageObjectManager.getFinanceAllFieldsTestPage().enterPrice(FakeDataUtil.getNumberWithoutDecimal());
         log.info("Entered Price");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();

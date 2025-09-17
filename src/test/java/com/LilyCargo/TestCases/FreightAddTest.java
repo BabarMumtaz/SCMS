@@ -79,13 +79,13 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectContainerType("40RFT");
         log.info("Selected Container Type Dropdown Value");
 
-        pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getContents());
+        pageObjectManager.getBookedFreights().enterContents(FakeDataUtil.getNumberWithoutDecimal());
         log.info("Entered Contents");
 
-        pageObjectManager.getBookedFreights().enterWeights(FakeDataUtil.getWeights());
+        pageObjectManager.getBookedFreights().enterWeights(FakeDataUtil.getNumberWith2Decimal());
         log.info("Entered Weights");
 
-        pageObjectManager.getBookedFreights().enterMeasurements(FakeDataUtil.getMeasurements());
+        pageObjectManager.getBookedFreights().enterMeasurements(FakeDataUtil.getNumberWith2Decimal());
         log.info("Entered Measurements");
 
         pageObjectManager.getBookedFreights().selectPortOfLoading("Shantou Port");

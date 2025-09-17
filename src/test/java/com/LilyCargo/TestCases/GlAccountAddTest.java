@@ -41,7 +41,7 @@ public class GlAccountAddTest extends TestBeforeAndAfter {
         log.info("Add Page Heading is: " + addPageHeading);
         Assert.assertEquals(addPageHeading, "Add GL Account", "Add Page heading does not match expected value.");
 
-        pageObjectManager.getFinanceAllFieldsTestPage().enterLedger(FakeDataUtil.getContents());
+        pageObjectManager.getFinanceAllFieldsTestPage().enterLedger(FakeDataUtil.getNumberWithoutDecimal());
         log.info("Entered Ledger");
 
         pageObjectManager.getFinanceAllFieldsTestPage().enterDescription(FakeDataUtil.getDescription());
