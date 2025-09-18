@@ -55,7 +55,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
         log.info("Selected SubFid Shipper");
 
-        pageObjectManager.getFreightDetail().selectSubFidNoTc();
+        pageObjectManager.getBookedFreights().selectSubFidNoTc("TC1");
         log.info("Selected SubFid NoTC");
 
         pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
@@ -67,9 +67,9 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
         log.info("Clicked Submit Button");
 
-        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + pushInvoiceSuccessAlert);
-        Assert.assertEquals(pushInvoiceSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
+        String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: " + subFidSuccessAlert);
+        Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
         pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");

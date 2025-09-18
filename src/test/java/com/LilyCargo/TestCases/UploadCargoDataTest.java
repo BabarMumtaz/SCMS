@@ -21,7 +21,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
     @Epic("EP001")
     @Feature("Feature:003")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Freight Relations > Add carrier")
+    @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
     public void CargoDataUploadTest() throws InterruptedException {
 
         String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC9 Upload Data - 38 Records.xlsx";
@@ -35,35 +35,40 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        pageObjectManager.getFreightDetail().scrollToRight();
-        log.info("Clicked Incidents Registration Tab");
-
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: " + fidNumber);
+        pageObjectManager.getFreightDetail().scrollToRight();
+        log.info("Clicked Incidents Registration Tab");
+
+        Thread.sleep(1000);
 
         pageObjectManager.getFreightDetail().clickCargoDataTab();
         log.info("Clicked Cargo Data Tab");
 
-        //----------------------------------Cargo Data Tab----------------------------------
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Fid Number is: " + fidNumber);
+
+        /** ---------- Cargo Data Tab ---------- */
 
         List<WebElement> noDataElements = pageObjectManager.getCargoDataPage().getNoDataFoundElements(); // This should return List<WebElement>
 
-        if (!noDataElements.isEmpty() && noDataElements.get(0).isDisplayed()) {
+        if (!noDataElements.isEmpty() && noDataElements.getFirst().isDisplayed()) {
             log.info("📄 'No data found' is displayed. Proceeding to upload.");
 
-            pageObjectManager.getCargoDataPage().selectNoTc();
-            log.info("Selected NoTC");
+            pageObjectManager.getCargoDataPage().selectNoTc("TC9");
+            log.info("Selected NoTC 9");
 
-            Assert.assertTrue(pageObjectManager.getCargoDataPage().isUpdateNoTcSuccessAlertMessageDisplayed(), "NoTc update Alert popup Not Displayed");
-            log.info("NoTC Success Alert Message: " + pageObjectManager.getCargoDataPage().getUpdateNoTcSuccessAlertMessage());
+            String noTcSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+            log.info("NoTC Success Alert is: {}", noTcSuccessAlert);
+            Assert.assertEquals(noTcSuccessAlert, "NoTC updated", "Success Alert does not match expected value.");
 
-            pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
             log.info("Clicked NoTC Alert Popup Cross Icon");
 
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
+
+            pageObjectManager.getCargoDataPage().exportCargoData();
         }
 
         else {
@@ -72,35 +77,42 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getFreightDetail().clickSubFidAddIcon();
             log.info("Clicked SubFid Add Icon");
 
-            Assert.assertTrue(pageObjectManager.getFreightDetail().isCreateSubFidPopupHeadingDisplayed(), "SubFid  Alert popup Not Displayed");
-            log.info("Popup Heading: " + pageObjectManager.getFreightDetail().getCreateSubFidPopupHeading());
+            String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
+            log.info("Popup Heading is: {}", popupHeading);
+            Assert.assertEquals(popupHeading, "Create Sub Freight", "Popup heading does not match expected value.");
 
-            pageObjectManager.getFreightDetail().selectSubFidShipper();
+            pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
+            log.info("Selected SubFid Export Company");
+
+            pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
             log.info("Selected SubFid Shipper");
 
-/*            pageObjectManager.getFreightDetail().selectSubFidNoTc();
-            log.info("Selected SubFid NoTC");*/
+            pageObjectManager.getBookedFreights().selectSubFidNoTc("TC9");
+            log.info("Selected SubFid NoTC");
 
-            pageObjectManager.getFreightDetail().enterSubFidHblNo(FakeDataUtil.getString());
+            pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
             log.info("Entered SubFid House BL No");
 
-            pageObjectManager.getFreightDetail().enterSubFidClientRef(FakeDataUtil.getString());
+            pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getString());
             log.info("Entered SubFid Client Ref");
 
             pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
             log.info("Clicked Submit Button");
 
-            Assert.assertTrue(pageObjectManager.getFreightDetail().isSubFidAddSuccessAlertMessageDisplayed(), "Sub FID Creation Success Alert Message Not Displayed");
-            log.info("Success Alert Message: " + pageObjectManager.getFreightDetail().getSubFidAddSuccessAlertMessage());
+            String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+            log.info("Success Alert is: {}", subFidSuccessAlert);
+            Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
-            pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
-            log.info("Clicked Alert Popup ");
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+            log.info("Clicked Alert Popup");
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             pageObjectManager.getFreightDetail().selectLastSubFID();
 
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
+
+            pageObjectManager.getCargoDataPage().exportCargoData();
         }
     }
 }

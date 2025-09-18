@@ -2,6 +2,7 @@ package com.LilyCargo.Pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,7 +31,7 @@ public class CargoDataTestPage {
         this.actions = new Actions(driver);
     }
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//tbody/tr[1]/td[4]")
     WebElement cargoDataListingHs1stCell;
@@ -41,9 +42,6 @@ public class CargoDataTestPage {
     //button[@id='tc-no']
     @FindBy(id = "tc-no")
     WebElement noTcDropdown;
-
-    @FindBy(xpath = "//button[text()='TC9']")
-    WebElement noTcDropdownValue;
 
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[3]")
     WebElement exportCargoDataIcon;
@@ -66,9 +64,6 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[text()='No & Close']")
     WebElement deleteCargoDataPopupCancelButton;
 
-    @FindBy(xpath = "//div[@class='lc-header-title modal-title h4']")
-    WebElement uploadCargoDataPopupHeading;
-
     @FindBy(className = "btn-close")
     WebElement uploadCargoDataPopupCloseIcon;
 
@@ -81,22 +76,13 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[text()='Cancel']")
     WebElement uploadCargoDataPopupCancelButton;
 
-    @FindBy(xpath = "//div[contains(text(),'Data successfully uploaded')]")
-    WebElement uploadCargoSuccessAlertMessage;
-
-    @FindBy(xpath = "//div[contains(text(),'NoTC updated')]")
-    WebElement updateNoTcSuccessAlertMessage;
+    @FindBy(className = "Toastify__toast-body")
+    WebElement alertPopupText;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
     WebElement successAlertCrossIcon;
 
-    @FindBy(id = "72e9s8its")
-    WebElement exportSuccessAlertMessage;
-
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement exportSuccessAlertCrossIcon;
-
-//	 -----------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Methods ---------- */
 
     public String getCargoDataListingHs1stCellText() {
         return cargoDataListingHs1stCell.getText();
@@ -106,30 +92,22 @@ public class CargoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(cargoDataListingHs1stCell)).isDisplayed();
     }
 
-/*    public boolean isCargoDataListingAreaDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingEmptyArea)).isDisplayed();
-    }
-
-    public String getCargoDataListingAreaMessage() {
-        return cargoDataListingEmptyArea.getText();
-    }
-
-    public WebElement getNoDataFound() {
-        return cargoDataListingEmptyArea;
-    }*/
-
     public List<WebElement> getNoDataFoundElements() {
         return cargoDataListingEmptyArea;
     }
 
-    public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-        dropdown.click();
-        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-        dropdownValue.click();
+    public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+        wait.until(ExpectedConditions.elementToBeClickable(dropdownElement)).click(); // open the dropdown
+        log.info("🔽 Opened dropdown");
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+        dropdownOption.click();
+        log.info("✅ Selected option: " + optionText);
     }
 
-    public void selectNoTc() {
-        selectDropdownValue(noTcDropdown, noTcDropdownValue);
+    public void selectNoTc(String noTcValue) {
+        selectDropdownByText(noTcDropdown, noTcValue);
     }
 
     public void clickOnExportCargoDataIcon() {
@@ -138,14 +116,6 @@ public class CargoDataTestPage {
 
     public void clickOnUploadCargoDataIcon() {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataIcon)).click();
-    }
-
-    public String getUploadCargoDataPopupHeading() {
-        return uploadCargoDataPopupHeading.getText();
-    }
-
-    public boolean isUploadCargoDataPopupDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupHeading)).isDisplayed();
     }
 
     public void clickOnUploadCargoDataPopupCloseIcon() {
@@ -165,36 +135,16 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
-    public void isUploadCargoSuccessAlertMessageDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(uploadCargoSuccessAlertMessage)).isDisplayed();
-    }
-
-    public String getUploadCargoSuccessAlertMessage() {
-        return uploadCargoSuccessAlertMessage.getText();
-    }
-
-    public boolean isUpdateNoTcSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(updateNoTcSuccessAlertMessage)).isDisplayed();
-    }
-
-    public String getUpdateNoTcSuccessAlertMessage() {
-        return updateNoTcSuccessAlertMessage.getText();
-    }
-
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
-    public String getExportSuccessAlertMessage() {
-        return exportSuccessAlertMessage.getText();
+    public void isCargoAlertMessageDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(alertPopupText)).isDisplayed();
     }
 
-    public boolean isExportSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(exportSuccessAlertMessage)).isDisplayed();
-    }
-
-    public void clickOnExportAlertPopupCrossIcon() {
-        wait.until(ExpectedConditions.visibilityOf(exportSuccessAlertCrossIcon)).click();
+    public String getAlertPopupText() {
+        return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
     }
 
     public void uploadAndSubmitCargoData(String filePath, Logger log) {
@@ -208,10 +158,22 @@ public class CargoDataTestPage {
         clickCargoDataPopupSubmitButton();
         log.info("📨 Clicked Submit on upload popup");
 
-        isUploadCargoSuccessAlertMessageDisplayed();
-        log.info("✅ Upload confirmed: " + getUploadCargoSuccessAlertMessage());
+        isCargoAlertMessageDisplayed();
+        log.info("✅ Upload confirmed: {}", getAlertPopupText());
 
         clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup ");
+        log.info("Clicked Alert Popup");
+    }
+
+    public void exportCargoData() {
+
+        clickOnExportCargoDataIcon();
+        log.info("📤 Clicked Export icon");
+
+        isCargoAlertMessageDisplayed();
+        log.info("✅ Upload confirmed: {}", getAlertPopupText());
+
+        clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup");
     }
 }

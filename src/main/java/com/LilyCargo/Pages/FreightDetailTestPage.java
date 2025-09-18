@@ -95,6 +95,9 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Cargo Data']")
 	WebElement cargoDataTab;
 
+	@FindBy(xpath = "//button[text()='Fulfillment']")
+	WebElement fulfillmentTab;
+
 	@FindBy(xpath = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
@@ -280,9 +283,8 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeVisible(freightTabHorizontalScroll);
 
 		// Scroll the cargoDataTab into view
-		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", cargoDataTab);
+		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", fulfillmentTab);
 
-		// Wait until the cargoDataTab is clickable
-		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
+		waitUtil.waitForElementToBeVisible(cargoDataTab);
 	}
 }

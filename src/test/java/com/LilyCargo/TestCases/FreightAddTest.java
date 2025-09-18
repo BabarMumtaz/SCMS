@@ -138,7 +138,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         Assert.assertEquals(pushInvoiceSuccessAlert, "Freight successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-        log.info("Clicked Alert Popup ");
+        log.info("Clicked Alert Popup");
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
         FileUtil.saveData("FreightID", fidNumber);

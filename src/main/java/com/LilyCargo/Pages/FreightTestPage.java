@@ -255,6 +255,9 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@type='number']")
 	WebElement fidNumber;
 
+	@FindBy(xpath = "//div[contains(@id,'select-NoTC ')]")
+	WebElement subFidNoTcDrop;
+
 	/** ---------- Methods ---------- */
 
 	// Method to capture the page heading
@@ -651,5 +654,9 @@ public class FreightTestPage {
 
 	public String getEditFreightID() {
 		return wait.until(ExpectedConditions.visibilityOf(editPageID)).getText();
+	}
+
+	public void selectSubFidNoTc(String notcValue) {
+		selectDropdownByText(subFidNoTcDrop, notcValue);
 	}
 }
