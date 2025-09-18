@@ -64,7 +64,7 @@ public class NotifyPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getString());
         log.info("Entered Notify Party Vat No");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

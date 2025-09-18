@@ -57,7 +57,7 @@ public class BrokersAddTestWithShowTestData extends TestBeforeAndAfter {
         brokerData.put("Address", faker.address().streetAddress());
         brokerData.put("Zip City", faker.address().zipCode());
         brokerData.put("Country", "CHINA");
-        brokerData.put("VAT Number", FakeDataUtil.getVatNo());
+        brokerData.put("VAT Number", FakeDataUtil.getString());
 
         // ---- Enter values into fields ----
         pageObjectManager.getRelationsAllFieldsTestPage().enterName(brokerData.get("Company Name"));

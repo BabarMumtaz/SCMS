@@ -47,7 +47,7 @@ public class ClientDuplicateTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().updateName(faker.name().name());
         log.info("Update Clients Name");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().updateVatNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().updateVatNumber(FakeDataUtil.getString());
         log.info("Update VAT");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

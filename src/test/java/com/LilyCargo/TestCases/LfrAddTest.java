@@ -67,7 +67,7 @@ public class LfrAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().selectCountryName("CHINA");
         log.info("Selected Country");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getString());
         log.info("Entered Lfr Vat");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

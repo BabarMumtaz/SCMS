@@ -64,10 +64,10 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber()); // New method for Dutch phone number
         log.info("Entered Additional Party Tel Number");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getString());
         log.info("Entered Additional Party Vat No");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterEoriNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterEoriNumber(FakeDataUtil.getString());
         log.info("Entered Additional Party Eori No");
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();

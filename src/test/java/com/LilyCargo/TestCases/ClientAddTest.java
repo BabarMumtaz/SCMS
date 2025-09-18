@@ -76,7 +76,7 @@ public class ClientAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterZipCity(faker.address().zipCode());
         log.info("Entered Zip City");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getVatNo());
+        pageObjectManager.getRelationsAllFieldsTestPage().enterVatNumber(FakeDataUtil.getString());
         log.info("Entered VAT");
 
         pageObjectManager.getGlobalMethodsPage().selectLfr("NL LMLOG Fiscal");

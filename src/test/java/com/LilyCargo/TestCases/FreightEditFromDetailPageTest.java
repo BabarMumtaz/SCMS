@@ -128,14 +128,20 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Customs Status Button");
 
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+		log.info("Clicked Alert Popup ");
+
 		pageObjectManager.getBookedFreights().selectCustomDocStatus("unsent");
 		log.info("Selected Custom Doc Status From Dropdown");
 
-		pageObjectManager.getBookedFreights().selectCustomsClearanceServices("Incomplete");
+		pageObjectManager.getBookedFreights().selectCustomsClearanceServices("Complete");
 		log.info("Selected Customs Clearance Services From Dropdown");
 
 		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
 		log.info("Clicked Purchase Step Button");
+
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+		log.info("Clicked Alert Popup ");
 
 		pageObjectManager.getBookedFreights().enterAdminFee(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Admin Fee");
@@ -154,6 +160,9 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 
 		pageObjectManager.getBookedFreights().clickSaleStepBtn();
 		log.info("Clicked Sales Step Button");
+
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+		log.info("Clicked Alert Popup ");
 
 		pageObjectManager.getBookedFreights().enterDeliveryCharges(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Delivery Charges");

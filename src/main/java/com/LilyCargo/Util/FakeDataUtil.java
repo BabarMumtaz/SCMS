@@ -86,43 +86,8 @@ public class FakeDataUtil {
     }
 
     public static String getNumberWith2Decimal() {
-        double weight = fakerEN.number().randomDouble(2, 1000, 20000);
+        double weight = fakerEN.number().randomDouble(2, 10, 2000);
         return String.format("%.2f", weight);
-    }
-
-    public static String getWeights() {
-        double weight = fakerEN.number().randomDouble(2, 1000, 20000);
-        return String.format("%.2f", weight);
-    }
-
-    public static String getMeasurements() {
-        double measurement = fakerEN.number().randomDouble(2, 1000, 100000);
-        return String.format("%.2f", measurement);
-    }
-
-    public static String getBondedLocation(String country) {
-        if (country.equalsIgnoreCase("netherlands")) {
-            return fakerNL.address().fullAddress();
-        } else if (country.equalsIgnoreCase("china")) {
-            return fakerCN.address().fullAddress();
-        } else {
-            return fakerEN.address().fullAddress();
-        }
-    }
-
-    public static String getAdminFee() {
-        double fee = 100 + (900 * fakerEN.random().nextDouble());
-        return formatAmount(fee);
-    }
-
-    public static String getDuty() {
-        double duty = 100 + (400 * fakerEN.random().nextDouble());
-        return formatAmount(duty);
-    }
-
-    private static String formatAmount(double value) {
-        DecimalFormat formatter = new DecimalFormat("0.00");
-        return formatter.format(value);
     }
 
     public static String getRemarks() {
@@ -198,10 +163,6 @@ public class FakeDataUtil {
 
     public static String getEuPidNo() {
         return fakerEN.bothify("EU###").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
-    }
-
-    public static String getVatNo() {
-        return fakerEN.bothify("??#####??").toUpperCase(); // Generates a mix of letters and digits, e.g., "AB12345CD"
     }
 
     public static String getHsCode(int length) {
