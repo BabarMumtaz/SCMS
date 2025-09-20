@@ -22,6 +22,7 @@ public class GlobalMethodsTestPage {
     Logger log = LogManager.getLogger(GlobalMethodsTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public GlobalMethodsTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;

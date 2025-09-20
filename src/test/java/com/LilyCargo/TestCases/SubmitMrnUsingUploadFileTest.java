@@ -36,6 +36,9 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
     }
@@ -73,7 +76,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
             Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isMrnExistUpdatedCSSuccessAlertMessageDisplayed(), "Alert Message is different");
             log.info("Success Alert Message on Update: " + pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnExistUpdatedCSSuccessAlertMessage());
 
-            pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed the success alert for Update MRN");
         }
         else {
@@ -93,7 +96,7 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
             Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isMrnAddedUpdatedCSSuccessAlertMessageDisplayed(), "Alert Message is different");
             log.info("Success Alert Message on Submit: " + pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnAddedUpdatedCSSuccessAlertMessage());
 
-            pageObjectManager.getRemarksPage().clickOnAlertPopupCrossIcon();
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed the success alert for Adding MRN");
         }
 

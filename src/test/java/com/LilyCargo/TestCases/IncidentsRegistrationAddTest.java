@@ -15,11 +15,11 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can add Incidents Registration successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Incidents Registration successfully")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Booked Freight 03")
+    @Feature("Feature:03.07_Incidents Registration")
     @Story("As a user, I should be able to add Incidents Registration successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Incidents Registration Tab > Add Incidents Registration")
-    public void VerifyIncidentsRegistrationCreation() throws InterruptedException {
+    public void VerifyIncidentsRegistrationCreation() {
 
         log = LogManager.getLogger(IncidentsRegistrationAddTest.class);
         log.info("Starting Incidents Registration Add Test from Incidents Registration Tab.");
@@ -27,22 +27,25 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
-        Assert.assertTrue(pageObjectManager.getFreightDetail().isIncidentsRegistrationTabDisplayed(), "Incidents Registration tab is not Displayed");
-        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText());
+        String tabHeading = pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText();
+        log.info("Tab Heading is: {}", tabHeading);
+        Assert.assertEquals(tabHeading, "Incidents Registration", "Page heading does not match expected value.");
 
         pageObjectManager.getFreightDetail().clickIncidentsRegistrationTab();
         log.info("Clicked Incidents Registration Tab");
 
-    //----------------------------------Incidents Registration----------------------------------
-
         pageObjectManager.getIncidentsRegistrationPage().clickOnIncidentsRegAddIcon();
         log.info("Clicked On Incidents Registration Add Icon");
 
-        Assert.assertTrue(pageObjectManager.getIncidentsRegistrationPage().isIncidentsRegPopupHeadingDisplayed(), "Incidents Registration Popup Heading Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getIncidentsRegistrationPage().getPopupHeading());
+        String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
+        log.info("Popup Heading is: {}", popupHeading);
+        Assert.assertEquals(popupHeading, "Add Incidents Register", "Popup heading does not match expected value.");
 
         pageObjectManager.getIncidentsRegistrationPage().enterIncidentsRegPopupProblemField(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Incidents Registration Problem Text");
@@ -50,14 +53,15 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         pageObjectManager.getIncidentsRegistrationPage().enterIncidentsRegPopupSolutionField(FakeDataUtil.getIncidentsRegProblemSolution());
         log.info("Entered Incidents Registration Solution Text");
 
-        pageObjectManager.getIncidentsRegistrationPage().clickSubmitIncidentsRegButton();
+        pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Incidents Registration Button");
 
-        Assert.assertTrue(pageObjectManager.getIncidentsRegistrationPage().isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getIncidentsRegistrationPage().getSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: {}", successAlert);
+        Assert.assertEquals(successAlert, "Incident registered successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getIncidentsRegistrationPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Alert Popup ");
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup Cross Icon");
 
     }
 }

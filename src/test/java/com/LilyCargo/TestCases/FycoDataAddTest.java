@@ -27,17 +27,19 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
         String tabHeading = pageObjectManager.getFreightDetail().getFycoDataTabText();
-        log.info("Tab Heading is: " + tabHeading);
+        log.info("Tab Heading is: {}", tabHeading);
         Assert.assertEquals(tabHeading, "Fyco Data", "Page heading does not match expected value.");
 
         pageObjectManager.getFreightDetail().clickFycoDataTab();
         log.info("Clicked FYCO DATA Tab");
 
-        //----------------------------------FYCO DATA----------------------------------
         pageObjectManager.getFycoDataPage().clickOnFycoDataAddIcon();
         log.info("Clicked On FYCO DATA Add Icon");
 
@@ -72,14 +74,14 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFycoDataPage().enterCvEuroField(faker.number().digits(6));
         log.info("Entered CV Euro");
 
-        pageObjectManager.getFycoDataPage().clickSubmitFycoDataButton();
+        pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
-        Assert.assertEquals(successAlert, "Fyco successfully created.", "Success Alert does not match expected value.");
+        log.info("Success Alert is: {}", successAlert);
+        Assert.assertEquals(successAlert, "Fyco successfully added.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getFycoDataPage().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
     }

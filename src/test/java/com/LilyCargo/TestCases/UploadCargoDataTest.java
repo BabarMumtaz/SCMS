@@ -46,6 +46,10 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().clickCargoDataTab();
         log.info("Clicked Cargo Data Tab");
 
+        String tabHeading = pageObjectManager.getFreightDetail().getCargoDataTabText();
+        log.info("Tab Heading is: " + tabHeading);
+        Assert.assertEquals(tabHeading, "Cargo Data", "Page heading does not match expected value.");
+
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
         log.info("Fid Number is: " + fidNumber);
 

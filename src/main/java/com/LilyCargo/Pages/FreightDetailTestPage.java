@@ -234,10 +234,6 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(remarksTab).click();
 	}
 
-	public boolean isIncidentsRegistrationTabDisplayed() {
-		return waitUtil.waitForElementToBeVisible(incidentsRegistrationTab).isDisplayed();
-	}
-
 	public String getIncidentsRegistrationTabText() {
 		return waitUtil.waitForElementToBeVisible(fycoDataTab).getText();
 	}
@@ -266,12 +262,12 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(billingCenterTab).click();
 	}
 
-	public boolean isCargoDataTabDisplayed() {
-		return waitUtil.waitForElementToBeVisible(cargoDataTab).isDisplayed();
-	}
-
 	public void clickCargoDataTab() {
 		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
+	}
+
+	public String getCargoDataTabText() {
+		return waitUtil.waitForElementToBeVisible(cargoDataTab).getText();
 	}
 
 	public void scrollToRight() {

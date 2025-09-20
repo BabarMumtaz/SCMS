@@ -1,7 +1,5 @@
 package com.LilyCargo.Pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,9 +17,9 @@ public class IncidentsRegistrationTestPage {
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
-    Logger log = LogManager.getLogger(IncidentsRegistrationTestPage.class);
 
-    // Constructor
+    /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public IncidentsRegistrationTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
@@ -30,14 +28,10 @@ public class IncidentsRegistrationTestPage {
         this.actions = new Actions(driver);
     }
 
+    /** ---------- Locators ---------- */
+
     @FindBy(xpath = "//img[@alt='Add']")
     WebElement incidentsRegAddIcon;
-
-    @FindBy(xpath = "//div[text()='Add Incidents Register']")
-    WebElement incidentsRegPopupHeading;
-
-    @FindBy(className = "btn-close")
-    WebElement incidentsRegPopupCloseIcon;
 
     @FindBy(id = "problem")
     WebElement incidentsRegPopupProblemField;
@@ -45,31 +39,10 @@ public class IncidentsRegistrationTestPage {
     @FindBy(id = "solution")
     WebElement incidentsRegPopupSolutionField;
 
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitIncidentsRegButton;
-
-    @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement cancelIncidentsRegButton;
-
-    @FindBy(xpath = "//div[contains(text(),'Incident registered successfully')]")
-    WebElement successAlertMessage;
-
-    @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement successAlertCrossIcon;
-
-    //	 ------------------------------------------------------------------------------------------------------------------------------------------------
-
+    /** ---------- Methods ---------- */
 
     public void clickOnIncidentsRegAddIcon() {
         wait.until(ExpectedConditions.visibilityOf(incidentsRegAddIcon)).click();
-    }
-
-    public String getPopupHeading() {
-        return incidentsRegPopupHeading.getText();
-    }
-
-    public boolean isIncidentsRegPopupHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(incidentsRegPopupHeading)).isDisplayed();
     }
 
     public void enterIncidentsRegPopupProblemField(String text) {
@@ -80,34 +53,5 @@ public class IncidentsRegistrationTestPage {
         incidentsRegPopupSolutionField.sendKeys(text);
     }
 
-    public void scrollToBottom() {
-        wait.until(ExpectedConditions.visibilityOf(submitIncidentsRegButton)); // Ensure visibility
-        executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitIncidentsRegButton);
-        wait.until(ExpectedConditions.elementToBeClickable(submitIncidentsRegButton));
-    }
-
-    public void clickSubmitIncidentsRegButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitIncidentsRegButton)).click();
-    }
-
-    public void clickCancelIncidentsRegButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(cancelIncidentsRegButton)).click();
-    }
-
-    public void clickOnIncidentsRegPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(incidentsRegPopupCloseIcon)).click();
-    }
-
-    public String getSuccessAlertMessage() {
-        return successAlertMessage.getText();
-    }
-
-    public boolean isSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(successAlertMessage)).isDisplayed();
-    }
-
-    public void clickOnAlertPopupCrossIcon() {
-        wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
-    }
 }
 
