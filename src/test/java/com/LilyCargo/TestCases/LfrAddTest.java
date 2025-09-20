@@ -80,7 +80,7 @@ public class LfrAddTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "LFR successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

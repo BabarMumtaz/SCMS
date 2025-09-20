@@ -56,7 +56,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + personalInfoSuccessAlert);
         Assert.assertEquals(personalInfoSuccessAlert, "Profile Updated successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         pageObjectManager.getGlobalMethodsPage().clickCancelBtn();
@@ -78,7 +78,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + accountInfoSuccessAlert);
         Assert.assertEquals(accountInfoSuccessAlert, "Profile Updated successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         pageObjectManager.getGlobalMethodsPage().clickCancelBtn();

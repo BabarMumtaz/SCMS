@@ -67,7 +67,7 @@ public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + personalInfoSuccessAlert);
         Assert.assertEquals(personalInfoSuccessAlert, "Password changed successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

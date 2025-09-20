@@ -128,8 +128,8 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
 		log.info("Clicked Customs Status Button");
 
-		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-		log.info("Clicked Alert Popup ");
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup Cross Icon");
 
 		pageObjectManager.getBookedFreights().selectCustomDocStatus("unsent");
 		log.info("Selected Custom Doc Status From Dropdown");
@@ -140,8 +140,8 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
 		log.info("Clicked Purchase Step Button");
 
-		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-		log.info("Clicked Alert Popup ");
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup Cross Icon");
 
 		pageObjectManager.getBookedFreights().enterAdminFee(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Admin Fee");
@@ -161,8 +161,8 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaleStepBtn();
 		log.info("Clicked Sales Step Button");
 
-		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-		log.info("Clicked Alert Popup ");
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup Cross Icon");
 
 		pageObjectManager.getBookedFreights().enterDeliveryCharges(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Delivery Charges");
@@ -182,12 +182,12 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickSaveReturnFreightBtn();
 		log.info("Clicked Save & Return Freight Button");
 
-		String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-		log.info("Success Alert is: " + pushInvoiceSuccessAlert);
-		Assert.assertEquals(pushInvoiceSuccessAlert, "Freight successfully updated.", "Success Alert does not match expected value.");
+		String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+		log.info("Success Alert is: " + successAlert);
+		Assert.assertEquals(successAlert, "Freight successfully updated.", "Success Alert does not match expected value.");
 
-		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-		log.info("Clicked Alert Popup ");
+		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup Cross Icon");
 
 	}
 }

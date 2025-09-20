@@ -147,7 +147,7 @@ public class GlobalMethodsTestPage {
     WebElement accountInfoEditDetailsBtn;
 
     @FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-    WebElement alertPopupListingPage;
+    WebElement alertPopupGlobal;
 
     @FindBy(xpath = "//div[contains(text(),'success') or contains(text(),'Success')]")
     WebElement alertPopupTextOldXpath;
@@ -402,8 +402,8 @@ public class GlobalMethodsTestPage {
         accountInfoEditDetailsBtn.click();
     }
 
-    public void clickOnAlertPopupLP() {
-        wait.until(ExpectedConditions.visibilityOf(alertPopupListingPage)).click();
+    public void clickOnAlertPopupCrossIcon() {
+        wait.until(ExpectedConditions.visibilityOf(alertPopupGlobal)).click();
     }
 
     public void clickAllDynamicCrossIcons() {

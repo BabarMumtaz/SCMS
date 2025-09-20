@@ -77,7 +77,7 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         log.info("Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Broker successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

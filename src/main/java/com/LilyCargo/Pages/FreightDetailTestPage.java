@@ -246,10 +246,6 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(incidentsRegistrationTab).click();
 	}
 
-	public boolean isFycoDataTabDisplayed() {
-		return waitUtil.waitForElementToBeVisible(fycoDataTab).isDisplayed();
-	}
-
 	public String getFycoDataTabText() {
 		return waitUtil.waitForElementToBeVisible(fycoDataTab).getText();
 	}

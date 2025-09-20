@@ -95,7 +95,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         log.info("Update Invoice Success Alert is: " + successAlert);
         Assert.assertEquals(successAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         pageObjectManager.getBillingCenterPage().clickPushToExactIcon();
@@ -105,7 +105,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         log.info("Update Invoice Success Alert is: " + pushInvoiceSuccessAlert);
         Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

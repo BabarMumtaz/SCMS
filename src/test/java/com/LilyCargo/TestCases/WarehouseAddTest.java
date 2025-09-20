@@ -79,7 +79,7 @@ public class WarehouseAddTest extends TestBeforeAndAfter {
 
         //Assert.assertTrue(pageObjectManager.getGlobalMethodsPage().isSuccessAlertDisplayed("Warehouse successfully created."));
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

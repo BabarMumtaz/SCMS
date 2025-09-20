@@ -69,7 +69,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         Assert.assertEquals(dumpDutyHsSuccessAlert, "Dump Duty HS successfully created.",
                 "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         /** ---------- CBAM HS TAB ---------- */
@@ -110,7 +110,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("CBAM HS Success Alert is: " + cbamHsSuccessAlert);
         Assert.assertEquals(cbamHsSuccessAlert, "CBAM HS successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         /** ---------- EUDR HS TAB ---------- */
@@ -151,7 +151,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("EUDR HS Success Alert is: " + eudrHsSuccessAlert);
         Assert.assertEquals(eudrHsSuccessAlert, "EUDR HS successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         /** ---------- MADB HS TAB ---------- */
@@ -195,7 +195,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("MADB HS Success Alert is: " + madbHsSuccessAlert);
         Assert.assertEquals(madbHsSuccessAlert, "MADB HS successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         /** ---------- N851 HS TAB ---------- */
@@ -239,7 +239,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("N851 HS Success Alert is: " + n851HsSuccessAlert);
         Assert.assertEquals(n851HsSuccessAlert, "N851 HS successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
        /** ---------- OTHERS HS TAB ---------- */
@@ -280,7 +280,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("OTHERS HS Success Alert is: " + othersHsSuccessAlert);
         Assert.assertEquals(othersHsSuccessAlert, "Other HS successfully created.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }

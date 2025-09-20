@@ -18,8 +18,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can Upload Cargo Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Upload Cargo Data successfully")
-    @Epic("EP001")
-    @Feature("Feature:003")
+    @Epic("Booked Freight 03")
+    @Feature("Feature:03.11_Cargo Data")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
     public void CargoDataUploadTest() throws InterruptedException {
@@ -63,7 +63,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             log.info("NoTC Success Alert is: {}", noTcSuccessAlert);
             Assert.assertEquals(noTcSuccessAlert, "NoTC updated", "Success Alert does not match expected value.");
 
-            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Clicked NoTC Alert Popup Cross Icon");
 
             pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
@@ -103,8 +103,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             log.info("Success Alert is: {}", subFidSuccessAlert);
             Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
-            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
-            log.info("Clicked Alert Popup");
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+            log.info("Clicked Alert Popup Cross Icon");
 
             Thread.sleep(1000);
 

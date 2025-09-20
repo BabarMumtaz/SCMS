@@ -53,7 +53,7 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Operator 01 Success Alert is: " + operator01SuccessAlert);
         Assert.assertEquals(operator01SuccessAlert, "Operator successfully updated.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
         /** ---------- Operator 02 ---------- */
@@ -75,7 +75,7 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Operator 02 Success Alert is: " + operator02SuccessAlert);
         Assert.assertEquals(operator02SuccessAlert, "Operator successfully updated.", "Success Alert does not match expected value.");
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupLP();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
     }
