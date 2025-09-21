@@ -18,8 +18,8 @@ public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Change Password successfully")
-    @Epic("Administration")
-    @Feature("Feature:01.02.02_Overview_My Profile")
+    @Epic("Administration 02")
+    @Feature("Feature:02.02.02_Overview_My Profile")
     @Story("As a user, I should be able to Change Password successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > My Profiles > Change Password")
     public void VerifyChangePasswordTestCase() {

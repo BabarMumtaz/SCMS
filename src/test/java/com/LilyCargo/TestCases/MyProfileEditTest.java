@@ -16,8 +16,8 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can edit My Profile successfully")
-    @Epic("Administration")
-    @Feature("Feature:01.02_Overview_My Profile")
+    @Epic("Administration 02")
+    @Feature("Feature:02.02_Overview_My Profile")
     @Story("As a user, I should be able to Edit My Profile successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > My Profiles > Edit My Profile")
     public void VerifyMyProfileEditTestCase(){
@@ -32,7 +32,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Clicked My Profile Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickMyProfileBtn();
@@ -46,14 +46,14 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Clicked Personal Info Edit button");
 
         String profileSectionHeading = pageObjectManager.getAdminOverviewTestPage().getProfileSectionsHeadingText();
-        log.info("Profile 1st Section Heading is: " + profileSectionHeading);
+        log.info("Profile 1st Section Heading is: {}", profileSectionHeading);
         Assert.assertEquals(profileSectionHeading, "Personal Information", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
         log.info("Click Update My Profile Button");
 
         String personalInfoSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + personalInfoSuccessAlert);
+        log.info("Success Alert is: {}", personalInfoSuccessAlert);
         Assert.assertEquals(personalInfoSuccessAlert, "Profile Updated successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -68,14 +68,14 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Clicked Account Info Edit button");
 
         String profileSection02Heading = pageObjectManager.getAdminOverviewTestPage().getProfileSectionsHeadingText();
-        log.info("Profile 2nd Section Heading is: " + profileSection02Heading);
+        log.info("Profile 2nd Section Heading is: {}", profileSection02Heading);
         Assert.assertEquals(profileSection02Heading, "Account Information", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
         log.info("Click Update My Profile Button");
 
         String accountInfoSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + accountInfoSuccessAlert);
+        log.info("Success Alert is: {}", accountInfoSuccessAlert);
         Assert.assertEquals(accountInfoSuccessAlert, "Profile Updated successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

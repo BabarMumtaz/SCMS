@@ -18,6 +18,7 @@ public class AdminOverviewTestPage {
     Logger log = LogManager.getLogger(AdminOverviewTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public AdminOverviewTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
@@ -106,12 +107,6 @@ public class AdminOverviewTestPage {
     @FindBy(xpath = "//span[text()='Update ']")
     WebElement roleUpdatePageHeading;
 
-    @FindBy(xpath = "//div[contains(text(),'Role successfully created.')]")
-    WebElement addRoleSuccessAlertMessage;
-
-    @FindBy(xpath = "//div[contains(text(),'Role successfully updated.')]")
-    WebElement updateRoleSuccessAlertMessage;
-
     /** ---------- Methods ---------- */
 
     public void clickUserManagementBtn() {
@@ -192,24 +187,8 @@ public class AdminOverviewTestPage {
         rolesListingBtn.click();
     }
 
-    public String getRolePageHeading() {
-        return rolesPageHeading.getText();
-    }
-
-    public boolean isRolePageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(rolesPageHeading)).isDisplayed();
-    }
-
     public void clickAddRoleBtn() {
         rolesCreateBtn.click();
-    }
-
-    public String getRoleAddPageHeading() {
-        return rolesAddPageHeading.getText();
-    }
-
-    public boolean isRoleAddPageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(rolesAddPageHeading)).isDisplayed();
     }
 
     public void enterRoleName(String text) {
@@ -225,34 +204,9 @@ public class AdminOverviewTestPage {
         wait.until(ExpectedConditions.visibilityOf(rolesDashboardCheckbox)).click();
     }
 
-    public String getRoleUpdatePageHeading() {
-        return roleUpdatePageHeading.getText();
-    }
-
-    public boolean isRoleUpdatePageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(roleUpdatePageHeading)).isDisplayed();
-    }
-
-    public String getRoleSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(addRoleSuccessAlertMessage)).getText();
-    }
-
-    public boolean isRoleSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(addRoleSuccessAlertMessage)).isDisplayed();
-    }
-
-    public boolean isUpdateRoleSuccessAlertMessageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(updateRoleSuccessAlertMessage)).isDisplayed();
-    }
-
-    public String getUpdatedRoleSuccessAlertMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(updateRoleSuccessAlertMessage)).getText();
-    }
-
     public void scrollToElement() {
         executor.executeScript("arguments[0].scrollIntoView(true);", rolesDashboardCheckbox);
     }
-
 
     public void clickMyProfileBtn() {
         myProfileBtn.click();

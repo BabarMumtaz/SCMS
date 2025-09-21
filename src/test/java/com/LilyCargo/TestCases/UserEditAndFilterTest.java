@@ -23,14 +23,14 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         log.info("🧭 Clicked Overview Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("🧭 Clicked User Management button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
     }
 
@@ -63,9 +63,9 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickOnEditBtn();
         log.info("Clicked on Edit button on view page");
 
-        String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Update Page Heading is: " + addPageHeading);
-        Assert.assertEquals(addPageHeading, "Update User", "Add Page heading does not match expected value.");
+        String updatePageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Update Page Heading is: {}", updatePageHeading);
+        Assert.assertEquals(updatePageHeading, "Update User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().selectGender("Female");
         log.info("✅ Female Gender dropdowns selected successfully");
@@ -80,7 +80,7 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         log.info("Click Save User Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully updated.");
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "User successfully updated.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

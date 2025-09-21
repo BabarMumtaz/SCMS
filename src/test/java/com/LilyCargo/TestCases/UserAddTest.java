@@ -17,8 +17,8 @@ public class UserAddTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add User successfully")
-    @Epic("Administration")
-    @Feature("Feature:01.01_Overview_User Management")
+    @Epic("Administration 02")
+    @Feature("Feature:02.01_Overview_User Management")
     @Story("As a user, I should be able to Add/Create User successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Users > Add User")
     public void VerifyUserAddTestCase(){
@@ -35,21 +35,21 @@ public class UserAddTest extends TestBeforeAndAfter {
         log.info("Clicked User Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickAddUserBtn();
         log.info("Clicked User Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().addUserProfileImage(filePath);
@@ -82,7 +82,7 @@ public class UserAddTest extends TestBeforeAndAfter {
         log.info("Click Save User Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

@@ -55,7 +55,7 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         log.info("Clicked Role Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().enterRoleName(faker.name().fullName());
@@ -68,16 +68,21 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         log.info("Click Save User Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
 
-
     }
 
     @Test(priority = 2, description = "Verify that a user can Edit Role successfully", enabled = true)
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can edit Role successfully")
+    @Epic("Administration")
+    @Feature("Feature:01.2_Overview_User Management_Create Role and Edit")
+    @Story("As a Role, I should be able to edit Role successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Roles > Edit Role")
     public void editRoleTest() throws InterruptedException {
 
         navigateToRoleManagement();
@@ -90,8 +95,9 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickOnEditBtn();
         log.info("Clicked on Edit button on view page");
 
-        Assert.assertTrue(pageObjectManager.getAdminOverviewTestPage().isRoleUpdatePageHeadingDisplayed(), "Add Page Heading Not Displayed");
-        log.info("User Edit Page Heading: " + pageObjectManager.getAdminOverviewTestPage().getRoleUpdatePageHeading());
+        String updatePageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
+        log.info("Update Page Heading is: {}", updatePageHeading);
+        Assert.assertEquals(updatePageHeading, "Role successfully updated.", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().scrollToElement();
 
@@ -99,14 +105,14 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         log.info("UnChecked Dashboard roles");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
-        log.info("Click Save User Button");
+        log.info("Click Save User Button in Update case");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert in Update case is: {}", successAlert);
         Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Cross icon of Alert");
+        log.info("Clicked Cross icon of Alert in Update case");
 
     }
 }
