@@ -255,6 +255,9 @@ public class FreightTestPage {
 	@FindBy(xpath = "//input[@type='number']")
 	WebElement fidNumber;
 
+	@FindBy(xpath = "//span[@id='btnGroupAddon']")
+	WebElement fidSearchGoButton;
+
 	@FindBy(xpath = "//div[contains(@id,'select-NoTC ')]")
 	WebElement subFidNoTcDrop;
 
@@ -269,7 +272,7 @@ public class FreightTestPage {
 		return addPageHeading.getText();
 	}
 
-	public String getFidNumberText() {
+/*	public String getFidNumberText() {
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(fidNumber));
 		String fidNumberText = element.getAttribute("value");
 
@@ -278,6 +281,14 @@ public class FreightTestPage {
 			fidNumberText = element.getAttribute("placeholder");
 		}
 		return fidNumberText;
+	}*/
+
+	public String getFidNumberText() {
+		return wait.until(ExpectedConditions.visibilityOf(fidNumber)).getAttribute("placeholder");
+	}
+
+	public void clickSearchGoBtn() {
+		fidSearchGoButton.click();
 	}
 
 	public void clickCreateFreightBtn() {

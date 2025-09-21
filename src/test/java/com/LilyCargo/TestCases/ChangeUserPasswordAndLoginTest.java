@@ -34,21 +34,21 @@ public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
         log.info("Clicked My Profile Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickMyProfileBtn();
         log.info("Clicked My Profile button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "My Profile", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickChangePasswordBtn();
         log.info("Clicked Change Password Btn");
 
         String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
-        log.info("Popup Heading is: " + popupHeading);
+        log.info("Popup Heading is: {}", popupHeading);
         Assert.assertEquals(popupHeading, "Change Password", "Popup heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().enterUserCurrentPassword("secret123");
@@ -64,7 +64,7 @@ public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
         log.info("Click Update My Profile Button");
 
         String personalInfoSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + personalInfoSuccessAlert);
+        log.info("Success Alert is: {}", personalInfoSuccessAlert);
         Assert.assertEquals(personalInfoSuccessAlert, "Password changed successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -75,11 +75,11 @@ public class ChangeUserPasswordAndLoginTest extends TestBeforeAndAfter {
     @Test(dependsOnMethods = "VerifyChangePasswordTestCase", description = "Login using the a changed password user", groups = {"login", "smoke", "regression"})
     public void loginWithChangedPasswordTest() {
 
-        log.info("🔐 Attempting to log in with a changed password user: " + userEmail + userPassword);
+        log.info("🔐 Attempting to log in with a changed password user: {}{}", userEmail + userPassword);
 
         pageObjectManager.getLoginPage().login(userEmail, userPassword);
 
         Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "❌ Login failed with a changed password user.");
-        log.info("✅ Logged in successfully with a changed password user: " + userEmail + userPassword);
+        log.info("✅ Logged in successfully with a changed password user: {}{}", userEmail, userPassword);
     }
 }

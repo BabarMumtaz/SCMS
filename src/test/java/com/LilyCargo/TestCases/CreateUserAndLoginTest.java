@@ -37,21 +37,21 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
         log.info("Clicked User FR Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickAddUserBtn();
         log.info("Clicked User Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().enterUserName(faker.name().fullName());
@@ -74,7 +74,7 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
         log.info("Click Save User Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getSuccessAlertText("User successfully created.");
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "User successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -85,11 +85,11 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
     @Test(priority = 2, dependsOnMethods = "createUserTest", description = "Login using the newly created user", groups = {"login", "smoke", "regression"})
     public void loginWithNewUserTest() {
 
-        log.info("🔐 Attempting to log in with newly created user: " + userEmail);
+        log.info("🔐 Attempting to log in with newly created user: {}", userEmail);
 
         pageObjectManager.getLoginPage().login(userEmail, userPassword);
 
         Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "❌ Login failed with new user.");
-        log.info("✅ Logged in successfully with new user: " + userEmail);
+        log.info("✅ Logged in successfully with new user: {}", userEmail);
     }
 }

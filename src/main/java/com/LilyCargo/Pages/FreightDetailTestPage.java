@@ -21,8 +21,8 @@ public class FreightDetailTestPage {
 	private WaitUtil waitUtil; // Use WaitUtil instead of WebDriverWait
 	Logger log = LogManager.getLogger(FreightDetailTestPage.class);
 
+	/** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
 
-	// Constructor
 	public FreightDetailTestPage(WebDriver driver) {
 		this.driver = driver;
 		this.executor = (JavascriptExecutor) this.driver;
@@ -31,54 +31,19 @@ public class FreightDetailTestPage {
 		this.actions = new Actions(driver);
 	}
 
+	/** ---------- Locators ---------- */
+
 	@FindBy(xpath = "//div[@class='ft-edit-wrapper'][1]" )
 	WebElement editFreightIconDP;
-
-	//-------------------------------------CREATE SUBFID ----------------------------------------------------------
 
 	@FindBy(css = "button[class='fid-add-btn btn btn-primary']")
 	WebElement subFidAddIcon;
 
-	@FindBy(xpath = "//div[text()='Create Sub Freight']")
-	WebElement createSubFidPopupHeading;
-
-	@FindBy(xpath = "//input[contains(@id,'selectable-')]")
-	WebElement subFidShipperDrop;
-
-	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
-	WebElement subFidShipperDropValue;
-
-	@FindBy(xpath = "//div[contains(@id,'select-NoTC ')]")
-	WebElement subFidNoTcDrop;
-
-	@FindBy(xpath = "//li[text()='TC1']")
-	WebElement subFidNoTcDropValue;
-
-	@FindBy(xpath = "//input[@name='hbl_no']")
-	WebElement subFidHblNo;
-
-	@FindBy(xpath = "//input[@name='client_ref']")
-	WebElement subFidClientRef;
-
 	@FindBy(xpath = "//button[text()='Yes']")
 	WebElement submitSubFidButton;
 
-	@FindBy(xpath = "//button[text()='Cancel']")
-	WebElement cancelSubFidButton;
-
-	@FindBy(className = "btn-close")
-	WebElement SubFidPopupCloseIcon;
-
 	@FindBy(css = ".status-select.fid-status-select.form-select")
 	WebElement subFidDrop;
-
-	@FindBy(xpath = "//li[text()='Speed Arrow Logistic Service Limited']")
-	WebElement subFidDropValue;
-
-	@FindBy(xpath = "//div[contains(text(),'Sub FID successfully added')]")
-	WebElement subFidAddSuccessAlertMessage;
-
-	//-----------------------------------------------------------------------------------------------
 
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
@@ -110,19 +75,7 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//div[contains(text(),'Freight successfully updated.')]")
 	WebElement updateFreightSuccessAlertMessage;
 
-	//	 ------------------------------------------------------------------------------------------------------------------------------------------------
-
-	public String getBFSuccessAlertMessage() {
-		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).getText();
-	}
-
-	public boolean isBFSuccessAlertMessageDisplayed() {
-		return waitUtil.waitForElementToBeVisible(addFreightSuccessAlertMessage).isDisplayed();
-	}
-
-	public void clickOnBFAlertPopupCrossIcon() {
-		waitUtil.waitForElementToBeClickable(successAlertCrossIcon);
-	}
+	/** ---------- Methods ---------- */
 
 	public boolean isEditFreightIconDisplayed() {
 		return waitUtil.waitForElementToBeVisible(editFreightIconDP).isDisplayed();
@@ -132,63 +85,12 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(editFreightIconDP).click();
 	}
 
-	public boolean isUpdateBFSuccessAlertMessageDisplayed() {
-		return waitUtil.waitForElementToBeVisible(updateFreightSuccessAlertMessage).isDisplayed();
-	}
-
-	public String getUpdatedBFSuccessAlertMessage() {
-		return waitUtil.waitForElementToBeVisible(updateFreightSuccessAlertMessage).getText();
-	}
-
-	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
-		waitUtil.waitForElementToBeClickable(dropdown).click();
-		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownValue);
-		waitUtil.waitForElementToBeClickable(dropdownValue).click();
-	}
-
-	//--------------------------------------------------------------- SUBFID ------------------------
-
-	public WebElement getSubFidDrop() {
-		return subFidDrop;
-	}
 	public void clickSubFidAddIcon() {
 		waitUtil.waitForElementToBeClickable(subFidAddIcon).click();
 	}
 
-	public String getCreateSubFidPopupHeading() {
-		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).getText();
-	}
-
-	public boolean isCreateSubFidPopupHeadingDisplayed() {
-		return waitUtil.waitForElementToBeVisible(createSubFidPopupHeading).isDisplayed();
-	}
-
-	public void selectSubFidShipper() {
-		selectDropdownValue(subFidShipperDrop, subFidShipperDropValue);
-	}
-
-	public void selectSubFidNoTc() {
-		selectDropdownValue(subFidNoTcDrop, subFidNoTcDropValue);
-	}
-
-	public void enterSubFidHblNo(String text) {
-		subFidHblNo.sendKeys(text);
-	}
-
-	public void enterSubFidClientRef(String text) {
-		subFidClientRef.sendKeys(text);
-	}
-
 	public void clickSubmitSubFidButton() {
 		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
-	}
-
-	public boolean isSubFidAddSuccessAlertMessageDisplayed() {
-		return waitUtil.waitForElementToBeVisible(subFidAddSuccessAlertMessage).isDisplayed();
-	}
-
-	public String getSubFidAddSuccessAlertMessage() {
-		return subFidAddSuccessAlertMessage.getText();
 	}
 
 	public void clickOnAlertPopupCrossIcon() {
@@ -215,17 +117,6 @@ public class FreightDetailTestPage {
 		}
 	}
 
-	//---------------------------------------------------------------
-
-/*	public void scrollToBottom() {
-		waitUtil.waitForElementToBeVisible(submitMRNTask); // Ensure visibility
-		executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitMRNTask);
-	}*/
-
-	public boolean isRemarksTabDisplayed() {
-		return waitUtil.waitForElementToBeVisible(remarksTab).isDisplayed();
-	}
-
 	public String getRemarksTabText() {
 		return waitUtil.waitForElementToBeVisible(remarksTab).getText();
 	}
@@ -235,7 +126,7 @@ public class FreightDetailTestPage {
 	}
 
 	public String getIncidentsRegistrationTabText() {
-		return waitUtil.waitForElementToBeVisible(fycoDataTab).getText();
+		return waitUtil.waitForElementToBeVisible(incidentsRegistrationTab).getText();
 	}
 
 	public void clickIncidentsRegistrationTab() {

@@ -19,11 +19,11 @@ public class RemarksAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the first Freight ID row");
 
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Clicked Fid Number: {}", fidNumber);
-
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to new browser tab");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
 
         String tabHeading = pageObjectManager.getFreightDetail().getRemarksTabText();
         log.info("Tab Heading is: {}", tabHeading);
@@ -35,6 +35,8 @@ public class RemarksAddTest extends TestBeforeAndAfter {
 
     @Test(priority = 1, description = "Verify adding Import Remarks", groups = {"smoke", "regression"}, enabled = true)
     @Severity(SeverityLevel.CRITICAL)
+    @Epic("Booked Freight 03")
+    @Feature("Feature:03.06_Remarks")
     @Story("As a user, I should be able to add Import Remarks successfully")
     @Description("Test to verify that a user can successfully add import remarks")
     public void verifyImportRemarks() {

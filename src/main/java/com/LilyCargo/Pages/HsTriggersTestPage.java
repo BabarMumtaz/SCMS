@@ -1,6 +1,5 @@
 package com.LilyCargo.Pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,6 +17,7 @@ public class HsTriggersTestPage{
     WebDriverWait wait;
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public HsTriggersTestPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));

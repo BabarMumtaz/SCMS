@@ -18,8 +18,8 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
     @Test(priority = 1, description = "Verify that a user can Submit MRN by uploading Doc MRN file successfully", groups = {"regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Submit MRN by uploading Doc MRN file successfully from the Freight Detail page")
-    @Epic("EP001")
-    @Feature("Feature:002")
+    @Epic("Booked Freight 03")
+    @Feature("Feature:03.03_Shortcuts & Email_Submit Mrn")
     @Story("As a user, I should be able to Submit MRN by uploading Doc MRN file successfully")
     @Step("Hit Site URL -> Login with valid credentials -> Booked Freight > Freight Detail Page > Submit MRN")
     public void VerifySubmitMrnTest() throws InterruptedException {
@@ -36,14 +36,14 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Clicked Fid Number: {}", fidNumber);
-
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
     }
 
-    private void performFreightDetailActions() throws InterruptedException {
+    private void performFreightDetailActions() {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
@@ -53,8 +53,12 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
         pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnTask();
         log.info("Clicked on Submit MRN Task Shortcut.");
 
-        Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isSubmitMrnPopupHeadingDisplayed(), "Submit MRN popup not visible");
+ /*       Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isSubmitMrnPopupHeadingDisplayed(), "Submit MRN popup not visible");
         log.info("Popup Heading: " + pageObjectManager.getSubmitMrnCustomsStatusPage().getSubmitMrnPopupHeading());
+*/
+        String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
+        log.info("Popup Heading is: {}", popupHeading);
+        Assert.assertEquals(popupHeading, "Submit / Delete MRN # / Customs Status", "Popup heading does not match expected value.");
 
         WebElement mrnInput = pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnInput();
 
@@ -70,11 +74,15 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
             pageObjectManager.getSubmitMrnCustomsStatusPage().enterMrnRemarks(FakeDataUtil.getMrnNo());
             log.info("Entering Remarks");
 
-            pageObjectManager.getSubmitMrnCustomsStatusPage().clickUpdateMrnButton();
+            pageObjectManager.getGlobalMethodsPage().clickUpdateBtn();
             log.info("MRN field is either disabled or already filled. Clicking Update MRN Button.");
 
-            Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isMrnExistUpdatedCSSuccessAlertMessageDisplayed(), "Alert Message is different");
+ /*           Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isMrnExistUpdatedCSSuccessAlertMessageDisplayed(), "Alert Message is different");
             log.info("Success Alert Message on Update: " + pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnExistUpdatedCSSuccessAlertMessage());
+*/
+            String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+            log.info("Success Alert is: {}", successAlert);
+            Assert.assertEquals(successAlert, "MRN already exists against SUB-FID & Customs Status updated", "Success Alert does not match expected value.");
 
             pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed the success alert for Update MRN");
@@ -90,11 +98,17 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
             pageObjectManager.getSubmitMrnCustomsStatusPage().enterMrnRemarks(FakeDataUtil.getMrnNo());
             log.info("Entering Remarks After Entering MRN");
 
-            pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnButton();
+            pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
             log.info("Clicking Submit button.");
 
+/*
             Assert.assertTrue(pageObjectManager.getSubmitMrnCustomsStatusPage().isMrnAddedUpdatedCSSuccessAlertMessageDisplayed(), "Alert Message is different");
             log.info("Success Alert Message on Submit: " + pageObjectManager.getSubmitMrnCustomsStatusPage().getMrnAddedUpdatedCSSuccessAlertMessage());
+*/
+
+            String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+            log.info("Mrn Submission Success Alert is: {}", successAlert);
+            Assert.assertEquals(successAlert, "MRN submitted against SUB-FID & Customs Status updated", "Success Alert does not match expected value.");
 
             pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed the success alert for Adding MRN");
@@ -102,9 +116,6 @@ public class SubmitMrnUsingUploadFileTest extends TestBeforeAndAfter {
 
 /*        pageObjectManager.getSubmitMrnCustomsStatusPage().clickUploadMrnButton();
         log.info("Clicked on Upload MRN Button.");
-
-        pageObjectManager.getSubmitMrnCustomsStatusPage().clickSubmitMrnButton();
-        log.info("Clicked on Submit MRN Task.");
 
         pageObjectManager.getSubmitMrnCustomsStatusPage().clickCancelMrnButton();
         log.info("Clicked on Cancel MRN button.");*/

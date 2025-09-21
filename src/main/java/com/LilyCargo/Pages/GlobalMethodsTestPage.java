@@ -132,7 +132,8 @@ public class GlobalMethodsTestPage {
     @FindBy(xpath = "//button[text()='Save & New']")
     WebElement saveAndNewBtn;
 
-    @FindBy(xpath = "//button[contains(text(),'Update')]")
+    //     //button[contains(text(),'Update')]
+    @FindBy(xpath = "//button[text()='Update']")
     WebElement updateBtn;
 
     @FindBy(xpath = "//button[contains(text(),'Cancel')]")

@@ -18,7 +18,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add HS Triggers successfully")
     @Epic("Administration 02")
-    @Feature("Feature:02.4_HsTriggers")
+    @Feature("Feature:02.04_HsTriggers")
     @Story("As a user, I should be able to Add/Create All HS Triggers successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > HS Triggers > Add All HS Triggers")
     public void VerifyHsTriggersAddTestCase(){
@@ -33,14 +33,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked HS Triggers Sub Menu");
 
         String dumpDutyHsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading of 1st Tab is: " + dumpDutyHsHeading);
+        log.info("Page Heading of 1st Tab is: {}", dumpDutyHsHeading);
         Assert.assertEquals(dumpDutyHsHeading, "DUMP DUTY HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked DUMP DUTY HS Add button");
 
         String dumpDutyHsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + dumpDutyHsAddHeading);
+        log.info("Add Page Heading is: {}", dumpDutyHsAddHeading);
         Assert.assertEquals(dumpDutyHsAddHeading, "Add Dump Duty HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
@@ -65,7 +65,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save Dump Duty HS Button");
 
         String dumpDutyHsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Dump Duty HS Success Alert is: " + dumpDutyHsSuccessAlert);
+        log.info("Dump Duty HS Success Alert is: {}", dumpDutyHsSuccessAlert);
         Assert.assertEquals(dumpDutyHsSuccessAlert, "Dump Duty HS successfully created.",
                 "Success Alert does not match expected value.");
 
@@ -78,14 +78,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked CBAM HS TAB");
 
         String cbamHsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading of 2nd Tab is: " + cbamHsHeading);
+        log.info("Page Heading of 2nd Tab is: {}", cbamHsHeading);
         Assert.assertEquals(cbamHsHeading, "CBAM HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked CBAM HS Add button");
 
         String cbamHsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + cbamHsAddHeading);
+        log.info("Add Page Heading is: {}", cbamHsAddHeading);
         Assert.assertEquals(cbamHsAddHeading, "Add CBAM HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(8));
@@ -107,7 +107,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save CBAM HS Button");
 
         String cbamHsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("CBAM HS Success Alert is: " + cbamHsSuccessAlert);
+        log.info("CBAM HS Success Alert is: {}", cbamHsSuccessAlert);
         Assert.assertEquals(cbamHsSuccessAlert, "CBAM HS successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -119,14 +119,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked EUDR HS TAB");
 
         String eudrHsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + eudrHsHeading);
+        log.info("Page Heading is: {}", eudrHsHeading);
         Assert.assertEquals(eudrHsHeading, "EUDR HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked EUDR HS Add button");
 
         String eudrHsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + eudrHsAddHeading);
+        log.info("Add Page Heading is: {}", eudrHsAddHeading);
         Assert.assertEquals(eudrHsAddHeading, "Add EUDR HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(4));
@@ -148,7 +148,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save EUDR HS Button");
 
         String eudrHsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("EUDR HS Success Alert is: " + eudrHsSuccessAlert);
+        log.info("EUDR HS Success Alert is: {}", eudrHsSuccessAlert);
         Assert.assertEquals(eudrHsSuccessAlert, "EUDR HS successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -160,14 +160,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked MADB HS TAB");
 
         String madbHsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + madbHsHeading);
+        log.info("Page Heading is: {}", madbHsHeading);
         Assert.assertEquals(madbHsHeading, "MADB HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked MADB HS Add button");
 
         String madbHsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + madbHsAddHeading);
+        log.info("Add Page Heading is: {}", madbHsAddHeading);
         Assert.assertEquals(madbHsAddHeading, "Add MADB HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
@@ -192,7 +192,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save MADB HS Button");
 
         String madbHsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("MADB HS Success Alert is: " + madbHsSuccessAlert);
+        log.info("MADB HS Success Alert is: {}", madbHsSuccessAlert);
         Assert.assertEquals(madbHsSuccessAlert, "MADB HS successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -204,14 +204,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked N851 HS TAB");
 
         String n851HsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + n851HsHeading);
+        log.info("Page Heading is: {}", n851HsHeading);
         Assert.assertEquals(n851HsHeading, "N851 HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked N851 HS Add button");
 
         String n851HsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + n851HsAddHeading);
+        log.info("Add Page Heading is: {}", n851HsAddHeading);
         Assert.assertEquals(n851HsAddHeading, "Add N851 HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
@@ -236,7 +236,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save N851 HS Button");
 
         String n851HsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("N851 HS Success Alert is: " + n851HsSuccessAlert);
+        log.info("N851 HS Success Alert is: {}", n851HsSuccessAlert);
         Assert.assertEquals(n851HsSuccessAlert, "N851 HS successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -248,14 +248,14 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked OTHERS HS TAB");
 
         String othersHsHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + othersHsHeading);
+        log.info("Page Heading is: {}", othersHsHeading);
         Assert.assertEquals(othersHsHeading, "OTHER HS", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked OTHERS HS Add button");
 
         String othersHsAddHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + othersHsAddHeading);
+        log.info("Add Page Heading is: {}", othersHsAddHeading);
         Assert.assertEquals(othersHsAddHeading, "Add Other HS", "Add Page heading does not match expected value.");
 
         pageObjectManager.getHsTriggersPage().enterHsCode(FakeDataUtil.getHsCode(10));
@@ -277,7 +277,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save OTHERS HS Button");
 
         String othersHsSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("OTHERS HS Success Alert is: " + othersHsSuccessAlert);
+        log.info("OTHERS HS Success Alert is: {}", othersHsSuccessAlert);
         Assert.assertEquals(othersHsSuccessAlert, "Other HS successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

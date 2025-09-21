@@ -35,6 +35,9 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Fid Number is: " + fidNumber);
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
@@ -49,9 +52,6 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         String tabHeading = pageObjectManager.getFreightDetail().getCargoDataTabText();
         log.info("Tab Heading is: " + tabHeading);
         Assert.assertEquals(tabHeading, "Cargo Data", "Page heading does not match expected value.");
-
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: " + fidNumber);
 
         /** ---------- Cargo Data Tab ---------- */
 
@@ -70,9 +70,6 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Clicked NoTC Alert Popup Cross Icon");
 
-            pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
-
-            pageObjectManager.getCargoDataPage().exportCargoData();
         }
 
         else {
@@ -114,9 +111,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
 
             pageObjectManager.getFreightDetail().selectLastSubFID();
 
-            pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
-
-            pageObjectManager.getCargoDataPage().exportCargoData();
         }
+        pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
+        pageObjectManager.getCargoDataPage().exportCargoData();
     }
 }

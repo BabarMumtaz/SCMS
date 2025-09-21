@@ -27,11 +27,11 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Clicked Fid Number: {}", fidNumber);
-
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
 
         String tabHeading = pageObjectManager.getFreightDetail().getIncidentsRegistrationTabText();
         log.info("Tab Heading is: {}", tabHeading);
