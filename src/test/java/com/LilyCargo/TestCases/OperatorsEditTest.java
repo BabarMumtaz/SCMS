@@ -16,11 +16,11 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
             description = "Edit Operator",
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can Edit Operator successfully")
+    @Description("Verify that a user can Edit Operators successfully")
     @Epic("Administration 02")
-    @Feature("Feature:02.05_Operator")
-    @Story("As a user, I should be able to Edit Operator successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Administration > Operator > Edit Operator")
+    @Feature("Feature:02.03_Operator")
+    @Story("As a user, I should be able to Edit both Operators successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Administration > Operator > Edit Operators")
     public void VerifyOperatorsEditTestCase() {
 
         log = LogManager.getLogger(OperatorsEditTest.class);
@@ -33,14 +33,14 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Clicked Operators Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Operators", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
         log.info("Clicked Edit Btn of LMAAS Operator");
 
         String operator01PopupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
-        log.info("Popup Heading is: " + operator01PopupHeading);
+        log.info("Popup Heading is: {}", operator01PopupHeading);
         Assert.assertEquals(operator01PopupHeading, "Update Operator: LMAAS", "Popup heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().updateOperatorName("LMAAS 01");
@@ -50,7 +50,7 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Clicked Submit Button");
 
         String operator01SuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Operator 01 Success Alert is: " + operator01SuccessAlert);
+        log.info("Operator 01 Success Alert is: {}", operator01SuccessAlert);
         Assert.assertEquals(operator01SuccessAlert, "Operator successfully updated.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -72,7 +72,7 @@ public class OperatorsEditTest extends TestBeforeAndAfter {
         log.info("Clicked Submit Button");
 
         String operator02SuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Operator 02 Success Alert is: " + operator02SuccessAlert);
+        log.info("Operator 02 Success Alert is: {}", operator02SuccessAlert);
         Assert.assertEquals(operator02SuccessAlert, "Operator successfully updated.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

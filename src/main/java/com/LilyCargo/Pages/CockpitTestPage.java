@@ -112,18 +112,6 @@ public class CockpitTestPage {
 
     /** ---------- Methods ---------- */
 
-    public String getPageHeading() {
-        return cockpitPageHeading.getText();
-    }
-
-/*    public boolean isPageHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cockpitPageHeading)).isDisplayed();
-    }*/
-
-    public boolean isCockpitHeadingDisplayed() {
-        return isElementDisplayed(cockpitPageHeading);
-    }
-
     public String getCustomsEntriesTriggerHeading() {
         return customsEntriesTriggerHeading.getText();
     }

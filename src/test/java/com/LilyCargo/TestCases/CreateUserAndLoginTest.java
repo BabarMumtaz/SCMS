@@ -18,7 +18,7 @@ public class CreateUserAndLoginTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add User successfully")
     @Epic("Administration 02")
-    @Feature("Feature:02.2_Overview_User Management_Create User and Login")
+    @Feature("Feature:02.02_Overview_User Management_Create User and Login")
     @Story("As a user, I should be able to Add/Create User successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Users > Add User")
     public void createUserTest() {

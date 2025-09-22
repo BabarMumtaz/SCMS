@@ -22,12 +22,16 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCockpitDashSubMenu();
         log.info("Clicked Cockpit Sub Menu");
 
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "❌ Cockpit heading is not displayed!");
+/*        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "❌ Cockpit heading is not displayed!");
         Assert.assertEquals(pageObjectManager.getCockpitPage().getPageHeading(), "Cockpit", "❌ Heading text does not match!");
-        log.info("✅ Cockpit heading verified successfully.");
+        log.info("✅ Cockpit heading verified successfully.");*/
+
+        String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Main Page Heading is: {}", mainPageHeading);
+        Assert.assertEquals(mainPageHeading, "Cockpit", "Page heading does not match expected value.");
 
         Assert.assertTrue(pageObjectManager.getCockpitPage().isCustomsEntriesTriggerHeadingDisplayed(), "Trigger Heading Not Displayed");
-        log.info("Cockpit Page Heading: " + pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());
+        log.info("Cockpit 1st Trigger Heading: {}", pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());
     }
 
     @Test(priority = 0,
@@ -36,10 +40,10 @@ public class CockpitViewTest extends TestBeforeAndAfter {
             enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a user, I should be able to view Cockpit Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
+    @Epic("Dashboard 01")
+    @Feature("Feature:01.02_Cockpit")
+    @Story("As a user, I should be able to view Cockpit Triggers Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit > Triggers")
     public void VerifyCockpitTriggersListTestCase(){
 
         navigateToCockpit();
@@ -54,10 +58,10 @@ public class CockpitViewTest extends TestBeforeAndAfter {
             enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
-    @Epic("EP001")
-    @Feature("Feature:004")
-    @Story("As a user, I should be able to view Cockpit Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit")
+    @Epic("Dashboard 01")
+    @Feature("Feature:01.02_Cockpit")
+    @Story("As a user, I should be able to view Cockpit Triggers Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit > Triggers ")
     public void VerifyCockpitTriggersDynamicListingTestCase(){
 
         navigateToCockpit();
@@ -67,6 +71,12 @@ public class CockpitViewTest extends TestBeforeAndAfter {
 
     @Test(priority = 2, description = "Verify Cockpit Tabs",
             enabled = true)
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that a user can view Cockpit Data successfully, Extract and save Cockpit summary")
+    @Epic("Dashboard 01")
+    @Feature("Feature:01.02_Cockpit")
+    @Story("As a user, I should be able to verify Cockpit Tabs successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Cockpit > Tabs")
     public void verifyCockpitTabs() {
 
         navigateToCockpit();

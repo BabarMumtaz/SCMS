@@ -15,6 +15,8 @@ public class IntrastatsTestPage {
 	JavascriptExecutor executor;
 	WebDriverWait wait;
 
+	/** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
 	public IntrastatsTestPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -22,10 +24,7 @@ public class IntrastatsTestPage {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 	}
 
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
-
-	@FindBy(xpath = "//h2[text()='Intrastats']")
-	WebElement intrastatsHeading;
+	/** ---------- Locators ---------- */
 
 	@FindBy(xpath = "(//div[@id='select-[object Object]'])[1]")
 	WebElement lfrDropDown;
@@ -77,21 +76,7 @@ public class IntrastatsTestPage {
 	@FindBy(xpath = "//a[text()='Cargo Data']")
 	WebElement cargoDataExportOption;
 
-	@FindBy(xpath = "//div[contains(text(),'Data exported')]")
-	WebElement exportDataSuccessAlertMessage;
-
-	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement exportDataAlertPopup;
-//	 ------------------------------------------------------------------------------------------------------------------------------------------------
-
-	// Method to capture the page heading
-	public String getIntrastatsPageHeading() {
-		return intrastatsHeading.getText();
-	}
-
-	public boolean isIntrastatsPageHeadingDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(intrastatsHeading)).isDisplayed();
-	}
+	/** ---------- Methods ---------- */
 
 	public void selectDropdownValue(WebElement dropdown, WebElement dropdownValue) {
 		dropdown.click();
@@ -181,18 +166,6 @@ public class IntrastatsTestPage {
 
 	public String getMonthFromFirstRow() {
 		return wait.until(ExpectedConditions.visibilityOf(listingMonthFirstCell)).getText();
-	}
-
-	public String getExportDataSuccessAlertMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(exportDataSuccessAlertMessage)).getText();
-	}
-
-	public boolean isExportDataSuccessAlertMessageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(exportDataSuccessAlertMessage)).isDisplayed();
-	}
-
-	public void clickOnAlertPopup() {
-		wait.until(ExpectedConditions.visibilityOf(exportDataAlertPopup)).click();
 	}
 
 }

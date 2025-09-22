@@ -18,7 +18,7 @@ public class HsTriggersAddTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add HS Triggers successfully")
     @Epic("Administration 02")
-    @Feature("Feature:02.04_HsTriggers")
+    @Feature("Feature:02.02_HsTriggers")
     @Story("As a user, I should be able to Add/Create All HS Triggers successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > HS Triggers > Add All HS Triggers")
     public void VerifyHsTriggersAddTestCase(){

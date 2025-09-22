@@ -16,12 +16,11 @@ public class DashboardOverviewTest extends TestBeforeAndAfter {
             groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can view Dashboard Data successfully, Extract and save dashboard summary")
-    @Epic("EP001")
-    @Feature("Feature:004")
+    @Epic("Dashboard 01")
+    @Feature("Feature:01.01_Overview")
     @Story("As a user, I should be able to view Dashboard Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Dashboard > Overview > view Dashboard Data")
     public void VerifyDashboardOverviewTestCase(){
-
 
         log = LogManager.getLogger(DashboardOverviewTest.class);
         log.info("Starting Test from Dashboard.");
@@ -39,7 +38,7 @@ public class DashboardOverviewTest extends TestBeforeAndAfter {
         log.info("Switched to the new tab");
 
         Assert.assertTrue(pageObjectManager.getDashboardOverviewTestPage().isHeadingDisplayed(), "Heading Not Displayed");
-        log.info("Dashboard Overview Page Heading: " + pageObjectManager.getDashboardOverviewTestPage().getPageHeading());
+        log.info("Dashboard Overview Page Heading: {}", pageObjectManager.getDashboardOverviewTestPage().getPageHeading());
 
 /*        String summary = pageObjectManager.getDashboardOverviewTestPage().getCustomsEntriesSummary();
         // Print to console

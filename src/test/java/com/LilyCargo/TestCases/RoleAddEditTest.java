@@ -22,29 +22,29 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
         log.info("Clicked Role Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
-        log.info("Main Page Heading is: " + mainPageHeading);
+        log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
         log.info("Clicked User Management button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Users", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickRoleListingBtn();
         log.info("Clicked Role Management button");
 
         String rolePageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Roles");
-        log.info("Page Heading is: " + rolePageHeading);
+        log.info("Page Heading is: {}", rolePageHeading);
         Assert.assertEquals(rolePageHeading, "Roles", "Page heading does not match expected value.");
     }
 
     @Test(priority = 1, description = "Create a new Role", groups = {"smoke", "regression"}, enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can add Role successfully")
-    @Epic("Administration")
-    @Feature("Feature:01.2_Overview_User Management_Create Role and Edit")
+    @Epic("Administration 02")
+    @Feature("Feature:02.04_Overview_User Management_Create Role and Edit")
     @Story("As a Role, I should be able to Add/Create Role successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Roles > Add Role")
     public void createRoleTest() {
@@ -79,8 +79,8 @@ public class RoleAddEditTest extends TestBeforeAndAfter {
     @Test(priority = 2, description = "Verify that a user can Edit Role successfully", enabled = true)
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can edit Role successfully")
-    @Epic("Administration")
-    @Feature("Feature:01.2_Overview_User Management_Create Role and Edit")
+    @Epic("Administration 02")
+    @Feature("Feature:02.04.02_Overview_User Management_Create Role and Edit")
     @Story("As a Role, I should be able to edit Role successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Administration > Overview > Roles > Edit Role")
     public void editRoleTest() throws InterruptedException {
