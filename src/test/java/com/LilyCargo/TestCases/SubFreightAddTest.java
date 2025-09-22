@@ -25,7 +25,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Starting SubFreight Add Test from Detail Page.");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
         pageObjectManager.getFreightListing().clickOnFreightID();
@@ -38,7 +38,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Edit wrapper is displayed.");
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: " + fidNumber);
+        log.info("Fid Number is: {}", fidNumber);
 
         //----------------------------------SubFId----------------------------------
 
@@ -46,7 +46,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Clicked SubFid Add Icon");
 
         String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
-        log.info("Popup Heading is: " + popupHeading);
+        log.info("Popup Heading is: {}", popupHeading);
         Assert.assertEquals(popupHeading, "Create Sub Freight", "Popup heading does not match expected value.");
 
         pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
@@ -68,7 +68,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Clicked Submit Button");
 
         String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + subFidSuccessAlert);
+        log.info("Success Alert is: {}", subFidSuccessAlert);
         Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
         pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();

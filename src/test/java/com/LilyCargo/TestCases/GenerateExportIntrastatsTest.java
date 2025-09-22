@@ -64,7 +64,7 @@ public class GenerateExportIntrastatsTest extends TestBeforeAndAfter {
                 Assert.assertEquals(exportSuccessAlert, "Data exported", "Success Alert does not match expected value.");
 
 
-                pageObjectManager.getIntrastatsPage().clickOnAlertPopup();
+                pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
                 log.info("[Test01] Closed alert popup");
 
                 pageObjectManager.getIntrastatsPage().clickExportIcon();
@@ -78,7 +78,7 @@ public class GenerateExportIntrastatsTest extends TestBeforeAndAfter {
         log.info("[Test01] Export Success Alert is: {}", exportSuccessAlert);
         Assert.assertEquals(exportSuccessAlert, "Data exported", "Success Alert does not match expected value.");
 
-        pageObjectManager.getIntrastatsPage().clickOnAlertPopup();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("[Test01] Closed final alert");
 
     }
@@ -127,7 +127,7 @@ public class GenerateExportIntrastatsTest extends TestBeforeAndAfter {
                 log.info("[Test02] Export Success Alert is: {}", exportSuccessAlert);
                 Assert.assertEquals(exportSuccessAlert, "Data exported", "Success Alert does not match expected value.");
 
-                pageObjectManager.getIntrastatsPage().clickOnAlertPopup();
+                pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
                 log.info("[Test02] Closed alert popup");
 
                 pageObjectManager.getIntrastatsPage().clickExportIcon();
@@ -141,7 +141,7 @@ public class GenerateExportIntrastatsTest extends TestBeforeAndAfter {
         log.info(" [Test02] Export Success Alert is: {}", exportSuccessAlert);
         Assert.assertEquals(exportSuccessAlert, "Data exported", "Success Alert does not match expected value.");
 
-        pageObjectManager.getIntrastatsPage().clickOnAlertPopup();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("[Test02] Closed final alert");
 
     }

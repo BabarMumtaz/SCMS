@@ -287,6 +287,10 @@ public class FreightTestPage {
 		return wait.until(ExpectedConditions.visibilityOf(fidNumber)).getAttribute("placeholder");
 	}
 
+	public void enterFidNumber(String text) {
+		fidNumber.sendKeys(text);
+	}
+
 	public void clickSearchGoBtn() {
 		fidSearchGoButton.click();
 	}

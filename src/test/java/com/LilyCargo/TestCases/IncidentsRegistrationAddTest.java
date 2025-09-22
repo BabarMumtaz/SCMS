@@ -63,5 +63,14 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");
 
+        pageObjectManager.getBookedFreights().enterFidNumber("27450");
+        log.info("Entered Incidents Registration Solution Text");
+
+        pageObjectManager.getBookedFreights().clickSearchGoBtn();
+        log.info("Clicked Search Go Btn");
+
+        String newFidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Searched Fid Number: {}", newFidNumber);
+
     }
 }
