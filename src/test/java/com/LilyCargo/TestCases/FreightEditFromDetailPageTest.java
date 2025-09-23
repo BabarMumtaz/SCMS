@@ -26,7 +26,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log.info("Starting Freight Edit Test from Detail Page.");
 
 		String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-		log.info("Page Heading is: " + pageHeading);
+		log.info("Page Heading is: {}", pageHeading);
 		Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
 		String fidToSearch = FileUtil.getData("FreightID");
@@ -46,13 +46,13 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit wrapper not displayed.");
 
 		String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-		log.info("Fid Number is: " + fidNumber);
+		log.info("Fid Number is: {}", fidNumber);
 
 		pageObjectManager.getFreightDetail().clickOnEditFreightIconDP();
 		log.info("Clicked on Booked Freight Edit Icon");
 
 		String editPageHeading = pageObjectManager.getBookedFreights().getAddPageHeading();
-		log.info("Edit Page Heading is: " + editPageHeading);
+		log.info("Edit Page Heading is: {}", editPageHeading);
 		// Assert that heading starts with "Edit ID:" ""editPageHeading.startsWith("Edit ID:"), OR Contains
 		Assert.assertTrue(editPageHeading.contains("Edit ID:"), "Edit Page heading does not contain 'Edit ID:'. Found: " + editPageHeading);
 
@@ -183,7 +183,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		log.info("Clicked Save & Return Freight Button");
 
 		String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-		log.info("Success Alert is: " + successAlert);
+		log.info("Success Alert is: {}", successAlert);
 		Assert.assertEquals(successAlert, "Freight successfully updated.", "Success Alert does not match expected value.");
 
 		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

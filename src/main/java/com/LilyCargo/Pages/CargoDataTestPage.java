@@ -16,13 +16,15 @@ import java.time.Duration;
 import java.util.List;
 
 public class CargoDataTestPage {
+
     WebDriver driver;
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
     Logger log = LogManager.getLogger(CargoDataTestPage.class);
 
-    // Constructor
+    /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public CargoDataTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) this.driver;
@@ -103,7 +105,7 @@ public class CargoDataTestPage {
                 .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
         dropdownOption.click();
-        log.info("✅ Selected option: " + optionText);
+        log.info("Selected option: {}", optionText);
     }
 
     public void selectNoTc(String noTcValue) {
@@ -124,7 +126,7 @@ public class CargoDataTestPage {
 
     public void uploadCargoDataInChooseFile(String filePath) {
         uploadCargoDataPopupChooseFile.sendKeys(filePath);
-        log.info("Uploaded A file: " + filePath);
+        log.info("Uploaded A file: {}", filePath);
     }
 
     public void clickCargoDataPopupSubmitButton() {
@@ -150,16 +152,16 @@ public class CargoDataTestPage {
     public void uploadAndSubmitCargoData(String filePath, Logger log) {
 
         clickOnUploadCargoDataIcon();
-        log.info("📤 Clicked upload icon");
+        log.info("Clicked upload icon");
 
         uploadCargoDataInChooseFile(filePath);
-        log.info("📎 File selected: " + filePath);
+        log.info("File selected: {}", filePath);
 
         clickCargoDataPopupSubmitButton();
-        log.info("📨 Clicked Submit on upload popup");
+        log.info("Clicked Submit on upload popup");
 
         isCargoAlertMessageDisplayed();
-        log.info("✅ Upload confirmed: {}", getAlertPopupText());
+        log.info("Upload confirmed: {}", getAlertPopupText());
 
         clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup");
@@ -168,10 +170,10 @@ public class CargoDataTestPage {
     public void exportCargoData() {
 
         clickOnExportCargoDataIcon();
-        log.info("📤 Clicked Export icon");
+        log.info("Clicked Export icon");
 
         isCargoAlertMessageDisplayed();
-        log.info("✅ Upload confirmed: {}", getAlertPopupText());
+        log.info("Upload confirmed: {}", getAlertPopupText());
 
         clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup");

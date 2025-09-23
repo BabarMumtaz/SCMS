@@ -33,14 +33,14 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Starting Freight Add Test.");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
         pageObjectManager.getBookedFreights().clickCreateFreightBtn();
         log.info("Clicked Create Freight Button");
 
         String addPageHeading = pageObjectManager.getBookedFreights().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Create New Freight", "Add Page heading does not match expected value.");
 
         pageObjectManager.getBookedFreights().enterFNO(FakeDataUtil.getRandomNumber());
@@ -134,7 +134,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         log.info("Clicked Save & Return Freight Button");
 
         String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + pushInvoiceSuccessAlert);
+        log.info("Success Alert is: {}", pushInvoiceSuccessAlert);
         Assert.assertEquals(pushInvoiceSuccessAlert, "Freight successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -142,7 +142,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
         FileUtil.saveData("FreightID", fidNumber);
-        log.info("Stored Fid Number for reuse: " + fidNumber);
+        log.info("Stored Fid Number for reuse: {}", fidNumber);
 
     }
 }

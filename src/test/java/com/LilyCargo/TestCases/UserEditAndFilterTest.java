@@ -14,20 +14,20 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
 
     private void navigateToUserManagement() {
         log = LogManager.getLogger(UserEditAndFilterTest.class);
-        log.info("🔁 Navigating to User Management from Administration...");
+        log.info("Navigating to User Management from Administration...");
 
         pageObjectManager.getMenuBar().clickAdministrationMenu();
-        log.info("🧭 Clicked Administration Menu");
+        log.info("Clicked Administration Menu");
 
         pageObjectManager.getMenuBar().clickOverviewAdmSubMenu();
-        log.info("🧭 Clicked Overview Sub Menu");
+        log.info("Clicked Overview Sub Menu");
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Overview");
         log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Overview", "Page heading does not match expected value.");
 
         pageObjectManager.getAdminOverviewTestPage().clickUserManagementBtn();
-        log.info("🧭 Clicked User Management button");
+        log.info("Clicked User Management button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getPageHeadingText("Users");
         log.info("Page Heading is: {}", pageHeading);
@@ -68,13 +68,13 @@ public class UserEditAndFilterTest extends TestBeforeAndAfter {
         Assert.assertEquals(updatePageHeading, "Update User", "Add Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().selectGender("Female");
-        log.info("✅ Female Gender dropdowns selected successfully");
+        log.info("Female Gender dropdowns selected successfully");
 
         pageObjectManager.getAdminOverviewTestPage().enterUserDesignation(faker.job().position());
         log.info("Selected User Designation");
 
         pageObjectManager.getGlobalMethodsPage().selectStatus("InActive");
-        log.info("✅ InActive Status selected successfully");
+        log.info("InActive Status selected successfully");
 
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save User Button");

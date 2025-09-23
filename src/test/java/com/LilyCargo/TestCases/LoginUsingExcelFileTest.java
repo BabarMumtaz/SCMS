@@ -27,7 +27,7 @@ public class LoginUsingExcelFileTest extends TestBeforeAndAfter {
 		log = LogManager.getLogger(LoginUsingExcelFileTest.class);
 		log.info("Starting Login Test Using Excel File Test");
 
-		log.info("Attempting login with username: " + username);
+		log.info("Attempting login with username: {}", username);
 		pageObjectManager.getLoginPage().login(username, password);
 
 		// Verifying successful login

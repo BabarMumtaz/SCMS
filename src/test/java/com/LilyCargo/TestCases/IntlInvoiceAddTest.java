@@ -34,16 +34,17 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: {}", pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
 
-        //----------------------------------INTL Invoice----------------------------------
-
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        log.info("Section Heading: {}", pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
 /*        pageObjectManager.getBillingCenterPage().selectClient();
         log.info("Selected Amazon EU SARL, Dutch Branch Client");*/
@@ -109,7 +110,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Clicked Finish INV Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Add Invoice Success Alert is: " + successAlert);
+        log.info("Add Invoice Success Alert is: {}",successAlert);
         Assert.assertEquals(successAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
@@ -122,7 +123,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Download Invoice Pdf Icon");
 
         String successAlert02 = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Update Invoice Success Alert is: " + successAlert02);
+        log.info("Update Invoice Success Alert is: {}", successAlert02);
         Assert.assertEquals(successAlert02, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -141,7 +142,7 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Clicked Finish INV Button");
 
         String successAlert03 = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Update Invoice Success Alert is: " + successAlert03);
+        log.info("Update Invoice Success Alert is: {}", successAlert03);
         Assert.assertEquals(successAlert03, "PDF Downloaded", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
@@ -151,8 +152,8 @@ public class IntlInvoiceAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Invoice Push To Exact Icon");
 
         String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Update Invoice Success Alert is: " + pushInvoiceSuccessAlert);
-        Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        log.info("Push Invoice Success Alert is: {}", pushInvoiceSuccessAlert);
+        Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice pushed Successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");

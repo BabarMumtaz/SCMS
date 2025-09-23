@@ -26,7 +26,9 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickBookedFreightMenu();
         log.info("Clicked on Booked Freight Menu");
 
-        Assert.assertTrue(pageObjectManager.getBookedFreights().getHeading().contains("Booked Freights"), "Heading not Matched");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
         pageObjectManager.getFreightListing().clickSpecificFID();
 /*
@@ -38,6 +40,9 @@ public class FreightPaginationTest extends TestBeforeAndAfter {
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
 
         System.out.println("After switching, active window: " + driver.getWindowHandle());
         System.out.println("All open windows: " + driver.getWindowHandles());

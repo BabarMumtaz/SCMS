@@ -39,7 +39,7 @@ public class MyProfileEditTest extends TestBeforeAndAfter {
         log.info("Clicked My Profile button");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "My Profile", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();

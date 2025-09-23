@@ -40,6 +40,6 @@ public class LoginUsingConfigFileTest extends TestBeforeAndAfter {
 
 		// Verifying unsuccessful login
 		Assert.assertTrue(pageObjectManager.getLoginPage().isLoginFailed(), "Login should have failed!");
-		log.info("Invalid login test passed with error: " + pageObjectManager.getLoginPage().getErrorMessage());
+		log.info("Invalid login test passed with error: {}", pageObjectManager.getLoginPage().getErrorMessage());
 	}
 }

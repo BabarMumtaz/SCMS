@@ -138,7 +138,7 @@ public class GenerateExportIntrastatsTest extends TestBeforeAndAfter {
         }
 
         String exportSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info(" [Test02] Export Success Alert is: {}", exportSuccessAlert);
+        log.info("[Test02] Export Success Alert is: {}", exportSuccessAlert);
         Assert.assertEquals(exportSuccessAlert, "Data exported", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

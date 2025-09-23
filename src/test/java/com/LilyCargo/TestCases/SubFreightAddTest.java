@@ -39,9 +39,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
         log.info("Fid Number is: {}", fidNumber);
-
-        //----------------------------------SubFId----------------------------------
-
+        
         pageObjectManager.getFreightDetail().clickSubFidAddIcon();
         log.info("Clicked SubFid Add Icon");
 

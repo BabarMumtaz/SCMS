@@ -36,7 +36,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log.info("Switched to the new tab");
 
         String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: " + fidNumber);
+        log.info("Fid Number is: {}", fidNumber);
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
@@ -50,7 +50,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log.info("Clicked Cargo Data Tab");
 
         String tabHeading = pageObjectManager.getFreightDetail().getCargoDataTabText();
-        log.info("Tab Heading is: " + tabHeading);
+        log.info("Tab Heading is: {}", tabHeading);
         Assert.assertEquals(tabHeading, "Cargo Data", "Page heading does not match expected value.");
 
         /** ---------- Cargo Data Tab ---------- */
@@ -58,7 +58,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         List<WebElement> noDataElements = pageObjectManager.getCargoDataPage().getNoDataFoundElements(); // This should return List<WebElement>
 
         if (!noDataElements.isEmpty() && noDataElements.getFirst().isDisplayed()) {
-            log.info("📄 'No data found' is displayed. Proceeding to upload.");
+            log.info("No data found' is displayed. Proceeding to upload.");
 
             pageObjectManager.getCargoDataPage().selectNoTc("TC9");
             log.info("Selected NoTC 9");
@@ -73,7 +73,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         }
 
         else {
-            log.info("📌 Data exists. Adding SubFID.");
+            log.info("Data exists. Adding SubFID.");
 
             pageObjectManager.getFreightDetail().clickSubFidAddIcon();
             log.info("Clicked SubFid Add Icon");

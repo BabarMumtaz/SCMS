@@ -36,8 +36,11 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: {}", pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
@@ -51,7 +54,7 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         log.info("Clicked Purchase Entry Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isGlAccountsSectionColHeadingDisplayed(), "Gl Accounts Section Column Heading Not Displayed");
-        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getGlAccountsSectionColHeading());
+        log.info("Section Heading: {}", pageObjectManager.getBillingCenterPage().getGlAccountsSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectPurchaseEntryShipper();
         log.info("Selected 'BTT Multimodal Container Solutions B.V.' Shipper");
@@ -109,8 +112,12 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickPushPurchaseEntryButton();
         log.info("Clicked Finish INV Button for Purchase Entry Type");
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isErrorAlertMessageDisplayed(), "Error Alert Message is Different");
-        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getErrorAlertMessage());
+/*        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isErrorAlertMessageDisplayed(), "Error Alert Message is Different");
+        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getErrorAlertMessage());*/
+
+        String pushPurchaseEntryErrorAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Push PE Success Alert is: {}", pushPurchaseEntryErrorAlert);
+        Assert.assertEquals(pushPurchaseEntryErrorAlert, "Unable to connect to Exact", "Success Alert does not match expected value.");
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");

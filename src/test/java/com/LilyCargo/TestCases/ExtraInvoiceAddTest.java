@@ -34,22 +34,23 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
-        log.info("Tab Heading: " + pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
+        log.info("Tab Heading: {}", pageObjectManager.getFreightDetail().getBillingCenterTabDisplayedText());
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
         log.info("Clicked Billing Center Tab");
 
-        //----------------------------------Extra Invoice----------------------------------
-
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isExtraInvTabDisplayed(), "Extra Tab Not Displayed");
-        log.info("Page Heading: " + pageObjectManager.getBillingCenterPage().getExtraInvTabName());
+        log.info("Page Heading: {}", pageObjectManager.getBillingCenterPage().getExtraInvTabName());
 
         pageObjectManager.getBillingCenterPage().clickOnExtraInvTab();
         log.info("Clicked Extra INV Tab");
 
         Assert.assertTrue(pageObjectManager.getBillingCenterPage().isProductSectionColHeadingDisplayed(), "Product Section Column Heading Not Displayed");
-        log.info("Section Heading: " + pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
+        log.info("Section Heading: {}", pageObjectManager.getBillingCenterPage().getProductSectionColHeading());
 
         pageObjectManager.getBillingCenterPage().selectExtraInvClient();
         log.info("Selected 'A.I. Trading GmbH' Client");
@@ -105,8 +106,9 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
 
         //Assert.assertTrue(pageObjectManager.getBillingCenterPage().isPidDropdownDisabled(), "PID Dropdown should be disabled after invoice submission.");
 
-        Assert.assertTrue(pageObjectManager.getBillingCenterPage().isExtraInvSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + pageObjectManager.getBillingCenterPage().getExtraInvSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Add Invoice Success Alert is: {}",successAlert);
+        Assert.assertEquals(successAlert, "Extra Invoice Created Successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getBillingCenterPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup Cross Icon");

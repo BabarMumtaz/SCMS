@@ -31,14 +31,14 @@ public class GlAccountAddTest extends TestBeforeAndAfter {
         log.info("Clicked Gl Account Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Manage GL Account", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Gl Account Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add GL Account", "Add Page heading does not match expected value.");
 
         pageObjectManager.getFinanceAllFieldsTestPage().enterLedger(FakeDataUtil.getNumberWithoutDecimal());
@@ -65,7 +65,7 @@ public class GlAccountAddTest extends TestBeforeAndAfter {
         log.info("Click Save Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "GL Account successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
