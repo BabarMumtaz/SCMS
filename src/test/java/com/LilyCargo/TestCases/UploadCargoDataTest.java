@@ -42,7 +42,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log.info("Edit wrapper is displayed.");
 
         pageObjectManager.getFreightDetail().scrollToRight();
-        log.info("Clicked Incidents Registration Tab");
+        log.info("Scroll to Right Towards Cargo Data Tab");
 
         Thread.sleep(1000);
 

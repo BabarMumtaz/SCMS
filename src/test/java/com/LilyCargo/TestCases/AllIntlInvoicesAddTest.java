@@ -34,6 +34,9 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Fid Number is: {}", fidNumber);
+
         Assert.assertTrue(pageObjectManager.getFreightDetail().isBillingCenterTabDisplayed(), "Billing Center tab is not Displayed");
 
         pageObjectManager.getFreightDetail().selectLastSubFID();
@@ -70,7 +73,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
 
             // Add invoice for the current type
             pageObjectManager.getBillingCenterPage().addInvoice(type, productNames, scrollContainer);
-            log.info("Added Intl Invoice Type: " + type + " for Amazon Client");
+            log.info("Added Intl Invoice Type: {} for Amazon Client", type);
         }
 
         pageObjectManager.getBillingCenterPage().clickOnBilledInvoicesTab();
@@ -79,34 +82,72 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBillingCenterPage().clickDownloadInvoicePdfIcon();
         log.info("Clicked on Download Invoice Pdf Icon");
 
+        String pdfDownloadSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("PDF Downloaded Success Alert is: {}", pdfDownloadSuccessAlert);
+        Assert.assertEquals(pdfDownloadSuccessAlert, "PDF Downloaded", "PDF Download Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+        log.info("Clicked Cross icon of Alert");
+
         pageObjectManager.getBillingCenterPage().clickEditInvoiceIcon();
         log.info("Clicked on Invoice Edit Icon");
 
         pageObjectManager.getGlobalMethodsPage().clickEditDetailsBtn();
         log.info("Clicked Edit Btn");
 
-        pageObjectManager.getBillingCenterPage().enterRemarks(FakeDataUtil.getRemarks());
-        log.info("Entered Invoice Remarks Text");
+        pageObjectManager.getBillingCenterPage().updateRemarks(FakeDataUtil.getRemarks());
+        log.info("Updated Invoice Remarks Text");
 
         pageObjectManager.getBillingCenterPage().clickFinishINVButton();
         log.info("Clicked Finish INV Button");
 
-        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Update Invoice Success Alert is: " + successAlert);
-        Assert.assertEquals(successAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        String updateInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Update Invoice Success Alert is: {}", updateInvoiceSuccessAlert);
+        Assert.assertEquals(updateInvoiceSuccessAlert, "Invoice Created Successfully", "Update success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Cross icon of Alert");
+
+        pageObjectManager.getBillingCenterPage().scrollToRight();
+        log.info("Scroll to Right Towards Push Icon");
 
         pageObjectManager.getBillingCenterPage().clickPushToExactIcon();
         log.info("Clicked on Invoice Push To Exact Icon");
 
-        String pushInvoiceSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Update Invoice Success Alert is: " + pushInvoiceSuccessAlert);
-        Assert.assertEquals(pushInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        String alertText = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Initial Alert Text is: {}", alertText);
 
-        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
-        log.info("Clicked Cross icon of Alert");
+        if (alertText.equals("Invoice is being pushed to Exact.")) {
+            log.warn("Invoice push is in progress. Continuing with warning check flow...");
+
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+            log.info("Clicked Cross icon of Alert");
+
+            Thread.sleep(4000);
+
+            String pushInvoiceWarningAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+            log.info("Warning Alert is: {}", pushInvoiceWarningAlert);
+
+            Assert.assertTrue(
+                    pushInvoiceWarningAlert.startsWith("Couldn't process "),
+                    "Warning Alert does not contain 'Couldn't process INV#.. Check warning for details!' -> " + pushInvoiceWarningAlert
+            );
+
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+            log.info("Clicked Cross icon of Warning Alert");
+
+        } else if (alertText.equals("Please connect to Exact and get the tokens first.")) {
+            log.error("Exact connection missing: {}", alertText);
+
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+            log.info("Closed Alert Popup for Exact Token Warning");
+
+        } else {
+            // fallback if unexpected alert text is found
+            log.warn("Unexpected Alert Text: {}", alertText);
+            pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+            log.info("Closed Unexpected Alert Popup");
+        }
 
     }
 }

@@ -22,6 +22,7 @@ public class RelationsAllFieldsTestPage {
     Logger log = LogManager.getLogger(RelationsAllFieldsTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public RelationsAllFieldsTestPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));

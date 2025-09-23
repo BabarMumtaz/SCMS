@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class BillingCenterTestPage {
+
     WebDriver driver;
     JavascriptExecutor executor;
     Actions actions;
@@ -23,7 +24,8 @@ public class BillingCenterTestPage {
     Logger log = LogManager.getLogger(BillingCenterTestPage.class);
     public static Faker faker;
 
-    // Constructor
+    /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
     public BillingCenterTestPage(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
@@ -33,7 +35,7 @@ public class BillingCenterTestPage {
         faker = new Faker();
     }
 
-    //--------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//button[text()='INTL INV']")
     WebElement intlInvTab;
@@ -87,6 +89,7 @@ public class BillingCenterTestPage {
 
     @FindBy(xpath = "//input[@name='invDate']")
     WebElement invDate;
+//label[contains(text(),'INV Number')]/following::div[contains(@class,'MuiInputBase-root')][1]
 
     @FindBy(xpath = "//input[@id='InvoiceNumber']")
     WebElement invoiceNumber;
@@ -184,7 +187,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Total Entries by Ledger']")
     WebElement totalEntriesByLedgerTabPE;
 
-    //---------------------PURCHASE ENTRY---------------------
+    /** ---------- PURCHASE ENTRY ---------- */
 
     @FindBy(xpath = "//th[text()='G/L Accounts']")
     WebElement glAccountsSectionHeading;
@@ -244,8 +247,8 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Push All Invoices Amazon']")
     WebElement pushAllInvoicesAmazonButton;
 
+    /** ---------- EXTRA INVOICE ---------- */
 
-    //---------------------EXTRA INVOICE---------------------
 
     @FindBy(id = "select-Client")
     WebElement clientDropdownEI;
@@ -285,6 +288,9 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement submitButtonEI;
 
+    @FindBy(className = "Toastify__toast-body")
+    WebElement alertPopupText;
+
     @FindBy(xpath = "//div[contains(text(),'Invoice Created Successfully')]")
     WebElement successAlertMessage;
 
@@ -303,10 +309,10 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "(//span[@title='download-invoice'])[1]")
     WebElement downloadInvoicePdfIcon;
 
-    @FindBy(xpath = "(//span[@title='push-invoice'])[1]")
+    @FindBy(xpath = "(//img[@alt='push-to-exact'])[1]")
     WebElement pushToExactIcon;
 
-    @FindBy(xpath = "(//span[@title='Push to Amazon'])[1]")
+    @FindBy(xpath = "(//img[@alt='push-to-amazon'])[1]")
     WebElement pushToAmazonIcon;
 
     @FindBy(xpath = "//h4[text()='Recently Billed Invoices']")
@@ -332,8 +338,7 @@ public class BillingCenterTestPage {
     @FindBy(xpath = "//button[@id='button-addon2']//img")
     WebElement invoiceSearchIcon;
 
-
-    //	 ------------------------------------------------------------------------------------------------------------------------------------------------
+    /** ---------- Methods ---------- */
 
     public void clickOnIntlInvTab() {
         wait.until(ExpectedConditions.visibilityOf(intlInvTab)).click();
@@ -427,6 +432,8 @@ public class BillingCenterTestPage {
     }
 
     public void enterRemarks(String text) {
+        actions.click(remarksField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
         remarksField.sendKeys(text);
     }
 
@@ -451,6 +458,10 @@ public class BillingCenterTestPage {
     // Method to enter invoice number into the invoiceNumber field
     public void enterInvoiceNumber(String invoice) {
         invoiceNumber.sendKeys(invoice);
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber.getAttribute("value");
     }
 
     public void enterGraceDays(String text) {
@@ -888,6 +899,10 @@ public class BillingCenterTestPage {
         return wait.until(ExpectedConditions.visibilityOf(errorAlertMessage)).isDisplayed();
     }
 
+    public String getAlertPopupText() {
+        return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
+    }
+
     public void addInvoice(String invoiceType, List<String> productNames, WebElement scrollContainer) throws InterruptedException {
         if (invoiceType != null && !invoiceType.isEmpty()) {
             selectInvoiceType(invoiceType);
@@ -900,12 +915,19 @@ public class BillingCenterTestPage {
             selectDropdownByIndexValue(i, product, scrollContainer);
         }
 
+        String invoiceNumber = getInvoiceNumber();
+        log.info("Created Invoice Number: {}", invoiceNumber);
+
         scrollToFinishButton();
         Thread.sleep(1000);
         clickFinishINVButton();
 
-        Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Success Alert Message: " + getSuccessAlertMessage());
+/*        Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Success Alert Message: {}", getSuccessAlertMessage());*/
+
+        String addInvoiceSuccessAlert = getAlertPopupText();
+        log.info("Add Invoice Success Alert is: {}", addInvoiceSuccessAlert);
+        Assert.assertEquals(addInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
         clickOnAlertPopupCrossIcon();
     }
@@ -916,13 +938,19 @@ public class BillingCenterTestPage {
         }
 
         //enterGraceDays(graceDays);
+        String invoiceNumber = getInvoiceNumber();
+        log.info("Amazon Created Invoice Number: {}", invoiceNumber);
 
         scrollToFinishButton();
         Thread.sleep(1000);
         clickFinishINVButton();
 
-        Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
-        log.info("Amazon Invoices Success Alert Message: " + getSuccessAlertMessage());
+/*        Assert.assertTrue(isSuccessAlertMessageDisplayed(), "Success Alert Message Not Displayed");
+        log.info("Amazon Invoices Success Alert Message: " + getSuccessAlertMessage());*/
+
+        String amazonInvoiceSuccessAlert = getAlertPopupText();
+        log.info("Amazon Invoices Success Alert is: {}", amazonInvoiceSuccessAlert);
+        Assert.assertEquals(amazonInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
 
         clickOnAlertPopupCrossIcon();
     }
@@ -943,4 +971,11 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(invoiceEditIcon)).click();
     }
 
+    public void scrollToRight() {
+        // Ensure the freightTabHorizontalScroll element is visible before attempting to scroll
+        wait.until(ExpectedConditions.visibilityOf(invoiceEditIcon));
+
+        // Scroll the cargoDataTab into view
+        executor.executeScript("arguments[0].scrollIntoView(true);", invoiceEditIcon);
+    }
 }
