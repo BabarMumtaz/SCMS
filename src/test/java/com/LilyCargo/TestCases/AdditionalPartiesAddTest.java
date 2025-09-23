@@ -33,14 +33,14 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
         log.info("Clicked Additional Party FR Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Additional Parties", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Additional Party Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Additional Party", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterCompanyName(faker.company().name());
@@ -77,7 +77,7 @@ public class AdditionalPartiesAddTest extends TestBeforeAndAfter {
         log.info("Click Save Additional Party Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "Additional Party successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

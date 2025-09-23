@@ -22,9 +22,9 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickCockpitDashSubMenu();
         log.info("Clicked Cockpit Sub Menu");
 
-/*        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "❌ Cockpit heading is not displayed!");
-        Assert.assertEquals(pageObjectManager.getCockpitPage().getPageHeading(), "Cockpit", "❌ Heading text does not match!");
-        log.info("✅ Cockpit heading verified successfully.");*/
+/*        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "Cockpit heading is not displayed!");
+        Assert.assertEquals(pageObjectManager.getCockpitPage().getPageHeading(), "Cockpit", "Heading text does not match!");
+        log.info("Cockpit heading verified successfully.");*/
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Main Page Heading is: {}", mainPageHeading);
@@ -82,23 +82,23 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         navigateToCockpit();
 
         pageObjectManager.getCockpitPage().clickTab("Low Margin Projection");
-        log.info("✅ Low Margin Projection tab clicked.");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "❌ Low Margin Projection Listing Cell not displayed!");
+        log.info("Low Margin Projection tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLowMarginProjectionListingDateCellDisplayed(), "Low Margin Projection Listing Cell not displayed!");
 
         pageObjectManager.getCockpitPage().clickTab("Latest Incident Registrations");
-        log.info("✅ Latest Incident Registrations tab clicked.");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestIncidentListingDateCellDisplayed(), "❌ Latest Incident Registrations Listing Cell not displayed!");
+        log.info("Latest Incident Registrations tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestIncidentListingDateCellDisplayed(), "Latest Incident Registrations Listing Cell not displayed!");
 
         pageObjectManager.getCockpitPage().clickTab("Daily Import Duty");
-        log.info("✅ Daily Import Duty tab clicked.");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isDailyImportDutyListingDateCellDisplayed(), "❌ Daily Import Duty Listing Cell not displayed!");
+        log.info("Daily Import Duty tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isDailyImportDutyListingDateCellDisplayed(), "Daily Import Duty Listing Cell not displayed!");
 
         pageObjectManager.getCockpitPage().clickDailyImportDutyFidExportIcon();
-        log.info("✅ Daily Import Duty Download FID icon clicked.");
+        log.info("Daily Import Duty Download FID icon clicked.");
 
         pageObjectManager.getCockpitPage().clickTab("Latest Added Plato");
-        log.info("✅ Latest Added Plato tab clicked.");
-        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestAddedPlatoListingDateCellDisplayed(), "❌ Latest Added Plato Listing Cell not displayed!");
+        log.info("Latest Added Plato tab clicked.");
+        Assert.assertTrue(pageObjectManager.getCockpitPage().isLatestAddedPlatoListingDateCellDisplayed(), "Latest Added Plato Listing Cell not displayed!");
     }
 }
 

@@ -33,14 +33,14 @@ public class CountriesAddTest extends TestBeforeAndAfter {
         log.info("Clicked Countries FR Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Countries", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Country Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Country", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterName(FakeDataUtil.getRandomCountry());// New method for Dutch phone number
@@ -53,7 +53,7 @@ public class CountriesAddTest extends TestBeforeAndAfter {
         log.info("Click Save Country Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "Country successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

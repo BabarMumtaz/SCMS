@@ -37,14 +37,14 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Clicked Carriers FR Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Carriers", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Carriers Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is: {}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Carrier", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterTicker(faker.company().name());
@@ -81,7 +81,7 @@ public class CarrierAddTest extends TestBeforeAndAfter {
         log.info("Click Save Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "Carrier successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

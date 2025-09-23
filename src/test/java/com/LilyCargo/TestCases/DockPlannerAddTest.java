@@ -34,9 +34,12 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
+
+        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
+        log.info("Clicked Fid Number: {}", fidNumber);
     }
 
-    private void performFreightDetailActions() throws InterruptedException {
+    private void performFreightDetailActions() {
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
 
@@ -47,7 +50,7 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         log.info("Clicked on Submit MRN Task Shortcut.");
 
         Assert.assertTrue(pageObjectManager.getDockPlannerPage().isDockPlannerPopupHeadingDisplayed(), "Submit MRN popup not visible");
-        log.info("Popup Heading: " + pageObjectManager.getDockPlannerPage().getDockPlannerPopupHeading());
+        log.info("Popup Heading: {}", pageObjectManager.getDockPlannerPage().getDockPlannerPopupHeading());
 
         pageObjectManager.getDockPlannerPage().selectDockPlannerJob();
         log.info("Selected Job");
@@ -70,8 +73,9 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
         pageObjectManager.getDockPlannerPage().clickDockPlannerCreateButton();
         log.info("Clicked on Create Dock Planner button.");
 
-        Assert.assertTrue(pageObjectManager.getDockPlannerPage().isDockPlannerSuccessAlertMessageDisplayed(), "Alert Message is different");
-        log.info("Success Alert Message on Submit: " + pageObjectManager.getDockPlannerPage().getDockPlannerSuccessAlertMessage());
+        String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: {}", successAlert);
+        Assert.assertEquals(successAlert, "Dock Planner created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getDockPlannerPage().clickDockPlannerExportButton();
         log.info("Clicked on Export Dock Planner button.");

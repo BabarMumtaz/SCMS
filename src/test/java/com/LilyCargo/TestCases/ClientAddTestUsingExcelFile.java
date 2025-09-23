@@ -51,7 +51,7 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         log.info("Clicked Client FR Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
@@ -60,23 +60,23 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().addClientData(Name, ContactPerson, Address1, Email1, FinancialEmail, FiscalMattersEmail1, CeoEmail1,
                 TelephoneNumber1, RegionDropDown, CountryDropDown, ZipCity, Vat, LfrDropDown, ScmEmails, CustomsReleaseEmails, BillingEmails);
 
-        log.info("Adding client data: " +
-                "Name - " + Name + ", " +
-                "Contact Person - " + ContactPerson + ", " +
-                "Address 1 - " + Address1 + ", " +
-                "Email 1 - " + Email1 + ", " +
-                "Financial Email - " + FinancialEmail + ", " +
-                "Fiscal Matters Email 1 - " + FiscalMattersEmail1 + ", " +
-                "CEO Email 1 - " + CeoEmail1 + ", " +
-                "Telephone Number 1 - " + TelephoneNumber1 + ", " +
-                "Region - " + RegionDropDown + ", " +
-                "Country - " + CountryDropDown + ", " +
-                "Zip City - " + ZipCity + ", " +
-                "VAT - " + Vat + ", " +
-                "LFR - " + LfrDropDown + ", " +
-                "SCM Emails - " + ScmEmails + ", " +
-                "Customs Release Emails - " + CustomsReleaseEmails + ", " +
-                "Billing Emails - " + BillingEmails
+        log.info("Adding client data: {}",
+                "Name - {}", Name + ", {}",
+                "Contact Person - {}", ContactPerson + ", {}",
+                "Address 1 - {}", Address1 + ", {}",
+                "Email 1 - {}", Email1 + ", {}",
+                "Financial Email - {}", FinancialEmail + ", {}",
+                "Fiscal Matters Email 1 - {}", FiscalMattersEmail1 + ", {}",
+                "CEO Email 1 - {}", CeoEmail1 + ", {}",
+                "Telephone Number 1 - {}", TelephoneNumber1 + ", {}",
+                "Region - {}", RegionDropDown + ", {}",
+                "Country - {}", CountryDropDown + ", {}",
+                "Zip City - {}", ZipCity + ", {}",
+                "VAT - {}", Vat + ", {}",
+                "LFR - {}", LfrDropDown + ", {}",
+                "SCM Emails - {}", ScmEmails + ", {}",
+                "Customs Release Emails - {}", CustomsReleaseEmails + ", {}",
+                "Billing Emails - {}", BillingEmails
         );
 
         pageObjectManager.getGlobalMethodsPage().clickAllDynamicCrossIcons();
@@ -86,7 +86,7 @@ public class ClientAddTestUsingExcelFile extends TestBeforeAndAfter {
         log.info("Click Save Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is: {}", successAlert);
         Assert.assertEquals(successAlert, "Client successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

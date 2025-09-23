@@ -33,14 +33,14 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         log.info("Clicked Brokers FR Sub Menu");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-        log.info("Page Heading is: " + pageHeading);
+        log.info("Page Heading is:{}", pageHeading);
         Assert.assertEquals(pageHeading, "Brokers", "Page heading does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickAddButton();
         log.info("Clicked Brokers Add button");
 
         String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-        log.info("Add Page Heading is: " + addPageHeading);
+        log.info("Add Page Heading is:{}", addPageHeading);
         Assert.assertEquals(addPageHeading, "Add Broker", "Add Page heading does not match expected value.");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterName(faker.company().name());
@@ -74,7 +74,7 @@ public class BrokersAddTest extends TestBeforeAndAfter {
         log.info("Click Save Brokers Button");
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-        log.info("Success Alert is: " + successAlert);
+        log.info("Success Alert is:{}", successAlert);
         Assert.assertEquals(successAlert, "Broker successfully created.", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();

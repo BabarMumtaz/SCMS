@@ -36,14 +36,14 @@ public class ClientEditFromListingViewTest extends TestBeforeAndAfter {
 		log.info("Clicked Client FR Sub Menu");
 
 		String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
-		log.info("Page Heading is: " + pageHeading);
+		log.info("Page Heading is: {}", pageHeading);
 		Assert.assertEquals(pageHeading, "Clients", "Page heading does not match expected value.");
 
 		pageObjectManager.getGlobalMethodsPage().hoverAndClickIconOnRow(0, "Edit");
 		log.info("Hover over on A row and click Edit Icon");
 
 		String addPageHeading = pageObjectManager.getGlobalMethodsPage().getAddPageHeading();
-		log.info("Add Page Heading is: " + addPageHeading);
+		log.info("Add Page Heading is: {}", addPageHeading);
 		Assert.assertEquals(addPageHeading, "Update Client", "Edit Page heading does not match expected value.");
 
 		pageObjectManager.getRelationsAllFieldsTestPage().enterAddress2(faker.address().streetAddress());
@@ -56,7 +56,7 @@ public class ClientEditFromListingViewTest extends TestBeforeAndAfter {
 		log.info("Click Save Button");
 
 		String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
-		log.info("Success Alert is: " + successAlert);
+		log.info("Success Alert is: {}", successAlert);
 		Assert.assertEquals(successAlert, "Client successfully updated.", "Success Alert does not match expected value.");
 
 		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
