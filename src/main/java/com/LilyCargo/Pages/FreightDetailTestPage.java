@@ -89,7 +89,7 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(subFidAddIcon).click();
 	}
 
-	public void clickSubmitSubFidButton() {
+	public void clickYesButton() {
 		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
 	}
 

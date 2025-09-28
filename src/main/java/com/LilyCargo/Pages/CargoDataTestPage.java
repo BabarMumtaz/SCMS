@@ -51,32 +51,17 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//div[@class='cargo-action-listbtn']//div[4]")
     WebElement uploadCargoDataIcon;
 
+    @FindBy(id = "remove-sub-fID")
+    WebElement removeSubFidButton;
+
     @FindBy(id = "delete-cargo-data")
     WebElement deleteCargoDataButton;
-
-    @FindBy(css = ".lc-header-title.modal-title.h4")
-    WebElement deleteCargoDataPopupHeading;
-
-    @FindBy(css = ".text-center.my-3")
-    WebElement deleteCargoDataPopupText;
-
-    @FindBy(xpath = "//button[text()='Yes']")
-    WebElement deleteCargoDataPopupSubmitButton;
-
-    @FindBy(xpath = "//button[text()='No & Close']")
-    WebElement deleteCargoDataPopupCancelButton;
-
-    @FindBy(className = "btn-close")
-    WebElement uploadCargoDataPopupCloseIcon;
 
     @FindBy(xpath = "//input[@name='file']")
     WebElement uploadCargoDataPopupChooseFile;
 
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement uploadCargoDataPopupSubmitButton;
-
-    @FindBy(xpath = "//button[text()='Cancel']")
-    WebElement uploadCargoDataPopupCancelButton;
 
     @FindBy(className = "Toastify__toast-body")
     WebElement alertPopupText;
@@ -86,16 +71,16 @@ public class CargoDataTestPage {
 
     /** ---------- Methods ---------- */
 
-    public String getCargoDataListingHs1stCellText() {
-        return cargoDataListingHs1stCell.getText();
-    }
-
-    public boolean isCargoDataListingHs1stCellDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOf(cargoDataListingHs1stCell)).isDisplayed();
-    }
-
     public List<WebElement> getNoDataFoundElements() {
         return cargoDataListingEmptyArea;
+    }
+
+    public void clickRemoveSubFidButton() {
+        wait.until(ExpectedConditions.visibilityOf(removeSubFidButton)).click();
+    }
+
+    public void clickDeleteCargoDataButton() {
+        wait.until(ExpectedConditions.visibilityOf(deleteCargoDataButton)).click();
     }
 
     public void selectDropdownByText(WebElement dropdownElement, String optionText) {
@@ -120,10 +105,6 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(uploadCargoDataIcon)).click();
     }
 
-    public void clickOnUploadCargoDataPopupCloseIcon() {
-        wait.until(ExpectedConditions.visibilityOf(uploadCargoDataPopupCloseIcon)).click();
-    }
-
     public void uploadCargoDataInChooseFile(String filePath) {
         uploadCargoDataPopupChooseFile.sendKeys(filePath);
         log.info("Uploaded A file: {}", filePath);
@@ -131,10 +112,6 @@ public class CargoDataTestPage {
 
     public void clickCargoDataPopupSubmitButton() {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButton)).click();
-    }
-
-    public void clickCargoDataPopupCancelButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupCancelButton)).click();
     }
 
     public void clickOnAlertPopupCrossIcon() {

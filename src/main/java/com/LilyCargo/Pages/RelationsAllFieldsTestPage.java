@@ -186,6 +186,12 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//input[@name='emails[0].value']")
     WebElement extraEmailValue;
 
+    @FindBy(xpath = "//label[contains(text(), 'Location')]//following::input[1]")
+    WebElement lmTeamLocation;
+
+    @FindBy(xpath = "//label[contains(text(), 'Manager')]//following::input[1]")
+    WebElement managerDropdown;
+
     /** ---------- Methods ---------- */
 
     public void enterTicker(String text) {
@@ -320,10 +326,6 @@ public class RelationsAllFieldsTestPage {
         selectDate(dateField, LocalDate.now().plusDays(3));
     }
 
-    public void selectPayrollEndsDate() {
-        selectDate(payrollEndsDate, LocalDate.now());
-    }
-
     public void selectOfficeAccessStartDate() {
         selectDate(officeAccessStartDate, LocalDate.now());
     }
@@ -395,6 +397,14 @@ public class RelationsAllFieldsTestPage {
 
     public void selectLocation(String location) {
         selectDropdownByText(locationDropdown, location);
+    }
+
+    public void selectLmTeamLocation(String lmLocation) {
+        selectDropdownByText(lmTeamLocation, lmLocation);
+    }
+
+    public void selectManager(String manager) {
+        selectDropdownByText(managerDropdown, manager);
     }
 
     public void searchAndSelectCountry(String countryName) {

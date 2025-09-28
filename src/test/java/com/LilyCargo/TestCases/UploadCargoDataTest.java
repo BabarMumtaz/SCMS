@@ -97,7 +97,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getBookedFreights().enterClientReference(FakeDataUtil.getString());
             log.info("Entered SubFid Client Ref");
 
-            pageObjectManager.getFreightDetail().clickSubmitSubFidButton();
+            pageObjectManager.getFreightDetail().clickYesButton();
             log.info("Clicked Submit Button");
 
             String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();

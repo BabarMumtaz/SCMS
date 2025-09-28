@@ -51,14 +51,17 @@ public class LmTeamAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterPosition(faker.company().profession());
         log.info("Entered Lm Team Position");
 
+        pageObjectManager.getRelationsAllFieldsTestPage().selectManager("Lois van der");
+        log.info("Entered Lm Team Manager");
+
         pageObjectManager.getRelationsAllFieldsTestPage().enterTelephoneNumber(FakeDataUtil.getDutchPhoneNumber());
         log.info("Entered Lm Team Telephone Number");
 
         pageObjectManager.getRelationsAllFieldsTestPage().enterEmail(faker.internet().emailAddress());
         log.info("Entered Lm Team Email");
 
-        pageObjectManager.getRelationsAllFieldsTestPage().selectPayrollEndsDate();
-        log.info("Entered Lm Team Pay Roll Date: Current Date");
+        pageObjectManager.getRelationsAllFieldsTestPage().selectLmTeamLocation("IRELAND");
+        log.info("Entered Lm Team Location");
 
         pageObjectManager.getRelationsAllFieldsTestPage().selectOfficeAccessStartDate();
         log.info("Entered Lm Team Start DATE: Current Date");
