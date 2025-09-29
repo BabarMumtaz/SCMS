@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.LilyCargo.Util.DropdownMethodUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -19,6 +20,7 @@ public class FreightTestPage {
 	JavascriptExecutor executor;
 	Actions actions;
 	WebDriverWait wait;
+	DropdownMethodUtil dropdownUtil;
 	Logger log = LogManager.getLogger(FreightTestPage.class);
 
 	/** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
@@ -29,6 +31,7 @@ public class FreightTestPage {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
 		this.actions = new Actions(driver);
+		this.dropdownUtil = new DropdownMethodUtil(driver, wait);
 	}
 
 	/** ---------- Locators ---------- */
@@ -301,7 +304,7 @@ public class FreightTestPage {
 
 	// For <input type="date">
 	private void selectDate(WebElement element, LocalDate date) {
-		String dateValue = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); // required format
+		String dateValue = date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")); // required format
 		element.clear();
 		element.sendKeys(dateValue);
 	}
@@ -403,7 +406,7 @@ public class FreightTestPage {
 		dropdownValue.click();
 	}
 
-	public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+/*	public void selectDropdownByText(WebElement dropdownElement, String optionText) {
 		wait.until(ExpectedConditions.elementToBeClickable(dropdownElement)).click(); // open the dropdown
 		log.info("🔽 Opened dropdown");
 		WebElement dropdownOption = wait.until(ExpectedConditions
@@ -411,114 +414,114 @@ public class FreightTestPage {
 		executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
 		dropdownOption.click();
 		log.info("✅ Selected option: " + optionText);
-	}
+	}*/
 
 	public void selectClient(String client) {
-		selectDropdownByText(clientDropDown, client);
+		dropdownUtil.selectDropdownByText(clientDropDown, client);
 	}
 
 	public void selectServiceType(String serviceType) {
-		selectDropdownByText(serviceTypeDropDown, serviceType);
+		dropdownUtil.selectDropdownByText(serviceTypeDropDown, serviceType);
 	}
 
 	public void selectShipper(String shipper) {
-		selectDropdownByText(shipperDropDown, shipper);
+		dropdownUtil.selectDropdownByText(shipperDropDown, shipper);
 	}
 
 	public void selectCOO(String coo) {
-		selectDropdownByText(cOODropDown, coo);
+		dropdownUtil.selectDropdownByText(cOODropDown, coo);
 	}
 
 	public void selectContainerType(String containerType) {
-		selectDropdownByText(containerDropDown, containerType);
+		dropdownUtil.selectDropdownByText(containerDropDown, containerType);
 	}
 
 	public void selectPortOfLoading(String portOfLoading) {
-		selectDropdownByText(portOfLoadingDropDown, portOfLoading);
+		dropdownUtil.selectDropdownByText(portOfLoadingDropDown, portOfLoading);
 	}
 
 	public void selectPortOfDischarge(String portOfDischarge) {
-		selectDropdownByText(portOfDischargeDropDown, portOfDischarge);
+		dropdownUtil.selectDropdownByText(portOfDischargeDropDown, portOfDischarge);
 	}
 
 	public void selectCarrierCompany(String carrierCompany) {
-		selectDropdownByText(carrierCompanyDropDown, carrierCompany);
+		dropdownUtil.selectDropdownByText(carrierCompanyDropDown, carrierCompany);
 	}
 
 	public void selectExportCompany(String exportCompany) {
-		selectDropdownByText(exportCompanyDropDown, exportCompany);
+		dropdownUtil.selectDropdownByText(exportCompanyDropDown, exportCompany);
 	}
 
 	public void selectFreightWay(String freightWay) {
-		selectDropdownByText(freightWayDropDown, freightWay);
+		dropdownUtil.selectDropdownByText(freightWayDropDown, freightWay);
 	}
 
 	public void selectVesselFlag(String vesselFlag) {
-		selectDropdownByText(vesselFlagDropDown, vesselFlag);
+		dropdownUtil.selectDropdownByText(vesselFlagDropDown, vesselFlag);
 	}
 
 	public void selectAirlineFlag(String airlineFlag) {
-		selectDropdownByText(airlineFlagDropDown, airlineFlag);
+		dropdownUtil.selectDropdownByText(airlineFlagDropDown, airlineFlag);
 	}
 
 	public void selectLogisticsType(String logisticsType) {
-		selectDropdownByText(logisticsTypeDropDown, logisticsType);
+		dropdownUtil.selectDropdownByText(logisticsTypeDropDown, logisticsType);
 	}
 
 	public void selectWarehouseName(String warehouseName) {
-		selectDropdownByText(warehouseNameDropDown, warehouseName);
+		dropdownUtil.selectDropdownByText(warehouseNameDropDown, warehouseName);
 	}
 
 	public void selectNotifyParty(String notifyParty) {
-		selectDropdownByText(notifyPartyDropDown, notifyParty);
+		dropdownUtil.selectDropdownByText(notifyPartyDropDown, notifyParty);
 	}
 
 	public void selectBroker(String broker) {
-		selectDropdownByText(brokerDropDown, broker);
+		dropdownUtil.selectDropdownByText(brokerDropDown, broker);
 	}
 
 	public void selectLFR(String lfr) {
-		selectDropdownByText(lfrDropDown, lfr);
+		dropdownUtil.selectDropdownByText(lfrDropDown, lfr);
 	}
 
 	public void selectFreightManager(String freightManager) {
-		selectDropdownByText(freightManagerDropDown, freightManager);
+		dropdownUtil.selectDropdownByText(freightManagerDropDown, freightManager);
 	}
 
 	public void selectLogistics(String logistics) {
-		selectDropdownByText(logisticsDropDown, logistics);
+		dropdownUtil.selectDropdownByText(logisticsDropDown, logistics);
 	}
 
 	public void selectCustoms(String customs) {
-		selectDropdownByText(customsDropDown, customs);
+		dropdownUtil.selectDropdownByText(customsDropDown, customs);
 	}
 
 	public void selectVatProcedure(String vatProcedure) {
-		selectDropdownByText(vatProcedureDropDown, vatProcedure);
+		dropdownUtil.selectDropdownByText(vatProcedureDropDown, vatProcedure);
 	}
 
 	public void selectTruckingCo(String truckingCo) {
-		selectDropdownByText(truckingCoDropDown, truckingCo);
+		dropdownUtil.selectDropdownByText(truckingCoDropDown, truckingCo);
 	}
 
 	public void selectFreightBook(String freightBook) {
-		selectDropdownByText(freightBookDropDown, freightBook);
+		dropdownUtil.selectDropdownByText(freightBookDropDown, freightBook);
 	}
 
 	public void selectAdditionalParty(String additionalParty) {
-		selectDropdownByText(additionalPartyDropDown, additionalParty);
+		dropdownUtil.selectDropdownByText(additionalPartyDropDown, additionalParty);
 	}
 
 	public void selectAdjustOperator(String adjustOperator) {
-		selectDropdownByText(adjustOperatorDropDown, adjustOperator);
+		dropdownUtil.selectDropdownByText(adjustOperatorDropDown, adjustOperator);
 	}
 
 	public void selectCustomDocStatus(String customDocStatus) {
-		selectDropdownByText(customDocStatusDropDown, customDocStatus);
+		dropdownUtil.selectDropdownByText(customDocStatusDropDown, customDocStatus);
 	}
 
 	public void selectCustomsClearanceServices(String customsClearance) {
-		selectDropdownByText(customsClearanceDropDown, customsClearance);
+		dropdownUtil.selectDropdownByText(customsClearanceDropDown, customsClearance);
 	}
 
 	public void enterContents(String text) {
@@ -659,15 +662,7 @@ public class FreightTestPage {
 		duty.sendKeys(text);
 	}
 
-	public boolean isEditPageDisplayed() {
-		return wait.until(ExpectedConditions.visibilityOf(editPageID)).isDisplayed();
-	}
-
-	public String getEditFreightID() {
-		return wait.until(ExpectedConditions.visibilityOf(editPageID)).getText();
-	}
-
-	public void selectSubFidNoTc(String notcValue) {
-		selectDropdownByText(subFidNoTcDrop, notcValue);
+	public void selectSubFidNoTc(String noTcValue) {
+		dropdownUtil.selectDropdownByText(subFidNoTcDrop, noTcValue);
 	}
 }

@@ -1,5 +1,6 @@
 package com.LilyCargo.Pages;
 
+import com.LilyCargo.Util.DropdownMethodUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -19,6 +20,7 @@ public class GlobalMethodsTestPage {
     JavascriptExecutor executor;
     WebDriverWait wait;
     Actions actions;
+    DropdownMethodUtil dropdownUtil;
     Logger log = LogManager.getLogger(GlobalMethodsTestPage.class);
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
@@ -28,6 +30,7 @@ public class GlobalMethodsTestPage {
         this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         this.actions = new Actions(driver);
+        this.dropdownUtil = new DropdownMethodUtil(driver, wait);
         PageFactory.initElements(driver, this);
     }
 
@@ -296,8 +299,6 @@ public class GlobalMethodsTestPage {
 
     // ===== Generic Success Alert Method ===== Gets the text of the success alert automatically.
     public String getAlertPopupText() {
-/*        wait.until(ExpectedConditions.textToBePresentInElement(alertPopupText, "successfully"));
-        return alertPopupText.getText().trim();*/
         return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
     }
 
