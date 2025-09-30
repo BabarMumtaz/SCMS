@@ -84,7 +84,7 @@ public class FreightListingTestPage {
 	}
 
 	public void clickSpecificFID() throws InterruptedException {
-		int rowToClick = 5; // 0-based index for row 5
+		int rowToClick = 2; // 0-based index for row 5
 		if (freightListFidCells.size() > rowToClick) {
 			WebElement fid = freightListFidCells.get(rowToClick);
 			//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", fid);

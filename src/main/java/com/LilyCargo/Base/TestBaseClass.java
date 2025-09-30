@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,7 +56,7 @@ public class TestBaseClass {
 	public static void initialization() {
 		log.info("Initializing WebDriver...");
 		String browserName = prop.getProperty("browser", "chrome").toLowerCase();
-
+/*
 		// Force WebDriverManager to work offline (cached drivers only)
 		System.setProperty("wdm.offline", "true");
 		System.setProperty("wdm.forceCache", "true");
@@ -72,6 +74,24 @@ public class TestBaseClass {
 
 			default:
 				log.error("Unsupported browser: " + browserName);
+				throw new IllegalArgumentException("Unsupported browser: " + browserName);
+		}*/
+
+		switch (browserName) {
+			case "chrome":
+				WebDriverManager.chromedriver().setup();  // downloads & caches if needed
+				driver = new ChromeDriver();
+				log.info("Chrome Driver initiated.");
+				break;
+
+			case "firefox":
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+				log.info("Firefox Driver initiated.");
+				break;
+
+			default:
+                log.error("Unsupported browser: {}", browserName);
 				throw new IllegalArgumentException("Unsupported browser: " + browserName);
 		}
 

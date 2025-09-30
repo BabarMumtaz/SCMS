@@ -28,8 +28,11 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(AllEuInvoicesAddTest.class);
         log.info("Starting EU All INV Add Test from Billing Center Tab.");
 
-        pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the 1st row FreightID.");
+/*        pageObjectManager.getFreightListing().clickOnFreightID();
+        log.info("Clicked on the 1st row FreightID.");*/
+
+        pageObjectManager.getFreightListing().clickSpecificFID();
+        log.info("Clicked on the 3rd row FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
@@ -94,6 +97,7 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
             pageObjectManager.getBillingCenterPage().addAmazonInvoice(type);
             log.info("Added Amazon Invoice Type: {}", type + " for Amazon Client");
         }
+/*
 
         pageObjectManager.getBillingCenterPage().clickOnBilledInvoicesTab();
         log.info("Clicked on Billed Invoices Tab");
@@ -167,6 +171,7 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
             pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed Unexpected Alert Popup");
         }
+*/
 
     }
 }

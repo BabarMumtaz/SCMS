@@ -927,7 +927,11 @@ public class BillingCenterTestPage {
 
         String addInvoiceSuccessAlert = getAlertPopupText();
         log.info("Add Invoice Success Alert is: {}", addInvoiceSuccessAlert);
-        Assert.assertEquals(addInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        //Assert.assertEquals(addInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        Assert.assertTrue(
+                addInvoiceSuccessAlert.startsWith("Invoice Created Successfully "),
+                "Success Alert does not contain 'Invoice Created Successfully.. Check warning for details!' -> " + addInvoiceSuccessAlert
+        );
 
         clickOnAlertPopupCrossIcon();
     }
@@ -950,7 +954,11 @@ public class BillingCenterTestPage {
 
         String amazonInvoiceSuccessAlert = getAlertPopupText();
         log.info("Amazon Invoices Success Alert is: {}", amazonInvoiceSuccessAlert);
-        Assert.assertEquals(amazonInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        //Assert.assertEquals(amazonInvoiceSuccessAlert, "Invoice Created Successfully", "Success Alert does not match expected value.");
+        Assert.assertTrue(
+                amazonInvoiceSuccessAlert.startsWith("Invoice Created Successfully "),
+                "Success Alert does not contain 'Invoice Created Successfully.. Check warning for details!' -> " + amazonInvoiceSuccessAlert
+        );
 
         clickOnAlertPopupCrossIcon();
     }

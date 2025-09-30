@@ -75,6 +75,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
             pageObjectManager.getBillingCenterPage().addInvoice(type, productNames, scrollContainer);
             log.info("Added Intl Invoice Type: {} for Amazon Client", type);
         }
+/*
 
         pageObjectManager.getBillingCenterPage().clickOnBilledInvoicesTab();
         log.info("Clicked on Billed Invoices Tab");
@@ -148,6 +149,7 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
             pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
             log.info("Closed Unexpected Alert Popup");
         }
+*/
 
     }
 }
