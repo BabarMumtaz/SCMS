@@ -523,7 +523,7 @@ public class BillingCenterTestPage {
         selectDropdownValue(vatDropdown, vatDropdownValue);
     }
 
-    //-------------------------------------------------------------- selectDropdownByIndexValue Methods
+    /** ---------- selectDropdownByIndexValue Methods ---------- */
 
     public void selectDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) throws InterruptedException {
         WebElement dropdown = pidDropdownsList.get(index - 1); // 1-based to 0-based
@@ -611,7 +611,7 @@ public class BillingCenterTestPage {
         selectDropdownByIndexValueGeneric(index, pidDropdownsList, valueText, scrollContainer, "INTL Product");
     }
 
-    //-------------------------------------------------------------- selectVatDropdownByIndexValue
+    /** ---------- selectVatDropdownByIndexValue ---------- */
 
     public void selectVatDropdownByIndexValue(int index, String valueText, WebElement scrollContainer) {
         WebElement vatDropdown = vatDropdownList.get(index - 1); // 1-based to 0-based
@@ -634,7 +634,7 @@ public class BillingCenterTestPage {
         log.info("Selected VAT value '" + valueText + "' at dropdown #" + index);
     }
 
-    //-------------------------------------------------------------- enterSaleAmountByRowIndex---------------------
+    /** ---------- enterSaleAmountByRowIndex ---------- */
 
     public void enterSaleAmountByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
         WebElement saleInput = scrollContainer.findElement(
@@ -649,7 +649,7 @@ public class BillingCenterTestPage {
         log.info("Entered Sale Amount '" + amountValue + "' at #" + rowIndex);
     }
 
-    //--------------------------------------------------------------
+    /** ----------  ---------- */
 
     public void enterAmountEURByRowIndex(int rowIndex, String amountValue, WebElement scrollContainer) throws InterruptedException {
 
@@ -709,7 +709,7 @@ public class BillingCenterTestPage {
         return addRowButton;
     }
 
-    //-------------------------------------------------------------- clickAddRowAndWaitForNew All Methods---------------------
+    /** ---------- clickAddRowAndWaitForNew All Methods ---------- */
 
     public void clickAddRowAndWaitForNewRow() {
         int oldCount = getPidDropdownsCount();
@@ -761,7 +761,7 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(newDropdown));
     }
 
-    //-----------------------------------------------------------------------------------
+    /** ----------  ---------- */
 
     public void clickPidDropdownDescription() {
         wait.until(ExpectedConditions.elementToBeClickable(pidDropdownDescription)).click();
@@ -800,7 +800,7 @@ public class BillingCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
 
-    //---------------------EXTRA INV---------------------
+    /** ---------- EXTRA INVOICE METHODS ---------- */
 
     public void selectExtraInvClient() {
         selectDropdownValue(clientDropdownEI, clientDropdownValueEI);
@@ -838,7 +838,7 @@ public class BillingCenterTestPage {
         return "true".equalsIgnoreCase(ariaDisabled) || classAttr.contains("Mui-disabled");
     }
 
-    //---------------------------------------PURCHASE ENTRY METHODS---------------------
+    /** ---------- PURCHASE ENTRY METHODS ---------- */
 
     public String getGlAccountsSectionColHeading() {
         return glAccountsSectionHeading.getText();
