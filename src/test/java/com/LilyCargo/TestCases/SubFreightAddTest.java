@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
+import com.LilyCargo.Util.FileUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
     @Feature("Feature:03.03_Create Sub Freight")
     @Story("As a user, I should be able to Create SubFreight successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
-    public void VerifySubFreightCreation(){
+    public void VerifySubFreightCreation() throws InterruptedException {
 
         log = LogManager.getLogger(SubFreightAddTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");
@@ -28,17 +29,20 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
+
+        String fidToSearch = FileUtil.getData("FreightID");
+        pageObjectManager.getFreightListing().searchFid(fidToSearch);
+        String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
+        Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the 1st row FreightID.");
+        log.info("Clicked on the searched FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
-
-        String fidNumber = pageObjectManager.getBookedFreights().getFidNumberText();
-        log.info("Fid Number is: {}", fidNumber);
         
         pageObjectManager.getFreightDetail().clickSubFidAddIcon();
         log.info("Clicked SubFid Add Icon");
@@ -55,6 +59,8 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getBookedFreights().selectSubFidNoTc("TC1");
         log.info("Selected SubFid NoTC");
+
+        Thread.sleep(500);
 
         pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
         log.info("Entered SubFid House BL No");

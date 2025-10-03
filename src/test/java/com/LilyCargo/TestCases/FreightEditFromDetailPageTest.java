@@ -68,10 +68,10 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().selectNotifyParty("LILY MAAS LOGISTICS");
 		log.info("Selected Notify Party From Dropdown");
 
-		pageObjectManager.getBookedFreights().selectBroker("NL DKM (LMAAS)");
+		pageObjectManager.getBookedFreights().selectBroker("NL DKM (LMLOG)");
 		log.info("Selected Broker From Dropdown");
 
-		pageObjectManager.getBookedFreights().selectLFR("NL LMBV B02 (IMPORT)");
+		pageObjectManager.getBookedFreights().selectLFR("NL LMLOG Fiscal Rep (Import)");
 		log.info("Selected LFR From Dropdown");
 
 		pageObjectManager.getBookedFreights().selectFreightManager("Ciano Huang");
@@ -80,7 +80,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().selectLogistics("DGF HAM ICC");
 		log.info("Selected Logistics From Dropdown");
 
-		pageObjectManager.getBookedFreights().selectCustoms("DECO");
+		pageObjectManager.getBookedFreights().selectCustoms("DMS");
 		log.info("Selected Customs From Dropdown");
 
 		pageObjectManager.getBookedFreights().enterPreviousDocumentNumber(FakeDataUtil.getString());
@@ -122,7 +122,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().selectAdditionalParty("Schavemaker");
 		log.info("Selected Additional Party From Dropdown");
 
-		pageObjectManager.getBookedFreights().selectAdjustOperator("LMLOG 02");
+		pageObjectManager.getBookedFreights().selectAdjustOperator("LMLOG");
 		log.info("Selected Adjust Operator From Dropdown");
 
 		pageObjectManager.getBookedFreights().clickSaveNextFreightBtn();
@@ -140,8 +140,8 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 		pageObjectManager.getBookedFreights().clickPurchaseStepBtn();
 		log.info("Clicked Purchase Step Button");
 
-		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
-		log.info("Clicked Alert Popup Cross Icon");
+/*		pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+		log.info("Clicked Alert Popup Cross Icon");*/
 
 		pageObjectManager.getBookedFreights().enterAdminFee(FakeDataUtil.getNumberWith2Decimal());
 		log.info("Entered Admin Fee");
