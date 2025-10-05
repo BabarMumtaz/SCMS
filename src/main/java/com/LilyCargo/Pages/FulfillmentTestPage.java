@@ -1,5 +1,6 @@
 package com.LilyCargo.Pages;
 
+import com.LilyCargo.Util.DropdownMethodUtil;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ public class FulfillmentTestPage {
     JavascriptExecutor executor;
     Actions actions;
     WebDriverWait wait;
+    DropdownMethodUtil dropdownUtil;
 
     /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
 
@@ -27,6 +29,7 @@ public class FulfillmentTestPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
         this.actions = new Actions(driver);
+        this.dropdownUtil = new DropdownMethodUtil(driver, wait);
     }
 
     /** ---------- Locators ---------- */
@@ -43,6 +46,7 @@ public class FulfillmentTestPage {
     @FindBy(xpath = "//input[@name='storage_location']")
     WebElement storageLocationField;
 
+    //label[contains(text(), 'Logistic Operator')]/following::div[@role='button'][1]
     @FindBy(xpath = "//input[@name='logistic_operator_id']")
     WebElement logisticOperatorIdDropdown;
 
@@ -65,9 +69,16 @@ public class FulfillmentTestPage {
         storageLocationField.sendKeys(text);
     }
 
-    public void enterCtnsField(String text) {
+    public void enterCtns(String text) {
         ctnsField.sendKeys(text);
     }
 
+    public void clickDeliverAllBtn() {
+        wait.until(ExpectedConditions.visibilityOf(deliverAllBtn)).click();
+    }
+
+    public void selectLogisticsOperator(String logisticsOperator) {
+        dropdownUtil.selectDropdownByText(logisticOperatorIdDropdown, logisticsOperator);
+    }
 }
 

@@ -75,7 +75,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Success Alert is: {}", subFidSuccessAlert);
         Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
-        pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
     }

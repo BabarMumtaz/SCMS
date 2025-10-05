@@ -22,7 +22,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
     @Feature("Feature:03.11_Cargo Data")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
-    public void CargoDataUploadTest() throws InterruptedException {
+    public void VerifyCargoDataUploadTest() throws InterruptedException {
 
         String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC9 Upload Data - 38 Records.xlsx";
 

@@ -29,6 +29,7 @@ public class PageObjectManager {
     private FycoDataTestPage fycoDataPage;
     private BillingCenterTestPage billingCenterPage;
     private CargoDataTestPage cargoDataPage;
+    private FulfillmentTestPage fulfillmentPage;
 
     /** ---------- Constructor initializes WebDriver ---------- */
 
@@ -115,6 +116,10 @@ public class PageObjectManager {
 
     public CargoDataTestPage getCargoDataPage() {
         return (cargoDataPage == null) ? cargoDataPage = PageFactory.initElements(driver, CargoDataTestPage.class) : cargoDataPage;
+    }
+
+    public FulfillmentTestPage getFulfillmentPage() {
+        return (fulfillmentPage == null) ? fulfillmentPage = PageFactory.initElements(driver, FulfillmentTestPage.class) : fulfillmentPage;
     }
 
 }

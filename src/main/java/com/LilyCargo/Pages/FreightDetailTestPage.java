@@ -66,15 +66,6 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
 
-	@FindBy(xpath = "//div[contains(text(),'Freight successfully created.')]")
-	WebElement addFreightSuccessAlertMessage;
-
-	@FindBy(xpath = "//button[@aria-label='close']//*[name()='svg']")
-	WebElement successAlertCrossIcon;
-
-	@FindBy(xpath = "//div[contains(text(),'Freight successfully updated.')]")
-	WebElement updateFreightSuccessAlertMessage;
-
 	/** ---------- Methods ---------- */
 
 	public boolean isEditFreightIconDisplayed() {
@@ -91,10 +82,6 @@ public class FreightDetailTestPage {
 
 	public void clickYesButton() {
 		waitUtil.waitForElementToBeClickable(submitSubFidButton).click();
-	}
-
-	public void clickOnAlertPopupCrossIcon() {
-		waitUtil.waitForElementToBeClickable(successAlertCrossIcon).click();
 	}
 
 	public void selectLastSubFID() {
@@ -157,8 +144,16 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeClickable(cargoDataTab).click();
 	}
 
+	public void clickFulfillmentTab() {
+		waitUtil.waitForElementToBeClickable(fulfillmentTab).click();
+	}
+
 	public String getCargoDataTabText() {
 		return waitUtil.waitForElementToBeVisible(cargoDataTab).getText();
+	}
+
+	public String getFulfillmentTabText() {
+		return waitUtil.waitForElementToBeVisible(fulfillmentTab).getText();
 	}
 
 	public void scrollToRight() {

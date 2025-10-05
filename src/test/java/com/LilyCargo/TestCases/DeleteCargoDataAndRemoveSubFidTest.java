@@ -71,7 +71,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         log.info("Success Alert is: {}", subFidSuccessAlert);
         Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
 
-        pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
         Thread.sleep(1000);
@@ -107,7 +107,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         log.info("Success Alert is: {}", deleteSuccessAlert);
         Assert.assertEquals(deleteSuccessAlert, "Cargo Data deleted successfully", "Success Alert does not match expected value.");
 
-        pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
         pageObjectManager.getCargoDataPage().clickRemoveSubFidButton();
@@ -127,7 +127,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
                 "Warning Alert does not contain 'Sub FID No.. Check warning for details!' -> " + removeSuccessAlert
         );
 
-        pageObjectManager.getFreightDetail().clickOnAlertPopupCrossIcon();
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
 
     }
