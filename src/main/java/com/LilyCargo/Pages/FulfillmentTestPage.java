@@ -46,8 +46,7 @@ public class FulfillmentTestPage {
     @FindBy(xpath = "//input[@name='storage_location']")
     WebElement storageLocationField;
 
-    //label[contains(text(), 'Logistic Operator')]/following::div[@role='button'][1]
-    @FindBy(xpath = "//input[@name='logistic_operator_id']")
+    @FindBy(xpath = "//label[contains(text(), 'Logistic Operator')]/following::div[@role='button'][1]")
     WebElement logisticOperatorIdDropdown;
 
     @FindBy(xpath = "//input[@name='ctns']")

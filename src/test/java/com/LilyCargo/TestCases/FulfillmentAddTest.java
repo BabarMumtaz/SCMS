@@ -73,11 +73,14 @@ public class FulfillmentAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFulfillmentPage().selectLogisticsOperator("CHATEL NORD");
         log.info("Selected Logistics Operator");
 
-        pageObjectManager.getFulfillmentPage().enterCtns("A2");
+        pageObjectManager.getFulfillmentPage().enterCtns("200");
         log.info("Entered Ctns");
 
         pageObjectManager.getFulfillmentPage().clickDeliverAllBtn();
         log.info("Clicked Delivery All Btn");
+
+        pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
+        log.info("Clicked Submit Button");
 
         String deliverySuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Delivery Success Alert is: {}", deliverySuccessAlert);
