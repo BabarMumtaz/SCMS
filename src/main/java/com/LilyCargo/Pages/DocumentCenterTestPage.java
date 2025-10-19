@@ -1,0 +1,84 @@
+package com.LilyCargo.Pages;
+
+import com.LilyCargo.Util.DropdownMethodUtil;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class DocumentCenterTestPage {
+
+    WebDriver driver;
+    JavascriptExecutor executor;
+    Actions actions;
+    WebDriverWait wait;
+    DropdownMethodUtil dropdownUtil;
+
+    /** ---------- Constructor that will be automatically called as soon as the object of the class is created ---------- */
+
+    public DocumentCenterTestPage(WebDriver driver) {
+        this.driver = driver;
+        this.executor = (JavascriptExecutor) this.driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        PageFactory.initElements(driver, this);
+        this.actions = new Actions(driver);
+        this.dropdownUtil = new DropdownMethodUtil(driver, wait);
+    }
+
+    /** ---------- Locators ---------- */
+
+    @FindBy(xpath = "//button[text()='Manage Storage Location']")
+    WebElement manageStorageLocationBtn;
+
+    @FindBy(xpath = "//button[text()='Add new Delivery']")
+    WebElement addNewDeliveryBtn;
+
+    @FindBy(xpath = "//button[text()='Deliver All']")
+    WebElement deliverAllBtn;
+
+    @FindBy(xpath = "//input[@name='storage_location']")
+    WebElement storageLocationField;
+
+    @FindBy(xpath = "//label[contains(text(), 'Logistic Operator')]/following::div[@role='button'][1]")
+    WebElement logisticOperatorIdDropdown;
+
+    @FindBy(xpath = "//input[@name='ctns']")
+    WebElement ctnsField;
+
+    /** ---------- Methods ---------- */
+
+    public void clickManageStorageLocationBtn() {
+        wait.until(ExpectedConditions.visibilityOf(manageStorageLocationBtn)).click();
+    }
+
+    public void clickAddNewDeliveryBtn() {
+        wait.until(ExpectedConditions.visibilityOf(addNewDeliveryBtn)).click();
+    }
+
+    public void enterStorageLocationField(String text) {
+        actions.click(storageLocationField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
+                .perform();
+        storageLocationField.sendKeys(text);
+    }
+
+    public void enterCtns(String text) {
+        ctnsField.sendKeys(text);
+    }
+
+    public void clickDeliverAllBtn() {
+        wait.until(ExpectedConditions.visibilityOf(deliverAllBtn)).click();
+    }
+
+    public void selectLogisticsOperator(String logisticsOperator) {
+        dropdownUtil.selectDropdownByText(logisticOperatorIdDropdown, logisticsOperator);
+    }
+}
+
+
