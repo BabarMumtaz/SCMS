@@ -34,14 +34,65 @@ public class DocumentCenterTestPage {
 
     /** ---------- Locators ---------- */
 
-    @FindBy(xpath = "//button[text()='Manage Storage Location']")
-    WebElement manageStorageLocationBtn;
+    @FindBy(xpath = "//button[text()='Authorization Letter to Carrier PDF']")
+    WebElement authorizationPdfBtn;
 
-    @FindBy(xpath = "//button[text()='Add new Delivery']")
-    WebElement addNewDeliveryBtn;
+    @FindBy(xpath = "//button[text()='Discharge and Reloading Form PDF']")
+    WebElement dischargePdfBtn;
 
-    @FindBy(xpath = "//button[text()='Deliver All']")
-    WebElement deliverAllBtn;
+    @FindBy(xpath = "//button[text()='Full Truck Transport Document PDF']")
+    WebElement fullTruckPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Security Statement to Customs PDF']")
+    WebElement securityPdfBtn;
+
+    @FindBy(xpath = "//button[text()='THC Arrival Notice PDF']")
+    WebElement THCArrivalPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Customs Value / Invoice PDF']")
+    WebElement customsValuePdfBtn;
+
+    @FindBy(xpath = "//button[text()='Packing List PDF']")
+    WebElement packingListPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Cargo Manifest CV Excel']")
+    WebElement cargoManifestExcelBtn;
+
+    @FindBy(xpath = "//button[text()='Multi FIDS CCA Report Excel']")
+    WebElement customsValueBtn;
+
+    @FindBy(xpath = "//button[text()='Fiscal Rep Debit Note PDF']")
+    WebElement fiscalRepDebitPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Fiscal Rep Credit Note PDF']")
+    WebElement fiscalRepCreditPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Customs Release PDF']")
+    WebElement customsReleasePdfBtn;
+
+    @FindBy(xpath = "//button[text()='Customs Release per VAT PDF']")
+    WebElement customsReleasePerVatPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Customs Release per Doc PDF']")
+    WebElement customsReleasePerDocPdfBtn;
+
+    @FindBy(xpath = "//button[text()='Customs Release Data Excel']")
+    WebElement customsReleaseExcelBtn;
+
+    @FindBy(xpath = "//button[text()='Multi FIDS CCA Report Excel']")
+    WebElement multiFidsCcaExcelBtn;
+
+    @FindBy(xpath = "//button[text()='Billed Charges Excel']")
+    WebElement billedChargesExcelBtn;
+
+    @FindBy(xpath = "//button[text()='CBAM Overview Excel']")
+    WebElement CbamOverviewExcelBtn;
+
+    @FindBy(xpath = "//button[text()='EUDR Overview Excel']")
+    WebElement EudrOverviewExcelBtn;
+
+    @FindBy(xpath = "//button[text()='MADB CV and Duty Excel']")
+    WebElement madbCvExcelBtn;
 
     @FindBy(xpath = "//input[@name='storage_location']")
     WebElement storageLocationField;
