@@ -28,7 +28,7 @@ public class FinanceAllFieldsTestPage {
     /** ---------- Locators ---------- */
 
     @FindBy(xpath = "//input[@name='pid']")
-    WebElement pidfield;
+    WebElement pidField;
 
     @FindBy(xpath = "//input[@name='lmgbr']")
     WebElement lmgbrField;
@@ -58,7 +58,7 @@ public class FinanceAllFieldsTestPage {
     /** ---------- Methods ---------- */
 
     public void enterPid(String text) {
-        pidfield.sendKeys(text);
+        pidField.sendKeys(text);
     }
 
     public void enterLmgbrIn(String text) {

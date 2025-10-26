@@ -34,6 +34,9 @@ public class DocumentCenterTestPage {
 
     /** ---------- Locators ---------- */
 
+    @FindBy(xpath = "//button[text()='Download']")
+    WebElement downloadBtn;
+
     @FindBy(xpath = "//button[text()='Authorization Letter to Carrier PDF']")
     WebElement authorizationPdfBtn;
 
@@ -46,8 +49,26 @@ public class DocumentCenterTestPage {
     @FindBy(xpath = "//button[text()='Security Statement to Customs PDF']")
     WebElement securityPdfBtn;
 
+    @FindBy(xpath = "//input[@name='mrn']")
+    WebElement mrnNoField;
+
+    @FindBy(xpath = "//input[@name='plato']")
+    WebElement platoNoField;
+
     @FindBy(xpath = "//button[text()='THC Arrival Notice PDF']")
-    WebElement THCArrivalPdfBtn;
+    WebElement thcArrivalPdfBtn;
+
+    @FindBy(xpath = "//input[@name='letter_to']")
+    WebElement letterToField;
+
+    @FindBy(xpath = "//input[@name='vessel']")
+    WebElement vesselField;
+
+    @FindBy(xpath = "//input[@name='voyage_no']")
+    WebElement voyageNoField;
+
+    @FindBy(xpath = "//button[text()='Generate']")
+    WebElement generateBtn;
 
     @FindBy(xpath = "//button[text()='Customs Value / Invoice PDF']")
     WebElement customsValuePdfBtn;
@@ -57,9 +78,6 @@ public class DocumentCenterTestPage {
 
     @FindBy(xpath = "//button[text()='Cargo Manifest CV Excel']")
     WebElement cargoManifestExcelBtn;
-
-    @FindBy(xpath = "//button[text()='Multi FIDS CCA Report Excel']")
-    WebElement customsValueBtn;
 
     @FindBy(xpath = "//button[text()='Fiscal Rep Debit Note PDF']")
     WebElement fiscalRepDebitPdfBtn;
@@ -105,12 +123,72 @@ public class DocumentCenterTestPage {
 
     /** ---------- Methods ---------- */
 
-    public void clickManageStorageLocationBtn() {
-        wait.until(ExpectedConditions.visibilityOf(manageStorageLocationBtn)).click();
+    public void clickDownloadBtn() {
+        wait.until(ExpectedConditions.visibilityOf(downloadBtn)).click();
     }
 
-    public void clickAddNewDeliveryBtn() {
-        wait.until(ExpectedConditions.visibilityOf(addNewDeliveryBtn)).click();
+    public void clickAuthorizationPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(authorizationPdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickFullTruckPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(fullTruckPdfBtn)).click();
+    }
+
+    public void clickSecurityPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(securityPdfBtn)).click();
+    }
+
+    public void clickThcArrivalPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(thcArrivalPdfBtn)).click();
+    }
+
+    public void clickCustomsValuePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(customsValuePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    }
+
+    public void clickDischargePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
     }
 
     public void enterStorageLocationField(String text) {
