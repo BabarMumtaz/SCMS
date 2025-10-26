@@ -2,7 +2,6 @@ package com.LilyCargo.Pages;
 
 import com.LilyCargo.Util.DropdownMethodUtil;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,8 +15,6 @@ import java.time.Duration;
 public class DocumentCenterTestPage {
 
     WebDriver driver;
-    JavascriptExecutor executor;
-    Actions actions;
     WebDriverWait wait;
     DropdownMethodUtil dropdownUtil;
 
@@ -25,10 +22,8 @@ public class DocumentCenterTestPage {
 
     public DocumentCenterTestPage(WebDriver driver) {
         this.driver = driver;
-        this.executor = (JavascriptExecutor) this.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-        this.actions = new Actions(driver);
         this.dropdownUtil = new DropdownMethodUtil(driver, wait);
     }
 
@@ -82,6 +77,9 @@ public class DocumentCenterTestPage {
     @FindBy(xpath = "//button[text()='Fiscal Rep Debit Note PDF']")
     WebElement fiscalRepDebitPdfBtn;
 
+    @FindBy(xpath = "//label[contains(text(), 'Select Vat')]/following::div[@role='button'][1]")
+    WebElement selectVatDropdown;
+
     @FindBy(xpath = "//button[text()='Fiscal Rep Credit Note PDF']")
     WebElement fiscalRepCreditPdfBtn;
 
@@ -104,10 +102,10 @@ public class DocumentCenterTestPage {
     WebElement billedChargesExcelBtn;
 
     @FindBy(xpath = "//button[text()='CBAM Overview Excel']")
-    WebElement CbamOverviewExcelBtn;
+    WebElement cbamOverviewExcelBtn;
 
     @FindBy(xpath = "//button[text()='EUDR Overview Excel']")
-    WebElement EudrOverviewExcelBtn;
+    WebElement eudrOverviewExcelBtn;
 
     @FindBy(xpath = "//button[text()='MADB CV and Duty Excel']")
     WebElement madbCvExcelBtn;
@@ -151,63 +149,58 @@ public class DocumentCenterTestPage {
         wait.until(ExpectedConditions.visibilityOf(customsValuePdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickPackingListPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(packingListPdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickCargoManifestExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(cargoManifestExcelBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickFiscalRepDebitPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(fiscalRepDebitPdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickFiscalRepCreditPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(fiscalRepCreditPdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickCustomsReleasePdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(customsReleasePdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickCustomsReleasePerVatPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(customsReleasePerVatPdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickCustomsReleasePerDocPdfBtn() {
+        wait.until(ExpectedConditions.visibilityOf(customsReleasePerDocPdfBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickCustomsReleaseExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(customsReleaseExcelBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickMultiFidsCcaExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(multiFidsCcaExcelBtn)).click();
     }
 
-    public void clickDischargePdfBtn() {
-        wait.until(ExpectedConditions.visibilityOf(dischargePdfBtn)).click();
+    public void clickBilledChargesExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(billedChargesExcelBtn)).click();
     }
 
-    public void enterStorageLocationField(String text) {
-        actions.click(storageLocationField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE)
-                .perform();
-        storageLocationField.sendKeys(text);
+    public void clickCbamOverviewExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(cbamOverviewExcelBtn)).click();
     }
 
-    public void enterCtns(String text) {
-        ctnsField.sendKeys(text);
+    public void clickEudrOverviewExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(eudrOverviewExcelBtn)).click();
     }
 
-    public void clickDeliverAllBtn() {
-        wait.until(ExpectedConditions.visibilityOf(deliverAllBtn)).click();
+    public void clickMadbCvExcelBtn() {
+        wait.until(ExpectedConditions.visibilityOf(madbCvExcelBtn)).click();
     }
 
-    public void selectLogisticsOperator(String logisticsOperator) {
-        dropdownUtil.selectDropdownByText(logisticOperatorIdDropdown, logisticsOperator);
-    }
 }
 
 
