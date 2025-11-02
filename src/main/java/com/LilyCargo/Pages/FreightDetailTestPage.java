@@ -54,6 +54,9 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Fyco Data']")
 	WebElement fycoDataTab;
 
+	@FindBy(xpath = "//button[text()='Document Center']")
+	WebElement documentCenterTab;
+
 	@FindBy(xpath = "//button[text()='Billing Center']")
 	WebElement billingCenterTab;
 
@@ -127,6 +130,15 @@ public class FreightDetailTestPage {
 	public void clickFycoDataTab() {
 		waitUtil.waitForElementToBeClickable(fycoDataTab).click();
 	}
+
+	public void clickDocumentCenterTab() {
+		waitUtil.waitForElementToBeClickable(documentCenterTab).click();
+	}
+
+	public String getDocumentCenterTabText() {
+		return waitUtil.waitForElementToBeVisible(documentCenterTab).getText();
+	}
+
 
 	public boolean isBillingCenterTabDisplayed() {
 		return waitUtil.waitForElementToBeVisible(billingCenterTab).isDisplayed();

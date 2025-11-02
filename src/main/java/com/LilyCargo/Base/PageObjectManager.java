@@ -27,6 +27,7 @@ public class PageObjectManager {
     private RemarksTestPage remarksPage;
     private IncidentsRegistrationTestPage incidentsRegistrationPage;
     private FycoDataTestPage fycoDataPage;
+    private DocumentCenterTestPage documentCenterPage;
     private BillingCenterTestPage billingCenterPage;
     private CargoDataTestPage cargoDataPage;
     private FulfillmentTestPage fulfillmentPage;
@@ -108,6 +109,10 @@ public class PageObjectManager {
 
     public FycoDataTestPage getFycoDataPage() {
         return (fycoDataPage == null) ? fycoDataPage = PageFactory.initElements(driver, FycoDataTestPage.class) : fycoDataPage;
+    }
+
+    public DocumentCenterTestPage getDocumentCenterPage() {
+        return (documentCenterPage == null) ? documentCenterPage = PageFactory.initElements(driver, DocumentCenterTestPage.class) : documentCenterPage;
     }
 
     public BillingCenterTestPage getBillingCenterPage() {
