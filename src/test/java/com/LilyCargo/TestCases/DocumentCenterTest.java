@@ -47,8 +47,11 @@ public class DocumentCenterTest extends TestBeforeAndAfter {
         log.info("Tab Heading is: {}", tabHeading);
         Assert.assertEquals(tabHeading, "Document Center", "Page heading does not match expected value.");
 
-        pageObjectManager.getFulfillmentPage().clickManageStorageLocationBtn();
-        log.info("Clicked Manage Storage Location Btn");
+        pageObjectManager.getDocumentCenterPage().clickAuthorizationPdfBtn();
+        log.info("Clicked Authorization Pdf Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDownloadBtn();
+        log.info("Clicked Download Pdf Btn");
 
         String popupHeading = pageObjectManager.getGlobalMethodsPage().getPopupHeadingText();
         log.info("Popup Heading is: {}", popupHeading);
