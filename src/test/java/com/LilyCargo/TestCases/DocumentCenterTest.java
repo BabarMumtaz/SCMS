@@ -57,8 +57,48 @@ public class DocumentCenterTest extends TestBeforeAndAfter {
         log.info("Popup Heading is: {}", popupHeading);
         Assert.assertEquals(popupHeading, "Manage Storage Location", "Popup heading does not match expected value.");
 
-        pageObjectManager.getFulfillmentPage().enterStorageLocationField("A2");
-        log.info("Entered Storage Location");
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Discharge and Reloading Form PDF Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDownloadBtn();
+        log.info("Clicked Download Pdf Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Full Truck Transport Document PDF Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDownloadBtn();
+        log.info("Clicked Download Pdf Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Security Statement to Customs PDF Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDownloadBtn();
+        log.info("Clicked Download Pdf Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickThcArrivalPdfBtn();
+        log.info("Clicked THC Arrival Notice PDF Btn");
+
+        pageObjectManager.getDocumentCenterPage().clickDownloadBtn();
+        log.info("Clicked Download Pdf Btn");
+
+
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Discharge and Reloading Form PDF Btn");
+
+
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Discharge and Reloading Form PDF Btn");
+
+
+        pageObjectManager.getDocumentCenterPage().clickDischargePdfBtn();
+        log.info("Clicked Discharge and Reloading Form PDF Btn");
+
+
+
+
+
+
+
 
         pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");
