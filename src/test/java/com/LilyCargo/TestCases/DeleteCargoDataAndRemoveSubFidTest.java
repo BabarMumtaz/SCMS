@@ -16,7 +16,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Delete Cargo Data And Remove SubFid Test successfully")
     @Epic("Booked Freight 03")
-    @Feature("Feature:03.11.02_Delete Cargo Data And Remove SubFid Test")
+    @Feature("Feature:03.11.03_CargoData_Delete Cargo Data And Remove SubFid Test")
     @Story("As a user, I should be able to Delete Cargo Data And Remove SubFid Test successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight > Cargo Data Tab > Delete Cargo Data And Remove SubFid Test")
     public void VerifyDeleteCargoDataAndRemoveSubFidTest() throws InterruptedException {

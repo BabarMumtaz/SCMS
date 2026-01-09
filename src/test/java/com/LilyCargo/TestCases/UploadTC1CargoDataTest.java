@@ -16,13 +16,13 @@ public class UploadTC1CargoDataTest extends TestBeforeAndAfter {
 
     Logger log;
 
-    @Test(priority = 1, description = "Verify that a user can Upload Cargo Data successfully", groups = {"smoke", "regression"})
+    @Test(priority = 1, description = "Verify that a user can Upload TC1 Cargo Data successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that a user can Upload Cargo Data successfully")
+    @Description("Verify that a user can Upload TC1 Cargo Data successfully")
     @Epic("Booked Freight 03")
-    @Feature("Feature:03.11_Cargo Data")
-    @Story("As a user, I should be able to Upload Cargo Data successfully")
-    @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
+    @Feature("Feature:03.11.02_Cargo Data_UploadTC1CargoDataTest")
+    @Story("As a user, I should be able to Upload TC1 Cargo Data successfully")
+    @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload TC1 Cargo Data")
     public void VerifyCargoDataTc1UploadTest() throws InterruptedException {
 
         String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC1 Upload Data-20 Records (-1 Issue HS).xlsx";

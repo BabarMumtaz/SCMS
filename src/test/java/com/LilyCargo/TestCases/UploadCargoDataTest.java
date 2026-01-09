@@ -19,7 +19,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify that a user can Upload Cargo Data successfully")
     @Epic("Booked Freight 03")
-    @Feature("Feature:03.11_Cargo Data")
+    @Feature("Feature:03.11_Cargo Data_UploadCargoDataTest")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
     public void VerifyCargoDataUploadTest() throws InterruptedException {
