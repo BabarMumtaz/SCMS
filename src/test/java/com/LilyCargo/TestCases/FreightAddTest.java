@@ -70,7 +70,7 @@ public class FreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectServiceType("Clear");
         log.info("Selected Service Type Dropdown Value");
 
-        pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
+        pageObjectManager.getBookedFreights().selectShipper("Shenzhen Jingsen Jiaju Keji");
         log.info("Selected Shipper Dropdown Value");
 
         pageObjectManager.getBookedFreights().selectCOO("TURKEY");

@@ -63,6 +63,9 @@ public class CargoDataTestPage {
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement uploadCargoDataPopupSubmitButton;
 
+    @FindBy(xpath = "//button[text()='UPLOAD TEMPLATE']")
+    WebElement uploadCargoDataPopupSubmitButtonTC1;
+
     @FindBy(className = "Toastify__toast-body")
     WebElement alertPopupText;
 
@@ -83,18 +86,28 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.visibilityOf(deleteCargoDataButton)).click();
     }
 
-    public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+    public void selectDropdownButtonsByText(WebElement dropdownElement, String optionText) {
         wait.until(ExpectedConditions.elementToBeClickable(dropdownElement)).click(); // open the dropdown
-        log.info("🔽 Opened dropdown");
+        log.info("Opened a dropdown");
         WebElement dropdownOption = wait.until(ExpectedConditions
-                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')]"))));
+                .visibilityOf(driver.findElement(By.xpath("//button[text()='" + optionText + "']"))));
+        executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
+        dropdownOption.click();
+        log.info("Selected button from dropdown: {}", optionText);
+    }
+
+/*    public void selectDropdownByText(WebElement dropdownElement, String optionText) {
+        wait.until(ExpectedConditions.elementToBeClickable(dropdownElement)).click(); // open the dropdown
+        log.info("Opened dropdown");
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOf(driver.findElement(By.xpath("//li[contains(text(),'" + optionText + "')] "))));
         executor.executeScript("arguments[0].scrollIntoView(true);", dropdownOption);
         dropdownOption.click();
         log.info("Selected option: {}", optionText);
-    }
+    }*/
 
     public void selectNoTc(String noTcValue) {
-        selectDropdownByText(noTcDropdown, noTcValue);
+        selectDropdownButtonsByText(noTcDropdown, noTcValue);
     }
 
     public void clickOnExportCargoDataIcon() {
@@ -114,6 +127,10 @@ public class CargoDataTestPage {
         wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButton)).click();
     }
 
+    public void clickCargoDataPopupSubmitButtonTc1() {
+        wait.until(ExpectedConditions.elementToBeClickable(uploadCargoDataPopupSubmitButtonTC1)).click();
+    }
+
     public void clickOnAlertPopupCrossIcon() {
         wait.until(ExpectedConditions.visibilityOf(successAlertCrossIcon)).click();
     }
@@ -126,7 +143,7 @@ public class CargoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(alertPopupText)).getText().trim();
     }
 
-    public void uploadAndSubmitCargoData(String filePath, Logger log) {
+    public void uploadAndSubmitCargoDataTc9(String filePath, Logger log) {
 
         clickOnUploadCargoDataIcon();
         log.info("Clicked upload icon");
@@ -135,6 +152,24 @@ public class CargoDataTestPage {
         log.info("File selected: {}", filePath);
 
         clickCargoDataPopupSubmitButton();
+        log.info("Clicked Submit on upload popup");
+
+        isCargoAlertMessageDisplayed();
+        log.info("Upload confirmed: {}", getAlertPopupText());
+
+        clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup");
+    }
+
+    public void uploadAndSubmitCargoDataTc1(String filePath, Logger log) {
+
+        clickOnUploadCargoDataIcon();
+        log.info("Clicked upload icon");
+
+        uploadCargoDataInChooseFile(filePath);
+        log.info("File selected: {}", filePath);
+
+        clickCargoDataPopupSubmitButtonTc1();
         log.info("Clicked Submit on upload popup");
 
         isCargoAlertMessageDisplayed();

@@ -90,7 +90,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         log.info("Tab Heading is: {}", tabHeading);
         Assert.assertEquals(tabHeading, "Cargo Data", "Page heading does not match expected value.");
 
-        pageObjectManager.getCargoDataPage().uploadAndSubmitCargoData(filePath, log);
+        pageObjectManager.getCargoDataPage().uploadAndSubmitCargoDataTc9(filePath, log);
         pageObjectManager.getCargoDataPage().exportCargoData();
 
         pageObjectManager.getCargoDataPage().clickDeleteCargoDataButton();

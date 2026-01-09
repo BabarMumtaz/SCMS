@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
+import com.LilyCargo.Util.FileUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class UploadCargoDataTest extends TestBeforeAndAfter {
+public class UploadTC1CargoDataTest extends TestBeforeAndAfter {
 
     Logger log;
 
@@ -22,12 +23,21 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
     @Feature("Feature:03.11_Cargo Data")
     @Story("As a user, I should be able to Upload Cargo Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Upload Cargo Data")
-    public void VerifyCargoDataUploadTest() throws InterruptedException {
+    public void VerifyCargoDataTc1UploadTest() throws InterruptedException {
 
-        String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC9 Upload Data - 38 Records.xlsx";
+        String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\LilyCargo\\TestData\\TC1 Upload Data-20 Records (-1 Issue HS).xlsx";
 
         log = LogManager.getLogger(UploadCargoDataTest.class);
         log.info("Test setup completed.");
+
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
+        String fidToSearch = FileUtil.getData("FreightID");
+        pageObjectManager.getFreightListing().searchFid(fidToSearch);
+        String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
+        Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
 
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
@@ -60,8 +70,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         if (!noDataElements.isEmpty() && noDataElements.getFirst().isDisplayed()) {
             log.info("No data found' is displayed. Proceeding to upload.");
 
-            pageObjectManager.getCargoDataPage().selectNoTc("TC9");
-            log.info("Selected NoTC 9");
+            pageObjectManager.getCargoDataPage().selectNoTc("TC1");
+            log.info("Selected NoTC TC1");
 
             String noTcSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
             log.info("NoTC Success Alert is: {}", noTcSuccessAlert);
@@ -88,8 +98,8 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
             log.info("Selected SubFid Shipper");
 
-            pageObjectManager.getBookedFreights().selectSubFidNoTc("TC9");
-            log.info("Selected SubFid NoTC");
+            pageObjectManager.getBookedFreights().selectSubFidNoTc("TC1");
+            log.info("Selected SubFid NoTC TC1");
 
             pageObjectManager.getBookedFreights().enterHouseBLNO(FakeDataUtil.getString());
             log.info("Entered SubFid House BL No");
@@ -112,7 +122,7 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
             pageObjectManager.getFreightDetail().selectLastSubFID();
 
         }
-        pageObjectManager.getCargoDataPage().uploadAndSubmitCargoDataTc9(filePath, log);
+        pageObjectManager.getCargoDataPage().uploadAndSubmitCargoDataTc1(filePath, log);
         pageObjectManager.getCargoDataPage().exportCargoData();
     }
 }
