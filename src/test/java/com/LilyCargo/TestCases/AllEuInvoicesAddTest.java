@@ -25,6 +25,9 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add EU Invoice")
     public void VerifyAllEuInvoicesAddTestCase() throws InterruptedException {
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         log = LogManager.getLogger(AllEuInvoicesAddTest.class);
         log.info("Starting EU All INV Add Test from Billing Center Tab.");
 

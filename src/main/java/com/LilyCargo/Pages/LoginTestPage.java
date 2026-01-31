@@ -40,8 +40,8 @@ public class LoginTestPage {
 	@FindBy(className = "logout")
 	WebElement logoutButton;
 
-	@FindBy(xpath = "//h2[text()='Booked Freights']")
-	WebElement bookedFreightsHeading;
+	@FindBy(xpath = "//h2[text()='Cockpit']")
+	WebElement landingPageHeading;
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -59,7 +59,7 @@ public class LoginTestPage {
 
 	// Check login success
 	public boolean isLoginSuccessful() {
-		return wait.until(ExpectedConditions.visibilityOf(bookedFreightsHeading)).isDisplayed();
+		return wait.until(ExpectedConditions.visibilityOf(landingPageHeading)).isDisplayed();
 	}
 
 	// Check login failure

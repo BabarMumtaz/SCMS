@@ -25,6 +25,9 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Billing Center Tab > Add INTL Invoice")
     public void VerifyAllIntlInvoicesAddTestCase() throws InterruptedException {
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         log = LogManager.getLogger(AllIntlInvoicesAddTest.class);
         log.info("Starting INTL All INV Add Test from Billing Center Tab.");
 

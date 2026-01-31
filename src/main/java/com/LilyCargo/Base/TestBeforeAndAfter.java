@@ -7,7 +7,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 
@@ -17,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import com.LilyCargo.Util.ScreenShotUtil;
 
 public class TestBeforeAndAfter extends TestBaseClass {
+
     private static final Logger log = LogManager.getLogger(TestBeforeAndAfter.class);
 
     @BeforeMethod
@@ -27,7 +27,6 @@ public class TestBeforeAndAfter extends TestBaseClass {
         log.info("Browser initialized successfully.");
         pageObjectManager = new PageObjectManager(driver);
 
-        // Skip login if the test belongs to the "login" group
         boolean isLoginTest = false;
         for (String group : result.getMethod().getGroups()) {
             if (group.equals("login")) {
@@ -42,11 +41,16 @@ public class TestBeforeAndAfter extends TestBaseClass {
     }
 
     public void performLogin() {
-        pageObjectManager.getLoginPage().login(prop.getProperty("username"), prop.getProperty("password"));
+        pageObjectManager.getLoginPage()
+                .login(prop.getProperty("username"), prop.getProperty("password"));
         log.info("Entered valid username and password.");
 
-        // Check if login is successful
-        Assert.assertTrue(pageObjectManager.getLoginPage().isLoginSuccessful(), "Login was not successful.");
+        // Avoid hard assertion that can block teardown
+        if (!pageObjectManager.getLoginPage().isLoginSuccessful()) {
+            log.error("Login was not successful.");
+            throw new RuntimeException("Login failed. Aborting test.");
+        }
+
         log.info("Login successful.");
     }
 
@@ -60,25 +64,41 @@ public class TestBeforeAndAfter extends TestBaseClass {
         }
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
         String testName = result.getMethod().getMethodName();
 
-        if (result.getStatus() == ITestResult.FAILURE) {
-            InputStream screenshotStream = ScreenShotUtil.takeScreenshotForAllure(driver, testName);
-            if (screenshotStream != null) {
-                Allure.addAttachment("Screenshot on Failure", screenshotStream);
+        try {
+            if (result.getStatus() == ITestResult.FAILURE) {
+                try {
+                    InputStream screenshotStream =
+                            ScreenShotUtil.takeScreenshotForAllure(driver, testName);
+                    if (screenshotStream != null) {
+                        Allure.addAttachment("Screenshot on Failure", screenshotStream);
+                    }
+                    log.error("Test FAILED: {} - Screenshot captured.", testName);
+                } catch (Exception e) {
+                    log.error("Failed to capture screenshot for {}", testName, e);
+                }
+            } else {
+                log.info("Test {}: {}",
+                        testName,
+                        (result.getStatus() == ITestResult.SUCCESS) ? "PASSED" : "SKIPPED");
             }
-            log.error("Test FAILED: {} - Screenshot captured.", testName);
-        } else {
-            log.info("Test {}: {}", testName, (result.getStatus() == ITestResult.SUCCESS) ? "PASSED" : "SKIPPED");
-        }
 
-        // ✅ Auto logout after every test
-        logout();
-        if (driver != null) {
-            driver.quit();
-            log.info("Browser closed.");
+            // Safe logout
+            try {
+                logout();
+            } catch (Exception e) {
+                log.warn("Logout failed for test: {}", testName, e);
+            }
+
+        } finally {
+            // ALWAYS close browser
+            if (driver != null) {
+                driver.quit();
+                log.info("Browser closed.");
+            }
         }
     }
 }

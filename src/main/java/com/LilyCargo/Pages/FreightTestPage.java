@@ -314,7 +314,12 @@ public class FreightTestPage {
 	}
 
 	public void selectEtdDate() {
-		selectDate(etdDatePicker, LocalDate.now());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String today = LocalDate.now().format(formatter);
+
+		etdDatePicker.click();
+		etdDatePicker.sendKeys(today);
+		etdDatePicker.sendKeys(Keys.TAB);
 	}
 
 	public void selectEtaDate() {
@@ -322,8 +327,14 @@ public class FreightTestPage {
 	}
 
 	public void selectCutOffDate() {
-		selectDate(cutOffDateField, LocalDate.now());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String today = LocalDate.now().format(formatter);
+
+		cutOffDateField.click();
+		cutOffDateField.sendKeys(today);
+		cutOffDateField.sendKeys(Keys.TAB);
 	}
+
 
 	public void selectCutOffTime(String time) {
 		cutOffTimeField.clear();

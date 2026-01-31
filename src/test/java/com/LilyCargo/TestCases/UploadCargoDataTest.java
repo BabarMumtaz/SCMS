@@ -29,6 +29,9 @@ public class UploadCargoDataTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(UploadCargoDataTest.class);
         log.info("Test setup completed.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

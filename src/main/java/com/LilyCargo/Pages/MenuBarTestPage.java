@@ -159,7 +159,7 @@ public class MenuBarTestPage {
 	}
 
 	public void clickBookedFreightMenu() {
-		bookedFreightMenu.click();
+		wait.until(ExpectedConditions.visibilityOf(bookedFreightMenu)).click();
 	}
 
 	public void clickFreightRelationsMenu() { freightRelationsMenu.click();}
