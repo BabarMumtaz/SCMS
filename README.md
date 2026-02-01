@@ -12,7 +12,7 @@ I specialize in ensuring the delivery of high-quality software through rigorous 
   - Manual Testing, Black Box Testing, Regression Testing, Smoke Testing, Functional Testing, UI Testing, Acceptance Testing.  
 
 - **Tools:**  
-  - Selenium (Java), TestNG, Log4j, Extent Reports, JIRA, Jenkins, Git/GitHub.  
+  - Postman, Selenium (Java), TestNG, Log4j, Allure Reports, JIRA, Jenkins, Git/GitHub.  
 
 - **Frameworks:**  
   - Page Object Model (POM) with Page Factory.  
@@ -27,7 +27,7 @@ I specialize in ensuring the delivery of high-quality software through rigorous 
 
 ## Projects  
 
-### 1. **CargoMover**  
+### 1. **LilyLogix**  
 - **Description:**  
   An automated testing project using Selenium with Java to ensure efficient cargo tracking and management.  
 - **Key Features:**  
@@ -72,7 +72,7 @@ Feel free to explore my repositories and reach out if you'd like to collaborate 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# LilyCargo Automation Framework  
+# LilyLogix Automation Framework  
 
 ## Table of Contents  
 - [Structure](#structure)  
