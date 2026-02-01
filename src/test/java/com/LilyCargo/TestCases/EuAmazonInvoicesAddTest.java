@@ -28,6 +28,9 @@ public class EuAmazonInvoicesAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuAmazonInvoicesAddTest.class);
         log.info("Starting EUAmazonBrokerage INV Add Test from Billing Center Tab");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

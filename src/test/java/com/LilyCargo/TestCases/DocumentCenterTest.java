@@ -23,6 +23,9 @@ public class DocumentCenterTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(DocumentCenterTest.class);
         log.info("Test setup completed.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

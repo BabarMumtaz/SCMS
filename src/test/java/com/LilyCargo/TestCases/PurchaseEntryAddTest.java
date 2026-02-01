@@ -30,6 +30,13 @@ public class PurchaseEntryAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(PurchaseEntryAddTest.class);
         log.info("Starting Purchase Entry Add Test from Billing Center Tab.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

@@ -30,6 +30,9 @@ public class UploadTC1CargoDataTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(UploadCargoDataTest.class);
         log.info("Test setup completed.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");

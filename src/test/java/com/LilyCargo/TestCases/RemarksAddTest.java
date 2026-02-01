@@ -16,6 +16,13 @@ public class RemarksAddTest extends TestBeforeAndAfter {
     public void openRemarksTab() {
         log.info("Starting Remarks Test Setup");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the first Freight ID row");
 

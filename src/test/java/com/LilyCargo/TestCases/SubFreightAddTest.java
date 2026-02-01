@@ -29,7 +29,6 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
-
         String fidToSearch = FileUtil.getData("FreightID");
         pageObjectManager.getFreightListing().searchFid(fidToSearch);
         String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();

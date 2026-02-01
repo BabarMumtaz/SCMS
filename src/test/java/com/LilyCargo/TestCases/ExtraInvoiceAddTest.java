@@ -28,6 +28,9 @@ public class ExtraInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(ExtraInvoiceAddTest.class);
         log.info("Starting EXTRA INV Add Test from Billing Center Tab");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

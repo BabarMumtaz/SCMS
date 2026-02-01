@@ -29,6 +29,10 @@ public class DockPlannerAddTest extends TestBeforeAndAfter {
     }
 
     private void performFreightListingActions() {
+
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

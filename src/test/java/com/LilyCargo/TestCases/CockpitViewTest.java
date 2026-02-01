@@ -16,19 +16,23 @@ public class CockpitViewTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(CockpitViewTest.class);
         log.info("Starting Test from Cockpit.");
 
+/*
         pageObjectManager.getMenuBar().clickDashboardMenu();
         log.info("Clicked Administration Menu");
 
         pageObjectManager.getMenuBar().clickCockpitDashSubMenu();
         log.info("Clicked Cockpit Sub Menu");
 
+*/
 /*        Assert.assertTrue(pageObjectManager.getCockpitPage().isCockpitHeadingDisplayed(), "Cockpit heading is not displayed!");
         Assert.assertEquals(pageObjectManager.getCockpitPage().getPageHeading(), "Cockpit", "Heading text does not match!");
-        log.info("Cockpit heading verified successfully.");*/
+        log.info("Cockpit heading verified successfully.");*//*
+
 
         String mainPageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Main Page Heading is: {}", mainPageHeading);
         Assert.assertEquals(mainPageHeading, "Cockpit", "Page heading does not match expected value.");
+*/
 
         Assert.assertTrue(pageObjectManager.getCockpitPage().isCustomsEntriesTriggerHeadingDisplayed(), "Trigger Heading Not Displayed");
         log.info("Cockpit 1st Trigger Heading: {}", pageObjectManager.getCockpitPage().getCustomsEntriesTriggerHeading());

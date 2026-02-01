@@ -8,16 +8,16 @@
 
 	<test name="LillyMaas">
 		<classes>
+			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest" />
+			<class name="com.LilyCargo.TestCases.FreightAddTest" />
+			<class name="com.LilyCargo.TestCases.FreightEditFromDetailPageTest" />
 			<class name="com.LilyCargo.TestCases.CarrierAddTest" />
 			<class name="com.LilyCargo.TestCases.ClientAddTest" />
 			<class name="com.LilyCargo.TestCases.DockPlannerAddTest" />
 			<class name="com.LilyCargo.TestCases.EuAmazonInvoicesAddTest" />
 			<class name="com.LilyCargo.TestCases.EuInvoiceAddTest" />
-			<class name="com.LilyCargo.TestCases.FreightAddTest" />
-			<class name="com.LilyCargo.TestCases.FreightEditFromDetailPageTest" />
 			<class name="com.LilyCargo.TestCases.IncidentsRegistrationAddTest" />
 			<class name="com.LilyCargo.TestCases.IntlInvoiceAddTest" />
-			<class name="com.LilyCargo.TestCases.LoginUsingConfigFileTest" />
 			<class name="com.LilyCargo.TestCases.RemarksAddTest" />
 			<class name="com.LilyCargo.TestCases.ShipperAddTest" />
 			<class name="com.LilyCargo.TestCases.SubFreightAddTest" />

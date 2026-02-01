@@ -24,6 +24,9 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(FycoDataAddTest.class);
         log.info("Starting FYCO DATA Add Test from FYCO DATA Tab.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

@@ -24,6 +24,9 @@ public class IncidentsRegistrationAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(IncidentsRegistrationAddTest.class);
         log.info("Starting Incidents Registration Add Test from Incidents Registration Tab.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 

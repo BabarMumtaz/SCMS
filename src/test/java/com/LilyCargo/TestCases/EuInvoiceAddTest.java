@@ -30,6 +30,9 @@ public class EuInvoiceAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(EuInvoiceAddTest.class);
         log.info("Starting EU INV Add Test from Billing Center Tab");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");
 
