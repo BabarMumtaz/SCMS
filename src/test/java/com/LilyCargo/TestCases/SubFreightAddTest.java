@@ -25,6 +25,9 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(SubFreightAddTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");
 
+        pageObjectManager.getMenuBar().clickBookedFreightMenu();
+        log.info("Clicked Booked Freight Button");
+
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
