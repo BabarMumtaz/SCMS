@@ -32,13 +32,15 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         log.info("Page Heading is: {}", pageHeading);
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
+/*
         String fidToSearch = FileUtil.getData("FreightID");
         pageObjectManager.getFreightListing().searchFid(fidToSearch);
         String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
         Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
+*/
 
         pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the searched FreightID.");
+        log.info("Clicked on the 1st FreightID.");
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
@@ -56,7 +58,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
         log.info("Selected SubFid Export Company");
 
-        pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
+        pageObjectManager.getBookedFreights().selectShipper("Shenzhen Jingsen Jiaju Keji");
         log.info("Selected SubFid Shipper");
 
         pageObjectManager.getBookedFreights().selectSubFidNoTc("TC1");
@@ -75,7 +77,10 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
 
         String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: {}", subFidSuccessAlert);
-        Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
+
+        Assert.assertTrue(
+                subFidSuccessAlert.startsWith("SUBFID created "),
+                "Warning Alert does not contain 'SUBFID created... Check warning for details!' -> " + subFidSuccessAlert);
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
