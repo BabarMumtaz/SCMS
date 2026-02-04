@@ -117,7 +117,7 @@ public class FreightListingTestPage {
 	// Search Freight by Fid
 	public void searchFid(String fid) {
 		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
-		globalSearchInput.clear();
+		//globalSearchInput.clear();
 		globalSearchInput.sendKeys(fid);
 		globalSearchButton.click();
 	}
