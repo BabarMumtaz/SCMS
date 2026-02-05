@@ -115,11 +115,18 @@ public class FreightListingTestPage {
 	}
 
 	// Search Freight by Fid
-	public void searchFid(String fid) {
+	public void globalSearch(String fid) {
 		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
 		//globalSearchInput.clear();
 		globalSearchInput.sendKeys(fid);
 		globalSearchButton.click();
+	}
+
+	public void searchFid(String fid) {
+		waitUtil.waitForElementToBeInVisible(freightListingLoaderArea);
+		//searchFidInput.clear();
+		searchFidInput.sendKeys(fid);
+		searchButton.click();
 	}
 
 	// Get FId from first row of search results

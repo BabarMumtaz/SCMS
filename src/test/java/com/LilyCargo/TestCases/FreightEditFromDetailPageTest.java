@@ -34,7 +34,7 @@ public class FreightEditFromDetailPageTest extends TestBeforeAndAfter {
 
 /*
 		String fidToSearch = FileUtil.getData("FreightID");
-		pageObjectManager.getFreightListing().searchFid(fidToSearch);
+		pageObjectManager.getFreightListing().globalSearch(fidToSearch);
 		String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
 		Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
 */

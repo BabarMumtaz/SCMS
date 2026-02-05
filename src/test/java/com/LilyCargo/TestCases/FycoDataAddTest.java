@@ -2,6 +2,7 @@ package com.LilyCargo.TestCases;
 
 import com.LilyCargo.Base.TestBeforeAndAfter;
 import com.LilyCargo.Util.FakeDataUtil;
+import com.LilyCargo.Util.FileUtil;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +28,12 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickBookedFreightMenu();
         log.info("Clicked Booked Freight Button");
 
-        pageObjectManager.getFreightListing().clickOnFreightID();
-        log.info("Clicked on the 1st row FreightID.");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
+
+        pageObjectManager.getFreightListing().searchFid("106312");
+        log.info("Entered FID# 106312 in the search");
 
         pageObjectManager.getFreightListing().switchToNewTab();
         log.info("Switched to the new tab");
@@ -50,19 +55,32 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         log.info("Popup Heading is: {}", popupHeading);
         Assert.assertEquals(popupHeading, "New PLATO Entry", "Popup heading does not match expected value.");
 
+        pageObjectManager.getFycoDataPage().enterMrnNumberField("25NL5T9XOKCWAHMDR9");
+        log.info("Entered MRN# 25NL5T9XOKCWAHMDR9");
+
+        pageObjectManager.getFycoDataPage().clickMrnNumberFieldVerifyBtn();
+        log.info("Clicked MrnNumberFieldVerifyBtn");
+
+        String mrnSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: {}", mrnSuccessAlert);
+        Assert.assertEquals(mrnSuccessAlert, "MRN validated successfully.", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup");
+
         pageObjectManager.getFycoDataPage().enterPlatoNumberField(faker.number().digits(8));
         log.info("Entered PLATO #");
 
         pageObjectManager.getFycoDataPage().enterArticleNumberField(faker.number().digits(3));
         log.info("Entered Art #");
 
-        pageObjectManager.getFycoDataPage().enterHsTaricNumberField("4202929890");
-        log.info("Entered HS TERIC #");
+        pageObjectManager.getFycoDataPage().enterHsTaricNumberField("8510200000");
+        log.info("Entered HS TERIC# 8510200000");
 
 /*        pageObjectManager.getFycoDataPage().enterHsTaricNumberField(faker.number().digits(10));
         log.info("Entered HS TERIC #");*/
 
-        pageObjectManager.getFycoDataPage().enterProductDescriptionField(FakeDataUtil.getRemarks());
+/*        pageObjectManager.getFycoDataPage().enterProductDescriptionField(FakeDataUtil.getRemarks());
         log.info("Entered Product Description");
 
         pageObjectManager.getFycoDataPage().enterCtnsNumberField(faker.number().digits(4));
@@ -75,7 +93,17 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
         log.info("Entered Gross KG");
 
         pageObjectManager.getFycoDataPage().enterCvEuroField(faker.number().digits(6));
-        log.info("Entered CV Euro");
+        log.info("Entered CV Euro");*/
+
+        pageObjectManager.getFycoDataPage().clickHsTaricFieldVerifyBtn();
+        log.info("Clicked HsTericFieldVerifyBtn");
+
+        String hsTaricSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
+        log.info("Success Alert is: {}", hsTaricSuccessAlert);
+        Assert.assertEquals(hsTaricSuccessAlert, "HS Taric# found in cargo data.", "Success Alert does not match expected value.");
+
+        pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
+        log.info("Clicked Alert Popup");
 
         pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");

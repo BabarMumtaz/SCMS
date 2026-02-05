@@ -39,6 +39,12 @@ public class FycoDataTestPage {
     @FindBy(className = "btn-close")
     WebElement fycoDataPopupCloseIcon;
 
+    @FindBy(xpath = "//input[@name='mrn']")
+    WebElement mrnNumberField;
+
+    @FindBy(xpath = "(//button[contains(text(), 'Verify')])[1]")
+    WebElement mrnNumberFieldVerifyButton;
+
     @FindBy(xpath = "//input[@name='platoNumber']")
     WebElement platoNumberField;
 
@@ -47,6 +53,9 @@ public class FycoDataTestPage {
 
     @FindBy(xpath = "//input[@name='hsTaricNumber']")
     WebElement hsTaricNumberField;
+
+    @FindBy(xpath = "(//button[contains(text(), 'Verify')])[2]")
+    WebElement hsTaricNumberFieldVerifyButton;
 
     @FindBy(xpath = "//input[@name='productDescription']")
     WebElement productDescriptionField;
@@ -98,6 +107,12 @@ public class FycoDataTestPage {
         return wait.until(ExpectedConditions.visibilityOf(fycoDataPopupHeading)).isDisplayed();
     }
 
+    public void enterMrnNumberField(String text) {
+        mrnNumberField.sendKeys(text);
+    }
+
+    public void clickMrnNumberFieldVerifyBtn() { wait.until(ExpectedConditions.elementToBeClickable(mrnNumberFieldVerifyButton)).click(); }
+
     public void enterPlatoNumberField(String text) {
         platoNumberField.sendKeys(text);
     }
@@ -109,6 +124,8 @@ public class FycoDataTestPage {
     public void enterHsTaricNumberField(String text) {
         hsTaricNumberField.sendKeys(text);
     }
+
+    public void clickHsTaricFieldVerifyBtn() { wait.until(ExpectedConditions.elementToBeClickable(hsTaricNumberFieldVerifyButton)).click(); }
 
     public void enterProductDescriptionField(String text) {
         productDescriptionField.sendKeys(text);

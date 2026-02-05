@@ -38,7 +38,7 @@ public class UploadTC1CargoDataTest extends TestBeforeAndAfter {
         Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
         String fidToSearch = FileUtil.getData("FreightID");
-        pageObjectManager.getFreightListing().searchFid(fidToSearch);
+        pageObjectManager.getFreightListing().globalSearch(fidToSearch);
         String searchedFid = pageObjectManager.getFreightListing().getSearchResultFid();
         Assert.assertEquals(searchedFid, fidToSearch, "Searched FId does not match expected value.");
 
