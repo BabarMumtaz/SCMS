@@ -406,7 +406,7 @@ public class GlobalMethodsTestPage {
     }
 
     public void clickOnAlertPopupCrossIcon() {
-        wait.until(ExpectedConditions.visibilityOf(alertPopupGlobal)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(alertPopupGlobal)).click();
     }
 
     public void clickAllDynamicCrossIcons() {

@@ -77,6 +77,9 @@ public class ShipperAddTest extends TestBeforeAndAfter {
         pageObjectManager.getRelationsAllFieldsTestPage().enterScmEmails(FakeDataUtil.getFakeEmails(2).split(";"));
         log.info("Entered Shipper's SCM Emails");
 
+        pageObjectManager.getRelationsAllFieldsTestPage().enterIntraVatFilingEmails(FakeDataUtil.getFakeEmails(3).split(";"));
+        log.info("Entered Shipper's Request latest INTRA VAT Filing Emails");
+
         pageObjectManager.getGlobalMethodsPage().clickSaveAndBackBtn();
         log.info("Click Save Shipper Button");
 

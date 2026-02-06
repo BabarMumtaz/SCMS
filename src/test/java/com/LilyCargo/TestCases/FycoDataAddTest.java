@@ -20,7 +20,7 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
     @Feature("Feature:03.08_Fyco Data")
     @Story("As a user, I should be able to add Fyco Data successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Booked Freight > Detail > Fyco Data Tab > Add Fyco Data")
-    public void VerifyFycoDataCreation(){
+    public void VerifyFycoDataCreation() throws InterruptedException {
 
         log = LogManager.getLogger(FycoDataAddTest.class);
         log.info("Starting FYCO DATA Add Test from FYCO DATA Tab.");
@@ -107,6 +107,8 @@ public class FycoDataAddTest extends TestBeforeAndAfter {
 
         pageObjectManager.getGlobalMethodsPage().clickSubmitBtn();
         log.info("Clicked Submit Button");
+
+        Thread.sleep(1000);
 
         String successAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: {}", successAlert);

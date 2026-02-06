@@ -159,6 +159,9 @@ public class RelationsAllFieldsTestPage {
     @FindBy(xpath = "//label[text()='Billing Emails']/following::input[1]")
     WebElement billingEmails;
 
+    @FindBy(xpath = "//input[@name='intraVatFilingEmails']")
+    WebElement intraVatFilingEmails;
+
     @FindBy(xpath = "//label[text()='Store Front']/following::input[1]")
     WebElement storeFrontField;
 
@@ -359,6 +362,10 @@ public class RelationsAllFieldsTestPage {
 
     public void enterBillingEmails(String... emails) {
         enterMultipleEmails(billingEmails, emails);
+    }
+
+    public void enterIntraVatFilingEmails(String... emails) {
+        enterMultipleEmails(intraVatFilingEmails, emails);
     }
 
     public void clickDuplicateBtn() { duplicateButton.click(); }
