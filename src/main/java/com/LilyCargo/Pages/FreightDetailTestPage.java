@@ -1,5 +1,6 @@
 package com.LilyCargo.Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,6 +49,9 @@ public class FreightDetailTestPage {
 	@FindBy(xpath = "//button[text()='Remarks']")
 	WebElement remarksTab;
 
+	@FindBy(xpath = "//button[text()='SUB-FIDs List']")
+	WebElement subFidListTab;
+
 	@FindBy(xpath = "//button[text()='Incidents Registration']")
 	WebElement incidentsRegistrationTab;
 
@@ -68,6 +72,12 @@ public class FreightDetailTestPage {
 
 	@FindBy(xpath = "//div[@class='MuiTabs-scroller MuiTabs-fixed css-1anid1y']")
 	WebElement freightTabHorizontalScroll;
+
+
+
+	private By tabByName(String tabName) {
+		return By.xpath("//button[normalize-space()='" + tabName + "']");
+	}
 
 	/** ---------- Methods ---------- */
 
@@ -98,12 +108,12 @@ public class FreightDetailTestPage {
 
 			if (!text.equalsIgnoreCase("A") && !text.equalsIgnoreCase("None")) {
 				subFidSelect.selectByVisibleText(text);
-				log.info("🔁 Selected last valid SubFID: " + text);
+				log.info("Selected last valid SubFID: " + text);
 			} else {
-				log.warn("⚠️ Last SubFID option is invalid (A or None): " + text);
+				log.warn("Last SubFID option is invalid (A or None): " + text);
 			}
 		} else {
-			log.warn("⚠️ No SubFID options available.");
+			log.warn("No SubFID options available.");
 		}
 	}
 
@@ -113,6 +123,15 @@ public class FreightDetailTestPage {
 
 	public void clickRemarksTab() {
 		waitUtil.waitForElementToBeClickable(remarksTab).click();
+	}
+
+
+	public String getSubFidListTabText() {
+		return waitUtil.waitForElementToBeVisible(subFidListTab).getText();
+	}
+
+	public void clickSubFidListTab() {
+		waitUtil.waitForElementToBeClickable(subFidListTab).click();
 	}
 
 	public String getIncidentsRegistrationTabText() {
@@ -177,4 +196,24 @@ public class FreightDetailTestPage {
 
 		waitUtil.waitForElementToBeVisible(cargoDataTab);
 	}
+
+
+	public void clickTab(String tabName) {
+		WebElement tab = waitUtil.waitForElementToBeClickable(driver.findElement(tabByName(tabName)));
+		tab.click();
+		log.info("Clicked on tab: {}", tabName);
+	}
+
+	public String getTabText(String tabName) {
+		WebElement tab = waitUtil.waitForElementToBeVisible(driver.findElement(tabByName(tabName)));
+		return tab.getText();
+	}
+
+	public boolean isTabDisplayed(String tabName) {
+		WebElement tab = waitUtil.waitForElementToBeVisible(driver.findElement(tabByName(tabName)));
+		return tab.isDisplayed();
+	}
+
+
+
 }

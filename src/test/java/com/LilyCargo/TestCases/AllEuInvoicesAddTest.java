@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
 
-    Logger log;
+    private static final Logger log = LogManager.getLogger(AllEuInvoicesAddTest.class);
 
     @Test(priority = 1, description = "Verify that a user can add EU Invoice successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -28,8 +28,9 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getMenuBar().clickBookedFreightMenu();
         log.info("Clicked Booked Freight Button");
 
-        log = LogManager.getLogger(AllEuInvoicesAddTest.class);
-        log.info("Starting EU All INV Add Test from Billing Center Tab.");
+        String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
+        log.info("Page Heading is: {}", pageHeading);
+        Assert.assertEquals(pageHeading, "Booked Freights", "Page heading does not match expected value.");
 
 /*        pageObjectManager.getFreightListing().clickOnFreightID();
         log.info("Clicked on the 1st row FreightID.");*/
@@ -49,7 +50,7 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
         Thread.sleep(500);
 
         pageObjectManager.getFreightDetail().clickBillingCenterTab();
-        log.info("Clicked Billing Center Tab");
+        log.info("Clicked Billing Center Tab. Starting EU All INV Add Test from Billing Center Tab.");
 
         pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
         log.info("Clicked EU INV Tab");
