@@ -26,8 +26,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         log = LogManager.getLogger(DeleteCargoDataAndRemoveSubFidTest.class);
         log.info("Starting SubFreight Add Test from Detail Page.");
 
-        pageObjectManager.getMenuBar().clickBookedFreightMenu();
-        log.info("Clicked Booked Freight Button");
+        pageObjectManager.getMenuBar().clickMenu("Booked Freight");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: {}", pageHeading);
@@ -80,8 +79,6 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         Thread.sleep(1000);
 
         pageObjectManager.getFreightDetail().selectLastSubFID();
-
-        //pageObjectManager.getFreightDetail().scrollToRight();
 
         pageObjectManager.getFreightDetail().scrollToTab("API Docs");
         log.info("Scroll to Right Towards Cargo Data Tab");

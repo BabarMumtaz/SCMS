@@ -22,8 +22,7 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
     public void VerifySubFreightCreation() throws InterruptedException {
 
-        pageObjectManager.getMenuBar().clickBookedFreightMenu();
-        log.info("Clicked Booked Freight Button");
+        pageObjectManager.getMenuBar().clickMenu("Booked Freight");
 
         String pageHeading = pageObjectManager.getGlobalMethodsPage().getMainPageHeadingText();
         log.info("Page Heading is: {}", pageHeading);

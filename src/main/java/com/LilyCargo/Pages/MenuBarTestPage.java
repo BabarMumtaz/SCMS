@@ -1,26 +1,33 @@
 package com.LilyCargo.Pages;
 
+import com.LilyCargo.Util.WaitUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 
 public class MenuBarTestPage {
 
+	private final WaitUtil waitUtil;
 	WebDriver driver;
 	WebDriverWait wait;
+	private static final Logger log = LogManager.getLogger(MenuBarTestPage.class);
+
 
 	// Constructor that will be automatically called as soon as the object of the
 	// class is created
 	public MenuBarTestPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		this.waitUtil = new WaitUtil(driver);
 	}
 
 //	 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -108,7 +115,6 @@ public class MenuBarTestPage {
 
 	@FindBy(xpath = "//div[@title='Finance']")
 	WebElement financeMenu;
-
 
 	@FindBy(xpath = "//li[@title='International Products']")
 	WebElement internationalProductsFinanceSubMenu;
@@ -243,4 +249,53 @@ public class MenuBarTestPage {
 	public void clickManageGlAccountsSubMenu() {
 		wait.until(ExpectedConditions.visibilityOf(glAccountFinanceSubMenu)).click();
 	}
+
+
+
+	// =========================
+	// Dynamic Locators
+	// =========================
+
+	private By menuByTitle(String menuName) {
+		return By.xpath("//li[@title='" + menuName + "']");
+	}
+
+	private By subMenuByTitle(String subMenuName) {
+		return By.xpath("//li[@title='" + subMenuName + "']");
+	}
+
+	private By sidebarExpandIcon = By.xpath(
+			"//img[@src='/static/media/aside-uncollapse.bd6caeaeff8ed082011267c649cadb4e.svg']"
+	);
+
+	// =========================
+	// Generic Methods
+	// =========================
+
+	public void clickMenu(String menuName) {
+		WebElement menu = waitUtil.waitForElementToBeClickable(
+				driver.findElement(menuByTitle(menuName))
+		);
+		menu.click();
+		log.info("Clicked menu: {}", menuName);
+	}
+
+	public void clickSubMenu(String subMenuName) {
+		WebElement subMenu = waitUtil.waitForElementToBeClickable(
+				driver.findElement(subMenuByTitle(subMenuName))
+		);
+		subMenu.click();
+		log.info("Clicked sub menu: {}", subMenuName);
+	}
+
+	public void expandSidebar() {
+		WebElement expand = waitUtil.waitForElementToBeClickable(
+				driver.findElement(sidebarExpandIcon)
+		);
+		expand.click();
+		log.info("Expanded sidebar");
+	}
+
+
+
 }

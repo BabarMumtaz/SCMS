@@ -197,6 +197,7 @@ public class FreightDetailTestPage {
 		waitUtil.waitForElementToBeVisible(cargoDataTab);
 	}
 
+	/** ---------- New Approach Methods ---------- */
 
 	public void clickTab(String tabName) {
 		WebElement tab = waitUtil.waitForElementToBeClickable(driver.findElement(tabByName(tabName)));
