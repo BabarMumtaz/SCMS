@@ -45,7 +45,7 @@ public class SubmitMrnCustomsStatusPage {
     @FindBy(xpath = "//li[text()='Clear']")
     WebElement customsStatusDropdownOptions;
 
-    @FindBy(xpath = "//button[text()='Submit MRN & Customs Status']")
+    @FindBy(xpath = "//button[text()='Submit MRN # & Customs Status']")
     WebElement submitMrnTask;
 
     @FindBy(xpath = "//button[text()='Upload']")
@@ -53,6 +53,12 @@ public class SubmitMrnCustomsStatusPage {
 
     @FindBy(xpath = "//button[text()='Delete']")
     WebElement deleteMrnButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Adjust Exporter, Shipper')]")
+    WebElement adjustExporterAndOthersButton;
+
+    @FindBy(xpath = "//button[text()='Download Excel']")
+    WebElement downloadExcelButton;
 
     /** ---------- Methods ---------- */
 
@@ -101,5 +107,14 @@ public class SubmitMrnCustomsStatusPage {
     public void selectCustomsStatusDropdown() {
         selectDropdownValue(customsStatusDropdown, customsStatusDropdownOptions);
     }
+
+    public void clickAdjustExporterAndOthersButton() {
+        wait.until(ExpectedConditions.visibilityOf(adjustExporterAndOthersButton)).click();
+    }
+
+    public void clickDownloadExcelButton() {
+        wait.until(ExpectedConditions.visibilityOf(downloadExcelButton)).click();
+    }
+
 
 }

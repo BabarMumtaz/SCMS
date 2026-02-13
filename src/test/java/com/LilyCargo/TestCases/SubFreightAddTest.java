@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class SubFreightAddTest extends TestBeforeAndAfter {
 
-    Logger log;
+    private static final Logger log = LogManager.getLogger(SubFreightAddTest.class);
 
     @Test(priority = 1, description = "Verify that a user can Create SubFreight successfully", groups = {"smoke", "regression"})
     @Severity(SeverityLevel.BLOCKER)
@@ -21,9 +21,6 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
     @Story("As a user, I should be able to Create SubFreight successfully")
     @Step("Hit Site Url -> Login with valid credentials -> Open Freight Detail > Create SubFreight")
     public void VerifySubFreightCreation() throws InterruptedException {
-
-        log = LogManager.getLogger(SubFreightAddTest.class);
-        log.info("Starting SubFreight Add Test from Detail Page.");
 
         pageObjectManager.getMenuBar().clickBookedFreightMenu();
         log.info("Clicked Booked Freight Button");
@@ -47,7 +44,9 @@ public class SubFreightAddTest extends TestBeforeAndAfter {
 
         Assert.assertTrue(pageObjectManager.getFreightDetail().isEditFreightIconDisplayed(), "Edit Freight icon is not Displayed");
         log.info("Edit wrapper is displayed.");
-        
+
+        log.info("Starting SubFreight Add Test from Detail Page.");
+
         pageObjectManager.getFreightDetail().clickSubFidAddIcon();
         log.info("Clicked SubFid Add Icon");
 

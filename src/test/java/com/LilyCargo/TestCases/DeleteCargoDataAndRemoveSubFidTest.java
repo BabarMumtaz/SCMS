@@ -55,7 +55,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
         pageObjectManager.getBookedFreights().selectExportCompany("BEIJING CENTURY");
         log.info("Selected SubFid Export Company");
 
-        pageObjectManager.getBookedFreights().selectShipper("ShenZhen JingSen");
+        pageObjectManager.getBookedFreights().selectShipper("Shenzhen Jingsen Jiaju Keji");
         log.info("Selected SubFid Shipper");
 
         pageObjectManager.getBookedFreights().selectSubFidNoTc("TC9");
@@ -72,7 +72,7 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
 
         String subFidSuccessAlert = pageObjectManager.getGlobalMethodsPage().getAlertPopupText();
         log.info("Success Alert is: {}", subFidSuccessAlert);
-        Assert.assertEquals(subFidSuccessAlert, "Sub FID successfully added", "Success Alert does not match expected value.");
+        Assert.assertEquals(subFidSuccessAlert, "SUBFID created successfully", "Success Alert does not match expected value.");
 
         pageObjectManager.getGlobalMethodsPage().clickOnAlertPopupCrossIcon();
         log.info("Clicked Alert Popup ");
@@ -81,13 +81,14 @@ public class DeleteCargoDataAndRemoveSubFidTest extends TestBeforeAndAfter {
 
         pageObjectManager.getFreightDetail().selectLastSubFID();
 
-        pageObjectManager.getFreightDetail().scrollToRight();
+        //pageObjectManager.getFreightDetail().scrollToRight();
+
+        pageObjectManager.getFreightDetail().scrollToTab("API Docs");
         log.info("Scroll to Right Towards Cargo Data Tab");
 
         Thread.sleep(1000);
 
-        pageObjectManager.getFreightDetail().clickCargoDataTab();
-        log.info("Clicked Cargo Data Tab");
+        pageObjectManager.getFreightDetail().clickTab("Cargo Data");
 
         String tabHeading = pageObjectManager.getFreightDetail().getCargoDataTabText();
         log.info("Tab Heading is: {}", tabHeading);

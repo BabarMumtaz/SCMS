@@ -49,8 +49,8 @@ public class AllEuInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().selectLastSubFID();
         Thread.sleep(500);
 
-        pageObjectManager.getFreightDetail().clickBillingCenterTab();
-        log.info("Clicked Billing Center Tab. Starting EU All INV Add Test from Billing Center Tab.");
+        pageObjectManager.getFreightDetail().clickTab("Billing Center");
+        log.info("Starting EU All INV Add Test from Billing Center Tab.");
 
         pageObjectManager.getBillingCenterPage().clickOnEulInvTab();
         log.info("Clicked EU INV Tab");

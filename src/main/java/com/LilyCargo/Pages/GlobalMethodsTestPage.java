@@ -392,7 +392,7 @@ public class GlobalMethodsTestPage {
     }
 
     public void clickUpdateBtn() {
-        updateBtn.click();
+        wait.until(ExpectedConditions.visibilityOf(updateBtn)).click();
     }
 
     public void clickCancelBtn() { cancelBtn.click(); }

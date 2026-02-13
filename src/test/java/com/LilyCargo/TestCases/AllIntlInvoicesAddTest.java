@@ -46,8 +46,8 @@ public class AllIntlInvoicesAddTest extends TestBeforeAndAfter {
         pageObjectManager.getFreightDetail().selectLastSubFID();
         Thread.sleep(500);
 
-        pageObjectManager.getFreightDetail().clickBillingCenterTab();
-        log.info("Clicked Billing Center Tab. Starting INTL All INV Add Test from Billing Center Tab.");
+        pageObjectManager.getFreightDetail().clickTab("Billing Center");
+        log.info("Starting INTL All INV Add Test from Billing Center Tab.");
 
         Thread.sleep(500);
 

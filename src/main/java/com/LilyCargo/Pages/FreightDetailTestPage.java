@@ -214,6 +214,21 @@ public class FreightDetailTestPage {
 		return tab.isDisplayed();
 	}
 
+	public void scrollToTab(String tabName) {
 
+		// Wait for tab container
+		waitUtil.waitForElementToBeVisible(freightTabHorizontalScroll);
+
+		WebElement tab = driver.findElement(tabByName(tabName));
+
+		executor.executeScript(
+				"arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});",
+				tab
+		);
+
+		waitUtil.waitForElementToBeVisible(tab);
+
+		log.info("Scrolled to tab: {}", tabName);
+	}
 
 }
